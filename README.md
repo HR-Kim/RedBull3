@@ -10,3 +10,6 @@
 
 ## 프로젝트 일정
 ![wbs_0829](https://github.com/HR-Kim/RedBull3/blob/master/doc/wbs_0829.png)
+
+## 프로젝트 아키텍처
+![모바일 공통컴포넌트 아키텍처](https://github.com/HR-Kim/RedBull3/blob/master/doc/%EB%AA%A8%EB%B0%94%EC%9D%BC_%EA%B3%B5%ED%86%B5%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8_%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98.jpg)
