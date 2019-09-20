@@ -27,11 +27,7 @@
 		
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
-<<<<<<< HEAD
 		<url-pattern>/</url-pattern>
-=======
-		<url-pattern>*.do</url-pattern>
->>>>>>> branch 'master' of https://github.com/HR-Kim/RedBull3.git
 	</servlet-mapping>
 
 </web-app>

@@ -12,11 +12,7 @@
 	
 	<!-- Application Loggers -->
 	<logger name="kr.co.redbull">
-<<<<<<< HEAD
 		<level value="info" />
-=======
-		<level value="debug" />
->>>>>>> branch 'master' of https://github.com/HR-Kim/RedBull3.git
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
