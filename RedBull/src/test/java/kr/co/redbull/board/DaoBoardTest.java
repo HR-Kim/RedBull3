@@ -85,7 +85,15 @@ public class DaoBoardTest {
 		//-----------------------------------------------
 		search.setPageSize(10);
 		search.setPageNum(1);
-		search.setSearchDiv("10");
+		search.setSearchDiv("1");
+		search.setSearchWord("제목");
+		
+		List<Board> boardList = (List<Board>)boardDaoImpl.get_retrieve(search);
+		
+		LOG.debug("===========================");
+		LOG.debug("boardList:"+boardList);
+		LOG.debug("===========================");
+		
 	}
 	
 	@Test

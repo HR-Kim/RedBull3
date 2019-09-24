@@ -97,7 +97,6 @@
 	             B.rnum AS num
       	  FROM (SELECT ROWNUM AS rnum, A.*
             	FROM(SELECT * FROM BOARD
-                 	 --SEARCH CONDITION
                  	 <include refid="searchCondition" />
                  	 ORDER BY REGDT DESC) A
             	WHERE ROWNUM <![CDATA[<]]>= (#{pageSize, jdbcType=NUMERIC} * (#{pageNum, jdbcType=NUMERIC} -1) + #{pageSize, jdbcType=NUMERIC}))B
@@ -105,9 +104,8 @@
 	CROSS JOIN
 	(SELECT COUNT(*)
 	 FROM (SELECT * FROM BOARD
-	       --SEARCH CONDITION
 	       <include refid="searchCondition" />
-	      ))T2;
+	      ))T2
 	</select>
 
 </mapper>

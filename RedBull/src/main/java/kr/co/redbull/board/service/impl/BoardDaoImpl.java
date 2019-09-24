@@ -134,18 +134,18 @@ public class BoardDaoImpl implements WorkDiv {
 
 	@Override
 	public List<?> get_retrieve(DTO dto) {
-		Board board = (Board)dto;
+		Search search = (Search)dto;
 		String statement = NAMESPACE + ".get_retrieve";
 		
 		LOG.debug("==============================");
-		LOG.debug("1.param:"+board);
+		LOG.debug("1.param:"+search);
 		LOG.debug("==============================");
 		
 		LOG.debug("==============================");
 		LOG.debug("2.statement:"+statement);
 		LOG.debug("==============================");
 		
-		List<Board> list = sqlSessionTemplate.selectList(statement, board);
+		List<Board> list = sqlSessionTemplate.selectList(statement, search);
 		
 		LOG.debug("==============================");
 		LOG.debug("3.list:"+list);

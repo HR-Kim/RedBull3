@@ -1,5 +1,7 @@
 package kr.co.redbull.product;
 
+import static org.hamcrest.CoreMatchers.is;
+
 //import static com.ehr.service.UserServiceImpl.MIN_LOGINCOUNT_FOR_SILVER;
 //import static com.ehr.service.UserServiceImpl.MIN_RECCOMEND_FOR_GOLD;
 
@@ -28,6 +30,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.context.WebApplicationContext;
 
+import kr.co.redbull.board.service.Board;
+import kr.co.redbull.board.service.impl.BoardDaoImpl;
+import kr.co.redbull.cmn.Search;
+
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/**/*.xml"})
@@ -48,11 +54,11 @@ public class DaoBoardTest {
 	@Before
 	public void setUp() {
 		list = Arrays.asList(
-				new Board("noBoardId","J01제목_125",0,"J01내용_125","J01작성자_125","no_date"),
-				new Board("noBoardId","J02제목_125",0,"J02내용_125","J02작성자_125","no_date"),
-				new Board("noBoardId","J03제목_125",0,"J03내용_125","J03작성자_125","no_date"),
-				new Board("noBoardId","J04제목_125",0,"J04내용_125","J04작성자_125","no_date"),
-				new Board("noBoardId","J05제목_125",0,"J05내용_125","J05작성자_125","no_date")
+//				new Board("noBoardId","J01제목_125",0,"J01내용_125","J01작성자_125","no_date"),
+//				new Board("noBoardId","J02제목_125",0,"J02내용_125","J02작성자_125","no_date"),
+//				new Board("noBoardId","J03제목_125",0,"J03내용_125","J03작성자_125","no_date"),
+//				new Board("noBoardId","J04제목_125",0,"J04내용_125","J04작성자_125","no_date"),
+//				new Board("noBoardId","J05제목_125",0,"J05내용_125","J05작성자_125","no_date")
 				);
 				
 				
