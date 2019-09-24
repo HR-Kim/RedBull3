@@ -136,7 +136,6 @@ public class DaoProductTest {
 //	}
 	
 	@Test
-	@Ignore
 	public void addAndGet() {
 //		//0.데이터 삭제
 //		Search search = new Search();
@@ -169,6 +168,7 @@ public class DaoProductTest {
 	}
 	
 	@Test
+	@Ignore
 	public void getBean() {
 		LOG.debug("====================================================");
 		LOG.debug("=context="+context);
