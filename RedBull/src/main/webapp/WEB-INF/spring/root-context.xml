@@ -1,8 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<bean id="sqlSessionTemplate" destroy-method="clearCache" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+		<property name="mapperLocations" value="classpath:mappers/**/*.xml" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!--config/database.properties  -->
+	<context:property-placeholder
+	 location="classpath:config/database.properties"
+	/>
+	
+	<!-- DB Connection -->
+	<bean id="dataSourceSpied" 
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName"
+			value="${jdbc.driver}" />
+		<property name="url"
+			value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	
+	<!-- log4Jdbc-remix -->
+	<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+		<constructor-arg ref="dataSourceSpied"/>
+		<property name="logFormatter">
+			<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+				<property name="loggingType" value="MULTI_LINE" />
+				<property name="sqlPrefix" value="REDBULL_SQL] : " />
+			</bean>
+		</property>
+	</bean>
+	
+		<!-- AspectJ Transaction -->  
+	<!-- DataSourceTransactionManager -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- Transaction Advice -->
+	<tx:advice id="transactionAdvice" 
+	           transaction-manager="transactionManager">
+	           <tx:attributes>
+	           		<tx:method name="get_*" read-only="true"/>
+	           		<tx:method name="tx_*"/> <!-- tx_* -->	
+	           </tx:attributes>
+	</tx:advice>
+			
+	<!-- Transaction Advisor -->
+	<aop:config>
+	    <!-- pointcut -->
+		<aop:pointcut id="allPointCut" 
+		   expression="execution(* kr.co.ehr..service.impl.*Impl.tx_*(..))" />
+		<!-- advisor: advice+pointcut -->   
+		<aop:advisor advice-ref="transactionAdvice" 
+		   pointcut-ref="allPointCut"/>   
+	</aop:config>
+		
+	<!-- JDBCTemplate -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
 		
 </beans>

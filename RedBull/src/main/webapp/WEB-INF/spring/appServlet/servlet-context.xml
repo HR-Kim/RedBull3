@@ -17,9 +17,18 @@
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="prefix" value="/" />
 		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="order"  value="3" />
 	</beans:bean>
+	
+	<!-- view이름과 동일한 view를 찾는 class:BeanNameViewResolver -->
+	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<beans:property name="order" value="1"/>
+	</beans:bean>
+	
+<!-- 	 FileDownload View 
+	<beans:bean id="downloadView" class="kr.co.ehr.cmn.DownloadView"/> -->
 	
 	<context:component-scan base-package="kr.co.redbull" />
 	
