@@ -12,6 +12,7 @@
 	<typeAliases>
 		<typeAlias type="kr.co.redbull.board.service.Board" alias="Board" />
 		<typeAlias type="kr.co.redbull.cmn.Search" alias="Search" />
+		<typeAlias type="kr.co.redbull.product.service.Product" alias="Product" />
 	</typeAliases>
 
 </configuration>  
