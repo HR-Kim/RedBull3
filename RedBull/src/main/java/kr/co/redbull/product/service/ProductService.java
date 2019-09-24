@@ -3,6 +3,7 @@ package kr.co.redbull.product.service;
 import java.util.List;
 
 import kr.co.redbull.cmn.DTO;
+import kr.co.redbull.cmn.Search;
 
 public interface ProductService {
 	/**수정 */
