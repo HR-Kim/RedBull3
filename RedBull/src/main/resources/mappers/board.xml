@@ -8,21 +8,22 @@
 		<where>
 			<choose>
 				<when test="10">
-					TNUM = 10
+					TNUM = 1
 					AND TITLE LIKE '%' || #{searchWord} || '%'
 				</when>
 				<when test="20">
-					TNUM = 20
+					TNUM = 2
 					AND TITLE LIKE '%' || #{searchWord} || '%'
 				</when>
 				<when test="30">
-					TNUM = 20
+					TNUM = 2
 					AND REGID LIKE '%' || #{searchWord} || '%'
 				</when>
 				<when test="40">
-					TNUM = 20
+					TNUM = 2
 					AND CATEGORY = #{searchWord}
 				</when>
+				<otherwise></otherwise>
 			</choose>
 		</where>
 	</sql>
@@ -97,6 +98,7 @@
       	  FROM (SELECT ROWNUM AS rnum, A.*
             	FROM(SELECT * FROM BOARD
                  	 --SEARCH CONDITION
+                 	 <include refid="searchCondition" />
                  	 ORDER BY REGDT DESC) A
             	WHERE ROWNUM <![CDATA[<]]>= (#{pageSize, jdbcType=NUMERIC} * (#{pageNum, jdbcType=NUMERIC} -1) + #{pageSize, jdbcType=NUMERIC}))B
       	  WHERE B.rnum <![CDATA[>]]>= (#{pageSize, jdbcType=NUMERIC} * (#{pageNum, jdbcType=NUMERIC} -1)+1)) T1
@@ -104,6 +106,7 @@
 	(SELECT COUNT(*)
 	 FROM (SELECT * FROM BOARD
 	       --SEARCH CONDITION
+	       <include refid="searchCondition" />
 	      ))T2;
 	</select>
 
