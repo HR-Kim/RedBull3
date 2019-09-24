@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.redbull.board">
+
+	<sql id="searchCondition">
+		<where>
+			<choose>
+				<when test="10">
+					TNUM = 10
+					AND TITLE LIKE '%' || #{searchWord} || '%'
+				</when>
+				<when test="20">
+					TNUM = 20
+					AND TITLE LIKE '%' || #{searchWord} || '%'
+				</when>
+				<when test="30">
+					TNUM = 20
+					AND REGID LIKE '%' || #{searchWord} || '%'
+				</when>
+				<when test="40">
+					TNUM = 20
+					AND CATEGORY = #{searchWord}
+				</when>
+			</choose>
+		</where>
+	</sql>
+	
+	<!-- 게시판번호 가져오기 -->
+	<select id="get_boardIdList" parameterType="Search" resultType="Board">
+		SELECT * FROM BOARD WHERE TITLE LIKE '%' || #{searchWord} || '%'
+	</select>
+
+	<!-- 수정  -->
+	<update id="do_update" parameterType="Board">
+		UPDATE BOARD
+			SET TITLE = #{title, jdbcType=VARCHAR},
+				CONTENTS = #{contents, jdbcType=VARCHAR},
+				TNUM = #{tNum, jdbcType=NUMERIC},
+				CATEGORY = #{category, jdbcType=VARCHAR},
+				MODID = #{modId, jdbcType=VARCHAR},
+				MODDT = SYSDATE
+		WHERE BNUM = #{bNum, jdbcType=NUMERIC}		
+	</update>
+	
+	<!-- 삭제  -->
+	<delete id="do_delete" parameterType="Board">
+		DELETE FROM BOARD WHERE BNUM = #{bNum, jdbcType=NUMERIC}
+	</delete>
+	
+	<!-- 등록  -->
+	<insert id="do_save" parameterType="Board">
+		INSERT INTO BOARD (
+			TITLE,
+			CONTENTS,
+			READCNT,
+			TNUM,
+			CATEGORY,
+			REGID,
+			REGDT,
+			MODID,
+			MODDT		
+		) VALUES (
+			#{title, jdbcType=VARCHAR},
+			#{contents, jdbcType=VARCHAR},
+			#{readCnt, jdbcType=NUMERIC},
+			#{tNum, jdbcType=NUMERIC},
+			#{category, jdbcType=VARCHAR},
+			#{regId, jdbcType=VARCHAR},
+			#{regDt, jdbcType=VARCHAR},
+			#{modId, jdbcType=VARCHAR},
+			SYSDATE		
+		)
+	</insert>
+	
+	<!-- 단건조회 -->
+	<select id="get_selectOne" parameterType="Board" resultType="Board">
+		SELECT * FROM BOARD
+		WHERE BNUM = #{bNum, jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 목록조회  -->
+	<select id="get_retrieve" parameterType="Search" resultType="Board">
+	SELECT T1.*, T2.*
+	FROM (SELECT B.BNUM AS bNum,
+	             B.TITLE,
+	             B.CONTENTS,
+	             B.READCNT AS readCnt,
+	             B.TNUM AS tNum,
+	             B.CATEGORY,
+	             B.REGID AS regId,
+	             B.REGDT AS regDt,
+	             B.MODID AS modId,
+	             B.MODDT AS modDt,
+	             B.rnum AS num
+      	  FROM (SELECT ROWNUM AS rnum, A.*
+            	FROM(SELECT * FROM BOARD
+                 	 --SEARCH CONDITION
+                 	 ORDER BY REGDT DESC) A
+            	WHERE ROWNUM <![CDATA[<]]>= (#{pageSize, jdbcType=NUMERIC} * (#{pageNum, jdbcType=NUMERIC} -1) + #{pageSize, jdbcType=NUMERIC}))B
+      	  WHERE B.rnum <![CDATA[>]]>= (#{pageSize, jdbcType=NUMERIC} * (#{pageNum, jdbcType=NUMERIC} -1)+1)) T1
+	CROSS JOIN
+	(SELECT COUNT(*)
+	 FROM (SELECT * FROM BOARD
+	       --SEARCH CONDITION
+	      ))T2;
+	</select>
+
+</mapper>
