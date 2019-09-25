@@ -15,5 +15,9 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 	
+	private final String VIEW_DETAIL  ="board/board_detail"; 
+	private final String VIEW_LIST_NM ="board/board_list";
+	private final String VIEW_MNG_NM  ="board/board_mng";
+	
 	
 }

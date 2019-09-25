@@ -133,7 +133,7 @@ public class StringUtil {
 	 * @param scriptName:호출    javascript
 	 * @return
 	 */
-	public static String renderPaing(int maxNum, int currPageNo, int rowPerPage, int bottomCount, String url,
+	public static String renderPaging(int maxNum, int currPageNo, int rowPerPage, int bottomCount, String url,
 			String scriptName) {
 		/*
 		 * 총글수 : 21 현재페이지 1 총글수 0 바닥에 보여질 페이지수 10 한페이지에 보여질 글수 10 호출url 호출 javascript <<
