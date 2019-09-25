@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.redbull.product">
+
+	<!-- 등록  -->
+	<insert id="do_save" parameterType="Product">
+		INSERT INTO PRODUCT (
+		    PNAME,
+		    BPRICE,
+		    DETAIL,
+		    DISCOUNT,
+		    DPRICE,
+		    PCATEGORY,
+		    REGID,
+		    REGDT
+		) VALUES (
+		    #{pName, jdbcType=VARCHAR},
+		    #{bPrice, jdbcType=NUMERIC},
+		    #{detail, jdbcType=VARCHAR},
+		    #{discount, jdbcType=NUMERIC},
+		    #{dPrice, jdbcType=NUMERIC},
+		    #{pCategory, jdbcType=NUMERIC},
+		    #{regId, jdbcType=VARCHAR},
+		    SYSDATE
+		)
+	</insert>
+</mapper>
