@@ -25,25 +25,26 @@
  </appender>
  
  <!-- Query Loggers:Mybatis -->
- <appender name="console-infolog" class="org.apache.log4j.ConsoleAppender">
-   <layout class="org.apache.log4j.PatternLayout"class="org.apache.log4j.PatternLayout">
-     <param name="ConversionPattern" value="%d [%-5p] %m%n" />
-   </layout>
+ <appender name="console-infolog"  class="org.apache.log4j.ConsoleAppender">
+ 	<layout class="org.apache.log4j.PatternLayout">
+		<param name="ConversionPattern" 
+		            value="%d [%-5p] %m%n" />     	
+ 	</layout>
  </appender>
  
  <!-- SQL -->
  <logger name="jdbc.sqlonly" additivity="false">
-   <level value="info" />
-   <appender-ref ref="console-infolog" />
-   <appender-ref ref="rolling" />
+ 	<level value="info" />
+ 	<appender-ref ref="console-infolog" />
+ 	<appender-ref ref="rolling" />
  </logger>
- 
  <!-- 결과 -->
  <logger name="jdbc.resultsettable" additivity="false">
-   <level value="info" />
-   <appender-ref ref="console-infolog" />
-   <appender-ref ref="rolling" />
+ 	<level value="info" />
+ 	<appender-ref ref="console-infolog" />
+ 	<appender-ref ref="rolling" />
  </logger>
+  
  
  <!-- Application Loggers -->
  <logger name="kr.co.ehr">

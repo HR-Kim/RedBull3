@@ -71,36 +71,13 @@ public class BoardWebTest {
 	}
 	
 	@Test
-	@Ignore
-	public void excelDown() throws Exception {
-		MockHttpServletRequestBuilder createMessage = MockMvcRequestBuilders.get("/board/do_excelDown.do")
-				.param("pageSize", "10")
-				.param("pageNum", "1")
-				.param("searchDiv", "10")
-				.param("searchWord", "128")
-				.param("ext", "xlsx")
-				;
-
-			ResultActions resultActions = mockMvc.perform(createMessage)
-					.andExpect(status().isOk())
-					;
-			
-			String result = resultActions.andDo(print())
-					.andReturn().getResponse().getContentAsString();
-			
-			LOG.debug("=============================");
-			LOG.debug("result"+result);
-			LOG.debug("=============================");
-	}
-	
-	@Test
-	@Ignore
+	//@Ignore
 	public void get_retrieve() throws Exception {
 		MockHttpServletRequestBuilder createMessage = MockMvcRequestBuilders.get("/board/get_retrieve.do")
 				.param("pageSize", "10")
 				.param("pageNum", "1")
 				.param("searchDiv", "10")
-				.param("searchWord", "128")
+				.param("searchWord", "제목")
 				;
 
 			ResultActions resultActions = mockMvc.perform(createMessage)
@@ -117,12 +94,32 @@ public class BoardWebTest {
 	
 	@Test
 	@Ignore
+	public void get_selectOne() throws Exception {
+		MockHttpServletRequestBuilder createMessage = 
+				   MockMvcRequestBuilders.get("/board/get_selectOne.do")
+				.param("bNum", "204");
+		
+		ResultActions resultActions = mockMvc.perform(createMessage)
+				                     .andExpect(status().isOk());
+     		                     
+		String result = resultActions.andDo(print())
+				.andReturn()
+				.getResponse().getContentAsString();
+		LOG.debug("===============================");
+		LOG.debug("=result="+result);
+		LOG.debug("===============================");		
+	}
+	
+	@Test
+	@Ignore
 	public void do_update() throws Exception{
-		MockHttpServletRequestBuilder createMessage = MockMvcRequestBuilders.post("/board/do_update.do")
-			.param("boardId", "1297")
-			.param("title", "J07제목_128_U")
-			.param("contents", "J07내용_128_U")
-			.param("regId", "admin_U")
+		MockHttpServletRequestBuilder createMessage = MockMvcRequestBuilders.get("/board/do_update.do")
+			.param("bNum", "204")
+			.param("title", "update")
+			.param("contents", "update")
+			.param("tNum", "1")
+			.param("category", "update")
+			.param("modId", "update")
 			;
 
 		ResultActions resultActions = mockMvc.perform(createMessage)
@@ -141,9 +138,11 @@ public class BoardWebTest {
 	@Test
 	@Ignore
 	public void do_save() throws Exception {
-		MockHttpServletRequestBuilder createMessage = MockMvcRequestBuilders.post("/board/do_save.do")
-				.param("title", "J07제목_128")
-				.param("contents", "J07내용_128")
+		MockHttpServletRequestBuilder createMessage = MockMvcRequestBuilders.get("/board/do_save.do")
+				.param("title", "제목123")
+				.param("contents", "내용내용")
+				.param("tNum", "1")
+				.param("category", "카테고리02")
 				.param("regId", "admin")
 				;
 		
@@ -162,43 +161,9 @@ public class BoardWebTest {
 	
 	@Test
 	@Ignore
-	public void get_selectOne() throws Exception {
-		MockHttpServletRequestBuilder createMessage = 
-				   MockMvcRequestBuilders.get("/board/get_selectOne.do")
-				.param("boardId", "1297");
-		
-		ResultActions resultActions = mockMvc.perform(createMessage)
-				                     .andExpect(status().isOk());
-     		                     
-		String result = resultActions.andDo(print())
-				.andReturn()
-				.getResponse().getContentAsString();
-		LOG.debug("===============================");
-		LOG.debug("=result="+result);
-		LOG.debug("===============================");		
-	}
-	
-	//data삭제
-	private void do_delete(Board board) throws Exception {
-		MockHttpServletRequestBuilder createMessage = MockMvcRequestBuilders.post("/board/do_delete.do")
-				.param("boardId", String.valueOf(board.getbNum()));
-		
-		ResultActions resultActions = mockMvc.perform(createMessage)
-				.andExpect(MockMvcResultMatchers.content().contentType("application/json; charset=UTF-8"));
-		
-		String result = resultActions.andDo(print())
-				.andReturn().getResponse().getContentAsString();
-		
-		LOG.debug("=============================");
-		LOG.debug("result"+result);
-		LOG.debug("=============================");
-	}
-
-	@Test
-	@Ignore
 	public void do_delete() throws Exception {
-		MockHttpServletRequestBuilder createMessage = MockMvcRequestBuilders.post("/board/do_delete.do")
-				.param("boardId", "1103");
+		MockHttpServletRequestBuilder createMessage = MockMvcRequestBuilders.get("/board/do_delete.do")
+				.param("bNum", "187");
 		
 		ResultActions resultActions = mockMvc.perform(createMessage)
 				.andExpect(MockMvcResultMatchers.content().contentType("application/json; charset=UTF-8"))

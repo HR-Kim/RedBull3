@@ -32,8 +32,6 @@
 	String searchDiv = "";
 	/**검색어*/
 	String searchWord = "";	
-	/** 확장자 */
-	String ext = "xls";	
 
 	Search vo = (Search)request.getAttribute("vo");
 	
@@ -49,18 +47,6 @@
 		searchWord = "";
 	}
 	
-	String extParam = (String)request.getAttribute("ext");
-	if(extParam !=null) ext = extParam;
-	
-	//페이지사이즈
-	List<Code> listPageSize = (request.getAttribute("listPageSize")==null)?(List<Code>)new ArrayList<Code>():(List<Code>)request.getAttribute("listPageSize");
-	
-	//엑셀타입
-	List<Code> listExcelType = (request.getAttribute("listExcelType")==null)?(List<Code>)new ArrayList<Code>():(List<Code>)request.getAttribute("listExcelType");
-	
-	//게시판 검색 구분
-	List<Code> listBoardSearch = (request.getAttribute("listBoardSearch")==null)?(List<Code>)new ArrayList<Code>():(List<Code>)request.getAttribute("listBoardSearch");
-
 	//paging
 	//maxNum, currPageNo, rowPerPage, bottomCount, url, scriptName
 	
@@ -98,72 +84,69 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-
   </head>
+ 
   <body>
     <!-- div container -->
    <div class="container">
         <!-- div title --> 
      <div class="page-header">
-       <h1>게시판</h1>
+       <h1>질문과 답변</h1>
       </div>
       <!--// div title -->
        
       <!-- 검색영역 -->
       <div class="row">
-       <div class="col-md-12 text-right">
+       <div class="col-md-12 text-center">
        <form class="form-inline" name="boardFrm" id="boardFrm" method="get">
        	<input type="hidden" name="pageNum" id="pageNum" value="${vo.pageNum}" />
-       	<input type="hidden" name="boardId" id="boardId" />
-        <div class="form-group">
-        	<!-- 페이지사이즈 -->
-    		<%= StringUtil.makeSelectBox(listPageSize, "pageSize", pageSize, false) %>
-    		<!-- 검색구분 -->
-    		<%= StringUtil.makeSelectBox(listBoardSearch, "searchDiv", searchDiv, true) %>
-     <input type="text"  class="form-control input-sm" id="searchWord" name="searchWord" 
+       	<input type="hidden" name="searchDiv" id="searchDiv" />
+        <div class="form-group ">
+     <input type="text"  class="form-control input-sm " id="searchWord" name="searchWord" 
        placeholder="검색어" />
-     <button type="button" class="btn btn-default btn-sm" id="doRetrieve">조회</button>  
-      <!-- 엑셀타입 -->
-       <%= StringUtil.makeSelectBox(listExcelType, "ext", ext, false) %>   
-     <input type="button" class="btn btn-default btn-sm" id="doExcel" value="엑셀다운" />
+     <button type="button" class="btn btn-default btn-sm" id="do_retrieve">검색</button>  
+     <button type="button" class="btn btn-default btn-sm" id="do_save">질문하기</button>  
         </div>
        </form>
         </div> 
       </div>
       <!--// 검색영역 -->  
+      
       <!-- Grid영역 -->
-      <div class="table-responsive">
-       <table class="table  table-striped table-bordered table-hover" id="listTable">
-        <thead class="bg-primary">
-         <th class="text-center col-md-1 col-xs-1" style="display:none;">BOARD_ID</th>
-         <th class="text-center col-md-1 col-xs-1">번호</th>
-         <th class="text-center col-md-6 col-xs-6 ">제목</th>
-         <th class="text-center col-md-1 col-xs-1">글쓴이</th>
-         <th class="text-center col-md-1 col-xs-1">조회수</th>
-         <th class="text-center col-md-2 col-xs-2">등록일</th>
-        </thead>
-        
-        <tbody>
+ 
          <c:choose>
          	<c:when test="${list.size()>0}">
          		<c:forEach var="vo" items = "${list}">
-		          <tr>
-			          <td class="text-center" style="display:none;"><c:out value="${vo.boardId}"/></td>
-			          <td class="text-center"><c:out value="${vo.num}"/></td>
-			          <td class="text-left"><c:out value="${vo.title}"/></td>
-			          <td class="text-left"><c:out value="${vo.regId}"/></td>
-			          <td class="text-center"><c:out value="${vo.readCnt}"/></td>
-			          <td class="text-center"><c:out value="${vo.regDt}"/></td>
-		          </tr>
+		        
+		        <div class="container" class="listTable">
+			    	<table class="table table-borderless table-sm">  
+						<tr>
+							<td rowspan="3" style="display:none;">${vo.bNum}</td>
+							<td class="text-left col-md-4 col-xs-4" colspan="5" style=""><b>${vo.title} </b></td>
+							<td class="text-left col-md-1 col-xs-1" rowspan="3"><img src="${context}/board/noimage.jpg" class="img-thumbnail">
+</td>
+						</tr>
+						<tr>
+							<td class="text-left col-md-4 col-xs-4" colspan="5"> ${vo.contents}</td>
+						</tr>    	
+						<tr>
+							<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">글쓴이 ${vo.regId}</td>
+							<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">${vo.regDt}</td>
+							<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">댓글 00개</td>	
+							<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">조회수 ${vo.readCnt}</td>	
+							<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">카테고리 ${vo.category}</td>						
+						</tr>
+						<tr style="border-bottom: 1px;"></tr>
+			    	</table><br/>
+				</div>
+		        
 	          </c:forEach>
             </c:when>
             <c:otherwise>
           		<tr><td colspan="99">등록된 게시물이 없습니다.</td></tr>
             </c:otherwise>
        	</c:choose>
-        </tbody>
-       </table>
-      </div>
+       
       <!--// Grid영역 -->
       
       <!-- pagenation -->
@@ -174,12 +157,16 @@
       
    </div>
     <!--// div container -->
-        <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+    <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
     <script src="${context}/resources/js/jquery-1.12.4.js"></script>
     <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
     <script src="${context}/resources/js/bootstrap.min.js"></script>    
     <script type="text/javascript">
     	
+    	$("#do_save").on("click", function(){
+    		location.href = "${context}/board/board_mng.jsp";
+    	});
+    
     	function search_page(url, pageNum){
     		var frm = document.boardFrm;
     		frm.pageNum.value = pageNum;
@@ -202,27 +189,19 @@
     		
     	});	
     
-	    function doExcel(){
-			var frm = document.boardFrm;
-			frm.action = "${context}/board/do_excelDown.do";
-			frm.submit();
-		}
-    
-    	$("#doExcel").on("click", function(){
-    		//alert('doExcel');
-    		if(false==confirm('저장하시겠습니까?')) return;
-    		doExcel();
-    	});
-    
-    	function doRetrieve(){
+    	function do_retrieve(){
+    		
+    		var searchWord = $("#searchWord").text();
+    		
     		var frm = document.boardFrm;
+    		frm.searchDiv.value = 10;
     		frm.pageNum.value = 1;
     		frm.submit();
     	}
     
-    	$("#doRetrieve").on("click", function(){
+    	$("#do_retrieve").on("click", function(){
     		//alert('doRetrieve');
-    		doRetrieve();
+    		do_retrieve();
     	});
     
     	$(document).ready(function(){

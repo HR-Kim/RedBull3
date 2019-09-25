@@ -3,7 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.redbull.board">
-
 	<sql id="searchCondition">
 		<where>
 			<choose>
@@ -20,12 +19,6 @@
 					</choose>
 				</when>
 				<when test="'30' == searchDiv">
-					TNUM = 2
-					<choose>
-						<when test="searchWord!=null"> AND REGID LIKE '%' || #{searchWord} || '%'</when>
-					</choose>
-				</when>
-				<when test="'40' == searchDiv">
 					TNUM = 2
 					<choose>
 						<when test="searchWord!=null"> AND CATEGORY = #{searchWord} </when>
@@ -77,7 +70,7 @@
 			#{tNum, jdbcType=NUMERIC},
 			#{category, jdbcType=VARCHAR},
 			#{regId, jdbcType=VARCHAR},
-			#{regDt, jdbcType=VARCHAR},
+			SYSDATE,
 			#{modId, jdbcType=VARCHAR},
 			SYSDATE		
 		)
@@ -99,7 +92,8 @@
 	             B.TNUM AS tNum,
 	             B.CATEGORY,
 	             B.REGID AS regId,
-	             B.REGDT AS regDt,
+	             CASE TO_CHAR(B.REGDT, 'yyyy.mm.dd') WHEN TO_CHAR(SYSDATE, 'yyyy.mm.dd') THEN TO_CHAR(B.REGDT, 'HH24:MI')
+			     ELSE TO_CHAR(B.REGDT, 'yyyy.mm.dd') END as regDt,
 	             B.MODID AS modId,
 	             B.MODDT AS modDt,
 	             B.rnum AS num
