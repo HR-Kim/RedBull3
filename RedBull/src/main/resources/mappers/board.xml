@@ -7,21 +7,29 @@
 	<sql id="searchCondition">
 		<where>
 			<choose>
-				<when test="10">
+				<when test="'10' == searchDiv">
 					TNUM = 1
-					AND TITLE LIKE '%' || #{searchWord} || '%'
+					<choose>
+						<when test="searchWord!=null"> AND TITLE LIKE '%' || #{searchWord} || '%'</when>
+					</choose>					
 				</when>
-				<when test="20">
+				<when test="'20' == searchDiv">
 					TNUM = 2
-					AND TITLE LIKE '%' || #{searchWord} || '%'
+					<choose>
+						<when test="searchWord!=null"> AND TITLE LIKE '%' || #{searchWord} || '%'</when>
+					</choose>
 				</when>
-				<when test="30">
+				<when test="'30' == searchDiv">
 					TNUM = 2
-					AND REGID LIKE '%' || #{searchWord} || '%'
+					<choose>
+						<when test="searchWord!=null"> AND REGID LIKE '%' || #{searchWord} || '%'</when>
+					</choose>
 				</when>
-				<when test="40">
+				<when test="'40' == searchDiv">
 					TNUM = 2
-					AND CATEGORY = #{searchWord}
+					<choose>
+						<when test="searchWord!=null"> AND CATEGORY = #{searchWord} </when>
+					</choose>					
 				</when>
 				<otherwise></otherwise>
 			</choose>

@@ -83,12 +83,13 @@ public class DaoBoardTest {
 		//-----------------------------------------------
 		//  2. 조회
 		//-----------------------------------------------
-		search.setPageSize(10);
-		search.setPageNum(1);
-		search.setSearchDiv("1");
-		search.setSearchWord("제목");
+		Search searchCondition = new Search();
+		searchCondition.setPageSize(10);
+		searchCondition.setPageNum(1);
+		searchCondition.setSearchDiv("40");
+		//searchCondition.setSearchWord("제목");
 		
-		List<Board> boardList = (List<Board>)boardDaoImpl.get_retrieve(search);
+		List<Board> boardList = (List<Board>)boardDaoImpl.get_retrieve(searchCondition);
 		
 		LOG.debug("===========================");
 		LOG.debug("boardList:"+boardList);
