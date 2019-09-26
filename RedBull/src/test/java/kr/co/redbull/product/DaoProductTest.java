@@ -28,6 +28,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.context.WebApplicationContext;
 
+import kr.co.redbull.cmn.Search;
 import kr.co.redbull.product.service.Product;
 import kr.co.redbull.product.service.impl.ProductDaoImpl;
 
@@ -68,103 +69,102 @@ public class DaoProductTest {
 		LOG.debug("^^^^^^^^^^^^^^^^^^");
 	}
 	
-//	@Test
-//	public void get_retrieve() {
-//		LOG.debug("======================================");
-//		LOG.debug("=01. 기존 데이터 삭제=");
-//		LOG.debug("======================================");	
-//		Search search=new Search();
-//		search.setSearchWord("_125");
-//		List<Board> getList = (List<Board>) boardDaoImpl.get_boardIdList(search);
-//		for(Board vo:getList) {
-//			boardDaoImpl.do_delete(vo);
-//		}	
-//		
-//		LOG.debug("======================================");
-//		LOG.debug("=02. 데이터 추가=");
-//		LOG.debug("======================================");	
-//		for(Board vo:list) { 
-//			int flag = boardDaoImpl.do_save(vo);
-//			assertThat(1, is(flag));
-//		}		
-//		
-//		//=====================================
-//		//2.01 등록Data조회
-//		//=====================================
-//		search.setSearchDiv("10");
-//		search.setPageSize(10);
-//		search.setPageNum(1);
-//		List<Board> addlistData = (List<Board>) boardDaoImpl.get_retrieve(search);
-//		assertThat(5, is(addlistData.size()));		
-//	}
-//	
-//	@Test
-//	@Ignore
-//	public void do_update() {
-//		//01. 기존 데이터 삭제
-//		Search search = new Search();
-//		search.setSearchWord("제목_125");
-//		List<Board> getList = (List<Board>) boardDaoImpl.get_boardIdList(search);
-//		for(Board vo : getList) {
-//			int flag = boardDaoImpl.do_delete(vo);			
-//		}		
-//		//02. 데이터 추가
-//		for(Board vo : list) {
-//			int flag = boardDaoImpl.do_save(vo);
-//			assertThat(flag,is(1));
-//		}
-//		//02.01.데이터 조회
-//		List<Board> addListData = (List<Board>) boardDaoImpl.get_boardIdList(search);
-//		assertThat(5, is(addListData.size()));
-//		
-//		//03. 데이터 수정
-//		Board changeData = addListData.get(0);
-//		changeData.setTitle(changeData.getTitle()+"_U");
-//		changeData.setContents(changeData.getContents()+"_U");
-//		changeData.setRegId(changeData.getRegId()+"_U");
-//		
-//		//03.01. 수정 데이터 등록
-//		int flag = boardDaoImpl.do_update(changeData);
-//		assertThat(1, is(flag));
-//		
-//		//04. 등록 데이터 조회
-//		addListData = (List<Board>) boardDaoImpl.get_boardIdList(search);
-//		
-//		//05. 비교
-//		checkData(changeData,addListData.get(0));
-//		
-//	}
+	@Test
+	public void get_retrieve() {
+		LOG.debug("======================================");
+		LOG.debug("=01. 기존 데이터 삭제=");
+		LOG.debug("======================================");	
+		Search search=new Search();
+		search.setSearchWord("125");
+		List<Product> getList = (List<Product>) productDaoImpl.get_pnameList(search);
+		for(Product vo:getList) {
+			productDaoImpl.do_delete(vo);
+		}	
+		
+		LOG.debug("======================================");
+		LOG.debug("=02. 데이터 추가=");
+		LOG.debug("======================================");	
+		for(Product vo:list) { 
+			int flag = productDaoImpl.do_save(vo);
+			assertThat(1, is(flag));
+		}		
+		
+		//=====================================
+		//2.01 등록Data조회
+		//=====================================
+		search.setSearchDiv("10");
+		search.setPageSize(10);
+		search.setPageNum(1);
+		List<Product> addlistData = (List<Product>) productDaoImpl.get_retrieve(search);
+		assertThat(5, is(addlistData.size()));		
+	}
 	
 	@Test
-	public void addAndGet() {
-//		//0.데이터 삭제
-//		Search search = new Search();
-//		search.setSearchWord("제목_125");
-//		List<Board> getList = (List<Board>) boardDaoImpl.get_boardIdList(search);
-//		for(Board vo : getList) {
-//			int flag = boardDaoImpl.do_delete(vo);			
-//		}
+	@Ignore
+	public void do_update() {
+		//01. 기존 데이터 삭제
+		Search search = new Search();
+		search.setSearchWord("125");
+		List<Product> getList = (List<Product>) productDaoImpl.get_pnameList(search);
+		for(Product vo : getList) {
+			int flag = productDaoImpl.do_delete(vo);			
+		}		
+		//02. 데이터 추가
+		for(Product vo : list) {
+			int flag = productDaoImpl.do_save(vo);
+			assertThat(flag,is(1));
+		}
+		//02.01.데이터 조회
+		List<Product> addListData = (List<Product>) productDaoImpl.get_pnameList(search);
+		assertThat(5, is(addListData.size()));
 		
+		//03. 데이터 수정
+		Product changeData = addListData.get(0);
+		changeData.setpName(changeData.getpName()+"_U");
+		changeData.setDetail(changeData.getDetail()+"_U");
+		changeData.setModId(changeData.getRegId()+"_U");
+		
+		//03.01. 수정 데이터 등록
+		int flag = productDaoImpl.do_update(changeData);
+		assertThat(1, is(flag));
+		
+		//04. 등록 데이터 조회
+		addListData = (List<Product>) productDaoImpl.get_pnameList(search);
+		
+		//05. 비교
+		checkData(changeData,addListData.get(0));
+		
+	}
+	
+	@Test
+	@Ignore
+	public void addAndGet() {
+		//0.데이터 삭제
+		Search search = new Search();
+		search.setSearchWord("125");
+		List<Product> getList = (List<Product>) productDaoImpl.get_pnameList(search);
+		for(Product vo : getList) {
+			int flag = productDaoImpl.do_delete(vo);			
+		}
 		//1.데이터 등록
 		for(Product vo : list) {
 			int flag = productDaoImpl.do_save(vo);
 			assertThat(flag,is(1));
 		}
-//		//2.데이터 조회
-//		List<Board> getList2 = (List<Board>) boardDaoImpl.get_boardIdList(search);
-//		assertThat(5, is(getList2.size()));
-//		
-//		//3.데이터 비교:boardId는 자동 증가이므로 비교 할 수 없음.(제목,내용,등록자)
-//		for(int i=0; i<getList2.size(); i++ ) {
-//			checkData(getList2.get(i),list.get(i));
-//		}
+		//2.데이터 조회
+		List<Product> getList2 = (List<Product>) productDaoImpl.get_pnameList(search);
+		assertThat(5, is(getList2.size()));
 		
+		//3.데이터 비교:boardId는 자동 증가이므로 비교 할 수 없음.(제목,내용,등록자)
+		for(int i=0; i<getList2.size(); i++ ) {
+			checkData(getList2.get(i),list.get(i));
+		}		
 	}
 	
 	private void checkData(Product org,Product vs) {
 		assertThat(org.getpName(), is(vs.getpName()));
 		assertThat(org.getDetail(), is(vs.getDetail()));
-		assertThat(org.getRegId(), is(vs.getRegId()));		
+		assertThat(org.getModId(), is(vs.getModId()));		
 	}
 	
 	@Test
