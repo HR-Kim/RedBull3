@@ -136,7 +136,7 @@ public class BoardWebTest {
 	}
 	
 	@Test
-	@Ignore
+	//@Ignore
 	public void do_save() throws Exception {
 		MockHttpServletRequestBuilder createMessage = MockMvcRequestBuilders.get("/board/do_save.do")
 				.param("title", "제목123")

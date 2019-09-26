@@ -15687,3 +15687,474 @@ WHERE TNUM = 1 AND TITLE LIKE '%' || '제목' || '%' ))T2  {executed in 16 msec}
 [2019-09-25 15:13:38.347] DEBUG SqlSessionUtils.getSqlSession(SqlSessionUtils.java:97) - Creating a new SqlSession
 [2019-09-25 15:13:38.347] DEBUG SqlSessionUtils.registerSessionHolder(SqlSessionUtils.java:148) - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@b59764] was not registered for synchronization because synchronization is not active
 [2019-09-25 15:13:38.347] DEBUG SqlSessionUtils.closeSqlSession(SqlSessionUtils.java:191) - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@b59764]
+[2019-09-25 17:48:08.484] DEBUG SpringJUnit4ClassRunner.<init>(SpringJUnit4ClassRunner.java:140) - SpringJUnit4ClassRunner constructor called with [class kr.co.redbull.board.BoardWebTest]
+[2019-09-25 17:48:08.489] DEBUG BootstrapUtils.createCacheAwareContextLoaderDelegate(BootstrapUtils.java:95) - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+[2019-09-25 17:48:08.495] DEBUG BootstrapUtils.createBootstrapContext(BootstrapUtils.java:78) - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+[2019-09-25 17:48:08.503] DEBUG BootstrapUtils.resolveTestContextBootstrapper(BootstrapUtils.java:131) - Instantiating TestContextBootstrapper for test class [kr.co.redbull.board.BoardWebTest] from class [org.springframework.test.context.web.WebTestContextBootstrapper]
+[2019-09-25 17:48:08.518] DEBUG AbstractDelegatingSmartContextLoader.delegateProcessing(AbstractDelegatingSmartContextLoader.java:96) - Delegating to GenericXmlWebContextLoader to process context configuration [ContextConfigurationAttributes@3cbbc1e0 declaringClass = 'kr.co.redbull.board.BoardWebTest', classes = '{}', locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml}', inheritLocations = true, initializers = '{}', inheritInitializers = true, name = [null], contextLoaderClass = 'org.springframework.test.context.ContextLoader'].
+[2019-09-25 17:48:08.534] DEBUG ActiveProfilesUtils.resolveActiveProfiles(ActiveProfilesUtils.java:78) - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [kr.co.redbull.board.BoardWebTest]
+[2019-09-25 17:48:08.535] DEBUG AbstractTestContextBootstrapper.getTestExecutionListeners(AbstractTestContextBootstrapper.java:132) - @TestExecutionListeners is not present for class [kr.co.redbull.board.BoardWebTest]: using defaults.
+[2019-09-25 17:48:08.536] INFO  AbstractTestContextBootstrapper.getDefaultTestExecutionListenerClassNames(AbstractTestContextBootstrapper.java:260) - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+[2019-09-25 17:48:08.546] INFO  AbstractTestContextBootstrapper.getTestExecutionListeners(AbstractTestContextBootstrapper.java:187) - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@3e6fa38a, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@66a3ffec, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@77caeb3e, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1e88b3c, org.springframework.test.context.transaction.TransactionalTestExecutionListener@42d80b78, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@3bfdc050]
+[2019-09-25 17:48:08.548] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:68) - Retrieved @ProfileValueSourceConfiguration [null] for test class [kr.co.redbull.board.BoardWebTest]
+[2019-09-25 17:48:08.548] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:80) - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [kr.co.redbull.board.BoardWebTest]
+[2019-09-25 17:48:08.556] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:68) - Retrieved @ProfileValueSourceConfiguration [null] for test class [kr.co.redbull.board.BoardWebTest]
+[2019-09-25 17:48:08.556] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:80) - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [kr.co.redbull.board.BoardWebTest]
+[2019-09-25 17:48:08.557] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:68) - Retrieved @ProfileValueSourceConfiguration [null] for test class [kr.co.redbull.board.BoardWebTest]
+[2019-09-25 17:48:08.557] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:80) - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [kr.co.redbull.board.BoardWebTest]
+[2019-09-25 17:48:08.558] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:68) - Retrieved @ProfileValueSourceConfiguration [null] for test class [kr.co.redbull.board.BoardWebTest]
+[2019-09-25 17:48:08.558] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:80) - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [kr.co.redbull.board.BoardWebTest]
+[2019-09-25 17:48:08.559] DEBUG AbstractDirtiesContextTestExecutionListener.beforeOrAfterTestClass(AbstractDirtiesContextTestExecutionListener.java:141) - Before test class: context [DefaultTestContext@4cf777e8 testClass = BoardWebTest, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2f686d1f testClass = BoardWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]], class annotated with @DirtiesContext [false] with mode [null].
+[2019-09-25 17:48:08.561] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:68) - Retrieved @ProfileValueSourceConfiguration [null] for test class [kr.co.redbull.board.BoardWebTest]
+[2019-09-25 17:48:08.561] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:80) - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [kr.co.redbull.board.BoardWebTest]
+[2019-09-25 17:48:08.563] DEBUG AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:106) - Delegating to GenericXmlWebContextLoader to load context from [WebMergedContextConfiguration@2f686d1f testClass = BoardWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]].
+[2019-09-25 17:48:08.563] DEBUG AbstractGenericWebContextLoader.loadContext(AbstractGenericWebContextLoader.java:116) - Loading WebApplicationContext for merged context configuration [WebMergedContextConfiguration@2f686d1f testClass = BoardWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]].
+[2019-09-25 17:48:08.609] INFO  XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317) - Loading XML bean definitions from URL [file:src/main/webapp/WEB-INF/spring/root-context.xml]
+[2019-09-25 17:48:09.099] INFO  XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317) - Loading XML bean definitions from URL [file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml]
+[2019-09-25 17:48:09.255] INFO  AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:583) - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@13a5fe33: startup date [Wed Sep 25 17:48:09 KST 2019]; root of context hierarchy
+[2019-09-25 17:48:09.366] INFO  AutowiredAnnotationBeanPostProcessor.<init>(AutowiredAnnotationBeanPostProcessor.java:155) - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2019-09-25 17:48:09.397] DEBUG UiApplicationContextUtils.initThemeSource(UiApplicationContextUtils.java:85) - Unable to locate ThemeSource with name 'themeSource': using default [org.springframework.ui.context.support.ResourceBundleThemeSource@35b74c5c]
+[2019-09-25 17:48:09.417] DEBUG LogFactory.setImplementation(LogFactory.java:135) - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+[2019-09-25 17:48:09.650] DEBUG SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:497) - Parsed configuration file: 'class path resource [mybatis-config.xml]'
+[2019-09-25 17:48:09.692] DEBUG SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:529) - Parsed mapper file: 'file [C:\Users\sist\git\RedBull3\RedBull\target\classes\mappers\board.xml]'
+[2019-09-25 17:48:09.697] DEBUG SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:529) - Parsed mapper file: 'file [C:\Users\sist\git\RedBull3\RedBull\target\classes\mappers\product.xml]'
+[2019-09-25 17:48:09.723] DEBUG NameMatchTransactionAttributeSource.addTransactionalMethod(NameMatchTransactionAttributeSource.java:96) - Adding transactional method [get_*] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly]
+[2019-09-25 17:48:09.724] DEBUG NameMatchTransactionAttributeSource.addTransactionalMethod(NameMatchTransactionAttributeSource.java:96) - Adding transactional method [tx_*] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT]
+[2019-09-25 17:48:09.831] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/board/get_retrieve.do],methods=[GET]}" onto public java.lang.String kr.co.redbull.board.web.BoardController.get_retrieve(kr.co.redbull.cmn.Search,org.springframework.ui.Model,javax.servlet.http.HttpServletRequest)
+[2019-09-25 17:48:09.832] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/board/get_selectOne.do],methods=[GET]}" onto public java.lang.String kr.co.redbull.board.web.BoardController.get_selectOne(kr.co.redbull.board.service.Board,org.springframework.ui.Model)
+[2019-09-25 17:48:09.833] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/board/do_update.do],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.board.web.BoardController.do_update(kr.co.redbull.board.service.Board)
+[2019-09-25 17:48:09.833] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/board/do_delete.do],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.board.web.BoardController.do_delete(kr.co.redbull.board.service.Board)
+[2019-09-25 17:48:09.833] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/board/do_save.do],methods=[POST],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.board.web.BoardController.do_save(kr.co.redbull.board.service.Board)
+[2019-09-25 17:48:09.834] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/],methods=[GET]}" onto public java.lang.String kr.co.redbull.HomeController.home(java.util.Locale,org.springframework.ui.Model)
+[2019-09-25 17:48:09.906] INFO  RequestMappingHandlerAdapter.initControllerAdviceCache(RequestMappingHandlerAdapter.java:534) - Looking for @ControllerAdvice: org.springframework.web.context.support.GenericWebApplicationContext@13a5fe33: startup date [Wed Sep 25 17:48:09 KST 2019]; root of context hierarchy
+[2019-09-25 17:48:09.934] INFO  RequestMappingHandlerAdapter.initControllerAdviceCache(RequestMappingHandlerAdapter.java:534) - Looking for @ControllerAdvice: org.springframework.web.context.support.GenericWebApplicationContext@13a5fe33: startup date [Wed Sep 25 17:48:09 KST 2019]; root of context hierarchy
+[2019-09-25 17:48:09.974] INFO  AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:362) - Mapped URL path [/resources/**] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0'
+[2019-09-25 17:48:10.028] DEBUG DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:118) - Storing ApplicationContext in cache under key [[WebMergedContextConfiguration@2f686d1f testClass = BoardWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]]
+[2019-09-25 17:48:10.029] DEBUG DefaultContextCache.logStatistics(DefaultContextCache.java:290) - Spring test ApplicationContext cache statistics: [DefaultContextCache@3b1bb3ab size = 1, maxSize = 32, parentContextCount = 0, hitCount = 0, missCount = 1]
+[2019-09-25 17:48:10.029] DEBUG ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:201) - Setting up MockHttpServletRequest, MockHttpServletResponse, ServletWebRequest, and RequestContextHolder for test context [DefaultTestContext@4cf777e8 testClass = BoardWebTest, testInstance = kr.co.redbull.board.BoardWebTest@40bffbca, testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2f686d1f testClass = BoardWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]].
+[2019-09-25 17:48:10.038] DEBUG DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:81) - Performing dependency injection for test context [[DefaultTestContext@4cf777e8 testClass = BoardWebTest, testInstance = kr.co.redbull.board.BoardWebTest@40bffbca, testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2f686d1f testClass = BoardWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]]].
+[2019-09-25 17:48:10.038] DEBUG DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:129) - Retrieved ApplicationContext from cache with key [[WebMergedContextConfiguration@2f686d1f testClass = BoardWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]]
+[2019-09-25 17:48:10.038] DEBUG DefaultContextCache.logStatistics(DefaultContextCache.java:290) - Spring test ApplicationContext cache statistics: [DefaultContextCache@3b1bb3ab size = 1, maxSize = 32, parentContextCount = 0, hitCount = 1, missCount = 1]
+[2019-09-25 17:48:10.042] DEBUG AbstractDirtiesContextTestExecutionListener.beforeOrAfterTestMethod(AbstractDirtiesContextTestExecutionListener.java:106) - Before test method: context [DefaultTestContext@4cf777e8 testClass = BoardWebTest, testInstance = kr.co.redbull.board.BoardWebTest@40bffbca, testMethod = do_save@BoardWebTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2f686d1f testClass = BoardWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]], class annotated with @DirtiesContext [false] with mode [null], method annotated with @DirtiesContext [false] with mode [null].
+[2019-09-25 17:48:10.044] DEBUG BoardWebTest.setUp(BoardWebTest.java:51) - ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2019-09-25 17:48:10.044] DEBUG BoardWebTest.setUp(BoardWebTest.java:52) - ^^^^^^^^0  setUp^^^^^^^^^^^^
+[2019-09-25 17:48:10.044] DEBUG BoardWebTest.setUp(BoardWebTest.java:53) - ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2019-09-25 17:48:10.053] DEBUG HttpServletBean.init(HttpServletBean.java:149) - Initializing servlet ''
+[2019-09-25 17:48:10.054] INFO  MockServletContext.log(MockServletContext.java:440) - Initializing Spring FrameworkServlet ''
+[2019-09-25 17:48:10.054] INFO  FrameworkServlet.initServletBean(FrameworkServlet.java:489) - FrameworkServlet '': initialization started
+[2019-09-25 17:48:10.055] DEBUG DispatcherServlet.initMultipartResolver(DispatcherServlet.java:515) - Unable to locate MultipartResolver with name 'multipartResolver': no multipart request handling provided
+[2019-09-25 17:48:10.057] DEBUG DispatcherServlet.initLocaleResolver(DispatcherServlet.java:537) - Unable to locate LocaleResolver with name 'localeResolver': using default [org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver@37d3d232]
+[2019-09-25 17:48:10.060] DEBUG DispatcherServlet.initThemeResolver(DispatcherServlet.java:559) - Unable to locate ThemeResolver with name 'themeResolver': using default [org.springframework.web.servlet.theme.FixedThemeResolver@3caa4757]
+[2019-09-25 17:48:10.063] DEBUG DispatcherServlet.initRequestToViewNameTranslator(DispatcherServlet.java:696) - Unable to locate RequestToViewNameTranslator with name 'viewNameTranslator': using default [org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@3e2fc448]
+[2019-09-25 17:48:10.067] DEBUG DispatcherServlet.initFlashMapManager(DispatcherServlet.java:757) - Unable to locate FlashMapManager with name 'flashMapManager': using default [org.springframework.web.servlet.support.SessionFlashMapManager@3c291aad]
+[2019-09-25 17:48:10.068] DEBUG FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:568) - Published WebApplicationContext of servlet '' as ServletContext attribute with name [org.springframework.web.servlet.FrameworkServlet.CONTEXT.]
+[2019-09-25 17:48:10.068] INFO  FrameworkServlet.initServletBean(FrameworkServlet.java:508) - FrameworkServlet '': initialization completed in 14 ms
+[2019-09-25 17:48:10.068] DEBUG HttpServletBean.init(HttpServletBean.java:174) - Servlet '' configured successfully
+[2019-09-25 17:48:10.069] DEBUG BoardWebTest.setUp(BoardWebTest.java:65) - =============================
+[2019-09-25 17:48:10.069] DEBUG BoardWebTest.setUp(BoardWebTest.java:66) - context org.springframework.web.context.support.GenericWebApplicationContext@13a5fe33: startup date [Wed Sep 25 17:48:09 KST 2019]; root of context hierarchy
+[2019-09-25 17:48:10.069] DEBUG BoardWebTest.setUp(BoardWebTest.java:67) - mockMvc org.springframework.test.web.servlet.MockMvc@436390f4
+[2019-09-25 17:48:10.069] DEBUG BoardWebTest.setUp(BoardWebTest.java:68) - dao kr.co.redbull.board.service.impl.BoardDaoImpl@68ed96ca
+[2019-09-25 17:48:10.070] DEBUG BoardWebTest.setUp(BoardWebTest.java:69) - =============================
+[2019-09-25 17:48:10.086] DEBUG DispatcherServlet.doService(DispatcherServlet.java:869) - DispatcherServlet with name '' processing POST request for [/board/do_save.do]
+[2019-09-25 17:48:10.112] DEBUG BoardController.do_save(BoardController.java:111) - ================================
+[2019-09-25 17:48:10.112] DEBUG BoardController.do_save(BoardController.java:112) - board:Board [bNum=0, title=제목123, contents=내용내용, readCnt=0, tNum=1, category=카테고리02, regId=admin, regDt=null, modId=null, modDt=null, toString()=DTO [totalCnt=0, num=0]]
+[2019-09-25 17:48:10.112] DEBUG BoardController.do_save(BoardController.java:113) - ================================
+[2019-09-25 17:48:10.112] DEBUG BoardDaoImpl.do_save(BoardDaoImpl.java:96) - ==============================
+[2019-09-25 17:48:10.113] DEBUG BoardDaoImpl.do_save(BoardDaoImpl.java:97) - 1.param:Board [bNum=0, title=제목123, contents=내용내용, readCnt=0, tNum=1, category=카테고리02, regId=admin, regDt=null, modId=null, modDt=null, toString()=DTO [totalCnt=0, num=0]]
+[2019-09-25 17:48:10.113] DEBUG BoardDaoImpl.do_save(BoardDaoImpl.java:98) - ==============================
+[2019-09-25 17:48:10.113] DEBUG BoardDaoImpl.do_save(BoardDaoImpl.java:100) - ==============================
+[2019-09-25 17:48:10.113] DEBUG BoardDaoImpl.do_save(BoardDaoImpl.java:101) - 2.statement:kr.co.redbull.board.do_save
+[2019-09-25 17:48:10.113] DEBUG BoardDaoImpl.do_save(BoardDaoImpl.java:102) - ==============================
+[2019-09-25 17:48:10.115] DEBUG SqlSessionUtils.getSqlSession(SqlSessionUtils.java:97) - Creating a new SqlSession
+[2019-09-25 17:48:10.119] DEBUG SqlSessionUtils.registerSessionHolder(SqlSessionUtils.java:148) - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@64d7b720] was not registered for synchronization because synchronization is not active
+[2019-09-25 17:48:10.124] DEBUG DataSourceUtils.doGetConnection(DataSourceUtils.java:110) - Fetching JDBC Connection from DataSource
+[2019-09-25 17:48:10.290] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - ... log4jdbc initializing ...
+[2019-09-25 17:48:10.290] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) -   log4jdbc.properties not found on classpath
+[2019-09-25 17:48:10.291] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.debug.stack.prefix is not defined
+[2019-09-25 17:48:10.291] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.sqltiming.warn.threshold is not defined
+[2019-09-25 17:48:10.291] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.sqltiming.error.threshold is not defined
+[2019-09-25 17:48:10.292] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.dump.booleanastruefalse is not defined (using default value false)
+[2019-09-25 17:48:10.292] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.dump.sql.maxlinelength is not defined (using default of 90)
+[2019-09-25 17:48:10.292] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.dump.fulldebugstacktrace is not defined (using default value false)
+[2019-09-25 17:48:10.292] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.statement.warn is not defined (using default value false)
+[2019-09-25 17:48:10.293] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.dump.sql.select is not defined (using default value true)
+[2019-09-25 17:48:10.293] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.dump.sql.insert is not defined (using default value true)
+[2019-09-25 17:48:10.293] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.dump.sql.update is not defined (using default value true)
+[2019-09-25 17:48:10.294] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.dump.sql.delete is not defined (using default value true)
+[2019-09-25 17:48:10.294] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.dump.sql.create is not defined (using default value true)
+[2019-09-25 17:48:10.294] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.dump.sql.addsemicolon is not defined (using default value false)
+[2019-09-25 17:48:10.294] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.auto.load.popular.drivers is not defined (using default value true)
+[2019-09-25 17:48:10.295] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.trim.sql is not defined (using default value true)
+[2019-09-25 17:48:10.295] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.suppress.generated.keys.exception is not defined (using default value false)
+[2019-09-25 17:48:10.295] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.drivers is not defined
+[2019-09-25 17:48:10.297] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) -   FOUND DRIVER oracle.jdbc.OracleDriver
+[2019-09-25 17:48:10.297] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) -   FOUND DRIVER oracle.jdbc.driver.OracleDriver
+[2019-09-25 17:48:10.299] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - ... log4jdbc initialized! ...
+[2019-09-25 17:48:10.301] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - driver name is Oracle JDBC driver
+[2019-09-25 17:48:10.301] INFO  Slf4jSpyLogDelegator.connectionOpened(Slf4jSpyLogDelegator.java:518) - 1. Connection opened  org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:111)
+[2019-09-25 17:48:10.302] DEBUG Slf4jSpyLogDelegator.connectionOpened(Slf4jSpyLogDelegator.java:520) - open connections:  1 (1)
+[2019-09-25 17:48:10.302] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. Connection.new Connection returned   org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:111)
+[2019-09-25 17:48:10.302] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. Connection.getAutoCommit() returned true  org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:83)
+[2019-09-25 17:48:10.302] DEBUG SpringManagedTransaction.openConnection(SpringManagedTransaction.java:87) - JDBC Connection [net.sf.log4jdbc.ConnectionSpy@5ffc5491] will not be managed by Spring
+[2019-09-25 17:48:10.305] DEBUG BaseJdbcLogger.debug(BaseJdbcLogger.java:159) - ==>  Preparing: INSERT INTO BOARD ( TITLE, CONTENTS, READCNT, TNUM, CATEGORY, REGID, REGDT, MODID, MODDT ) VALUES ( ?, ?, ?, ?, ?, ?, SYSDATE, ?, SYSDATE ) 
+[2019-09-25 17:48:10.372] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.new PreparedStatement returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.373] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. Connection.prepareStatement(INSERT INTO BOARD (
+			TITLE,
+			CONTENTS,
+			READCNT,
+			TNUM,
+			CATEGORY,
+			REGID,
+			REGDT,
+			MODID,
+			MODDT		
+		) VALUES (
+			?,
+			?,
+			?,
+			?,
+			?,
+			?,
+			SYSDATE,
+			?,
+			SYSDATE		
+		)) returned net.sf.log4jdbc.PreparedStatementSpy@3e9803c2  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.381] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.setString(1, "제목123") returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.382] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.setString(2, "내용내용") returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.382] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.setInt(3, 0) returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.382] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.setInt(4, 1) returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.383] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.setString(5, "카테고리02") returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.383] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.setString(6, "admin") returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.383] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.setNull(7, 12) returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.383] DEBUG BaseJdbcLogger.debug(BaseJdbcLogger.java:159) - ==> Parameters: 제목123(String), 내용내용(String), 0(Integer), 1(Integer), 카테고리02(String), admin(String), null
+[2019-09-25 17:48:10.384] INFO  Log4JdbcCustomFormatter.sqlOccured(Log4JdbcCustomFormatter.java:74) - REDBULL_SQL] : INSERT INTO BOARD (
+			TITLE,
+			CONTENTS,
+			READCNT,
+			TNUM,
+			CATEGORY,
+			REGID,
+			REGDT,
+			MODID,
+			MODDT		
+		) VALUES (
+			'제목123',
+			'내용내용',
+			0,
+			1,
+			'카테고리02',
+			'admin',
+			SYSDATE,
+			NULL,
+			SYSDATE		
+		)
+[2019-09-25 17:48:10.390] DEBUG Slf4jSpyLogDelegator.sqlTimingOccured(Slf4jSpyLogDelegator.java:352) -  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+1. INSERT INTO BOARD ( TITLE, CONTENTS, READCNT, TNUM, CATEGORY, REGID, REGDT, MODID, MODDT ) 
+VALUES ( '제목123', '내용내용', 0, 1, '카테고리02', 'admin', SYSDATE, NULL, SYSDATE )  {executed in 6 msec}
+[2019-09-25 17:48:10.391] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.execute() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.391] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.getUpdateCount() returned 1  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.391] DEBUG BaseJdbcLogger.debug(BaseJdbcLogger.java:159) - <==    Updates: 1
+[2019-09-25 17:48:10.392] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.isClosed() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.392] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.close() returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.393] DEBUG SqlSessionUtils.closeSqlSession(SqlSessionUtils.java:191) - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@64d7b720]
+[2019-09-25 17:48:10.393] DEBUG DataSourceUtils.doReleaseConnection(DataSourceUtils.java:327) - Returning JDBC Connection to DataSource
+[2019-09-25 17:48:10.393] INFO  Slf4jSpyLogDelegator.connectionClosed(Slf4jSpyLogDelegator.java:537) - 1. Connection closed  org.springframework.jdbc.datasource.DataSourceUtils.doCloseConnection(DataSourceUtils.java:341)
+[2019-09-25 17:48:10.394] DEBUG Slf4jSpyLogDelegator.connectionClosed(Slf4jSpyLogDelegator.java:539) - open connections:  none
+[2019-09-25 17:48:10.394] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. Connection.close() returned   org.springframework.jdbc.datasource.DataSourceUtils.doCloseConnection(DataSourceUtils.java:341)
+[2019-09-25 17:48:10.394] DEBUG BoardDaoImpl.do_save(BoardDaoImpl.java:106) - ==============================
+[2019-09-25 17:48:10.394] DEBUG BoardDaoImpl.do_save(BoardDaoImpl.java:107) - 3.flag:1
+[2019-09-25 17:48:10.394] DEBUG BoardDaoImpl.do_save(BoardDaoImpl.java:108) - ==============================
+[2019-09-25 17:48:10.398] DEBUG BoardController.do_save(BoardController.java:130) - ================================
+[2019-09-25 17:48:10.398] DEBUG BoardController.do_save(BoardController.java:131) - gsonStr:{"msgId":"1","msgMsg":"등록되었습니다.","totalCnt":0,"num":0}
+[2019-09-25 17:48:10.399] DEBUG BoardController.do_save(BoardController.java:132) - ================================
+[2019-09-25 17:48:10.402] DEBUG DispatcherServlet.processDispatchResult(DispatcherServlet.java:1048) - Null ModelAndView returned to DispatcherServlet with name '': assuming HandlerAdapter completed request handling
+[2019-09-25 17:48:10.403] DEBUG FrameworkServlet.processRequest(FrameworkServlet.java:1000) - Successfully completed request
+[2019-09-25 17:48:10.440] DEBUG CompiledPath.evaluate(CompiledPath.java:47) - Evaluating path: $['msgId']
+[2019-09-25 17:48:10.446] DEBUG BoardWebTest.do_save(BoardWebTest.java:157) - =============================
+[2019-09-25 17:48:10.447] DEBUG BoardWebTest.do_save(BoardWebTest.java:158) - result{"msgId":"1","msgMsg":"등록되었습니다.","totalCnt":0,"num":0}
+[2019-09-25 17:48:10.447] DEBUG BoardWebTest.do_save(BoardWebTest.java:159) - =============================
+[2019-09-25 17:48:10.447] DEBUG AbstractDirtiesContextTestExecutionListener.beforeOrAfterTestMethod(AbstractDirtiesContextTestExecutionListener.java:106) - After test method: context [DefaultTestContext@4cf777e8 testClass = BoardWebTest, testInstance = kr.co.redbull.board.BoardWebTest@40bffbca, testMethod = do_save@BoardWebTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2f686d1f testClass = BoardWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]], class annotated with @DirtiesContext [false] with mode [null], method annotated with @DirtiesContext [false] with mode [null].
+[2019-09-25 17:48:10.447] DEBUG ServletTestExecutionListener.afterTestMethod(ServletTestExecutionListener.java:165) - Resetting RequestContextHolder for test context [DefaultTestContext@4cf777e8 testClass = BoardWebTest, testInstance = kr.co.redbull.board.BoardWebTest@40bffbca, testMethod = do_save@BoardWebTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2f686d1f testClass = BoardWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]].
+[2019-09-25 17:48:10.448] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:68) - Retrieved @ProfileValueSourceConfiguration [null] for test class [kr.co.redbull.board.BoardWebTest]
+[2019-09-25 17:48:10.449] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:80) - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [kr.co.redbull.board.BoardWebTest]
+[2019-09-25 17:48:10.449] DEBUG DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:129) - Retrieved ApplicationContext from cache with key [[WebMergedContextConfiguration@2f686d1f testClass = BoardWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]]
+[2019-09-25 17:48:10.449] DEBUG DefaultContextCache.logStatistics(DefaultContextCache.java:290) - Spring test ApplicationContext cache statistics: [DefaultContextCache@3b1bb3ab size = 1, maxSize = 32, parentContextCount = 0, hitCount = 2, missCount = 1]
+[2019-09-25 17:48:10.449] DEBUG ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:201) - Setting up MockHttpServletRequest, MockHttpServletResponse, ServletWebRequest, and RequestContextHolder for test context [DefaultTestContext@4cf777e8 testClass = BoardWebTest, testInstance = kr.co.redbull.board.BoardWebTest@5ac7aa18, testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2f686d1f testClass = BoardWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]].
+[2019-09-25 17:48:10.449] DEBUG DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:81) - Performing dependency injection for test context [[DefaultTestContext@4cf777e8 testClass = BoardWebTest, testInstance = kr.co.redbull.board.BoardWebTest@5ac7aa18, testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2f686d1f testClass = BoardWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]]].
+[2019-09-25 17:48:10.449] DEBUG DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:129) - Retrieved ApplicationContext from cache with key [[WebMergedContextConfiguration@2f686d1f testClass = BoardWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]]
+[2019-09-25 17:48:10.450] DEBUG DefaultContextCache.logStatistics(DefaultContextCache.java:290) - Spring test ApplicationContext cache statistics: [DefaultContextCache@3b1bb3ab size = 1, maxSize = 32, parentContextCount = 0, hitCount = 3, missCount = 1]
+[2019-09-25 17:48:10.450] DEBUG AbstractDirtiesContextTestExecutionListener.beforeOrAfterTestMethod(AbstractDirtiesContextTestExecutionListener.java:106) - Before test method: context [DefaultTestContext@4cf777e8 testClass = BoardWebTest, testInstance = kr.co.redbull.board.BoardWebTest@5ac7aa18, testMethod = get_retrieve@BoardWebTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2f686d1f testClass = BoardWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]], class annotated with @DirtiesContext [false] with mode [null], method annotated with @DirtiesContext [false] with mode [null].
+[2019-09-25 17:48:10.450] DEBUG BoardWebTest.setUp(BoardWebTest.java:51) - ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2019-09-25 17:48:10.450] DEBUG BoardWebTest.setUp(BoardWebTest.java:52) - ^^^^^^^^0  setUp^^^^^^^^^^^^
+[2019-09-25 17:48:10.451] DEBUG BoardWebTest.setUp(BoardWebTest.java:53) - ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2019-09-25 17:48:10.451] DEBUG HttpServletBean.init(HttpServletBean.java:149) - Initializing servlet ''
+[2019-09-25 17:48:10.451] INFO  MockServletContext.log(MockServletContext.java:440) - Initializing Spring FrameworkServlet ''
+[2019-09-25 17:48:10.451] INFO  FrameworkServlet.initServletBean(FrameworkServlet.java:489) - FrameworkServlet '': initialization started
+[2019-09-25 17:48:10.451] DEBUG DispatcherServlet.initMultipartResolver(DispatcherServlet.java:515) - Unable to locate MultipartResolver with name 'multipartResolver': no multipart request handling provided
+[2019-09-25 17:48:10.451] DEBUG DispatcherServlet.initLocaleResolver(DispatcherServlet.java:537) - Unable to locate LocaleResolver with name 'localeResolver': using default [org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver@70abf9b0]
+[2019-09-25 17:48:10.451] DEBUG DispatcherServlet.initThemeResolver(DispatcherServlet.java:559) - Unable to locate ThemeResolver with name 'themeResolver': using default [org.springframework.web.servlet.theme.FixedThemeResolver@476ec9d0]
+[2019-09-25 17:48:10.452] DEBUG DispatcherServlet.initRequestToViewNameTranslator(DispatcherServlet.java:696) - Unable to locate RequestToViewNameTranslator with name 'viewNameTranslator': using default [org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@1d12b024]
+[2019-09-25 17:48:10.452] DEBUG DispatcherServlet.initFlashMapManager(DispatcherServlet.java:757) - Unable to locate FlashMapManager with name 'flashMapManager': using default [org.springframework.web.servlet.support.SessionFlashMapManager@43effd89]
+[2019-09-25 17:48:10.452] DEBUG FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:568) - Published WebApplicationContext of servlet '' as ServletContext attribute with name [org.springframework.web.servlet.FrameworkServlet.CONTEXT.]
+[2019-09-25 17:48:10.452] INFO  FrameworkServlet.initServletBean(FrameworkServlet.java:508) - FrameworkServlet '': initialization completed in 1 ms
+[2019-09-25 17:48:10.453] DEBUG HttpServletBean.init(HttpServletBean.java:174) - Servlet '' configured successfully
+[2019-09-25 17:48:10.453] DEBUG BoardWebTest.setUp(BoardWebTest.java:65) - =============================
+[2019-09-25 17:48:10.453] DEBUG BoardWebTest.setUp(BoardWebTest.java:66) - context org.springframework.web.context.support.GenericWebApplicationContext@13a5fe33: startup date [Wed Sep 25 17:48:09 KST 2019]; root of context hierarchy
+[2019-09-25 17:48:10.453] DEBUG BoardWebTest.setUp(BoardWebTest.java:67) - mockMvc org.springframework.test.web.servlet.MockMvc@51ec2df1
+[2019-09-25 17:48:10.453] DEBUG BoardWebTest.setUp(BoardWebTest.java:68) - dao kr.co.redbull.board.service.impl.BoardDaoImpl@68ed96ca
+[2019-09-25 17:48:10.453] DEBUG BoardWebTest.setUp(BoardWebTest.java:69) - =============================
+[2019-09-25 17:48:10.453] DEBUG DispatcherServlet.doService(DispatcherServlet.java:869) - DispatcherServlet with name '' processing GET request for [/board/get_retrieve.do]
+[2019-09-25 17:48:10.454] DEBUG DispatcherServlet.doDispatch(DispatcherServlet.java:955) - Last-Modified value for [/board/get_retrieve.do] is: -1
+[2019-09-25 17:48:10.455] DEBUG BoardController.get_retrieve(BoardController.java:38) - ================================
+[2019-09-25 17:48:10.456] DEBUG BoardController.get_retrieve(BoardController.java:39) - search:Search [pageSize=10, pageNum=1, searchDiv=10, searchWord=제목]
+[2019-09-25 17:48:10.456] DEBUG BoardController.get_retrieve(BoardController.java:40) - ================================
+[2019-09-25 17:48:10.456] DEBUG BoardDaoImpl.get_retrieve(BoardDaoImpl.java:140) - ==============================
+[2019-09-25 17:48:10.456] DEBUG BoardDaoImpl.get_retrieve(BoardDaoImpl.java:141) - 1.param:Search [pageSize=10, pageNum=1, searchDiv=10, searchWord=제목]
+[2019-09-25 17:48:10.456] DEBUG BoardDaoImpl.get_retrieve(BoardDaoImpl.java:142) - ==============================
+[2019-09-25 17:48:10.456] DEBUG BoardDaoImpl.get_retrieve(BoardDaoImpl.java:144) - ==============================
+[2019-09-25 17:48:10.456] DEBUG BoardDaoImpl.get_retrieve(BoardDaoImpl.java:145) - 2.statement:kr.co.redbull.board.get_retrieve
+[2019-09-25 17:48:10.457] DEBUG BoardDaoImpl.get_retrieve(BoardDaoImpl.java:146) - ==============================
+[2019-09-25 17:48:10.457] DEBUG SqlSessionUtils.getSqlSession(SqlSessionUtils.java:97) - Creating a new SqlSession
+[2019-09-25 17:48:10.457] DEBUG SqlSessionUtils.registerSessionHolder(SqlSessionUtils.java:148) - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1698d7c0] was not registered for synchronization because synchronization is not active
+[2019-09-25 17:48:10.475] DEBUG DataSourceUtils.doGetConnection(DataSourceUtils.java:110) - Fetching JDBC Connection from DataSource
+[2019-09-25 17:48:10.476] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - driver name is Oracle JDBC driver
+[2019-09-25 17:48:10.476] INFO  Slf4jSpyLogDelegator.connectionOpened(Slf4jSpyLogDelegator.java:518) - 2. Connection opened  org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:111)
+[2019-09-25 17:48:10.476] DEBUG Slf4jSpyLogDelegator.connectionOpened(Slf4jSpyLogDelegator.java:520) - open connections:  2 (1)
+[2019-09-25 17:48:10.476] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. Connection.new Connection returned   org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:111)
+[2019-09-25 17:48:10.477] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. Connection.getAutoCommit() returned true  org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:83)
+[2019-09-25 17:48:10.477] DEBUG SpringManagedTransaction.openConnection(SpringManagedTransaction.java:87) - JDBC Connection [net.sf.log4jdbc.ConnectionSpy@298d9a05] will not be managed by Spring
+[2019-09-25 17:48:10.477] DEBUG BaseJdbcLogger.debug(BaseJdbcLogger.java:159) - ==>  Preparing: SELECT T1.*, T2.* FROM (SELECT B.BNUM AS bNum, B.TITLE, B.CONTENTS, B.READCNT AS readCnt, B.TNUM AS tNum, B.CATEGORY, B.REGID AS regId, CASE TO_CHAR(B.REGDT, 'yyyy.mm.dd') WHEN TO_CHAR(SYSDATE, 'yyyy.mm.dd') THEN TO_CHAR(B.REGDT, 'HH24:MI') ELSE TO_CHAR(B.REGDT, 'yyyy.mm.dd') END as regDt, B.MODID AS modId, B.MODDT AS modDt, B.rnum AS num FROM (SELECT ROWNUM AS rnum, A.* FROM(SELECT * FROM BOARD WHERE TNUM = 1 AND TITLE LIKE '%' || ? || '%' ORDER BY REGDT DESC) A WHERE ROWNUM < = (? * (? -1) + ?))B WHERE B.rnum > = (? * (? -1)+1)) T1 CROSS JOIN (SELECT COUNT(*) FROM (SELECT * FROM BOARD WHERE TNUM = 1 AND TITLE LIKE '%' || ? || '%' ))T2 
+[2019-09-25 17:48:10.478] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. PreparedStatement.new PreparedStatement returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.478] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. Connection.prepareStatement(SELECT T1.*, T2.*
+	FROM (SELECT B.BNUM AS bNum,
+	             B.TITLE,
+	             B.CONTENTS,
+	             B.READCNT AS readCnt,
+	             B.TNUM AS tNum,
+	             B.CATEGORY,
+	             B.REGID AS regId,
+	             CASE TO_CHAR(B.REGDT, 'yyyy.mm.dd') WHEN TO_CHAR(SYSDATE, 'yyyy.mm.dd') THEN TO_CHAR(B.REGDT, 'HH24:MI')
+			     ELSE TO_CHAR(B.REGDT, 'yyyy.mm.dd') END as regDt,
+	             B.MODID AS modId,
+	             B.MODDT AS modDt,
+	             B.rnum AS num
+      	  FROM (SELECT ROWNUM AS rnum, A.*
+            	FROM(SELECT * FROM BOARD
+                 	  
+		 WHERE TNUM = 1
+					 AND TITLE LIKE '%' || ? || '%' 
+	 
+                 	 ORDER BY REGDT DESC) A
+            	WHERE ROWNUM  < = (? * (? -1) + ?))B
+      	  WHERE B.rnum  > = (? * (? -1)+1)) T1
+	CROSS JOIN
+	(SELECT COUNT(*)
+	 FROM (SELECT * FROM BOARD
+	        
+		 WHERE TNUM = 1
+					 AND TITLE LIKE '%' || ? || '%' 
+	 
+	      ))T2) returned net.sf.log4jdbc.PreparedStatementSpy@3c0036b  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.479] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. PreparedStatement.setString(1, "제목") returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.479] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. PreparedStatement.setInt(2, 10) returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.480] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. PreparedStatement.setInt(3, 1) returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.480] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. PreparedStatement.setInt(4, 10) returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.480] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. PreparedStatement.setInt(5, 10) returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.480] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. PreparedStatement.setInt(6, 1) returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.481] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. PreparedStatement.setString(7, "제목") returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.481] DEBUG BaseJdbcLogger.debug(BaseJdbcLogger.java:159) - ==> Parameters: 제목(String), 10(Integer), 1(Integer), 10(Integer), 10(Integer), 1(Integer), 제목(String)
+[2019-09-25 17:48:10.481] INFO  Log4JdbcCustomFormatter.sqlOccured(Log4JdbcCustomFormatter.java:74) - REDBULL_SQL] : SELECT T1.*, T2.*
+	FROM (SELECT B.BNUM AS bNum,
+	             B.TITLE,
+	             B.CONTENTS,
+	             B.READCNT AS readCnt,
+	             B.TNUM AS tNum,
+	             B.CATEGORY,
+	             B.REGID AS regId,
+	             CASE TO_CHAR(B.REGDT, 'yyyy.mm.dd') WHEN TO_CHAR(SYSDATE, 'yyyy.mm.dd') THEN TO_CHAR(B.REGDT, 'HH24:MI')
+			     ELSE TO_CHAR(B.REGDT, 'yyyy.mm.dd') END as regDt,
+	             B.MODID AS modId,
+	             B.MODDT AS modDt,
+	             B.rnum AS num
+      	  FROM (SELECT ROWNUM AS rnum, A.*
+            	FROM(SELECT * FROM BOARD
+                 	  
+		 WHERE TNUM = 1
+					 AND TITLE LIKE '%' || '제목' || '%' 
+	 
+                 	 ORDER BY REGDT DESC) A
+            	WHERE ROWNUM  < = (10 * (1 -1) + 10))B
+      	  WHERE B.rnum  > = (10 * (1 -1)+1)) T1
+	CROSS JOIN
+	(SELECT COUNT(*)
+	 FROM (SELECT * FROM BOARD
+	        
+		 WHERE TNUM = 1
+					 AND TITLE LIKE '%' || '제목' || '%' 
+	 
+	      ))T2
+[2019-09-25 17:48:10.504] DEBUG Slf4jSpyLogDelegator.sqlTimingOccured(Slf4jSpyLogDelegator.java:352) -  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+2. SELECT T1.*, T2.* FROM (SELECT B.BNUM AS bNum, B.TITLE, B.CONTENTS, B.READCNT AS readCnt, B.TNUM 
+AS tNum, B.CATEGORY, B.REGID AS regId, CASE TO_CHAR(B.REGDT, 'yyyy.mm.dd') WHEN TO_CHAR(SYSDATE, 
+'yyyy.mm.dd') THEN TO_CHAR(B.REGDT, 'HH24:MI') ELSE TO_CHAR(B.REGDT, 'yyyy.mm.dd') END as regDt, 
+B.MODID AS modId, B.MODDT AS modDt, B.rnum AS num FROM (SELECT ROWNUM AS rnum, A.* FROM(SELECT 
+* FROM BOARD WHERE TNUM = 1 AND TITLE LIKE '%' || '제목' || '%' ORDER BY REGDT DESC) A WHERE 
+ROWNUM < = (10 * (1 -1) + 10))B WHERE B.rnum > = (10 * (1 -1)+1)) T1 CROSS JOIN (SELECT COUNT(*) 
+FROM (SELECT * FROM BOARD WHERE TNUM = 1 AND TITLE LIKE '%' || '제목' || '%' ))T2  {executed in 21 msec}
+[2019-09-25 17:48:10.504] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. PreparedStatement.execute() returned true  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.514] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.new ResultSet returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.515] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. PreparedStatement.getResultSet() returned net.sf.log4jdbc.ResultSetSpy@4ae263bf  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.521] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getMetaData() returned oracle.jdbc.driver.OracleResultSetMetaData@9d200de  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.522] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getType() returned 1003  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.523] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.next() returned true  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.524] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getInt(BNUM) returned 206  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.524] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.525] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getString(TITLE) returned 제목123  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.525] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.526] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getClob(CONTENTS) returned oracle.sql.CLOB@6e0f7aad  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.527] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.527] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getInt(READCNT) returned 0  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.527] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.528] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getInt(TNUM) returned 1  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.528] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.528] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getString(CATEGORY) returned 카테고리02  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.529] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.529] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getString(REGID) returned admin  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.529] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.530] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getString(REGDT) returned 17:48  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.530] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.531] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getString(MODID) returned null  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.531] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned true  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.532] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getString(MODDT) returned 2019-09-25 17:48:11  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.532] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.533] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getInt(NUM) returned 1  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.533] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.533] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.next() returned true  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.534] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getInt(BNUM) returned 183  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.534] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.535] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getString(TITLE) returned 제목01  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.535] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.535] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getClob(CONTENTS) returned oracle.sql.CLOB@27c04377  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.536] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.536] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getInt(READCNT) returned 0  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.536] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.537] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getInt(TNUM) returned 1  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.537] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.538] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getString(CATEGORY) returned 카테고리01  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.538] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.538] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getString(REGID) returned admin  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.539] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.539] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getString(REGDT) returned 2019.09.23  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.540] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.540] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getString(MODID) returned admin  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.540] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.541] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getString(MODDT) returned 2019-09-24 17:54:56  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.541] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.541] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getInt(NUM) returned 2  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.542] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.542] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.next() returned true  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.542] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getInt(BNUM) returned 184  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.543] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.543] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getString(TITLE) returned 제목02  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.543] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.544] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getClob(CONTENTS) returned oracle.sql.CLOB@28a6301f  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.544] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.545] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getInt(READCNT) returned 0  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.545] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.545] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getInt(TNUM) returned 1  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.546] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.546] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getString(CATEGORY) returned 카테고리02  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.546] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.547] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getString(REGID) returned admin  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.547] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.547] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getString(REGDT) returned 2019.09.23  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.548] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.548] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getString(MODID) returned admin  sun.reflect.GeneratedMethodAccessor5.invoke(null:-1)
+[2019-09-25 17:48:10.548] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.549] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getString(MODDT) returned 2019-09-24 17:54:56  sun.reflect.GeneratedMethodAccessor5.invoke(null:-1)
+[2019-09-25 17:48:10.549] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.549] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getInt(NUM) returned 3  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.550] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.550] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.next() returned true  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.550] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getInt(BNUM) returned 185  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.551] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.551] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getString(TITLE) returned 제목03  sun.reflect.GeneratedMethodAccessor5.invoke(null:-1)
+[2019-09-25 17:48:10.551] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.551] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getClob(CONTENTS) returned oracle.sql.CLOB@5b12012e  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.552] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.552] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getInt(READCNT) returned 0  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.553] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.553] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getInt(TNUM) returned 1  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.553] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.553] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getString(CATEGORY) returned 카테고리03  sun.reflect.GeneratedMethodAccessor5.invoke(null:-1)
+[2019-09-25 17:48:10.554] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.554] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getString(REGID) returned admin  sun.reflect.GeneratedMethodAccessor5.invoke(null:-1)
+[2019-09-25 17:48:10.554] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.554] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getString(REGDT) returned 2019.09.23  sun.reflect.GeneratedMethodAccessor5.invoke(null:-1)
+[2019-09-25 17:48:10.555] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.555] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getString(MODID) returned admin  sun.reflect.GeneratedMethodAccessor5.invoke(null:-1)
+[2019-09-25 17:48:10.555] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.555] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getString(MODDT) returned 2019-09-24 17:54:56  sun.reflect.GeneratedMethodAccessor5.invoke(null:-1)
+[2019-09-25 17:48:10.556] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.556] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getInt(NUM) returned 4  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.557] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.557] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.next() returned true  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.557] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getInt(BNUM) returned 186  sun.reflect.GeneratedMethodAccessor6.invoke(null:-1)
+[2019-09-25 17:48:10.557] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.558] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getString(TITLE) returned 제목04  sun.reflect.GeneratedMethodAccessor5.invoke(null:-1)
+[2019-09-25 17:48:10.558] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.558] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getClob(CONTENTS) returned oracle.sql.CLOB@35835fa  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.559] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.559] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getInt(READCNT) returned 0  sun.reflect.GeneratedMethodAccessor6.invoke(null:-1)
+[2019-09-25 17:48:10.559] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.560] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getInt(TNUM) returned 1  sun.reflect.GeneratedMethodAccessor6.invoke(null:-1)
+[2019-09-25 17:48:10.560] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.560] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getString(CATEGORY) returned 카테고리04  sun.reflect.GeneratedMethodAccessor5.invoke(null:-1)
+[2019-09-25 17:48:10.560] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.560] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getString(REGID) returned admin  sun.reflect.GeneratedMethodAccessor5.invoke(null:-1)
+[2019-09-25 17:48:10.561] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.561] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getString(REGDT) returned 2019.09.23  sun.reflect.GeneratedMethodAccessor5.invoke(null:-1)
+[2019-09-25 17:48:10.561] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.562] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getString(MODID) returned admin  sun.reflect.GeneratedMethodAccessor5.invoke(null:-1)
+[2019-09-25 17:48:10.562] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.562] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getString(MODDT) returned 2019-09-24 17:54:56  sun.reflect.GeneratedMethodAccessor5.invoke(null:-1)
+[2019-09-25 17:48:10.562] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.563] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.getInt(NUM) returned 5  sun.reflect.GeneratedMethodAccessor6.invoke(null:-1)
+[2019-09-25 17:48:10.563] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor4.invoke(null:-1)
+[2019-09-25 17:48:10.564] INFO  ResultSetCollectorPrinter.println(ResultSetCollectorPrinter.java:108) - |-----|------|---------|--------|-----|---------|------|-----------|-------|--------------------|----|---------|
+[2019-09-25 17:48:10.564] INFO  ResultSetCollectorPrinter.println(ResultSetCollectorPrinter.java:108) - |BNUM |TITLE |CONTENTS |READCNT |TNUM |CATEGORY |REGID |REGDT      |MODID  |MODDT               |NUM |COUNT(*) |
+[2019-09-25 17:48:10.565] INFO  ResultSetCollectorPrinter.println(ResultSetCollectorPrinter.java:108) - |-----|------|---------|--------|-----|---------|------|-----------|-------|--------------------|----|---------|
+[2019-09-25 17:48:10.565] INFO  ResultSetCollectorPrinter.println(ResultSetCollectorPrinter.java:108) - |206  |제목123 |내용내용     |0       |1    |카테고리02   |admin |17:48      |[null] |2019-09-25 17:48:11 |1   |5        |
+[2019-09-25 17:48:10.565] INFO  ResultSetCollectorPrinter.println(ResultSetCollectorPrinter.java:108) - |183  |제목01  |내용01     |0       |1    |카테고리01   |admin |2019.09.23 |admin  |2019-09-24 17:54:56 |2   |5        |
+[2019-09-25 17:48:10.565] INFO  ResultSetCollectorPrinter.println(ResultSetCollectorPrinter.java:108) - |184  |제목02  |내용02     |0       |1    |카테고리02   |admin |2019.09.23 |admin  |2019-09-24 17:54:56 |3   |5        |
+[2019-09-25 17:48:10.566] INFO  ResultSetCollectorPrinter.println(ResultSetCollectorPrinter.java:108) - |185  |제목03  |내용03     |0       |1    |카테고리03   |admin |2019.09.23 |admin  |2019-09-24 17:54:56 |4   |5        |
+[2019-09-25 17:48:10.566] INFO  ResultSetCollectorPrinter.println(ResultSetCollectorPrinter.java:108) - |186  |제목04  |내용04     |0       |1    |카테고리04   |admin |2019.09.23 |admin  |2019-09-24 17:54:56 |5   |5        |
+[2019-09-25 17:48:10.567] INFO  ResultSetCollectorPrinter.println(ResultSetCollectorPrinter.java:108) - |-----|------|---------|--------|-----|---------|------|-----------|-------|--------------------|----|---------|
+[2019-09-25 17:48:10.567] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.next() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.567] DEBUG BaseJdbcLogger.debug(BaseJdbcLogger.java:159) - <==      Total: 5
+[2019-09-25 17:48:10.567] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. ResultSet.close() returned null  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.568] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. PreparedStatement.getConnection() returned net.sf.log4jdbc.ConnectionSpy@298d9a05  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.568] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. Connection.getMetaData() returned org.apache.commons.dbcp.DelegatingDatabaseMetaData@6e106680  org.apache.ibatis.executor.resultset.DefaultResultSetHandler.getNextResultSet(DefaultResultSetHandler.java:258)
+[2019-09-25 17:48:10.568] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. PreparedStatement.isClosed() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.568] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. PreparedStatement.close() returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-09-25 17:48:10.569] DEBUG SqlSessionUtils.closeSqlSession(SqlSessionUtils.java:191) - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1698d7c0]
+[2019-09-25 17:48:10.569] DEBUG DataSourceUtils.doReleaseConnection(DataSourceUtils.java:327) - Returning JDBC Connection to DataSource
+[2019-09-25 17:48:10.569] INFO  Slf4jSpyLogDelegator.connectionClosed(Slf4jSpyLogDelegator.java:537) - 2. Connection closed  org.springframework.jdbc.datasource.DataSourceUtils.doCloseConnection(DataSourceUtils.java:341)
+[2019-09-25 17:48:10.569] DEBUG Slf4jSpyLogDelegator.connectionClosed(Slf4jSpyLogDelegator.java:539) - open connections:  none
+[2019-09-25 17:48:10.569] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 2. Connection.close() returned   org.springframework.jdbc.datasource.DataSourceUtils.doCloseConnection(DataSourceUtils.java:341)
+[2019-09-25 17:48:10.569] DEBUG BoardDaoImpl.get_retrieve(BoardDaoImpl.java:150) - ==============================
+[2019-09-25 17:48:10.570] DEBUG BoardDaoImpl.get_retrieve(BoardDaoImpl.java:151) - 3.list:[Board [bNum=206, title=제목123, contents=내용내용, readCnt=0, tNum=1, category=카테고리02, regId=admin, regDt=17:48, modId=null, modDt=2019-09-25 17:48:11, toString()=DTO [totalCnt=0, num=1]], Board [bNum=183, title=제목01, contents=내용01, readCnt=0, tNum=1, category=카테고리01, regId=admin, regDt=2019.09.23, modId=admin, modDt=2019-09-24 17:54:56, toString()=DTO [totalCnt=0, num=2]], Board [bNum=184, title=제목02, contents=내용02, readCnt=0, tNum=1, category=카테고리02, regId=admin, regDt=2019.09.23, modId=admin, modDt=2019-09-24 17:54:56, toString()=DTO [totalCnt=0, num=3]], Board [bNum=185, title=제목03, contents=내용03, readCnt=0, tNum=1, category=카테고리03, regId=admin, regDt=2019.09.23, modId=admin, modDt=2019-09-24 17:54:56, toString()=DTO [totalCnt=0, num=4]], Board [bNum=186, title=제목04, contents=내용04, readCnt=0, tNum=1, category=카테고리04, regId=admin, regDt=2019.09.23, modId=admin, modDt=2019-09-24 17:54:56, toString()=DTO [totalCnt=0, num=5]]]
+[2019-09-25 17:48:10.570] DEBUG BoardDaoImpl.get_retrieve(BoardDaoImpl.java:152) - ==============================
+[2019-09-25 17:48:10.572] DEBUG DispatcherServlet.render(DispatcherServlet.java:1280) - Rendering view [org.springframework.web.servlet.view.JstlView: name 'board/board_list'; URL [/board/board_list.jsp]] in DispatcherServlet with name ''
+[2019-09-25 17:48:10.575] DEBUG MockRequestDispatcher.forward(MockRequestDispatcher.java:67) - MockRequestDispatcher: forwarding to [/board/board_list.jsp]
+[2019-09-25 17:48:10.575] DEBUG FrameworkServlet.processRequest(FrameworkServlet.java:1000) - Successfully completed request
+[2019-09-25 17:48:10.604] DEBUG BoardWebTest.get_retrieve(BoardWebTest.java:90) - =============================
+[2019-09-25 17:48:10.604] DEBUG BoardWebTest.get_retrieve(BoardWebTest.java:91) - result
+[2019-09-25 17:48:10.604] DEBUG BoardWebTest.get_retrieve(BoardWebTest.java:92) - =============================
+[2019-09-25 17:48:10.604] DEBUG AbstractDirtiesContextTestExecutionListener.beforeOrAfterTestMethod(AbstractDirtiesContextTestExecutionListener.java:106) - After test method: context [DefaultTestContext@4cf777e8 testClass = BoardWebTest, testInstance = kr.co.redbull.board.BoardWebTest@5ac7aa18, testMethod = get_retrieve@BoardWebTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2f686d1f testClass = BoardWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]], class annotated with @DirtiesContext [false] with mode [null], method annotated with @DirtiesContext [false] with mode [null].
+[2019-09-25 17:48:10.604] DEBUG ServletTestExecutionListener.afterTestMethod(ServletTestExecutionListener.java:165) - Resetting RequestContextHolder for test context [DefaultTestContext@4cf777e8 testClass = BoardWebTest, testInstance = kr.co.redbull.board.BoardWebTest@5ac7aa18, testMethod = get_retrieve@BoardWebTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2f686d1f testClass = BoardWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]].
+[2019-09-25 17:48:10.605] DEBUG AbstractDirtiesContextTestExecutionListener.beforeOrAfterTestClass(AbstractDirtiesContextTestExecutionListener.java:141) - After test class: context [DefaultTestContext@4cf777e8 testClass = BoardWebTest, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2f686d1f testClass = BoardWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]], class annotated with @DirtiesContext [false] with mode [null].
+[2019-09-25 17:48:10.606] INFO  AbstractApplicationContext.doClose(AbstractApplicationContext.java:984) - Closing org.springframework.web.context.support.GenericWebApplicationContext@13a5fe33: startup date [Wed Sep 25 17:48:09 KST 2019]; root of context hierarchy
+[2019-09-25 17:48:10.606] DEBUG SqlSessionUtils.getSqlSession(SqlSessionUtils.java:97) - Creating a new SqlSession
+[2019-09-25 17:48:10.606] DEBUG SqlSessionUtils.registerSessionHolder(SqlSessionUtils.java:148) - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@e5e5804] was not registered for synchronization because synchronization is not active
+[2019-09-25 17:48:10.607] DEBUG SqlSessionUtils.closeSqlSession(SqlSessionUtils.java:191) - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@e5e5804]

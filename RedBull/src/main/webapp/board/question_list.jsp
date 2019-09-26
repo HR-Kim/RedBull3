@@ -29,7 +29,7 @@
 	/**페이지 번호*/	
 	String pageNum = "1";
 	/**검색조건*/
-	String searchDiv = "";
+	String searchDiv = "20";
 	/**검색어*/
 	String searchWord = "";	
 
@@ -43,7 +43,7 @@
 	}else{
 		pageSize   = "10";
 		pageNum    = "1";
-		searchDiv  = "";
+		searchDiv  = "20";
 		searchWord = "";
 	}
 	
@@ -101,11 +101,15 @@
        <form class="form-inline" name="boardFrm" id="boardFrm" method="get">
        	<input type="hidden" name="pageNum" id="pageNum" value="${vo.pageNum}" />
        	<input type="hidden" name="searchDiv" id="searchDiv" />
+       		<input type="hidden" name="bNum" id="bNum" />
         <div class="form-group ">
+        <div class="col-sm-12">
      <input type="text"  class="form-control input-sm " id="searchWord" name="searchWord" 
        placeholder="검색어" />
-     <button type="button" class="btn btn-default btn-sm" id="do_retrieve">검색</button>  
-     <button type="button" class="btn btn-default btn-sm" id="do_save">질문하기</button>  
+       <button type="button" class="btn btn-default btn-sm" id="do_retrieve">검색</button>  
+     <button type="button" class="btn btn-default btn-sm" id="do_write">질문하기</button>  
+       </div>
+     
         </div>
        </form>
         </div> 
@@ -118,11 +122,11 @@
          	<c:when test="${list.size()>0}">
          		<c:forEach var="vo" items = "${list}">
 		        
-		        <div class="container" class="listTable">
-			    	<table class="table table-borderless table-sm">  
-						<tr>
-							<td rowspan="3" style="display:none;">${vo.bNum}</td>
-							<td class="text-left col-md-4 col-xs-4" colspan="5" style=""><b>${vo.title} </b></td>
+		        <div class="container">
+			    	<table class="table table-bordered table-sm">  
+						<tr class="post">
+							<td style="display:none;">${vo.bNum}</td>
+							<td colspan="5"><b>${vo.title} </b></td>
 							<td class="text-left col-md-1 col-xs-1" rowspan="3"><img src="${context}/board/noimage.jpg" class="img-thumbnail">
 </td>
 						</tr>
@@ -163,10 +167,15 @@
     <script src="${context}/resources/js/bootstrap.min.js"></script>    
     <script type="text/javascript">
     	
-    	$("#do_save").on("click", function(){
-    		location.href = "${context}/board/board_mng.jsp";
+    	//글쓰기 창으로 이동
+    	$("#do_write").on("click", function(){
+    		var frm = document.boardFrm;
+    		frm.searchDiv.value="20";
+    		frm.action = "${context}/board/do_write.do";
+    		frm.submit();
     	});
     
+    	//페이징
     	function search_page(url, pageNum){
     		var frm = document.boardFrm;
     		frm.pageNum.value = pageNum;
@@ -174,27 +183,32 @@
 			frm.submit();
     	}
     	
-    	$("#listTable>tbody").on("click","tr",function(){
-    		//alert('listTable');
-    		var trs = $(this);
-    		var td  = trs.children();
-    		//console.log(td.text());
-    		var boardId = td.eq(0).text();
-    		//console.log(boardId);
+    	//글 제목 클릭하면 상세보기
+    	$(".post").on("click",function(){
+    		
+    		var tr = $(this);
+    		var tds = tr.children();
+    		
+    	 	var bNum = tds.eq(0).text();
+    		
+    	 	//console.log(bNum);
+    		
+    		if(null==bNum || bNum.length==1) return;
     		
     		var frm = document.boardFrm;
-    		frm.boardId.value = boardId;
+    		frm.bNum.value = bNum;
     		frm.action = "${context}/board/get_selectOne.do";
-    		frm.submit();
+    		frm.submit(); 
     		
     	});	
     
+    	//목록조회
     	function do_retrieve(){
     		
     		var searchWord = $("#searchWord").text();
     		
     		var frm = document.boardFrm;
-    		frm.searchDiv.value = 10;
+    		frm.searchDiv.value = 20;
     		frm.pageNum.value = 1;
     		frm.submit();
     	}
