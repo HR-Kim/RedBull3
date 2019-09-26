@@ -4,135 +4,59 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.redbull.opt">
 	<sql id="setColumns">
-		pnum      as pNum,     
-		pname     as pName,    
-		bprice    as bPrice,   
-		detail    as detail,  
-		discount  as discount, 
-		dprice    as dPrice,   
-		pcategory as pCategory,
-		regid     as regId,   
-		CASE TO_CHAR(regdt, 'yyyy/mm/dd') when TO_CHAR(sysdate, 'yyyy/mm/dd') THEN TO_CHAR(sysdate, 'HH24:MI')
-  		ELSE TO_CHAR(regdt, 'yyyy/mm/dd') END AS regDt,    
-		modid     as modId,
-		CASE TO_CHAR(moddt, 'yyyy/mm/dd') when TO_CHAR(sysdate, 'yyyy/mm/dd') THEN TO_CHAR(sysdate, 'HH24:MI')
-  		ELSE TO_CHAR(moddt, 'yyyy/mm/dd') END AS modDt
-	</sql>
-	<!-- 아이디검색 -->
-	<sql id="baseCondition">
-			<choose>
-				<when test="'10' == searchDiv">
-					and PNAME LIKE '%' || #{searchWord} || '%'
-				</when>
-				<when test="'20' == searchDiv">
-					and PCATEGORY LIKE '%' || #{searchWord} || '%'
-				</when>
-				<otherwise></otherwise>							
-			</choose>
-	</sql>
+		ONUM    as oNum  
+		ONAME   as oName 
+		OPRICE  as oPrice
+		PNUM    as pNum  
+		INUM    as iNum 
+	</sql>	
 	
 	<!-- 상품명으로 목록조회 -->
-	<select id="get_pnumList" parameterType="Search" resultType="Product">
+	<select id="get_pnumList" parameterType="Search" resultType="Opt">
 		SELECT
 		   <include refid="setColumns"/>
-		FROM PRODUCT
-		WHERE PNAME LIKE '%' || #{searchWord} || '%'
-		ORDER BY PNUM ASC
-	</select>
-	
-	<!-- 목록조회 -->
-	<select id="get_retrieve" parameterType="Search" resultType="Product">
-		 SELECT T1.*,T2.*													
-		 FROM                                                              
-		 (                                                                 
-		 	SELECT
-			B.pnum      as pNum,     
-			B.pname     as pName,    
-			B.bprice    as bPrice,   
-			B.detail    as detail,  
-			B.discount  as discount, 
-			B.dprice    as dPrice,   
-			B.pcategory as pCategory,
-			B.regid     as regId,   
-			CASE TO_CHAR(B.regdt, 'yyyy/mm/dd') when TO_CHAR(sysdate, 'yyyy/mm/dd') THEN TO_CHAR(sysdate, 'HH24:MI')
-			ELSE TO_CHAR(B.regdt, 'yyyy/mm/dd') END AS regDt,    
-			B.modid     as modId,
-			CASE TO_CHAR(B.moddt, 'yyyy/mm/dd') when TO_CHAR(sysdate, 'yyyy/mm/dd') THEN TO_CHAR(sysdate, 'HH24:MI')
-			ELSE TO_CHAR(B.moddt, 'yyyy/mm/dd') END AS modDt,
-			B.rnum  as num		                          
-		 	FROM                                                           
-		 	( 	SELECT ROWNUM AS rnum, A.*                                 
-		 		FROM                                                       
-		 		(                                                           
-		 			SELECT  *                                              
-		 			FROM   PRODUCT
-		 			WHERE  1=1                          
-	  				AND regdt <![CDATA[ >  ]]> to_date('19700101','yyyymmdd')
-		 			<include refid="baseCondition"/>                                        
-		 			ORDER BY regdt DESC                                   
-		 		)A                                                         
-		 	   WHERE rownum <![CDATA[ <= ]]> (#{pageSize} * (#{pageNum}-1)+#{pageSize})    						       
-		 	) B                                                            
-		 	WHERE B.rnum <![CDATA[ >= ]]> (#{pageSize} * (#{pageNum}-1)+1)                  				   
-		 )T1
-		 NATURAL JOIN                                                      
-		 (                                                                 
-		     SELECT COUNT(*) totalCnt                                     
-		     FROM PRODUCT
-		     WHERE  1=1                                           
-		 	 <include refid="baseCondition"/>        		                               
-		 )T2   
-	</select>
+		FROM OPT
+		WHERE PNUM LIKE '%' || #{searchWord} || '%'
+		ORDER BY ONUM ASC
+	</select>	
 	
 	<!-- 단건조회 -->
-	<select id="get_selectOne" parameterType="Product" resultType="Product">
+	<select id="get_selectOne" parameterType="Opt" resultType="Opt">
 		 SELECT
 		 <include refid="setColumns"/>	
-		 FROM PRODUCT
-		 WHERE PNUM = #{pNum, jdbcType=VARCHAR}   
+		 FROM OPT
+		 WHERE ONUM = #{oNum, jdbcType=VARCHAR}   
 	</select>
 
 	<!-- 수정 -->
-	<update id="do_update" parameterType="Product">
+	<update id="do_update" parameterType="Opt">
 		UPDATE PRODUCT
-		SET PNAME      = #{pName,jdbcType=VARCHAR},
-		    BPRICE     = #{bPrice,jdbcType=NUMERIC},
-		    DETAIL     = #{detail,jdbcType=VARCHAR},
-		    DISCOUNT   = #{discount,jdbcType=NUMERIC},
-		    DPRICE     = #{dPrice,jdbcType=NUMERIC},
-		    PCATEGORY  = #{pCategory,jdbcType=NUMERIC},
-		    MODID      = #{modId,jdbcType=VARCHAR},
-		    MODDT      = SYSDATE
-		WHERE PNUM = #{pNum, jdbcType=VARCHAR}
+		SET ONAME      = #{oName,jdbcType=VARCHAR},
+		    OPRICE     = #{oPrice,jdbcType=NUMERIC},
+		    PNUM       = #{pNum,jdbcType=NUMERIC},
+		    INUM       = #{iNum,jdbcType=NUMERIC}
+		WHERE ONUM = #{oNum, jdbcType=VARCHAR}  
 	</update>
 
 	<!-- 삭제 -->
-	<delete id="do_delete" parameterType="Product">
+	<delete id="do_delete" parameterType="Opt">
 	<![CDATA[
-		DELETE FROM PRODUCT WHERE PNUM = #{pNum, jdbcType=VARCHAR}
+		DELETE FROM OPT WHERE ONUM = #{oNum, jdbcType=VARCHAR}  
 	]]>
 	</delete>
 
 	<!-- 등록  -->
-	<insert id="do_save" parameterType="Product">
-		INSERT INTO PRODUCT (
-		    PNAME,
-		    BPRICE,
-		    DETAIL,
-		    DISCOUNT,
-		    DPRICE,
-		    PCATEGORY,
-		    REGID,
-		    REGDT
+	<insert id="do_save" parameterType="Opt">
+		INSERT INTO OPT (
+		    ONAME,
+		    OPRICE,
+		    PNUM,
+		    INUM
 		) VALUES (
-		    #{pName, jdbcType=VARCHAR},
-		    #{bPrice, jdbcType=NUMERIC},
-		    #{detail, jdbcType=VARCHAR},
-		    #{discount, jdbcType=NUMERIC},
-		    #{dPrice, jdbcType=NUMERIC},
-		    #{pCategory, jdbcType=NUMERIC},
-		    #{regId, jdbcType=VARCHAR},
-		    SYSDATE
+		    #{oName,jdbcType=VARCHAR},
+		    #{oPrice,jdbcType=NUMERIC},
+		    #{pNum,jdbcType=NUMERIC},
+		    #{iNum,jdbcType=NUMERIC}
 		)
 	</insert>
 </mapper>

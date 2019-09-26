@@ -3,66 +3,68 @@ package kr.co.redbull.opt.service;
 import kr.co.redbull.cmn.DTO;
 
 public class Opt extends DTO {
-	private String ONUM    ;
-	private String ONAME   ;
-	private int    OPRICE  ;
-	private String PNUM    ;
-	private String INUM    ;
+	private String oNum    ;
+	private String oName   ;
+	private int    oPrice  ;
+	private String pNum    ;
+	private String iNum    ;
 	
 	public Opt() {}
 
-	public Opt(String oNUM, String oNAME, int oPRICE, String pNUM, String iNUM) {
+	public Opt(String oNum, String oName, int oPrice, String pNum, String iNum) {
 		super();
-		ONUM = oNUM;
-		ONAME = oNAME;
-		OPRICE = oPRICE;
-		PNUM = pNUM;
-		INUM = iNUM;
+		this.oNum = oNum;
+		this.oName = oName;
+		this.oPrice = oPrice;
+		this.pNum = pNum;
+		this.iNum = iNum;
 	}
 
-	public String getONUM() {
-		return ONUM;
+	public String getoNum() {
+		return oNum;
 	}
 
-	public void setONUM(String oNUM) {
-		ONUM = oNUM;
+	public void setoNum(String oNum) {
+		this.oNum = oNum;
 	}
 
-	public String getONAME() {
-		return ONAME;
+	public String getoName() {
+		return oName;
 	}
 
-	public void setONAME(String oNAME) {
-		ONAME = oNAME;
+	public void setoName(String oName) {
+		this.oName = oName;
 	}
 
-	public int getOPRICE() {
-		return OPRICE;
+	public int getoPrice() {
+		return oPrice;
 	}
 
-	public void setOPRICE(int oPRICE) {
-		OPRICE = oPRICE;
+	public void setoPrice(int oPrice) {
+		this.oPrice = oPrice;
 	}
 
-	public String getPNUM() {
-		return PNUM;
+	public String getpNum() {
+		return pNum;
 	}
 
-	public void setPNUM(String pNUM) {
-		PNUM = pNUM;
+	public void setpNum(String pNum) {
+		this.pNum = pNum;
 	}
 
-	public String getINUM() {
-		return INUM;
+	public String getiNum() {
+		return iNum;
 	}
 
-	public void setINUM(String iNUM) {
-		INUM = iNUM;
+	public void setiNum(String iNum) {
+		this.iNum = iNum;
 	}
 
 	@Override
 	public String toString() {
-		return "Opt [ONUM=" + ONUM + ", ONAME=" + ONAME + ", OPRICE=" + OPRICE + ", PNUM=" + PNUM + ", INUM=" + INUM
+		return "Opt [oNum=" + oNum + ", oName=" + oName + ", oPrice=" + oPrice + ", pNum=" + pNum + ", iNum=" + iNum
 				+ ", toString()=" + super.toString() + "]";
 	}
+
+	
 }
