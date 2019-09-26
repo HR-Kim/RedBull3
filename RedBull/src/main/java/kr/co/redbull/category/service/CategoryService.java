@@ -1,4 +1,4 @@
-package ko.co.redbull.category.service;
+package kr.co.redbull.category.service;
 
 import java.util.List;
 
