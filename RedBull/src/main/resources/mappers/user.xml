@@ -5,14 +5,18 @@
 
 <mapper namespace="kr.co.redbull.user">
 	<sql id="userColumns">
-			u_id, <!-- SqlSessionTemplate 설정(카멜케이스로 바꾸는) 설정때문에 uid로 바뀌고, uid는 예약어이기 때문에 null로 나옴 -->                             
-		    name,                                
-		    passwd,                              
-		    DECODE(h_level, 1, 'BASIC', 2, 'SILVER', 3, 'GOLD', 'NOLEVEL') as hlevel,                             
-		    login,                               
-		    recommend,                           
-		    email,                               
-		    TO_CHAR(reg_dt, 'YYYY/MM/DD') as regDt
+	    rid,
+	    passwd,
+	    uname,
+	    birth,
+	    phone,
+	    postnum,
+	    address,
+	    detadd,
+	    DECODE(lvl, 10, 'BASIC', 20, 'SILVER', 30, 'GOLD', 40, 'MANAGER', 'NOLEVEL') AS lvl,
+	    upoint,
+	    inum,
+	    TO_CHAR(regdt, 'YYYY/MM/DD') AS regdt
 	</sql>
 	
 	<sql id="baseCondition">
@@ -41,11 +45,10 @@
 	</select>
 	
 	<!-- 
-		do_update: 수정
-		do_delete: 삭제
-		do_save: 저장
-		get_selectOne: 단건조회
-		get_retrieve: 목록조회
+		do_update: 회원정보수정
+		do_delete: 회원탈퇴
+		do_save: 회원가입
+		get_selectOne: 회원정보 단건 조회(아이디/비밀번호 찾기)
 	-->
 	
 	<!-- 전체(목록) 조회 -->
@@ -82,15 +85,20 @@
 	<update id="do_update" parameterType="User"> <!-- Alias 사용 -->
 		UPDATE users            
 		SET                     
-		    name       = #{name, jdbcType=VARCHAR}   
-		    ,passwd    = #{passwd, jdbcType=VARCHAR}    
-		    ,h_level   = #{level, jdbcType=NUMERIC}      
-		    ,login     = #{login, jdbcType=NUMERIC}    
-		    ,recommend = #{recommend, jdbcType=NUMERIC}   
-		    ,email     = #{email, jdbcType=VARCHAR}      
+		    rid       = #{rid, jdbcType=VARCHAR},   
+		    passwd       = #{passwd, jdbcType=VARCHAR},  
+		    uname       = #{uname, jdbcType=VARCHAR},  
+		    birth       = #{birth, jdbcType=VARCHAR},  
+		    phone       = #{phone, jdbcType=VARCHAR},  
+			postnum       = #{postnum, jdbcType=NUMERIC},  
+		    address       = #{address, jdbcType=VARCHAR},  
+		    detadd       = #{detadd, jdbcType=VARCHAR},  
+		    lvl       = #{lvl, jdbcType=NUMERIC},  
+		    upoint       = #{upoint, jdbcType=NUMERIC}, 
+		    inum       = #{inum, jdbcType=NUMERIC},     
 		    ,reg_dt    = SYSDATE
 		WHERE                   
-		    u_id = #{u_id, jdbcType=VARCHAR}          
+		    rid = #{rid, jdbcType=VARCHAR}          
 	</update>
 
 	<!-- 단건 조회 -->
@@ -104,24 +112,32 @@
 	
 	<!-- 등록 -->
 	<insert id="do_save" parameterType="User"> <!-- Alias 사용 -->
-		INSERT INTO users (
-	    u_id,          
-	    name,          
-	    passwd,        
-	    h_level,       
-	    login,         
-	    recommend,     
-	    email,         
-	    reg_dt         
+	INSERT INTO ruser (
+	    rid,
+	    passwd,
+	    uname,
+	    birth,
+	    phone,
+	    postnum,
+	    address,
+	    detadd,
+	    lvl,
+	    upoint,
+	    inum,
+	    regdt      
 	) VALUES (         
-	    #{u_id, jdbcType=VARCHAR}, <!-- 타입을 varchar로 고정 -->            
-	    #{name, jdbcType=VARCHAR},             
-	    #{passwd, jdbcType=VARCHAR},        
-	    #{level, jdbcType=NUMERIC}, <!-- DAD의 ADD 메소드에서 레벨을 숫자로 변환해서 받으므로 -->           
-	    #{login, jdbcType=NUMERIC},             
-	    #{recommend, jdbcType=NUMERIC},              
-	    #{email, jdbcType=VARCHAR},             
-	    SYSDATE        
+	    rid       = #{rid, jdbcType=VARCHAR},   
+	    passwd       = #{passwd, jdbcType=VARCHAR},  
+	    uname       = #{uname, jdbcType=VARCHAR},  
+	    birth       = #{birth, jdbcType=VARCHAR},  
+	    phone       = #{phone, jdbcType=VARCHAR},  
+		postnum       = #{postnum, jdbcType=NUMERIC},  
+	    address       = #{address, jdbcType=VARCHAR},  
+	    detadd       = #{detadd, jdbcType=VARCHAR}, 
+	    lvl       = #{lvl, jdbcType=NUMERIC},  
+	    upoint       = #{upoint, jdbcType=NUMERIC}, 
+	    inum       = #{inum, jdbcType=NUMERIC},     
+	    ,reg_dt    = SYSDATE      
 	)                  
 	</insert>
 	
