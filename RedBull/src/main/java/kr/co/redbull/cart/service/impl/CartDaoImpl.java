@@ -24,16 +24,45 @@ public class CartDaoImpl implements WorkDiv {
 
 	@Override
 	public int do_update(DTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		String statement = this.NAMESPACE+".do_update";
+		Cart cart = (Cart) dto;
+		LOG.debug("================================");
+		LOG.debug("1. statement: " + statement);
+		LOG.debug("================================");
+		
+		LOG.debug("================================");
+		LOG.debug("2. param: " + cart);
+		LOG.debug("================================");
+		
+		int flag = this.sqlSessionTemplate.update(statement, cart);
+		LOG.debug("================================");
+		LOG.debug("3. falg: " + flag);
+		LOG.debug("================================");
+		
+		return flag;
 	}
 
 	@Override
 	public int do_delete(DTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		String statement = this.NAMESPACE+".do_delete";
+		Cart cart = (Cart) dto;
+		LOG.debug("================================");
+		LOG.debug("1. statement: " + statement);
+		LOG.debug("================================");
+		
+		LOG.debug("================================");
+		LOG.debug("2. param: " + cart);
+		LOG.debug("================================");
+		
+		int flag = this.sqlSessionTemplate.delete(statement, cart);
+		LOG.debug("================================");
+		LOG.debug("3. falg: " + flag);
+		LOG.debug("================================");
+		
+		return flag;
 	}
 
+	//장바구니 추가
 	@Override
 	public int do_save(DTO dto) {
 		String statement = this.NAMESPACE+".do_save";

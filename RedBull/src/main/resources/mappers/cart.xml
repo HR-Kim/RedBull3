@@ -15,6 +15,39 @@
 			    #{regid}
 			)
 	</insert>
+	
+	<delete id="do_delete" parameterType="Cart">
+			DELETE FROM CART
+			
+			WHERE cartnum = #{cartnum}
+	</delete>
+	
+	<update id="do_update" parameterType="Cart">
+			UPDATE CART
+			
+			SET cartcnt = #{cartcnt} 
+			
+			WHERE pnum = #{pnum}
+		    AND	  regid = #{regid}
+		      	  
+	</update>
+	
+	<select id="do_retrieve" parameterType="Cart">
+				SELECT p.pname as product_name,
+				       p.bprice as bprice,
+				       p.dprice as delivery,
+				       p.discount as discount,
+				       (p.bprice * p.discount) as discount_price,
+				       p.bprice - (p.bprice * p.discount) as after_price,
+				       c.cartcnt as "개수",
+				       (p.bprice - (p.bprice * p.discount))*c.cartcnt + p.dprice as total,
+				       p.regId as admin,
+				       c.regid as user
+				       
+				FROM CART c JOIN PRODUCT p
+				ON c.pnum = p.pnum
+				WHERE c.regid = #{regid}
+	</select>
 
 
 </mapper>
