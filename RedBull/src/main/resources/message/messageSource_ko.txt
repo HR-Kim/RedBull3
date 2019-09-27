@@ -1,0 +1,13 @@
+#join.jsp	
+message.user.join_title=회원가입
+message.user.rid=아이디
+message.user.passwd=비밀번호
+message.user.uname=이름
+message.user.birth=생년월일
+message.user.phone=휴대폰번호
+message.user.postnum=우편번호
+message.user.address=주소
+message.user.detadd=상세주소
+
+#main.jsp
+

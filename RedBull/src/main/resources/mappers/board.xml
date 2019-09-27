@@ -7,19 +7,19 @@
 		<where>
 			<choose>
 				<when test="'10' == searchDiv">
-					TNUM = 1
+					TNUM = 10
 					<choose>
 						<when test="searchWord!=null"> AND TITLE LIKE '%' || #{searchWord} || '%'</when>
 					</choose>					
 				</when>
 				<when test="'20' == searchDiv">
-					TNUM = 2
+					TNUM = 20
 					<choose>
 						<when test="searchWord!=null"> AND TITLE LIKE '%' || #{searchWord} || '%'</when>
 					</choose>
 				</when>
 				<when test="'30' == searchDiv">
-					TNUM = 2
+					TNUM = 20
 					<choose>
 						<when test="searchWord!=null"> AND CATEGORY = #{searchWord} </when>
 					</choose>					
