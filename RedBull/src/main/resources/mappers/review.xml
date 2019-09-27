@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.redbull.review">
+	<sql id="setColumns">
+		RNUM     as rNum    ,
+		PNUM     as pNum    ,
+		SCORE    as score   ,
+		CONTENTS as contents,
+		REGID    as regId   ,
+		REGDT    as regDt   ,
+		MODID    as modId   ,
+		MODDT    as modDt   
+	</sql>	
+	
+	<!-- 상품번호로 목록조회 -->
+	<select id="get_pnumList" parameterType="Search" resultType="Review">
+		SELECT
+		   <include refid="setColumns"/>
+		FROM REVIEW
+		WHERE PNUM LIKE '%' || #{searchWord} || '%'
+		ORDER BY RNUM ASC
+	</select>	
+	
+	<!-- 단건조회 -->
+	<select id="get_selectOne" parameterType="Review" resultType="Review">
+		 SELECT
+		 <include refid="setColumns"/>	
+		 FROM REVIEW
+		 WHERE RNUM = #{rNum, jdbcType=NUMERIC}   
+	</select>
+
+	<!-- 수정 -->
+	<update id="do_update" parameterType="Review">
+		UPDATE REVIEW
+		SET PNUM     = #{pNum,jdbcType=NUMERIC},
+			SCORE    = #{score,jdbcType=NUMERIC},
+			CONTENTS = #{contents,jdbcType=VARCHAR},
+			MODID    = #{modId,jdbcType=VARCHAR},
+			MODDT    = SYSDATE
+		WHERE RNUM = #{rNum, jdbcType=NUMERIC}   
+	</update>
+
+	<!-- 삭제 -->
+	<delete id="do_delete" parameterType="Review">
+	<![CDATA[
+		DELETE FROM REVIEW WHERE RNUM = #{rNum, jdbcType=NUMERIC}    
+	]]>
+	</delete>
+
+	<!-- 등록  -->
+	<insert id="do_save" parameterType="Review">
+		INSERT INTO REVIEW (
+		    PNUM     ,
+			SCORE    ,
+			CONTENTS ,
+			REGID    ,
+			REGDT       
+		) VALUES (
+		    #{pNum,jdbcType=NUMERIC},
+			#{score,jdbcType=NUMERIC},
+			#{contents,jdbcType=VARCHAR},
+			#{modId,jdbcType=VARCHAR},
+			SYSDATE
+		)
+	</insert>
+</mapper>
