@@ -29,8 +29,25 @@ public class BoardController {
 	BoardService boardService;
 	
 	private final String VIEW_DETAIL  ="board/board_detail"; 
-	private final String VIEW_LIST_NM ="board/board_list";
+	//private final String VIEW_NOTICE_LIST_NM ="board/notice_list";
+	private String viewListNm ="board/question_list";
 	private final String VIEW_MNG_NM  ="board/board_mng";
+	
+	@RequestMapping(value = "board/do_write.do")
+	public String do_write(Search search, Model model) {
+		
+		LOG.debug("================================");
+		LOG.debug("search:"+search);
+		LOG.debug("================================");
+		
+		if(null==search.getSearchDiv() || "".equals(search.getSearchDiv())) {
+			search.setSearchDiv("20");
+		}
+		
+		model.addAttribute("searchVO", search);
+		
+		return VIEW_MNG_NM;
+	}
 	
 	@RequestMapping(value = "board/get_retrieve.do", method = RequestMethod.GET)
 	public String get_retrieve(Search search, Model model, HttpServletRequest request) {
@@ -41,6 +58,7 @@ public class BoardController {
 		
 		if(search.getPageSize()==0) search.setPageSize(10);
 		if(search.getPageNum()==0)  search.setPageNum(1);
+		
 		
 		model.addAttribute("vo", search);
 		
@@ -55,7 +73,13 @@ public class BoardController {
 			model.addAttribute("totalCnt", totalCnt);
 		}
 		
-		return VIEW_LIST_NM;
+		if(search.getSearchDiv().equals("10")) {
+			viewListNm = "board/notice_list";
+		}else if(search.getSearchDiv().equals("20")) {
+			viewListNm = "board/question_list";
+		}
+		
+		return viewListNm;
 	}
 	
 	@RequestMapping(value = "board/get_selectOne.do", method = RequestMethod.GET)
@@ -104,7 +128,7 @@ public class BoardController {
 		return gsonStr;
 	}
 	
-	@RequestMapping(value = "board/do_save.do", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "board/do_save.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String do_save(Board board) {
 		
