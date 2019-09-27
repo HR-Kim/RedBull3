@@ -126,7 +126,7 @@
 			    	<table class="table table-bordered table-sm">  
 						<tr class="post">
 							<td style="display:none;">${vo.bNum}</td>
-							<td colspan="5"><b>${vo.title} </b></td>
+							<td colspan="5" style="cursor:pointer;"><b>${vo.title} </b></td>
 							<td class="text-left col-md-1 col-xs-1" rowspan="3"><img src="${context}/board/noimage.jpg" class="img-thumbnail">
 </td>
 						</tr>
@@ -171,6 +171,7 @@
     	$("#do_write").on("click", function(){
     		var frm = document.boardFrm;
     		frm.searchDiv.value="20";
+    		frm.bNum.value = 0;
     		frm.action = "${context}/board/do_write.do";
     		frm.submit();
     	});
