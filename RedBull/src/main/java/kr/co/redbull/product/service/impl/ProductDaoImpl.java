@@ -120,6 +120,7 @@ public class ProductDaoImpl implements WorkDiv {
 		return outVO;
 	}	
 	
+	//전체
 	@Override
 	public List<?> get_retrieve(DTO dto) {
 		String statement = NAMESPACE+".get_retrieve";
