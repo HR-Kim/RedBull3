@@ -21,6 +21,4 @@ public interface ReviewService {
 	/**목록조회 */
 	public List<?> get_retrieve(DTO dto);
 	
-	/**엑셀다운 */
-	public String excelDown(Search vo, String ext);
 }
