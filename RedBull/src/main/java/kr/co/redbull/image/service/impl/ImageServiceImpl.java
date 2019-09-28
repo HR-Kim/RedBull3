@@ -40,4 +40,9 @@ public class ImageServiceImpl implements ImageService{
 	public List<?> get_retrieve(DTO dto) {
 		return imageDaoImpl.get_retrieve(dto);
 	}
+
+	@Override
+	public List<?> get_refnumList(DTO dto) {
+		return imageDaoImpl.get_refnumList(dto);
+	}
 }

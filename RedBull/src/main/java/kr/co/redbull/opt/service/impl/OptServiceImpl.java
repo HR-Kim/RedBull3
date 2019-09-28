@@ -40,4 +40,9 @@ public class OptServiceImpl implements OptService{
 	public List<?> get_retrieve(DTO dto) {
 		return optDaoImpl.get_retrieve(dto);
 	}
+
+	@Override
+	public List<?> get_pNumList(DTO dto) {
+		return optDaoImpl.get_pNumList(dto);
+	}
 }

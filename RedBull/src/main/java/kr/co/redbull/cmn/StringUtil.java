@@ -219,7 +219,47 @@ public class StringUtil {
 		// LOG.debug("===========================");
 		return html.toString();
 	}
+	/**
+	 * 
+	 * @Method Name : makeSelectBox
+	 * @작성일 : 2019. 7. 22.
+	 * @작성자 : SIST
+	 * @변경이력 : 최초작성
+	 * @Method 설명 :
+	 * @param list:       select에 필용한 코드정보
+	 * @param selectBoxNm : <select name="lvl" id="lvl">
+	 * @param allYN       : 전체 표시
+	 * @return : <select name="lvl" id="lvl"> <option value="">전체</option> <option
+	 *         value="1" selected>일반사용자</option> <option value="9">관리자</option>
+	 *         </select>
+	 */
+	public static String makeSelectBox(List<Code> list, String selectBoxNm, boolean allYN) {
+		StringBuilder sb = new StringBuilder();
+		// <select name="lvl" id="lvl">
+		sb.append("<select  class=\"form-control input-sm\" name='" + selectBoxNm + "' id='" + selectBoxNm + "' > \n");
+		// 전체
+		if (allYN == true) {
+			sb.append("<option value=''>전체</option> \n");
+		}
 
+		// <option value="1" selected>일반사용자</option>
+		for (int i=0; i<list.size(); i++) {
+			Code vo = list.get(i);
+			sb.append("\t<option value='" + vo.getCodeId() + "' ");
+			if (i==0) {
+				sb.append("selected='selected' ");
+			}
+
+			sb.append(">");
+			sb.append(vo.getCodeNm());
+			sb.append("</option>\n");
+		}
+		sb.append("</select> \n");
+		LOG.debug("------------------------");
+		LOG.debug(sb.toString());
+		LOG.debug("------------------------");
+		return sb.toString();
+	}
 	/**
 	 * 
 	 * @Method Name : makeSelectBox

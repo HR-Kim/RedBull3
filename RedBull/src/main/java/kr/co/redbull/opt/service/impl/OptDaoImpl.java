@@ -19,7 +19,7 @@ public class OptDaoImpl implements WorkDiv {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	private final String NAMESPACE = "kr.co.redbull.opt";
-
+	
 	public List<?> get_pNumList(DTO dto) {
 		String statement = NAMESPACE+".get_pnumList";
 		Search search = (Search) dto;

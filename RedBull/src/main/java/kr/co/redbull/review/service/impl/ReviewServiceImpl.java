@@ -40,4 +40,9 @@ public class ReviewServiceImpl implements ReviewService{
 	public List<?> get_retrieve(DTO dto) {
 		return reviewDaoImpl.get_retrieve(dto);
 	}
+
+	@Override
+	public List<?> get_pNumList(DTO dto) {
+		return reviewDaoImpl.get_pnumList(dto);
+	}
 }
