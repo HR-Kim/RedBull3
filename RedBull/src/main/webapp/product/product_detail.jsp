@@ -1,26 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="context" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<meta
-	name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no"
-/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
 <title>상품 상세</title>
-<link rel="stylesheet" href="css/bootstrap.css" />
-<link rel="stylesheet" href="vendors/linericon/style.css" />
-<link rel="stylesheet" href="css/font-awesome.min.css" />
-<link rel="stylesheet" href="css/themify-icons.css" />
-<link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css" />
-<link rel="stylesheet" href="vendors/lightbox/simpleLightbox.css" />
-<link rel="stylesheet" href="vendors/nice-select/css/nice-select.css" />
-<link rel="stylesheet" href="vendors/animate-css/animate.css" />
-<link rel="stylesheet" href="vendors/jquery-ui/jquery-ui.css" />
+<!-- 부트스트랩 -->
+<link href="${context}/resources/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- IE8 에서 HTML5 요소와 미디어 쿼리를 위한 HTML5 shim 와 Respond.js -->
+<!-- WARNING: Respond.js 는 당신이 file:// 을 통해 페이지를 볼 때는 동작하지 않습니다. -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="stylesheet" href="${context}/resources/vendors/linericon/style.css" />
+<link rel="stylesheet" href="${context}/resources/css/font-awesome.min.css" />
+<link rel="stylesheet" href="${context}/resources/css/themify-icons.css" />
+<link rel="stylesheet" href="${context}/resources/vendors/lightbox/simpleLightbox.css" />
+<link rel="stylesheet" href="${context}/resources/vendors/nice-select/css/nice-select.css" />
+<link rel="stylesheet" href="${context}/resources/vendors/animate-css/animate.css" />
 <!-- main css -->
-<link rel="stylesheet" href="css/style.css" />
-<link rel="stylesheet" href="css/responsive.css" />
+<link rel="stylesheet" href="${context}/resources/css/style.css" />
+<link rel="stylesheet" href="${context}/resources/css/responsive.css" />
 </head>
 <body>
 <!--================Home Banner Area =================-->
@@ -48,29 +56,52 @@
 		<div class="row s_product_inner">
 			<div class="col-lg-6">
 				<div class="s_product_img">
-					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+					<div id="myCarousel" class="carousel slide" data-ride="carousel">
+						<!-- Indicators -->
 						<ol class="carousel-indicators">
-							<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active">
-								<img src="img/product/single-product/s-product-s-2.jpg" alt="" />
+							<!-- 이미지 제한 사이즈 : 60X60  -->
+							<li data-target="#myCarousel" data-slide-to="0" class="active">
+								<img class="d-block w-100" src="${context}/resources/img/product/single-product/product-small-1.PNG" />
 							</li>
-							<li data-target="#carouselExampleIndicators" data-slide-to="1">
-								<img src="img/product/single-product/s-product-s-3.jpg" alt="" />
+							<li data-target="#myCarousel" data-slide-to="1">
+								<img class="d-block w-100" src="${context}/resources/img/product/single-product/product-small-2.PNG" />
 							</li>
-							<li data-target="#carouselExampleIndicators" data-slide-to="2">
-								<img src="img/product/single-product/s-product-s-4.jpg" alt="" />
+							<li data-target="#myCarousel" data-slide-to="2">
+								<img class="d-block w-100" src="${context}/resources/img/product/single-product/product-small-3.PNG" />
 							</li>
 						</ol>
+
+						<!-- Wrapper for slides -->
 						<div class="carousel-inner">
-							<div class="carousel-item active">
-								<img class="d-block w-100" src="img/product/single-product/s-product-1.jpg" alt="First slide" />
+							<div class="item active">
+								<img class="d-block w-100"
+									src="${context}/resources/img/product/single-product/product-1.PNG"
+									alt="First slide" />
 							</div>
-							<div class="carousel-item">
-								<img class="d-block w-100" src="img/product/single-product/s-product-1.jpg" alt="Second slide" />
+
+							<div class="item">
+								<img class="d-block w-100"
+									src="${context}/resources/img/product/single-product/product-2.PNG"
+									alt="Second slide" />
 							</div>
-							<div class="carousel-item">
-								<img class="d-block w-100" src="img/product/single-product/s-product-1.jpg" alt="Third slide" />
+
+							<div class="item">
+								<img class="d-block w-100"
+									src="${context}/resources/img/product/single-product/product-3.PNG"
+									alt="Third slide" />
 							</div>
 						</div>
+
+						<!-- Left and right controls -->
+						<a class="left carousel-control" href="#myCarousel"
+							data-slide="prev"> <span
+							class="glyphicon glyphicon-chevron-left"></span> <span
+							class="sr-only">Previous</span>
+						</a> <a class="right carousel-control" href="#myCarousel"
+							data-slide="next"> <span
+							class="glyphicon glyphicon-chevron-right"></span> <span
+							class="sr-only">Next</span>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -119,48 +150,37 @@
 <section class="product_description_area">
 	<div class="container">
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
-			<li class="nav-item">
-				<a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Description</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Specification</a>
-			</li>
+			<li class="nav-item active">
+				<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Description</a></li>
+			<li class="nav-item"><a class="nav-link" id="profile-tab"
+				data-toggle="tab" href="#profile" role="tab"
+				aria-controls="profile" aria-selected="false">Specification</a></li>
 			<li class="nav-item"><a class="nav-link" id="contact-tab"
-				data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
-				aria-selected="false">Comments</a></li>
-			<li class="nav-item"><a class="nav-link active" id="review-tab"
+				data-toggle="tab" href="#contact" role="tab"
+				aria-controls="contact" aria-selected="false">Comments</a></li>
+			<li class="nav-item"><a class="nav-link" id="review-tab"
 				data-toggle="tab" href="#review" role="tab" aria-controls="review"
 				aria-selected="false">Reviews</a></li>
 		</ul>
+
 		<div class="tab-content" id="myTabContent">
-			<div class="tab-pane fade" id="home" role="tabpanel"
+			<!--================ Description =================-->
+			<div class="tab-pane fade in active" id="home" role="tabpanel"
 				aria-labelledby="home-tab">
-				<p>Beryl Cook is one of Britain’s most talented and amusing
-					artists .Beryl’s pictures feature women of all shapes and sizes
-					enjoying themselves .Born between the two world wars, Beryl Cook
-					eventually left Kendrick School in Reading at the age of 15, where
-					she went to secretarial school and then into an insurance office.
-					After moving to London and then Hampton, she eventually married her
-					next door neighbour from Reading, John Cook. He was an officer in
-					the Merchant Navy and after he left the sea in 1956, they bought a
-					pub for a year before John took a job in Southern Rhodesia with a
-					motor company. Beryl bought their young son a box of watercolours,
-					and when showing him how to use it, she decided that she herself
-					quite enjoyed painting. John subsequently bought her a child’s
-					painting set for her birthday and it was with this that she
-					produced her first significant work, a half-length portrait of a
-					dark-skinned lady with a vacant expression and large drooping
-					breasts. It was aptly named ‘Hangover’ by Beryl’s husband and</p>
 				<p>It is often frustrating to attempt to plan meals that are
 					designed for one. Despite this fact, we are seeing more and more
-					recipe books and Internet websites that are dedicated to the act of
-					cooking for one. Divorce and the death of spouses or grown children
-					leaving for college are all reasons that someone accustomed to
-					cooking for more than one would suddenly need to learn how to
-					adjust all the cooking practices utilized before into a streamlined
-					plan of cooking that is more efficient for one person creating less
+					recipe books and Internet websites that are dedicated to the act
+					of cooking for one. Divorce and the death of spouses or grown
+					children leaving for college are all reasons that someone
+					accustomed to cooking for more than one would suddenly need to
+					learn how to adjust all the cooking practices utilized before into
+					a streamlined plan of cooking that is more efficient for one
+					person creating less
 				</p>
 			</div>
+			<!--//================ Description =================-->
+
+			<!--================ info =================-->
 			<div class="tab-pane fade" id="profile" role="tabpanel"
 				aria-labelledby="profile-tab">
 				<div class="table-responsive">
@@ -234,6 +254,9 @@
 					</table>
 				</div>
 			</div>
+			<!--//================ info =================-->
+
+			<!--================ comments =================-->
 			<div class="tab-pane fade" id="contact" role="tabpanel"
 				aria-labelledby="contact-tab">
 				<div class="row">
@@ -242,7 +265,9 @@
 							<div class="review_item">
 								<div class="media">
 									<div class="d-flex">
-										<img src="img/product/single-product/review-1.png" alt="" />
+										<img
+											src="${context}/resources/img/product/single-product/review-1.png"
+											alt="" />
 									</div>
 									<div class="media-body">
 										<h4>Blake Ruiz</h4>
@@ -250,15 +275,17 @@
 										<a class="reply_btn" href="#">Reply</a>
 									</div>
 								</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-									sed do eiusmod tempor incididunt ut labore et dolore magna
-									aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-									ullamco laboris nisi ut aliquip ex ea commodo</p>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing
+									elit, sed do eiusmod tempor incididunt ut labore et dolore
+									magna aliqua. Ut enim ad minim veniam, quis nostrud
+									exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
 							</div>
 							<div class="review_item reply">
 								<div class="media">
 									<div class="d-flex">
-										<img src="img/product/single-product/review-2.png" alt="" />
+										<img
+											src="${context}/resources/img/product/single-product/review-2.png"
+											alt="" />
 									</div>
 									<div class="media-body">
 										<h4>Blake Ruiz</h4>
@@ -266,15 +293,17 @@
 										<a class="reply_btn" href="#">Reply</a>
 									</div>
 								</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-									sed do eiusmod tempor incididunt ut labore et dolore magna
-									aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-									ullamco laboris nisi ut aliquip ex ea commodo</p>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing
+									elit, sed do eiusmod tempor incididunt ut labore et dolore
+									magna aliqua. Ut enim ad minim veniam, quis nostrud
+									exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
 							</div>
 							<div class="review_item">
 								<div class="media">
 									<div class="d-flex">
-										<img src="img/product/single-product/review-3.png" alt="" />
+										<img
+											src="${context}/resources/img/product/single-product/review-3.png"
+											alt="" />
 									</div>
 									<div class="media-body">
 										<h4>Blake Ruiz</h4>
@@ -282,10 +311,10 @@
 										<a class="reply_btn" href="#">Reply</a>
 									</div>
 								</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-									sed do eiusmod tempor incididunt ut labore et dolore magna
-									aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-									ullamco laboris nisi ut aliquip ex ea commodo</p>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing
+									elit, sed do eiusmod tempor incididunt ut labore et dolore
+									magna aliqua. Ut enim ad minim veniam, quis nostrud
+									exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
 							</div>
 						</div>
 					</div>
@@ -327,7 +356,10 @@
 					</div>
 				</div>
 			</div>
-			<div class="tab-pane fade show active" id="review" role="tabpanel"
+			<!--//================ comments =================-->
+
+			<!--================ review =================-->
+			<div class="tab-pane fade" id="review" role="tabpanel"
 				aria-labelledby="review-tab">
 				<div class="row">
 					<div class="col-lg-6">
@@ -343,30 +375,25 @@
 								<div class="rating_list">
 									<h3>Based on 3 Reviews</h3>
 									<ul class="list">
-										<li><a href="#">5 Star <i
+										<li><a href="#">5 Star <i class="fa fa-star"></i> <i
 												class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-												class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-												class="fa fa-star"></i> 01
+												class="fa fa-star"></i> <i class="fa fa-star"></i> 01
 										</a></li>
-										<li><a href="#">4 Star <i
+										<li><a href="#">4 Star <i class="fa fa-star"></i> <i
 												class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-												class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-												class="fa fa-star"></i> 01
+												class="fa fa-star"></i> <i class="fa fa-star"></i> 01
 										</a></li>
-										<li><a href="#">3 Star <i
+										<li><a href="#">3 Star <i class="fa fa-star"></i> <i
 												class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-												class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-												class="fa fa-star"></i> 01
+												class="fa fa-star"></i> <i class="fa fa-star"></i> 01
 										</a></li>
-										<li><a href="#">2 Star <i
+										<li><a href="#">2 Star <i class="fa fa-star"></i> <i
 												class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-												class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-												class="fa fa-star"></i> 01
+												class="fa fa-star"></i> <i class="fa fa-star"></i> 01
 										</a></li>
-										<li><a href="#">1 Star <i
+										<li><a href="#">1 Star <i class="fa fa-star"></i> <i
 												class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-												class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-												class="fa fa-star"></i> 01
+												class="fa fa-star"></i> <i class="fa fa-star"></i> 01
 										</a></li>
 									</ul>
 								</div>
@@ -376,7 +403,9 @@
 							<div class="review_item">
 								<div class="media">
 									<div class="d-flex">
-										<img src="img/product/single-product/review-1.png" alt="" />
+										<img
+											src="${context}/resources/img/product/single-product/review-1.png"
+											alt="" />
 									</div>
 									<div class="media-body">
 										<h4>Blake Ruiz</h4>
@@ -385,15 +414,17 @@
 											class="fa fa-star"></i>
 									</div>
 								</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-									sed do eiusmod tempor incididunt ut labore et dolore magna
-									aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-									ullamco laboris nisi ut aliquip ex ea commodo</p>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing
+									elit, sed do eiusmod tempor incididunt ut labore et dolore
+									magna aliqua. Ut enim ad minim veniam, quis nostrud
+									exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
 							</div>
 							<div class="review_item">
 								<div class="media">
 									<div class="d-flex">
-										<img src="img/product/single-product/review-2.png" alt="" />
+										<img
+											src="${context}/resources/img/product/single-product/review-2.png"
+											alt="" />
 									</div>
 									<div class="media-body">
 										<h4>Blake Ruiz</h4>
@@ -402,15 +433,17 @@
 											class="fa fa-star"></i>
 									</div>
 								</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-									sed do eiusmod tempor incididunt ut labore et dolore magna
-									aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-									ullamco laboris nisi ut aliquip ex ea commodo</p>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing
+									elit, sed do eiusmod tempor incididunt ut labore et dolore
+									magna aliqua. Ut enim ad minim veniam, quis nostrud
+									exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
 							</div>
 							<div class="review_item">
 								<div class="media">
 									<div class="d-flex">
-										<img src="img/product/single-product/review-3.png" alt="" />
+										<img
+											src="${context}/resources/img/product/single-product/review-3.png"
+											alt="" />
 									</div>
 									<div class="media-body">
 										<h4>Blake Ruiz</h4>
@@ -419,10 +452,10 @@
 											class="fa fa-star"></i>
 									</div>
 								</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-									sed do eiusmod tempor incididunt ut labore et dolore magna
-									aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-									ullamco laboris nisi ut aliquip ex ea commodo</p>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing
+									elit, sed do eiusmod tempor incididunt ut labore et dolore
+									magna aliqua. Ut enim ad minim veniam, quis nostrud
+									exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
 							</div>
 						</div>
 					</div>
@@ -478,6 +511,7 @@
 					</div>
 				</div>
 			</div>
+			<!--//================ review =================-->
 		</div>
 	</div>
 </section>
@@ -485,21 +519,16 @@
 
 
 	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/popper.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/stellar.js"></script>
-	<script src="vendors/lightbox/simpleLightbox.min.js"></script>
-	<script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
-	<script src="vendors/isotope/imagesloaded.pkgd.min.js"></script>
-	<script src="vendors/isotope/isotope-min.js"></script>
-	<script src="vendors/owl-carousel/owl.carousel.min.js"></script>
-	<script src="js/jquery.ajaxchimp.min.js"></script>
-	<script src="js/mail-script.js"></script>
-	<script src="vendors/jquery-ui/jquery-ui.js"></script>
-	<script src="vendors/counter-up/jquery.waypoints.min.js"></script>
-	<script src="vendors/counter-up/jquery.counterup.js"></script>
-	<script src="js/theme.js"></script>
+	<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+	<script src="${context}/resources/js/jquery-1.12.4.js"></script>
+	<!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
+	<script src="${context}/resources/js/bootstrap.min.js"></script>
+	
+	<script src="${context}/resources/js/stellar.js"></script>
+	<script src="${context}/resources/vendors/lightbox/simpleLightbox.min.js"></script>
+	<script src="${context}/resources/vendors/isotope/imagesloaded.pkgd.min.js"></script>
+	<script src="${context}/resources/vendors/isotope/isotope-min.js"></script>
+	<script src="${context}/resources/js/mail-script.js"></script>
+	<script src="${context}/resources/js/theme.js"></script>
 </body>
 </html>
