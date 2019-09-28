@@ -184,7 +184,7 @@
 				<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">문의</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">배송 및 환불 안내</a>
+				<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">교환 및 환불 안내</a>
 			</li>
 		</ul>
 
@@ -417,7 +417,7 @@
 			<!--================ 교환환불안내 =================-->
 			<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 				<div class="table-responsive">
-					<h4>반품 및 교환 안내</h4>
+					<h4>교환 및 환불 배송 안내</h4>
 					<table class="table">
 						<tbody>
 							<tr>
