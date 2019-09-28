@@ -175,7 +175,8 @@
 					accustomed to cooking for more than one would suddenly need to
 					learn how to adjust all the cooking practices utilized before into
 					a streamlined plan of cooking that is more efficient for one
-					person creating less</p>
+					person creating less
+				</p>
 			</div>
 			<!--//================ Description =================-->
 
