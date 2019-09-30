@@ -124,31 +124,51 @@ public class UserWebTest {
 	
 	/**회원정보 수정*/
 	@Test
-//	@Ignore
+	@Ignore
 	public void do_update() throws Exception {
-		MockHttpServletRequestBuilder createMessage = 
-				MockMvcRequestBuilders.post("/user/do_update.do")
-				.param("rid", "j08_145") // 파라미터 넘기기
-				.param("passwd", "7777")
-				.param("uname", "이상무145_07")
-				.param("birth", "1977/07/07")
-				.param("phone", "010-7777-7777")
-				.param("postnum", "77777")
-				.param("address", "주소7")
-				.param("detadd", "상세주소7")
-				.param("inum", "7777");
-		
-		ResultActions resultActions =mockMvc.perform(createMessage)
-				.andExpect(MockMvcResultMatchers.content().contentType("application/json;charset=UTF-8"))
-				.andExpect(MockMvcResultMatchers.jsonPath("$.msgId", is("1")));
-		
-		String result =	resultActions.andDo(print())
-				.andReturn()
-				.getResponse().getContentAsString();
 
-		LOG.debug("===============================");
-		LOG.debug("=result="+result);
-		LOG.debug("===============================");		
+		LOG.debug("=========================");
+		LOG.debug("=01. 기존 데이터를 삭제=");
+		LOG.debug("=========================");
+		
+		for(User user : users) {
+			
+			do_delete(user);
+		}
+		
+		LOG.debug("=========================");
+		LOG.debug("=02. 데이터를 입력=");
+		LOG.debug("=========================");
+		
+		do_save(users.get(0));
+		
+		User user01 = users.get(0);
+		user01.setRid("j01_145");
+		user01.setPasswd("1234_u");
+		user01.setUname("업데이트");
+		user01.setBirth("uuuu-uu-uu");
+		user01.setPhone("uuu-uuuu-uuuu");
+		user01.setPostnum(1212);
+		user01.setAddress("업데이트");
+		user01.setDetadd("업데이트");
+		user01.setLvl(30);
+		user01.setUpoint(1212);
+		user01.setInum(1212);
+		
+		LOG.debug("=========================");
+		LOG.debug("=03. 입력한 데이터를 수정=");
+		LOG.debug("=03.1 user01을 수정=");
+		LOG.debug("=03.2 user01 업데이트 수행=");
+		LOG.debug("=========================");
+		
+		do_update(user01);
+		
+		LOG.debug("=========================");
+		LOG.debug("=04. 수정한 데이터와 입력한 데이터를 비교=");
+		LOG.debug("=========================");
+		
+		User vsUser = get_selectOne(user01);
+		checkUser(vsUser, user01);
 		
 	}
 	
@@ -162,6 +182,8 @@ public class UserWebTest {
 				.param("postnum", user.getPostnum()+"")
 				.param("address", user.getAddress())
 				.param("detadd", user.getDetadd())
+				.param("lvl", user.getLvl()+"")
+				.param("upoint", user.getUpoint()+"")
 				.param("inum", user.getInum()+"");
 		
 		ResultActions resultActions =mockMvc.perform(createMessage)
@@ -178,22 +200,62 @@ public class UserWebTest {
 		
 	}
 	
+	public void checkUser(User vsUser, User user) {
+		
+		assertThat(vsUser.getRid(), is(user.getRid()));
+		assertThat(vsUser.getPasswd(), is(user.getPasswd()));
+		assertThat(vsUser.getUname(), is(user.getUname()));
+		assertThat(vsUser.getBirth(), is(user.getBirth()));
+		
+		assertThat(vsUser.getPhone(), is(user.getPhone()));
+		assertThat(vsUser.getPostnum(), is(user.getPostnum()));
+		assertThat(vsUser.getAddress(), is(user.getAddress()));
+		assertThat(vsUser.getDetadd(), is(user.getDetadd()));
+		
+		assertThat(vsUser.getLvl(), is(user.getLvl()));
+		assertThat(vsUser.getUpoint(), is(user.getUpoint()));
+		assertThat(vsUser.getInum(), is(user.getInum()));
+		
+	}//--checkUser
+	
 	/**회원가입*/
 	@Test
 	@Ignore
 	public void do_save() throws Exception {
 		
+		LOG.debug("======================================");
+		LOG.debug("=01. 삭제=");
+		LOG.debug("======================================");
+		
+		for(User user : users) {
+			
+			do_delete(user);
+		}
+		
+		LOG.debug("======================================");
+		LOG.debug("=02. 단건등록=");
+		LOG.debug("======================================");
+		
+		for(User user : users) {
+			
+			do_save(user);
+		}
+		
+	}
+	
+	private void do_save(User user) throws Exception {
+		
 		// 등록 메소드를 호출하고 
 		MockHttpServletRequestBuilder createMessage = MockMvcRequestBuilders.post("/user/do_save.do")
-		.param("rid", "j08_145") // 파라미터 넘기기
-		.param("passwd", "7777")
-		.param("uname", "이상무145_07")
-		.param("birth", "1977/07/07")
-		.param("phone", "010-7777-7777")
-		.param("postnum", "77777")
-		.param("address", "주소7")
-		.param("detadd", "상세주소7")
-		.param("inum", "7777");
+				.param("rid", user.getRid()) // 파라미터 넘기기
+				.param("passwd", user.getPasswd())
+				.param("uname", user.getUname())
+				.param("birth", user.getBirth())
+				.param("phone", user.getPhone())
+				.param("postnum", user.getPostnum()+"")
+				.param("address", user.getAddress())
+				.param("detadd", user.getDetadd())
+				.param("inum", user.getInum()+"");
 		
 		ResultActions resultActions =  mockMvc.perform(createMessage)
 				.andExpect(MockMvcResultMatchers.content().contentType("application/json;charset=UTF-8"))
@@ -232,9 +294,28 @@ public class UserWebTest {
 		
 	}
 	
+	private void do_delete(User user) throws Exception {
+		
+		// 삭제 메소드를 호출하고 
+		MockHttpServletRequestBuilder createMessage = MockMvcRequestBuilders.post("/user/do_delete.do")
+		.param("rid", user.getRid()); // 파라미터 넘기기
+		
+		ResultActions resultActions =  mockMvc.perform(createMessage)
+				.andExpect(MockMvcResultMatchers.content().contentType("application/json;charset=UTF-8"));
+				
+		String result = resultActions.andDo(print())
+				.andReturn()
+				.getResponse().getContentAsString();
+		
+		LOG.debug("=========================");
+		LOG.debug("result: " + result);
+		LOG.debug("=========================");
+		
+	}
+	
 	/**단건조회: 비밀번호 찾기*/
 	@Test
-	@Ignore
+//	@Ignore
 	public void get_selectOne() throws Exception {
 		
 		// 단건조회 메소드를 호출하고 
@@ -253,6 +334,33 @@ public class UserWebTest {
 		LOG.debug("=========================");
 		
 	}
+	
+	private User get_selectOne(User user) throws Exception {
+		
+		// 단건조회 메소드를 호출하고 
+		MockHttpServletRequestBuilder createMessage = MockMvcRequestBuilders.post("/user/get_selectOne.do")
+		.param("rid", user.getRid()); // 파라미터 넘기기
+		
+		ResultActions resultActions =  mockMvc.perform(createMessage)
+				.andExpect(MockMvcResultMatchers.content().contentType("application/json;charset=UTF-8"))
+				.andExpect(MockMvcResultMatchers.jsonPath("$.rid", is(user.getRid())));
+				
+		String result = resultActions.andDo(print())
+				.andReturn()
+				.getResponse().getContentAsString();
+		
+		LOG.debug("=========================");
+		LOG.debug("result: " + result);
+		LOG.debug("=========================");
+		
+		// Json -> User
+		Gson gson = new Gson();
+		User outVO = gson.fromJson(result, User.class);
+		
+		return outVO;
+		
+	}
+	
 	
 	@Test
 	public void getBean() {

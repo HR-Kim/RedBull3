@@ -134,9 +134,9 @@
 		#{postnum, jdbcType=NUMERIC},  
 	    #{address, jdbcType=VARCHAR},  
 	    #{detadd, jdbcType=VARCHAR}, 
-	    #{lvl, jdbcType=NUMERIC},  
-	    10, 
-	    0,     
+	    10,  
+	    0, 
+	    #{inum, jdbcType=NUMERIC},    
 	    SYSDATE      
 	)                  
 	</insert>
