@@ -10,12 +10,14 @@
 	</settings>
 	<!-- 타입 별칭은 자바 타입에 대한 짧은 이름이다. 오직 XML 설정에서만 사용되며, 타이핑을 줄이기 위해 존재한다 -->
 	<typeAliases>
+		<typeAlias type="kr.co.redbull.cart.service.Cart" alias="Cart"/>
 		<typeAlias type="kr.co.redbull.user.service.User" alias="User" />
 		<typeAlias type="kr.co.redbull.board.service.Board" alias="Board" />
 		<typeAlias type="kr.co.redbull.cmn.Search" alias="Search" />
 		<typeAlias type="kr.co.redbull.product.service.Product" alias="Product" />
 		<typeAlias type="kr.co.redbull.opt.service.Opt" alias="Opt" />
 		<typeAlias type="kr.co.redbull.image.service.Image" alias="Image" />
+		<typeAlias type="kr.co.redbull.review.service.Review" alias="Review" />
 	</typeAliases>
 
 </configuration>  

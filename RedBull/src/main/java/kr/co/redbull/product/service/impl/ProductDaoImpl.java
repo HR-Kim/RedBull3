@@ -20,6 +20,86 @@ public class ProductDaoImpl implements WorkDiv {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	private final String NAMESPACE = "kr.co.redbull.product";
+	
+	//카테고리순
+	public List<?> get_categoryList(DTO dto) {
+		String statement = NAMESPACE+".get_categoryList";
+		Search search = (Search) dto;
+		LOG.debug("======================================");
+		LOG.debug("=1.param="+search);
+		LOG.debug("======================================");
+		
+		LOG.debug("======================================");
+		LOG.debug("=2.statement="+statement);
+		LOG.debug("======================================");
+		
+		List<Product> list = this.sqlSessionTemplate.selectList(statement, search);
+		LOG.debug("======================================");
+		LOG.debug("=2.list="+list);
+		LOG.debug("======================================");
+		
+		return list;
+	}
+	
+	//세일순
+	public List<?> get_hotSaleList(DTO dto) {
+		String statement = NAMESPACE+".get_hotSaleList";
+		Search search = (Search) dto;
+		LOG.debug("======================================");
+		LOG.debug("=1.param="+search);
+		LOG.debug("======================================");
+		
+		LOG.debug("======================================");
+		LOG.debug("=2.statement="+statement);
+		LOG.debug("======================================");
+		
+		List<Product> list = this.sqlSessionTemplate.selectList(statement, search);
+		LOG.debug("======================================");
+		LOG.debug("=2.list="+list);
+		LOG.debug("======================================");
+		
+		return list;
+	}
+	
+	// 신상순
+	public List<?> get_newList(DTO dto) {
+		String statement = NAMESPACE + ".get_newList";
+		Search search = (Search) dto;
+		LOG.debug("======================================");
+		LOG.debug("=1.param=" + search);
+		LOG.debug("======================================");
+
+		LOG.debug("======================================");
+		LOG.debug("=2.statement=" + statement);
+		LOG.debug("======================================");
+
+		List<Product> list = this.sqlSessionTemplate.selectList(statement, search);
+		LOG.debug("======================================");
+		LOG.debug("=2.list=" + list);
+		LOG.debug("======================================");
+
+		return list;
+	}
+
+	//베스트랭킹순
+	public List<?> get_rankList(DTO dto) {
+		String statement = NAMESPACE+".get_rankList";
+		Search search = (Search) dto;
+		LOG.debug("======================================");
+		LOG.debug("=1.param="+search);
+		LOG.debug("======================================");
+		
+		LOG.debug("======================================");
+		LOG.debug("=2.statement="+statement);
+		LOG.debug("======================================");
+		
+		List<Product> list = this.sqlSessionTemplate.selectList(statement, search);
+		LOG.debug("======================================");
+		LOG.debug("=2.list="+list);
+		LOG.debug("======================================");
+		
+		return list;
+	}
 
 	public List<?> get_pnameList(DTO dto) {
 		String statement = NAMESPACE+".get_pnameList";
@@ -120,6 +200,7 @@ public class ProductDaoImpl implements WorkDiv {
 		return outVO;
 	}	
 	
+	//전체
 	@Override
 	public List<?> get_retrieve(DTO dto) {
 		String statement = NAMESPACE+".get_retrieve";

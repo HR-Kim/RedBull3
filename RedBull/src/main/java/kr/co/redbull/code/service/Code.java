@@ -12,7 +12,13 @@ public class Code extends DTO{
 	private String modId      ;//수정자ID
 	private String modDt      ;//수정일
 	
-	public Code() {}
+	public Code() {}	
+	
+	public Code(String codeId, String codeNm) {
+		super();
+		this.codeId = codeId;
+		this.codeNm = codeNm;
+	}
 
 	public String getCodeTypeId() {
 		return codeTypeId;

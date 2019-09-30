@@ -31,6 +31,48 @@
 			</choose>
 	</sql>
 	
+	<!-- 카테고리상품 목록조회 -->
+	<select id="get_categoryList" parameterType="Search" resultType="Product">
+		SELECT
+		   <include refid="productColumns"/>
+		FROM PRODUCT
+		WHERE PNAME LIKE '%' || #{searchWord} || '%'
+		ORDER BY PCATEGORY DESC
+	</select>
+	
+	<!-- 세일상품 목록조회 -->
+	<select id="get_hotSaleList" parameterType="Search" resultType="Product">
+		SELECT
+		   <include refid="productColumns"/>
+		FROM PRODUCT
+		ORDER BY discount DESC
+	</select>
+	
+	<!-- 신상품 목록조회 -->
+	<select id="get_newList" parameterType="Search" resultType="Product">
+		SELECT
+		   <include refid="productColumns"/>
+		FROM PRODUCT
+		WHERE PNAME LIKE '%' || #{searchWord} || '%'
+		ORDER BY REGDT ASC
+	</select>
+	
+	<!-- 베스트상품 목록조회 -->
+	<select id="get_rankList" parameterType="Search" resultType="Product">
+		SELECT 
+			a.pnum as pNum,
+			a.PNAME as pName,
+			a.DISCOUNT as discount,
+			a.BPRICE as bPrice,
+			count(b.pnum) as good
+		FROM product a
+		JOIN good b
+		ON a.PNUM = b.PNUM
+		GROUP
+		BY a.pnum, a.PNAME, a.DISCOUNT, a.BPRICE
+		ORDER BY count(b.pnum) DESC
+	</select>
+	
 	<!-- 상품명으로 목록조회 -->
 	<select id="get_pnameList" parameterType="Search" resultType="Product">
 		SELECT

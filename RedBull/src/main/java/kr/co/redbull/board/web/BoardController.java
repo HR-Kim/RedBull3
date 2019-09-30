@@ -34,17 +34,29 @@ public class BoardController {
 	private final String VIEW_MNG_NM  ="board/board_mng";
 	
 	@RequestMapping(value = "board/do_write.do")
-	public String do_write(Search search, Model model) {
+	public String do_write(Board board, Search search, Model model) {
 		
 		LOG.debug("================================");
 		LOG.debug("search:"+search);
+		LOG.debug("board:"+board);
 		LOG.debug("================================");
 		
 		if(null==search.getSearchDiv() || "".equals(search.getSearchDiv())) {
 			search.setSearchDiv("20");
 		}
 		
-		model.addAttribute("searchVO", search);
+		Integer bNum = board.getbNum();
+				
+		Board outVO = new Board();
+		
+		if(0==bNum) {
+			outVO.setbNum(0);
+		}else {
+			outVO = (Board)boardService.get_selectOne(board);		
+		}
+		
+		model.addAttribute("board", outVO);		
+		model.addAttribute("search", search);
 		
 		return VIEW_MNG_NM;
 	}
