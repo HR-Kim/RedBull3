@@ -46,13 +46,41 @@ public class DaoCartTest {
 	public void setUp() {
 		LOG.debug("setUp()");
 		list = Arrays.asList(
-				new Cart(1,186,1,"J01등록자_125"),
-				new Cart(2,187,1,"J01등록자_126"),
-				new Cart(3,188,1,"J01등록자_127")
+				new Cart(1,187,1,"J01등록자_125")
+				//new Cart(2,187,1,"J01등록자_126"),
+				//new Cart(3,188,1,"J01등록자_127")
 				);
 	}
 	
 	@Test
+	public void sale() {
+		//=======================================
+		// 총 상품금액 조회
+		//=======================================
+		cartDaoImpl.sale(list.get(0));
+	}
+	
+	@Test
+	@Ignore
+	public void delivery() {
+		//=======================================
+		// 총 상품금액 조회
+		//=======================================
+		cartDaoImpl.delivery(list.get(0));
+	}
+	
+	@Test
+	@Ignore
+	public void total() {
+		//=======================================
+		// 총 상품금액 조회
+		//=======================================
+		cartDaoImpl.total(list.get(0));
+	}
+	
+	
+	@Test
+	@Ignore
 	public void do_update() {
 		//=======================================
 		//0. 기존 date삭제
@@ -142,10 +170,16 @@ public class DaoCartTest {
 		LOG.debug("==========================");
 		LOG.debug("save()");
 		LOG.debug("===========================");
-		for(Cart vo: list) {
-			int flag = cartDaoImpl.do_save(vo);
-			assertThat(1, is(flag));
+		int count = cartDaoImpl.countCart(list.get(0));
+		if(count == 0) {
+			cartDaoImpl.do_save(list.get(0));
+		}else {
+			cartDaoImpl.updateCart(list.get(0));
 		}
+//		for(Cart vo: list) {
+//			int flag = cartDaoImpl.do_save(vo);
+//			assertThat(1, is(flag));
+//		}
 	}
 	
 	@Test

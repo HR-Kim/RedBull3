@@ -26,5 +26,11 @@ public interface CartService {
 	
 	/**동일상품 수량 변경*/
 	public int updateCart(DTO dto);
+	
+	/**배송비 */
+	public int delivery(DTO dto);
+	
+	/**할인가격*/
+	public int sale(DTO dto);
 
 }

@@ -23,6 +23,66 @@ public class CartDaoImpl implements WorkDiv {
 	
 	private final String NAMESPACE = "kr.co.redbull.cart"; //상수
 	
+	
+	//할인가격
+	public int sale(DTO dto) {
+		String statement = this.NAMESPACE+".sale";
+		Cart cart = (Cart) dto;
+		LOG.debug("================================");
+		LOG.debug("1. statement: " + statement);
+		LOG.debug("================================");
+		
+		LOG.debug("================================");
+		LOG.debug("2. param: " + cart);
+		LOG.debug("================================");
+		
+		int flag = this.sqlSessionTemplate.selectOne(statement, cart);
+		LOG.debug("================================");
+		LOG.debug("3. flag: " + flag);
+		LOG.debug("================================");
+		
+		return flag;
+	}
+	//배송비
+	public int delivery(DTO dto) {
+		String statement = this.NAMESPACE+".delivery";
+		Cart cart = (Cart) dto;
+		LOG.debug("================================");
+		LOG.debug("1. statement: " + statement);
+		LOG.debug("================================");
+		
+		LOG.debug("================================");
+		LOG.debug("2. param: " + cart);
+		LOG.debug("================================");
+		
+		int flag = this.sqlSessionTemplate.selectOne(statement, cart);
+		LOG.debug("================================");
+		LOG.debug("3. flag: " + flag);
+		LOG.debug("================================");
+		
+		return flag;
+	}
+	
+	//총 상품금액
+	public int total(DTO dto) {
+		String statement = this.NAMESPACE+".total";
+		Cart cart = (Cart) dto;
+		LOG.debug("================================");
+		LOG.debug("1. statement: " + statement);
+		LOG.debug("================================");
+		
+		LOG.debug("================================");
+		LOG.debug("2. param: " + cart);
+		LOG.debug("================================");
+		
+		int flag = this.sqlSessionTemplate.selectOne(statement, cart);
+		LOG.debug("================================");
+		LOG.debug("3. flag: " + flag);
+		LOG.debug("================================");
+		
+		return flag;
+	}
+	
 	public int countCart(DTO dto) {
 		String statement = this.NAMESPACE+".countCart";
 		Cart cart = (Cart) dto;
@@ -36,7 +96,7 @@ public class CartDaoImpl implements WorkDiv {
 		
 		int flag = this.sqlSessionTemplate.selectOne(statement, cart);
 		LOG.debug("================================");
-		LOG.debug("3. falg: " + flag);
+		LOG.debug("3. flag: " + flag);
 		LOG.debug("================================");
 		
 		return flag;
@@ -55,7 +115,7 @@ public class CartDaoImpl implements WorkDiv {
 		
 		int flag = this.sqlSessionTemplate.update(statement, cart);
 		LOG.debug("================================");
-		LOG.debug("3. falg: " + flag);
+		LOG.debug("3. flag: " + flag);
 		LOG.debug("================================");
 		
 		return flag;

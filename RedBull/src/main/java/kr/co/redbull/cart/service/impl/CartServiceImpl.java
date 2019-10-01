@@ -49,8 +49,8 @@ public class CartServiceImpl implements CartService {
 
 	@Override
 	public int total(DTO dto) { //밑에 3개 CartDaoImpl에 추가
-		// TODO Auto-generated method stub
-		return 0;
+	
+		return cartDaoImpl.total(dto);
 	}
 
 	@Override
@@ -63,6 +63,18 @@ public class CartServiceImpl implements CartService {
 	public int updateCart(DTO dto) {
 		
 		return cartDaoImpl.updateCart(dto);
+	}
+
+	@Override
+	public int delivery(DTO dto) {
+		
+		return cartDaoImpl.delivery(dto);
+	}
+
+	@Override
+	public int sale(DTO dto) {
+		
+		return cartDaoImpl.sale(dto);
 	}
 
 }

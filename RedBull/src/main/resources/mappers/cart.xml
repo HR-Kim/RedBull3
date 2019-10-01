@@ -4,6 +4,37 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.redbull.cart">
 
+
+	<!-- 할인가격 -->
+			<select id="sale" resultType="int">
+				<![CDATA[
+					SELECT NVL(SUM(p.bprice * p.discount * c.cartcnt),0) as save
+					FROM cart c JOIN PRODUCT p
+					ON c.pnum = p.pnum
+					AND c.regid = #{regId, jdbcType=VARCHAR}
+				]]>
+			</select>
+		
+	<!--  배송비 -->
+		<select id="delivery" resultType="int">
+			<![CDATA[
+				SELECT NVL(SUM(p.dprice),0) delivery
+				FROM cart c JOIN PRODUCT p
+				ON c.pnum = p.pnum
+				AND c.regid = #{regId, jdbcType=VARCHAR}
+			]]>
+	</select>
+
+	<!-- 총 상품 금액-->
+	<select id="total" resultType="int">
+		<![CDATA[
+			SELECT NVL(SUM(p.bprice * c.cartcnt),0) as total
+			FROM cart c JOIN PRODUCT p
+			ON c.pnum = p.pnum
+			AND c.regid = #{regId, jdbcType=VARCHAR}
+		]]>
+	</select>
+	
  	 <!-- FILE_ID기준 조회 -->
  	 <select id="get_cartList" parameterType="Cart" resultType="Cart">
 		 	<![CDATA[
