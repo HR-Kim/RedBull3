@@ -1,6 +1,9 @@
 package kr.co.redbull.user.web;
 
+import java.io.File;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,11 +13,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 
 import com.google.gson.Gson;
 
 import kr.co.redbull.cmn.Message;
+import kr.co.redbull.cmn.StringUtil;
 import kr.co.redbull.code.service.CodeService;
 import kr.co.redbull.user.service.User;
 import kr.co.redbull.user.service.UserService;
@@ -32,12 +37,48 @@ public class UserController {
 //	@Autowired
 //	CodeService codeService;
 	
-//	@Resource(name="downloadView")
-//	private View download;
+	@Resource(name="downloadView")
+	private View download;
 	
 	// View를 상수로 선언
 	private final String VIEW_JOIN_NM = "user/join";
 	private final String VIEW_UPDATE_NM = "user/update";
+	
+	/**ExcelDown*/
+	@RequestMapping(value="user/do_exceldown.do",method=RequestMethod.GET)
+	public ModelAndView excelDown(User user, HttpServletRequest req, ModelAndView mView) {
+		
+		/** 확장자 */
+		String ext = StringUtil.nvl(req.getParameter("ext"));		
+		
+		// 변수값을 setting
+		user.setRid(StringUtil.nvl(user.getRid()));
+		user.setPasswd(StringUtil.nvl(user.getPasswd()));
+		user.setUname(StringUtil.nvl(user.getUname()));
+		user.setBirth(StringUtil.nvl(user.getBirth()));
+		user.setPhone(StringUtil.nvl(user.getPhone()));
+		
+		user.setPostnum(user.getPostnum());
+		user.setAddress(StringUtil.nvl(user.getAddress()));
+		user.setDetadd(StringUtil.nvl(user.getDetadd()));
+		user.setLvl(user.getLvl());
+		user.setUpoint(user.getUpoint());
+		
+		user.setInum(user.getInum());
+		user.setRegdt(user.getRid());
+		
+		// userService의 엑셀 다운로드 메소드 호출(search 객체와 확장자를 전달)
+		String saveFileNm = this.userService.get_excelDown(user, ext); // 저장파일명: 무작위로 생성됨
+		String orgFileNm  = user.getUname() + "님의_회원정보_" + StringUtil.cureDate("yyyyMMdd" )+ "." + ext; // 기존 파일명을 변경
+		
+		mView.setView(download); // 뷰 세팅
+		
+		File downloadFile = new File(saveFileNm); // 저장파일명으로 파일 객체 생성
+		mView.addObject("downloadFile", downloadFile);
+		mView.addObject("orgFileNm", orgFileNm);
+		
+		return mView;
+	}
 	
 	/**삭제*/
 	@RequestMapping(value="user/do_delete.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -79,7 +120,7 @@ public class UserController {
 	}//--do_delete
 	
 	/**단건 조회*/
-	@RequestMapping(value="user/get_selectOne.do", method = RequestMethod.POST ,produces = "application/json; charset=UTF-8")
+	@RequestMapping(value="user/get_selectOne.do", method = RequestMethod.GET ,produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String get_selectOne(User user, Model model) {
 		

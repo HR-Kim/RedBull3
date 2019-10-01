@@ -1,5 +1,6 @@
 package kr.co.redbull.user.service.impl;
 
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.redbull.cmn.DTO;
 import kr.co.redbull.cmn.ExcelWriter;
+import kr.co.redbull.user.service.Level;
 import kr.co.redbull.user.service.User;
 import kr.co.redbull.user.service.UserService;
 
@@ -25,14 +27,33 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDaoImpl userDaoImpl;
 	
+	// level upgrade: 레벨과 포인트에 따라 분기하여 업그레이드
+	// 1. 전체 사용자를 조회
+	// 2. 대상자를 선별
+		// 2.1 BASIC 사용자가 포인트 500점 이상이면 : BASIC -> SILVER
+		// 2.2 SILVER 사용자가 포인트 1000점 이상이면 : SILVER -> GOLD
+		// 2.3 GOLD : 대상 아님
+	// 3. 대상자 업그레이드 레벌 선정 및 업그레이드
+	protected void upgradeLevel(User user) throws SQLException {
+		
+		user.upgradeLevel(); // VO 부분에 기능을 만듦
+		
+		userDaoImpl.do_update(user);
+		
+//		sendUpgradeMail(user); // mail send
+	
+		
+	}//--upgradeLevel
+	
+	
 	@Override
-	public DTO get_selectOne(DTO dto) {
+	public User get_selectOne(DTO dto) {
 		
 		LOG.debug("==========================");
 		LOG.debug("=@Service=" + dto);
 		LOG.debug("==========================");
 		
-		return userDaoImpl.get_selectOne(dto);
+		return (User) userDaoImpl.get_selectOne(dto);
 	}
 
 	@Override
@@ -50,7 +71,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int do_save(DTO dto) {
 		
-		return userDaoImpl.do_save(dto);
+		User user = (User) dto;
+		
+		if(null == user.getLvl()) { // user의 레벨이 없으면
+			
+			user.setLvl(Level.BASIC); // 레벨을 BASIC으로 설정
+		}
+		
+		return userDaoImpl.do_save(user); // 해당 user를 등록
 	}
 
 	@Override
