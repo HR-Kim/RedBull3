@@ -98,13 +98,14 @@
 		<div class="row">
 			<div class="col-md-12 text-center">
 				<form class="form-inline" name="productFrm" id="productFrm" method="get">
-					<input type="hidden" name="pageNum" id="pageNum" value="${vo.pageNum}" /> <input type="hidden" name="searchDiv" id="searchDiv" />
+					<input type="hidden" name="pageNum" id="pageNum" value="${vo.pageNum}" />
+					<input type="hidden" name="searchDiv" id="searchDiv" />
 					<input type="hidden" name="pNum" id="pNum" />
 					<div class="form-group ">
 						<div class="col-sm-12">
 							<input type="text" class="form-control input-sm " id="searchWord" name="searchWord" placeholder="검색어" />
 							<button type="button" class="btn btn-default btn-sm" id="do_retrieve">검색</button>
-							<button type="button" class="btn btn-default btn-sm" id="do_write">글쓰기</button>
+							<button type="button" class="btn btn-default btn-sm" id="do_mng">글쓰기</button>
 						</div>
 					</div>
 				</form>
@@ -159,8 +160,14 @@
 	<!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
 	<script src="${context}/resources/js/bootstrap.min.js"></script>    
 	<script type="text/javascript">
+		//글쓰기
+		$("#do_mng").on("click", function(){
+			alert('do_mng');
+			var frm = document.productFrm;
+			frm.action = "${context}/product/do_product_mng.do";
+    		frm.submit();
+		});
 		//단건조회
-		//listTable
 	    $("#listTable>tbody").on("click","tr",function(){
 	    	var tr  = $(this);
 	    	var td  =  tr.children();
