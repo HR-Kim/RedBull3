@@ -54,15 +54,15 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public int product_check(DTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int countCart(DTO dto) {
+		
+		return cartDaoImpl.countCart(dto);
 	}
 
 	@Override
-	public int accumulation(DTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateCart(DTO dto) {
+		
+		return cartDaoImpl.updateCart(dto);
 	}
 
 }

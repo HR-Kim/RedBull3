@@ -3,66 +3,67 @@ package kr.co.redbull.cart.service;
 import kr.co.redbull.cmn.DTO;
 
 public class Cart extends DTO {
-	private int cartnum    ;//장바구니번호
-	private int pnum       ;//상품번호
-	private int cartcnt    ;//수량
-	private String regid   ;//등록자
+	private int cartNum    ;//장바구니번호
+	private int pNum       ;//상품번호
+	private int cartCnt    ;//수량
+	private String regId   ;//등록자
 	
 	
 	public Cart() {}
-	
-	public Cart(int cartnum, int pnum, int cartcnt, String regid) {
+
+
+	public Cart(int cartNum, int pNum, int cartCnt, String regId) {
 		super();
-		this.cartnum = cartnum;
-		this.pnum = pnum;
-		this.cartcnt = cartcnt;
-		this.regid = regid;
+		this.cartNum = cartNum;
+		this.pNum = pNum;
+		this.cartCnt = cartCnt;
+		this.regId = regId;
 	}
 
 
-	public int getCartnum() {
-		return cartnum;
+	public int getCartNum() {
+		return cartNum;
 	}
 
 
-	public void setCartnum(int cartnum) {
-		this.cartnum = cartnum;
+	public void setCartNum(int cartNum) {
+		this.cartNum = cartNum;
 	}
 
 
-	public int getPnum() {
-		return pnum;
+	public int getpNum() {
+		return pNum;
 	}
 
 
-	public void setPnum(int pnum) {
-		this.pnum = pnum;
+	public void setpNum(int pNum) {
+		this.pNum = pNum;
 	}
 
 
-	public int getCartcnt() {
-		return cartcnt;
+	public int getCartCnt() {
+		return cartCnt;
 	}
 
 
-	public void setCartcnt(int cartcnt) {
-		this.cartcnt = cartcnt;
+	public void setCartCnt(int cartCnt) {
+		this.cartCnt = cartCnt;
 	}
 
 
-	public String getRegid() {
-		return regid;
+	public String getRegId() {
+		return regId;
 	}
 
 
-	public void setRegid(String regid) {
-		this.regid = regid;
+	public void setRegId(String regId) {
+		this.regId = regId;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Cart [cartnum=" + cartnum + ", pnum=" + pnum + ", cartcnt=" + cartcnt + ", regid=" + regid
+		return "Cart [cartNum=" + cartNum + ", pNum=" + pNum + ", cartCnt=" + cartCnt + ", regId=" + regId
 				+ ", toString()=" + super.toString() + "]";
 	}
 	
