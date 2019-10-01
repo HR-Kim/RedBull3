@@ -41,6 +41,21 @@ public class User extends DTO {
 		this.inum = inum;
 		this.regdt = regdt;
 	}
+	
+	/**regdt, upoint, lvl 빼고*/
+	public User(String rid, String passwd, String uname, String birth, String phone, int postnum, String address,
+			String detadd, int inum) {
+		super();
+		this.rid = rid;
+		this.passwd = passwd;
+		this.uname = uname;
+		this.birth = birth;
+		this.phone = phone;
+		this.postnum = postnum;
+		this.address = address;
+		this.detadd = detadd;
+		this.inum = inum;
+	}
 
 	/**setter/getter*/
 	public String getRid() {

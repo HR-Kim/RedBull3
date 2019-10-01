@@ -69,7 +69,143 @@ public class DaoProductTest {
 		LOG.debug("^^^^^^^^^^^^^^^^^^");
 	}
 	
+	/**
+	 * 카테고리 순
+	 */
 	@Test
+	@Ignore
+	public void get_categoryList() {
+		LOG.debug("======================================");
+		LOG.debug("=01. 기존 데이터 삭제=");
+		LOG.debug("======================================");	
+		Search search=new Search();
+		search.setSearchWord("125");
+		List<Product> getList = (List<Product>) productDaoImpl.get_pnameList(search);
+		for(Product vo:getList) {
+			productDaoImpl.do_delete(vo);
+		}	
+		
+		LOG.debug("======================================");
+		LOG.debug("=02. 데이터 추가=");
+		LOG.debug("======================================");	
+		for(Product vo:list) { 
+			int flag = productDaoImpl.do_save(vo);
+			assertThat(1, is(flag));
+		}		
+		
+		//=====================================
+		//2.01 등록Data조회
+		//=====================================
+		search.setSearchDiv("10");
+		search.setPageSize(10);
+		search.setPageNum(1);
+		List<Product> addlistData = (List<Product>) productDaoImpl.get_categoryList(search);
+		assertThat(5, is(addlistData.size()));		
+	}
+	
+	/**
+	 * 세일순
+	 */
+	@Test
+	@Ignore
+	public void get_hotSaleList() {
+		LOG.debug("======================================");
+		LOG.debug("=01. 기존 데이터 삭제=");
+		LOG.debug("======================================");	
+		Search search=new Search();
+		search.setSearchWord("125");
+		List<Product> getList = (List<Product>) productDaoImpl.get_pnameList(search);
+		for(Product vo:getList) {
+			productDaoImpl.do_delete(vo);
+		}	
+		
+		LOG.debug("======================================");
+		LOG.debug("=02. 데이터 추가=");
+		LOG.debug("======================================");	
+		for(Product vo:list) { 
+			int flag = productDaoImpl.do_save(vo);
+			assertThat(1, is(flag));
+		}		
+		
+		//=====================================
+		//2.01 등록Data조회
+		//=====================================
+		search.setSearchDiv("10");
+		search.setPageSize(10);
+		search.setPageNum(1);
+		List<Product> addlistData = (List<Product>) productDaoImpl.get_hotSaleList(search);
+		assertThat(5, is(addlistData.size()));		
+	}
+	
+	/**
+	 * 신상품순
+	 */
+	@Test
+	@Ignore
+	public void get_newList() {
+		LOG.debug("======================================");
+		LOG.debug("=01. 기존 데이터 삭제=");
+		LOG.debug("======================================");	
+		Search search=new Search();
+		search.setSearchWord("125");
+		List<Product> getList = (List<Product>) productDaoImpl.get_pnameList(search);
+		for(Product vo:getList) {
+			productDaoImpl.do_delete(vo);
+		}	
+		
+		LOG.debug("======================================");
+		LOG.debug("=02. 데이터 추가=");
+		LOG.debug("======================================");	
+		for(Product vo:list) { 
+			int flag = productDaoImpl.do_save(vo);
+			assertThat(1, is(flag));
+		}		
+		
+		//=====================================
+		//2.01 등록Data조회
+		//=====================================
+		search.setSearchDiv("10");
+		search.setPageSize(10);
+		search.setPageNum(1);
+		List<Product> addlistData = (List<Product>) productDaoImpl.get_newList(search);
+		assertThat(5, is(addlistData.size()));		
+	}
+	
+	/**
+	 * 베스트 랭킹순
+	 */
+	@Test
+	public void get_rankList() {
+		LOG.debug("======================================");
+		LOG.debug("=01. 기존 데이터 삭제=");
+		LOG.debug("======================================");	
+		Search search=new Search();
+		search.setSearchWord("125");
+		List<Product> getList = (List<Product>) productDaoImpl.get_pnameList(search);
+		for(Product vo:getList) {
+			productDaoImpl.do_delete(vo);
+		}	
+		
+		LOG.debug("======================================");
+		LOG.debug("=02. 데이터 추가=");
+		LOG.debug("======================================");	
+		for(Product vo:list) { 
+			int flag = productDaoImpl.do_save(vo);
+			assertThat(1, is(flag));
+		}		
+		
+		//=====================================
+		//2.01 등록Data조회
+		//=====================================
+		search.setSearchDiv("10");
+		search.setPageSize(10);
+		search.setPageNum(1);
+		List<Product> addlistData = (List<Product>) productDaoImpl.get_rankList(search);
+//		assertThat(5, is(addlistData.size()));		
+	}
+	
+	@Test
+	@Ignore
 	public void get_retrieve() {
 		LOG.debug("======================================");
 		LOG.debug("=01. 기존 데이터 삭제=");

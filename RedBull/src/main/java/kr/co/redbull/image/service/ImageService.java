@@ -6,6 +6,9 @@ import kr.co.redbull.cmn.DTO;
 import kr.co.redbull.cmn.Search;
 
 public interface ImageService {
+	/**refNum으로 조회 */
+	public List<?> get_refnumList(DTO dto);
+
 	/**수정 */
 	public int do_update(DTO dto);
 
