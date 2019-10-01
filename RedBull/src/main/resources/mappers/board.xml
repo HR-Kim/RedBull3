@@ -104,7 +104,7 @@
             	WHERE ROWNUM <![CDATA[<]]>= (#{pageSize, jdbcType=NUMERIC} * (#{pageNum, jdbcType=NUMERIC} -1) + #{pageSize, jdbcType=NUMERIC}))B
       	  WHERE B.rnum <![CDATA[>]]>= (#{pageSize, jdbcType=NUMERIC} * (#{pageNum, jdbcType=NUMERIC} -1)+1)) T1
 	CROSS JOIN
-	(SELECT COUNT(*)
+	(SELECT COUNT(*) AS totalCnt
 	 FROM (SELECT * FROM BOARD
 	       <include refid="searchCondition" />
 	      ))T2

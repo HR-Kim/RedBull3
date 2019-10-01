@@ -87,6 +87,7 @@
   </head>
  
   <body>
+  ${totalCnt }
     <!-- div container -->
    <div class="container">
         <!-- div title --> 
@@ -176,6 +177,7 @@
     	function search_page(url, pageNum){
     		var frm = document.boardFrm;
     		frm.pageNum.value = pageNum;
+    		frm.searchDiv.value = "10";
 			frm.action = url;
 			frm.submit();
     	}

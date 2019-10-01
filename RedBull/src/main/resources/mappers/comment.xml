@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.redbull.comment">
+
+	<!-- 게시판번호 가져오기 -->
+	<select id="get_commentIdList" parameterType="Search" resultType="Comment">
+		SELECT * FROM COMMENTS WHERE TNUM = #{searchWord}
+	</select>
+
+	<!-- 수정  -->
+	<update id="do_update" parameterType="Comment">
+		UPDATE COMMENTS
+			SET CONTENTS = #{contents, jdbcType=VARCHAR},
+				MODID = #{modId, jdbcType=VARCHAR},
+				MODDT = SYSDATE
+		WHERE CNUM = #{cNum, jdbcType=NUMERIC}		
+	</update>
+	
+	<!-- 삭제  -->
+	<delete id="do_delete" parameterType="Comment">
+		DELETE FROM COMMENTS WHERE CNUM = #{cNum, jdbcType=NUMERIC}
+	</delete>
+	
+	<!-- 등록  -->
+	<insert id="do_save" parameterType="Comment">
+		INSERT INTO COMMENTS (
+			TNUM,
+			REFNUM,
+			CONTENTS,
+			HCNUM,
+			REGID,
+			REGDT,
+			MODID,
+			MODDT,
+			CLEVEL		
+		) VALUES (
+			#{tNum, jdbcType=NUMERIC},
+			#{refNum, jdbcType=NUMERIC},
+			#{contents, jdbcType=VARCHAR},
+			#{hcNum, jdbcType=NUMERIC},
+			#{regId, jdbcType=VARCHAR},
+			SYSDATE,
+			#{modId, jdbcType=VARCHAR},
+			SYSDATE,
+			#{cLevel, jdbcType=NUMERIC}		
+		)
+	</insert>
+	
+	<!-- 단건조회 -->
+	<select id="get_selectOne" parameterType="Comment" resultType="Comment">
+		SELECT * FROM COMMENTS
+		WHERE CNUM = #{cNum, jdbcType=NUMERIC}
+	</select>
+	
+	<!-- 댓글목록조회  -->
+  	<select id="get_retrieve" parameterType="Search" resultType="Comment">
+	SELECT T1.*, T2.*
+	FROM (SELECT B.CLEVEL AS cLevel,
+				 B.CNUM AS cNum,
+	             B.TNUM AS tNum,
+	             B.REFNUM AS refNum,
+	             B.CONTENTS AS contents,
+	             B.HCNUM AS hcNum,
+	             B.REGID AS regId,
+	             CASE TO_CHAR(B.REGDT, 'yyyy.mm.dd') WHEN TO_CHAR(SYSDATE, 'yyyy.mm.dd') THEN TO_CHAR(B.REGDT, 'HH24:MI')
+			     ELSE TO_CHAR(B.REGDT, 'yyyy.mm.dd') END as regDt,
+	             B.MODID AS modId,
+	             B.MODDT AS modDt,
+	             B.rnum AS num
+      	  FROM (SELECT ROWNUM AS rnum, A.*
+            	FROM(SELECT 
+            			CLEVEL, 
+                        CNUM,
+                        TNUM,
+                        REFNUM,
+                        CONTENTS,
+                        HCNUM,
+                        REGID,
+                        REGDT,
+                        MODID,
+                        MODDT            	
+            		 FROM COMMENTS
+                 	 WHERE TNUM = TO_NUMBER(#{searchDiv, jdbcType=NUMERIC})
+                     AND REFNUM = TO_NUMBER(#{searchWord, jdbcType=NUMERIC})
+                     START WITH HCNUM = 0
+                     CONNECT BY PRIOR CNUM = HCNUM
+                     ORDER SIBLINGS BY REGDT) A
+            	WHERE ROWNUM <![CDATA[<]]>= (#{pageSize, jdbcType=NUMERIC} * (#{pageNum, jdbcType=NUMERIC} -1) + #{pageSize, jdbcType=NUMERIC}))B
+      	  WHERE B.rnum <![CDATA[>]]>= (#{pageSize, jdbcType=NUMERIC} * (#{pageNum, jdbcType=NUMERIC} -1)+1)) T1
+	CROSS JOIN
+	(SELECT COUNT(*) AS totalCnt
+	 FROM (SELECT * FROM COMMENTS
+	 	   WHERE TNUM = TO_NUMBER(#{searchDiv, jdbcType=NUMERIC})
+           AND REFNUM = TO_NUMBER(#{searchWord, jdbcType=NUMERIC})
+	      ))T2
+	</select> 
+
+</mapper>

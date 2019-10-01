@@ -16,6 +16,7 @@
     <link href="${context}/resources/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+${commentList }
 
 	<form name="boardForm" id="boardForm"> 
 		<input type="hidden" id="bNum" name="bNum"/>
