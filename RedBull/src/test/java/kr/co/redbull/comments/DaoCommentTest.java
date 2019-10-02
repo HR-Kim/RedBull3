@@ -67,7 +67,7 @@ public class DaoCommentTest {
 	}
 	
 	@Test
-	@Ignore
+	//@Ignore
 	public void get_retrieve() {
 		//-----------------------------------------------
 		//  0. 기존 데이터 삭제
@@ -75,7 +75,7 @@ public class DaoCommentTest {
 		Search search = new Search();
 		search.setSearchWord("20");
 		List<Comment> commentIdList = (List<Comment>) commentDaoImpl.get_commentIdList(search);
-		assertThat(5, is(commentIdList.size()));
+		//assertThat(5, is(commentIdList.size()));
 
 		LOG.debug("===========================");
 		LOG.debug("commentIdList:"+commentIdList);
@@ -87,27 +87,55 @@ public class DaoCommentTest {
 		}	
 		
 		//-----------------------------------------------
-		//  1. 데이터 추가
+		//  1. 데이터 2건 입력(댓글)
 		//-----------------------------------------------
-		for(Comment vo : list) {
-			int flag = commentDaoImpl.do_save(vo);
+		for(int i=0; i<2; i++) {
+			int flag = commentDaoImpl.do_save(list.get(i));
 			assertThat(1, is(flag));
 		}	
 		
 		//-----------------------------------------------
-		//  2. 조회
+		//  2. 입력한 데이터의 ID 가져오기
 		//-----------------------------------------------
-		Search searchCondition = new Search();
-		searchCondition.setPageSize(10);
-		searchCondition.setPageNum(1);
-		searchCondition.setSearchDiv("20");
-		searchCondition.setSearchWord("1");
 		
-		List<Comment> commentList = (List<Comment>)commentDaoImpl.get_retrieve(searchCondition);
+		commentIdList = (List<Comment>) commentDaoImpl.get_commentIdList(search);
+		LOG.debug(commentIdList.toString());
 		
-		LOG.debug("===========================");
-		LOG.debug("commentList:"+commentList);
-		LOG.debug("===========================");
+		//-----------------------------------------------
+		//  3. 데이터 2건 입력(대댓글)
+		//-----------------------------------------------
+		
+		list.get(2).setHcNum(commentIdList.get(0).getcNum());
+		list.get(3).setHcNum(commentIdList.get(1).getcNum());
+		
+		int flag = commentDaoImpl.do_save(list.get(2));
+		assertThat(1, is(flag));
+		flag = commentDaoImpl.do_save(list.get(3));
+		assertThat(1, is(flag));
+		
+		//-----------------------------------------------
+		//  4. 입력한 데이터의 ID 가져오기
+		//-----------------------------------------------
+		commentIdList = (List<Comment>) commentDaoImpl.get_commentIdList(search);
+		LOG.debug(commentIdList.toString());
+		
+		//-----------------------------------------------
+		//  5. 데이터 1건 입력(대댓글의 대댓글)
+		//-----------------------------------------------
+		list.get(4).setHcNum(commentIdList.get(3).getcNum());
+		flag = commentDaoImpl.do_save(list.get(4));
+		assertThat(1, is(flag));
+		
+		//-----------------------------------------------
+		//  6. 목록조회
+		//-----------------------------------------------
+		
+		search.setPageSize(10);
+		search.setPageNum(1);
+		search.setSearchDiv("20");
+		search.setSearchWord("1");
+		
+		List<Comment> commentList = (List<Comment>)commentDaoImpl.get_retrieve(search);
 		
 	}
 	

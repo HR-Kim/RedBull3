@@ -43,20 +43,6 @@ public class Comment extends DTO {
 		this.modDt = modDt;
 	}
 
-//	public Comment(int cNum, int tNum, int refNum, String contents, int hcNum, String regId, String regDt,
-//			String modId, String modDt) {
-//		super();
-//		this.cNum = cNum;
-//		this.tNum = tNum;
-//		this.refNum = refNum;
-//		this.contents = contents;
-//		this.hcNum = hcNum;
-//		this.regId = regId;
-//		this.regDt = regDt;
-//		this.modId = modId;
-//		this.modDt = modDt;
-//	}
-	
 	public int getcLevel() {
 		return cLevel;
 	}
@@ -137,12 +123,12 @@ public class Comment extends DTO {
 		this.modDt = modDt;
 	}
 
+
 	@Override
 	public String toString() {
-		return "Comments [cNum=" + cNum + ", tNum=" + tNum + ", refNum=" + refNum + ", contents=" + contents
-				+ ", hcNum=" + hcNum + ", regId=" + regId + ", regDt=" + regDt + ", modId=" + modId + ", modDt=" + modDt
-				+ ", toString()=" + super.toString() + "]";
+		return "Comment [cLevel=" + cLevel + ", cNum=" + cNum + ", tNum=" + tNum + ", refNum=" + refNum + ", contents="
+				+ contents + ", hcNum=" + hcNum + ", regId=" + regId + ", regDt=" + regDt + ", modId=" + modId
+				+ ", modDt=" + modDt + ", toString()=" + super.toString() + "]";
 	}
-	
-	
+
 }

@@ -52,45 +52,62 @@ ${commentList }
 			<tr>			
 				<td colspan="6" class="text-left col-md-12 col-xs-12">
 					 <div class="container">
+					 	<c:choose>
+         					<c:when test="${commentList.size()>0}">
+         						<c:forEach var="vo" items = "${commentList}">
+								 	<table class="table table-striped table-sm">
+								 		<tr>
+								 			<td>${vo.cNum }</td>
+								 			<td>${vo.regId }</td>
+								 			<td>${vo.regDt }</td>
+								 			<td>
+								 				<button type="button" class="btn btn-default btn-sm" id="do_commentComment">댓글달기</button>
+												<button type="button" class="btn btn-default btn-sm" id="do_commentUpdate">수정</button>  
+												<button type="button" class="btn btn-default btn-sm" id="do_commentDelete">삭제</button>  
+								 			</td>
+								 		</tr>
+								 		<tr><td colspan="4">${vo.contents}</td></tr>
+								 	</table>
+								 </c:forEach>
+							</c:when>
+						</c:choose>
 	 
-						<table class="table table-striped table-sm">
-							<tr>
-								<td class="text-left col-md-2 col-xs-2" style="font-size: 9pt;"></td>
-								<td class="text-left col-md-6 col-xs-6" style="font-size: 9pt;"></td>
-								<td class="text-left col-md-2 col-xs-2" style="font-size: 9pt;"></td>
-								<td class="text-center col-md-2 col-xs-2" style="font-size: 9pt;">
-									<button type="button" class="btn btn-default btn-sm" id="do_commentUpdate">수정</button>  
-									<button type="button" class="btn btn-default btn-sm" id="do_commentDelete">삭제</button>  
-								</td>
-							</tr>
-							<tr>
-								<td class="text-left col-md-2 col-xs-2" style="font-size: 9pt;"></td>
-								<td class="text-left col-md-6 col-xs-6" style="font-size: 9pt;"></td>
-								<td class="text-left col-md-2 col-xs-2" style="font-size: 9pt;"></td>
-								<td class="text-center col-md-2 col-xs-2" style="font-size: 9pt;">
-									<button type="button" class="btn btn-default btn-sm" id="do_commentUpdate">수정</button>  
-									<button type="button" class="btn btn-default btn-sm" id="do_commentDelete">삭제</button>  
-								</td>
-							</tr>
-							<tr>
-								<td class="text-left col-md-2 col-xs-2" style="font-size: 9pt;"></td>
-								<td class="text-left col-md-6 col-xs-6" style="font-size: 9pt;"></td>
-								<td class="text-left col-md-2 col-xs-2" style="font-size: 9pt;"></td>
-								<td class="text-center col-md-2 col-xs-2" style="font-size: 9pt;">
-									<button type="button" class="btn btn-default btn-sm" id="do_commentUpdate">수정</button>  
-									<button type="button" class="btn btn-default btn-sm" id="do_commentDelete">삭제</button>  
-								</td>
-							</tr>
-							<tr>
-								<td class="text-left col-md-2 col-xs-2" style="font-size: 9pt;"></td>
-								<td class="text-left col-md-6 col-xs-6" style="font-size: 9pt;"></td>
-								<td class="text-left col-md-2 col-xs-2" style="font-size: 9pt;"></td>
-								<td class="text-center col-md-2 col-xs-2" style="font-size: 9pt;">
-									<button type="button" class="btn btn-default btn-sm" id="do_update_comment">수정</button>  
-									<button type="button" class="btn btn-default btn-sm" id="do_delete_comment">삭제</button>  
-								</td>
-							</tr>
-						</table>
+<%-- 						<table class="table table-striped table-sm">
+							<c:choose>
+         						<c:when test="${commentList.size()>0}">
+         							<c:forEach var="vo" items = "${commentList}">
+         								<c:choose>
+         									<c:when test="${vo.cLevel==1}">
+         										<tr>
+													<td class="text-left col-md-2 col-xs-2" style="font-size: 9pt;">${vo.regId }</td>
+													<td class="text-left col-md-6 col-xs-6" style="font-size: 9pt;">${vo.contents }</td>
+													<td class="text-left col-md-2 col-xs-2" style="font-size: 9pt;">${vo.regDt }</td>
+													<td class="text-center col-md-2 col-xs-2" style="font-size: 9pt;">
+														<button type="button" class="btn btn-default btn-sm" id="do_commentComment">댓글달기</button>
+														<button type="button" class="btn btn-default btn-sm" id="do_commentUpdate">수정</button>  
+														<button type="button" class="btn btn-default btn-sm" id="do_commentDelete">삭제</button>  
+													</td>
+												</tr>
+         									</c:when>
+         									
+        									<c:otherwise>
+        										<tr>
+													<td class="text-left col-md-2 col-xs-2" style="font-size: 9pt;">${vo.regId }</td>
+													<td class="text-left col-md-6 col-xs-6" style="font-size: 9pt;">${vo.contents }</td>
+													<td class="text-left col-md-2 col-xs-2" style="font-size: 9pt;">${vo.regDt }</td>
+													<td class="text-center col-md-2 col-xs-2" style="font-size: 9pt;">
+														<button type="button" class="btn btn-default btn-sm" id="do_commentComment">댓글달기</button>
+														<button type="button" class="btn btn-default btn-sm" id="do_commentUpdate">수정</button>  
+														<button type="button" class="btn btn-default btn-sm" id="do_commentDelete">삭제</button>  
+													</td>
+												</tr>
+        									</c:otherwise>
+         								</c:choose>
+										
+									</c:forEach>
+								</c:when>
+							</c:choose>
+						</table> --%>
 					</div>
 				</td>
 			</tr>
