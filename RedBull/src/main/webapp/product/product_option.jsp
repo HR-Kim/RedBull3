@@ -29,9 +29,10 @@
 	<br>
 	<form id="detail_photo_frm" enctype="multipart/form-data">
 		<input type="hidden" name="root_path" value=<%=uploadPath%> size="15"><br/>
+		<input type="hidden" name="nextPnum" value=${nextPnum} size="15"><br/>
 		<table class="table" id="optAddTable">
 			<tbody>
-				<tr>
+				<tr><!--OPT : ONAME,OPRICE,PNUM,INUM // IMAGE : REFNUM,ORG_FILE_NM,SAVE_FILE_NM,FILE_SIZE,EXT_NM-->
 					<td><input type="text" name="oName" placeholder="옵션명" /></td>
 					<td><input type="text" name="oPrice" placeholder="가격(원)" /></td>
 					<td><input type="file" name="oFile" /></td>
@@ -46,8 +47,8 @@
 		</table>
 	</form>
 	<div class="form-group">
-		<button class="btn btn-primary" >등록</button>
-		<button class="btn btn-primary" >취소</button>
+		<button class="btn btn-primary" id="add_opt">등록</button>
+		<a class="btn btn-primary" href="${context}/product/product_mng.jsp">취소</a>
 	</div>
 	<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
 	<script src="${context}/resources/js/jquery-1.12.4.js"></script>

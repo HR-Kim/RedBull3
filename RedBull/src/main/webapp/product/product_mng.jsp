@@ -1,3 +1,4 @@
+<%@page import="kr.co.redbull.product.service.Product"%>
 <%@page import="java.io.File"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -11,6 +12,11 @@
 	String uploadPath = "git/RedBull3/RedBull/src/main/webapp/resources/img/product";
 	String user =  System.getProperty("user.home");
 	uploadPath = user+File.separator+uploadPath;
+	
+	//New Product Session
+	Product newProduct = new Product();
+	newProduct = (Product)session.getAttribute("newProduct");
+	String pCategory = newProduct.getpCategory();
 %>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -27,34 +33,33 @@
 <body>
 	<h2>상품 등록</h2>
 	<br>
-	<form id="detail_photo_frm" enctype="multipart/form-data">
+	<form id="frm_mng" name="frm_mng" enctype="multipart/form-data">
 		<input type="hidden" name="root_path" value=<%=uploadPath%> size="15"><br/>
-		<input type="hidden" name="nextPnum" value=${nextPnum} size="15"><br/>
 		
 		<!-- 카테고리 -->
 		<div class="form-group">
 			<label class="control-label requiredField" for="pCategory">카테고리<span class="asteriskField">*</span></label>
-			<input class="form-control" id="pCategory" name="pCategory" type="text" />
+			<input class="form-control" id="pCategory" name="pCategory" type="text" value="" />
 		</div>
 		<!-- 제품명 -->
 		<div class="form-group">
 			<label class="control-label requiredField" for="pName">제품명<span class="asteriskField">*</span></label>
-			<input class="form-control" id="pName" name="pName" type="text" />
+			<input class="form-control" id="pName" name="pName" type="text" value="" />
 		</div>
 		<!-- 기본가격 -->
 		<div class="form-group">
 			<label class="control-label requiredField" for="bPrice">기본가격<span class="asteriskField">*</span></label>
-			<input class="form-control" id="bPrice" name="bPrice" type="text" />
+			<input class="form-control" id="bPrice" name="bPrice" type="text" value="" />
 		</div>
 		<!-- 할인율 -->
 		<div class="form-group">
 			<label class="control-label" for="discount">할인율</label>
-			<input class="form-control" id="discount" name="discount" type="text" />
+			<input class="form-control" id="discount" name="discount" type="text" value="" />
 		</div>
 		<!-- 배송비 -->
 		<div class="form-group">
 			<label class="control-label" for="dPrice">배송비</label>
-			<input class="form-control" id="dPrice" name="dPrice" type="text" />
+			<input class="form-control" id="dPrice" name="dPrice" type="text" value="" />
 		</div>
 		<!-- 상세정보 -->
 		<div class="form-group">
@@ -64,7 +69,7 @@
 		<!-- 옵션 -->
 		<div class="form-group">
 			<label class="control-label" for="opt">옵션</label>
-			<button class="btn btn-primary btn-sm " id="opt_add" >추가</button>
+			<button class="btn btn-primary btn-sm" id="add_opt">추가</button>
 			${optList}
 			<div class="table-responsive">
 			<table class="table table-striped table-bordered table-hover" id="optTable">
@@ -100,13 +105,13 @@
 	<!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
 	<script src="${context}/resources/js/bootstrap.min.js"></script>
 	<script>
-		$("#opt_add").on("click",function(){
-			//alert("opt_add");
-			var frm = document.productFrm;
+		$("#add_opt").on("click", function(e){
+			//alert("add_opt");
+			e.preventDefault();
+			var frm = document.frm_mng;
 			frm.action = "${context}/product/do_product_option.do";
-    		frm.submit();			
+			frm.submit();
 		});
-		
 		$(document).ready(function(){
 			
 		});
