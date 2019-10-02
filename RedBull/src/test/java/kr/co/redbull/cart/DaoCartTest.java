@@ -46,13 +46,15 @@ public class DaoCartTest {
 	public void setUp() {
 		LOG.debug("setUp()");
 		list = Arrays.asList(
-				new Cart(1,187,1,"J01등록자_125")
+				new Cart(1,336,1,"J01등록자_125")
 				//new Cart(2,187,1,"J01등록자_126"),
 				//new Cart(3,188,1,"J01등록자_127")
 				);
 	}
 	
+	//할인가
 	@Test
+	@Ignore
 	public void sale() {
 		//=======================================
 		// 총 상품금액 조회
@@ -60,6 +62,7 @@ public class DaoCartTest {
 		cartDaoImpl.sale(list.get(0));
 	}
 	
+	//배송비
 	@Test
 	@Ignore
 	public void delivery() {
@@ -69,6 +72,7 @@ public class DaoCartTest {
 		cartDaoImpl.delivery(list.get(0));
 	}
 	
+	//전체 금액
 	@Test
 	@Ignore
 	public void total() {
@@ -123,7 +127,6 @@ public class DaoCartTest {
 	}
 	
 	@Test
-	@Ignore
 	public void addAndGet() {
 		//=======================================
 		//0. 기존 date삭제
@@ -172,10 +175,13 @@ public class DaoCartTest {
 		LOG.debug("===========================");
 		int count = cartDaoImpl.countCart(list.get(0));
 		if(count == 0) {
+			//상품 없을경우 추가
 			cartDaoImpl.do_save(list.get(0));
 		}else {
+			//상품 있을경우 수량 증가
 			cartDaoImpl.updateCart(list.get(0));
 		}
+		
 //		for(Cart vo: list) {
 //			int flag = cartDaoImpl.do_save(vo);
 //			assertThat(1, is(flag));
