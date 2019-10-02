@@ -162,7 +162,7 @@
 	<script type="text/javascript">
 		//글쓰기
 		$("#do_mng").on("click", function(){
-			alert('do_mng');
+			//alert('do_mng');
 			var frm = document.productFrm;
 			frm.action = "${context}/product/do_product_mng.do";
     		frm.submit();

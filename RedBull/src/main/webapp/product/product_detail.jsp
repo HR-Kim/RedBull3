@@ -49,6 +49,11 @@
 <link rel="stylesheet" href="${context}/resources/css/responsive.css" />
 </head>
 <body>
+<!--================Form Group - Product==============-->
+<form method="post" >
+	<input type="hidden" name="pNum" value="${productVO.pNum}"/>	
+</form>
+
 <!--================Home Banner Area =================-->
 <section class="banner_area">
 	<div class="banner_inner d-flex align-items-center">
@@ -162,6 +167,9 @@
 						<a class="icon_btn" href="#">
 							<i class="lnr lnr lnr-heart"></i>
 						</a>
+						<hr>
+						<a class="main_btn" href="javascript:write_product();">수정하기</a>
+						<a class="main_btn" href="javascript:delete_product();">삭제하기</a>
 					</div>
 				</div>
 			</div>
@@ -487,6 +495,14 @@
 	<script src="${context}/resources/vendors/isotope/imagesloaded.pkgd.min.js"></script>
 	<script src="${context}/resources/vendors/isotope/isotope-min.js"></script>
 	<script type="text/javascript">
+		//상품 수정
+		function write_product(){
+			alert("write_product");
+		}
+		//상품 삭제
+		function delete_product(){
+			alert("delete_product");
+		}
 		//탭 변경 시 active 설정 (ul-li-a)
 		$("#myTab li:first a").addClass("active").show();
 		$("#myTab li").on("click",function(){
