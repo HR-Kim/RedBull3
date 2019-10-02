@@ -95,7 +95,6 @@
 
   </head>
 <body>
-<<<<<<< HEAD
 <!--================Home Banner Area =================-->
 <section class="banner_area">
 	<div class="banner_inner d-flex align-items-center">
@@ -108,31 +107,6 @@
 				<div class="page_link">
 					<a href="index.html">Home</a> <a href="single-product.html">Product	Details</a>
 				</div>
-=======
-	<!-- div container -->
-	<div class="container">
-		<!-- div title -->
-		<div class="page-header">
-			<h1>스토어</h1>
-		</div>
-		<!--// div title -->
-
-		<!-- 검색영역 -->
-		<div class="row">
-			<div class="col-md-12 text-center">
-				<form class="form-inline" name="productFrm" id="productFrm" method="get">
-					<input type="hidden" name="pageNum" id="pageNum" value="${vo.pageNum}" />
-					<input type="hidden" name="searchDiv" id="searchDiv" />
-					<input type="hidden" name="pNum" id="pNum" />
-					<div class="form-group ">
-						<div class="col-sm-12">
-							<input type="text" class="form-control input-sm " id="searchWord" name="searchWord" placeholder="검색어" />
-							<button type="button" class="btn btn-default btn-sm" id="do_retrieve">검색</button>
-							<button type="button" class="btn btn-default btn-sm" id="do_mng">글쓰기</button>
-						</div>
-					</div>
-				</form>
->>>>>>> branch 'master' of https://github.com/HR-Kim/RedBull3.git
 			</div>
 		</div>
 	</div>
@@ -193,12 +167,14 @@
 
 					</div>
 					<!--// div container -->
-					<c:choose>
-						<c:when test="${list.size()>0}">
-							<c:forEach var="vo" items="${list}">
-								<div class="latest_product_inner" id="listTable">
-									<div class="row">
-										<div class="col-lg-4 col-md-6">
+
+					<div class="latest_product_inner" id="listTable">
+						<div class="row">
+							<div class="col-lg-4 col-md-6">
+								<c:choose>
+									<c:when test="${list.size()>0}">
+										<c:forEach var="vo" items="${list}">
+
 											<div class="single-product">
 												<div class="product-img">
 													<img class="card-img"
@@ -221,18 +197,21 @@
 													</div>
 												</div>
 											</div>
-										</div>
-									</div>
-								</div>
-							</c:forEach>
-					</c:when>
-					<c:otherwise>
-						<tr>
-							<td colspan="99">등록된 게시물이 없습니다.</td>
-						</tr>
-					</c:otherwise>
-				</c:choose>
-				<!-- pagenation -->
+										</c:forEach>
+									</c:when>
+									<c:otherwise>
+										<tr>
+											<td colspan="99">등록된 게시물이 없습니다.</td>
+										</tr>
+									</c:otherwise>
+								</c:choose>
+
+
+							</div>
+						</div>
+					</div>
+
+					<!-- pagenation -->
 				<div class="text-center">
 					<%=StringUtil.renderPaging(maxNum, currPageNo, rowPerPage, bottomCount, url, scriptName)%>
 				</div>
@@ -249,20 +228,9 @@
 	<script src="${context}/resources/vendors/isotope/imagesloaded.pkgd.min.js"></script>
 	<script src="${context}/resources/vendors/isotope/isotope-min.js"></script>
 	<script type="text/javascript">
-		//글쓰기
-		$("#do_mng").on("click", function(){
-			//alert('do_mng');
-			var frm = document.productFrm;
-			frm.action = "${context}/product/do_product_mng.do";
-    		frm.submit();
-		});
 		//단건조회
-<<<<<<< HEAD
 		//listTable
 	    $("#listTable>img").on("click","a",function(){
-=======
-	    $("#listTable>tbody").on("click","tr",function(){
->>>>>>> branch 'master' of https://github.com/HR-Kim/RedBull3.git
 	    	var tr  = $(this);
 	    	var td  =  tr.children();
 	    	var pNum = td.eq(0).text();
