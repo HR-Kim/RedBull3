@@ -11,21 +11,21 @@
 		
 	<!-- mail  -->
 	<!-- 개발용 메일 -->
-	<bean id="mailSender" class="kr.co.redbull.user.service.impl.DummyMailSender" />
+<!-- 	<bean id="mailSender" class="kr.co.redbull.user.service.impl.DummyMailSender" /> -->
 	
 	<!-- 운용 메일: ONLINE -->
-	<!-- 	<bean id="mailSender"
+	<bean id="mailSender"
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="session" ref="emailSession"></property>
 
-	</bean> -->
+	</bean>
 	
 	<bean id="passwordAuth" class="javax.mail.PasswordAuthentication">
 		<constructor-arg>
 			<value>sytemp1234</value>
 		</constructor-arg>
 		<constructor-arg>
-			<value>비밀번호</value>
+			<value>비밀번호넣기</value>
 		</constructor-arg>
 	</bean>
 
