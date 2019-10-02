@@ -26,7 +26,7 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public int do_updateI(DTO dto) {
+	public int do_update(DTO dto) {
 		
 		return cartDaoImpl.do_update(dto);
 	}

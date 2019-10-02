@@ -35,11 +35,13 @@
 		]]>
 	</select>
 	
- 	 <!-- FILE_ID기준 조회 -->
+ 	 <!-- Cart 조회 -->
  	 <select id="get_cartList" parameterType="Cart" resultType="Cart">
 		 	<![CDATA[
 					SELECT 
+						   i.save_file_nm as saveFileNm,
 						   c.cartnum as cartNum,
+						   p.bprice as bPrice,
 						   p.pname as pName,
 						   p.pnum as pNum,
 					       p.dprice as dPrice,
@@ -48,11 +50,13 @@
 					       c.regid as regId
 					FROM CART c JOIN PRODUCT p
 					ON c.pnum = p.pnum
-					WHERE c.regid = #{regId, jdbcType=VARCHAR}
+					JOIN IMAGE i
+					ON c.pnum = i.refnum
+					AND c.regid = #{regId, jdbcType=VARCHAR}
 			]]>
  	 </select>
 
-
+	<!-- cart 수량 수정 -->
 	<update id="do_update" parameterType="Cart">
 			<![CDATA[
 				UPDATE CART
@@ -65,6 +69,7 @@
 		      	  
 	</update>
 	
+	<!-- 현재 cart 수량확인 -->
 	<select id="countCart" resultType="int">
 			<![CDATA[
 				SELECT COUNT(*)
@@ -74,6 +79,7 @@
 			]]>
 	</select>
 	
+	<!-- 이미 상품이 존재할 경우 수량 증가 -->
 	<update id="updateCart" parameterType="Cart">
 		<![CDATA[
 			UPDATE CART 
@@ -83,6 +89,7 @@
 		]]>
 	</update>
 	
+	<!-- 상품이 없을경우 추가 -->
 	<insert id="do_save" parameterType="Cart">
 			INSERT INTO CART (
 			    PNUM,
@@ -95,6 +102,7 @@
 			)
 	</insert>
 	
+	<!-- 상품 삭제 -->
 	<delete id="do_delete" parameterType="Cart">
 		<![CDATA[
 			DELETE FROM CART

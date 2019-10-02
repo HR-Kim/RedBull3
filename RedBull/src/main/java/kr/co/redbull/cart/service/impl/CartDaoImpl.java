@@ -176,7 +176,7 @@ public class CartDaoImpl implements WorkDiv {
 		
 		int flag = this.sqlSessionTemplate.insert(statement, cart);
 		LOG.debug("================================");
-		LOG.debug("3. falg: " + flag);
+		LOG.debug("3. flag: " + flag);
 		LOG.debug("================================");
 		
 		return flag;

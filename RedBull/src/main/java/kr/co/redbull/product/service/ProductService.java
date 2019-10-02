@@ -6,6 +6,9 @@ import kr.co.redbull.cmn.DTO;
 import kr.co.redbull.cmn.Search;
 
 public interface ProductService {
+	/**새로운 Pnum*/
+	public DTO get_nextPnum();
+	
 	/**수정 */
 	public int do_update(DTO dto);
 
