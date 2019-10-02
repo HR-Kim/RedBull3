@@ -172,6 +172,7 @@ public class DaoProductTest {
 	 * 베스트 랭킹순
 	 */
 	@Test
+	@Ignore
 	public void get_rankList() {
 		LOG.debug("======================================");
 		LOG.debug("=01. 기존 데이터 삭제=");
