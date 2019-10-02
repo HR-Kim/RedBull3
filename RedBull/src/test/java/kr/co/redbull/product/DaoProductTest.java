@@ -73,13 +73,12 @@ public class DaoProductTest {
 	 * 카테고리 순
 	 */
 	@Test
-	@Ignore
 	public void get_categoryList() {
 		LOG.debug("======================================");
 		LOG.debug("=01. 기존 데이터 삭제=");
 		LOG.debug("======================================");	
 		Search search=new Search();
-		search.setSearchWord("125");
+		search.setSearchWord("");
 		List<Product> getList = (List<Product>) productDaoImpl.get_pnameList(search);
 		for(Product vo:getList) {
 			productDaoImpl.do_delete(vo);
@@ -107,13 +106,12 @@ public class DaoProductTest {
 	 * 세일순
 	 */
 	@Test
-	@Ignore
 	public void get_hotSaleList() {
 		LOG.debug("======================================");
 		LOG.debug("=01. 기존 데이터 삭제=");
 		LOG.debug("======================================");	
 		Search search=new Search();
-		search.setSearchWord("125");
+		search.setSearchWord("");
 		List<Product> getList = (List<Product>) productDaoImpl.get_pnameList(search);
 		for(Product vo:getList) {
 			productDaoImpl.do_delete(vo);
@@ -141,13 +139,12 @@ public class DaoProductTest {
 	 * 신상품순
 	 */
 	@Test
-	@Ignore
 	public void get_newList() {
 		LOG.debug("======================================");
 		LOG.debug("=01. 기존 데이터 삭제=");
 		LOG.debug("======================================");	
 		Search search=new Search();
-		search.setSearchWord("125");
+		search.setSearchWord("");
 		List<Product> getList = (List<Product>) productDaoImpl.get_pnameList(search);
 		for(Product vo:getList) {
 			productDaoImpl.do_delete(vo);
@@ -180,7 +177,7 @@ public class DaoProductTest {
 		LOG.debug("=01. 기존 데이터 삭제=");
 		LOG.debug("======================================");	
 		Search search=new Search();
-		search.setSearchWord("125");
+		search.setSearchWord("");
 		List<Product> getList = (List<Product>) productDaoImpl.get_pnameList(search);
 		for(Product vo:getList) {
 			productDaoImpl.do_delete(vo);

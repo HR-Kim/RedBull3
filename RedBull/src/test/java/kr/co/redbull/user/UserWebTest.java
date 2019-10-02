@@ -36,6 +36,7 @@ import com.google.gson.Gson;
 import kr.co.redbull.user.service.Level;
 import kr.co.redbull.user.service.User;
 import kr.co.redbull.user.service.impl.UserDaoImpl;
+import kr.co.redbull.user.service.impl.UserServiceImpl;
 
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -50,6 +51,9 @@ public class UserWebTest {
 	
 	@Autowired
 	private UserDaoImpl userDaoImpl;
+	
+	@Autowired
+	private UserServiceImpl userServiceImpl;
 	
 	List<User> users;
 	
@@ -67,7 +71,7 @@ public class UserWebTest {
 		//			   String detadd, int lvl, int upoint, int inum, String regdt)
 		users = Arrays.asList(
 				new User("j01_145", "password", "이상무145_01", "1900/01/01", "010-1111-1111", 12345, "주소",
-						 "상세주소", Level.BASIC, 0, 9999, "2019/10/01"), 
+						 "상세주소", Level.BASIC, 2000, 9999, "2019/10/01"), 
 				new User("j02_145", "password", "이상무145_02", "1900/01/01", "010-1111-1111", 12345, "주소",
 						 "상세주소", Level.SILVER, 0, 9999, "2019/10/01"),  
 				new User("j03_145", "password", "이상무145_03", "1900/01/01", "010-1111-1111", 12345, "주소",
@@ -81,6 +85,21 @@ public class UserWebTest {
 		LOG.debug("mockMvc: " + mockMvc);
 		LOG.debug("userDaoImpl: " + userDaoImpl);
 		LOG.debug("=========================");
+	}
+	
+	@Test
+	@Ignore
+	public void upgradeLevel() throws Exception {
+		
+		User user = users.get(0);
+		
+		upgradeLevel(user);
+		
+	}
+	
+	public void upgradeLevel(User user) throws Exception {
+		
+		userServiceImpl.upgradeLevel(user);
 	}
 	
 	@Test
