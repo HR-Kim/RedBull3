@@ -8,6 +8,53 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	
+	<!-- File Upload설정 -->
+	<bean id="multipartResolver" 
+	class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8"/>
+		<!-- 용량: 5*1024*1024 -->
+		<property name="maxUploadSize"  value="52428800"/>
+		<property name="maxInMemorySize" value="52428800"/>
+	</bean>	
+		
+	<!-- mail  -->
+	<!-- 개발용 메일 -->
+	<bean id="mailSender" class="kr.co.redbull.user.service.impl.DummyMailSender" />
+	
+	<!-- 운용 메일: ONLINE -->
+	<!-- 	<bean id="mailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="session" ref="emailSession"></property>
+
+	</bean> -->
+	
+	<bean id="passwordAuth" class="javax.mail.PasswordAuthentication">
+		<constructor-arg>
+			<value>sytemp1234</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>비밀번호</value>
+		</constructor-arg>
+	</bean>
+
+	<bean id="authenticator" class="javax.mail.Authenticator">
+		<lookup-method name="getPasswordAuthentication"
+			bean="passwordAuth" />
+	</bean>
+
+	<bean id="emailSession" class="javax.mail.Session">
+		<constructor-arg>
+			<props>
+				<prop key="mail.smtp.host">smtp.naver.com</prop>
+				<prop key="mail.smtp.port">465</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.ssl.enable">true</prop>
+				<prop key="mail.smtp.ssl.trust">smtp.naver.com</prop>
+			</props>
+		</constructor-arg>
+		<constructor-arg ref="authenticator" />
+	</bean>
 		
 	<!-- locale change -->
 	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
@@ -60,7 +107,7 @@
 		</property>
 	</bean>
 	
-		<!-- AspectJ Transaction -->  
+	<!-- AspectJ Transaction -->  
 	<!-- DataSourceTransactionManager -->
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

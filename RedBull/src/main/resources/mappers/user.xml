@@ -13,7 +13,7 @@
 	    postnum,
 	    address,
 	    detadd,
-	    DECODE(lvl, 10, 'BASIC', 20, 'SILVER', 30, 'GOLD', 40, 'MANAGER', 'NOLEVEL') AS lvl,
+	    DECODE(lvl, 10, 'BASIC', 20, 'SILVER', 30, 'GOLD', 90, 'MANAGER', 'NOLEVEL') as lvl,
 	    upoint,
 	    inum,
 	    TO_CHAR(regdt, 'YYYY/MM/DD') AS regdt
@@ -83,7 +83,7 @@
 	
 	<!-- 업데이트 -->
 	<update id="do_update" parameterType="User"> <!-- Alias 사용 -->
-		UPDATE users            
+		UPDATE ruser            
 		SET                     
 		    rid       = #{rid, jdbcType=VARCHAR},   
 		    passwd       = #{passwd, jdbcType=VARCHAR},  
@@ -93,10 +93,10 @@
 			postnum       = #{postnum, jdbcType=NUMERIC},  
 		    address       = #{address, jdbcType=VARCHAR},  
 		    detadd       = #{detadd, jdbcType=VARCHAR},  
-		    lvl       = #{lvl, jdbcType=NUMERIC},  
+		    lvl       = #{intlvl, jdbcType=NUMERIC},  
 		    upoint       = #{upoint, jdbcType=NUMERIC}, 
 		    inum       = #{inum, jdbcType=NUMERIC},     
-		    ,reg_dt    = SYSDATE
+		    regdt    = SYSDATE
 		WHERE                   
 		    rid = #{rid, jdbcType=VARCHAR}          
 	</update>
@@ -106,8 +106,8 @@
 		SELECT                                   
 			<include refid="userColumns"></include>                 
 		FROM                                     
-		    users                                
-		WHERE u_id = #{u_id, jdbcType=VARCHAR}                   
+		    ruser                                
+		WHERE rid = #{rid, jdbcType=VARCHAR}                   
 	</select>
 	
 	<!-- 등록 -->
@@ -126,25 +126,29 @@
 	    inum,
 	    regdt      
 	) VALUES (         
-	    rid       = #{rid, jdbcType=VARCHAR},   
-	    passwd       = #{passwd, jdbcType=VARCHAR},  
-	    uname       = #{uname, jdbcType=VARCHAR},  
-	    birth       = #{birth, jdbcType=VARCHAR},  
-	    phone       = #{phone, jdbcType=VARCHAR},  
-		postnum       = #{postnum, jdbcType=NUMERIC},  
-	    address       = #{address, jdbcType=VARCHAR},  
-	    detadd       = #{detadd, jdbcType=VARCHAR}, 
-	    lvl       = #{lvl, jdbcType=NUMERIC},  
-	    upoint       = #{upoint, jdbcType=NUMERIC}, 
-	    inum       = #{inum, jdbcType=NUMERIC},     
-	    ,reg_dt    = SYSDATE      
+	    #{rid, jdbcType=VARCHAR},   
+	    #{passwd, jdbcType=VARCHAR},  
+	    #{uname, jdbcType=VARCHAR},  
+	    #{birth, jdbcType=VARCHAR},  
+	    #{phone, jdbcType=VARCHAR},  
+		#{postnum, jdbcType=NUMERIC},  
+	    #{address, jdbcType=VARCHAR},  
+	    #{detadd, jdbcType=VARCHAR}, 
+	    #{intlvl, jdbcType=NUMERIC},  
+	    0, 
+	    #{inum, jdbcType=NUMERIC},    
+	    SYSDATE      
 	)                  
 	</insert>
 	
 	<!-- 삭제 -->
-	<!-- namespace + id로 호출함 : kr.co.ehr.user.de_delete -->
+	<!-- namespace + id로 호출함 : kr.co.redbull.user.do_delete -->
 	<delete id="do_delete" parameterType="User"> <!-- Alias 사용 -->
-		DELETE FROM users WHERE u_id = #{u_id} <!-- VO의 멤버변수 이름을 줌 -->
+		<![CDATA[
+			DELETE 
+			FROM ruser 
+			WHERE rid = #{rid, jdbcType=VARCHAR}
+		]]>
 	</delete>
 
 </mapper>

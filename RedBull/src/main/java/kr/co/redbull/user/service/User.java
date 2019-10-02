@@ -1,5 +1,6 @@
 package kr.co.redbull.user.service;
 
+import kr.co.redbull.user.service.Level;
 import kr.co.redbull.cmn.DTO;
 
 public class User extends DTO {
@@ -13,7 +14,8 @@ public class User extends DTO {
 	private int postnum;   // 우편번호(NN)
 	private String address;// 주소(NN)
 	private String detadd; // 자세한주소
-	private int lvl;       // 레벨
+	private Level lvl;       // 레벨
+	private int intlvl;       // 레벨
 	private int upoint;    // 포인트
 	private int inum;      // 이미지번호
 	private String regdt;  // 등록일(SYSDATE)
@@ -24,9 +26,24 @@ public class User extends DTO {
 
 	}
 	
-	/**멤버변수 전체를 매개변수로 하는 생성자*/
+	
 	public User(String rid, String passwd, String uname, String birth, String phone, int postnum, String address,
-			String detadd, int lvl, int upoint, int inum, String regdt) {
+			String detadd, int inum) {
+		super();
+		this.rid = rid;
+		this.passwd = passwd;
+		this.uname = uname;
+		this.birth = birth;
+		this.phone = phone;
+		this.postnum = postnum;
+		this.address = address;
+		this.detadd = detadd;
+		this.inum = inum;
+	}
+	
+	/**멤버변수 전체를 매개변수로 하는 생성자: intlvl 빼고*/
+	public User(String rid, String passwd, String uname, String birth, String phone, int postnum, String address,
+			String detadd, Level lvl, int upoint, int inum, String regdt) {
 		super();
 		this.rid = rid;
 		this.passwd = passwd;
@@ -42,6 +59,7 @@ public class User extends DTO {
 		this.regdt = regdt;
 	}
 
+	
 	/**setter/getter*/
 	public String getRid() {
 		return rid;
@@ -107,12 +125,20 @@ public class User extends DTO {
 		this.detadd = detadd;
 	}
 
-	public int getLvl() {
+	public Level getLvl() {
 		return lvl;
 	}
 
-	public void setLvl(int lvl) {
+	public void setLvl(Level lvl) {
 		this.lvl = lvl;
+	}
+
+	public int getintlvl() {
+		return intlvl;
+	}
+
+	public void setintlvl(int intlvl) {
+		this.intlvl = intlvl;
 	}
 
 	public int getUpoint() {
@@ -143,8 +169,9 @@ public class User extends DTO {
 	@Override
 	public String toString() {
 		return "User [rid=" + rid + ", passwd=" + passwd + ", uname=" + uname + ", birth=" + birth + ", phone=" + phone
-				+ ", postnum=" + postnum + ", address=" + address + ", detadd=" + detadd + ", lvl=" + lvl + ", upoint="
-				+ upoint + ", inum=" + inum + ", regdt=" + regdt + ", toString()=" + super.toString() + "]";
+				+ ", postnum=" + postnum + ", address=" + address + ", detadd=" + detadd + ", lvl=" + lvl + ", intlvl="
+				+ intlvl + ", upoint=" + upoint + ", inum=" + inum + ", regdt=" + regdt + ", toString()="
+				+ super.toString() + "]";
 	}
 
 	@Override
@@ -154,8 +181,9 @@ public class User extends DTO {
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + ((birth == null) ? 0 : birth.hashCode());
 		result = prime * result + ((detadd == null) ? 0 : detadd.hashCode());
+		result = prime * result + intlvl;
 		result = prime * result + inum;
-		result = prime * result + lvl;
+		result = prime * result + ((lvl == null) ? 0 : lvl.hashCode());
 		result = prime * result + ((passwd == null) ? 0 : passwd.hashCode());
 		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
 		result = prime * result + postnum;
@@ -189,6 +217,8 @@ public class User extends DTO {
 			if (other.detadd != null)
 				return false;
 		} else if (!detadd.equals(other.detadd))
+			return false;
+		if (intlvl != other.intlvl)
 			return false;
 		if (inum != other.inum)
 			return false;
@@ -224,6 +254,22 @@ public class User extends DTO {
 		if (upoint != other.upoint)
 			return false;
 		return true;
+	}
+	
+	/**등업 NextLevel*/
+	public void upgradeLevel(){
+		
+		Level nextLevel = this.lvl.getNextLevel();
+		
+		if(null == nextLevel) {
+			
+			throw new IllegalStateException(this.lvl + "은 업그레이드가 불가능합니다.");
+		}
+		else {
+			
+			this.lvl = nextLevel;
+		}
+		
 	}
 
 

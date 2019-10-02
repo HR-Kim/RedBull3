@@ -21,6 +21,25 @@ public class ProductDaoImpl implements WorkDiv {
 	
 	private final String NAMESPACE = "kr.co.redbull.product";
 	
+	//새로운 시퀀스 넘버 조회
+	public DTO get_nextPnum() {
+		String statement = NAMESPACE+".get_nextPnum";
+		LOG.debug("======================================");
+		LOG.debug("=1.no param=");
+		LOG.debug("======================================");
+		
+		LOG.debug("======================================");
+		LOG.debug("=2.statement="+statement);
+		LOG.debug("======================================");
+		
+		Product outVO = (Product) this.sqlSessionTemplate.selectOne(statement);
+		LOG.debug("======================================");
+		LOG.debug("=2.outVO="+outVO);
+		LOG.debug("======================================");
+		
+		return outVO;
+	}
+	
 	//카테고리순
 	public List<?> get_categoryList(DTO dto) {
 		String statement = NAMESPACE+".get_categoryList";

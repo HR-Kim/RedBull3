@@ -17,6 +17,11 @@ public class ProductServiceImpl implements ProductService{
 	ProductDaoImpl productDaoImpl;
 	
 	@Override
+	public DTO get_nextPnum() {
+		return productDaoImpl.get_nextPnum();
+	}
+	
+	@Override
 	public int do_update(DTO dto) {
 		return productDaoImpl.do_update(dto);
 	}
