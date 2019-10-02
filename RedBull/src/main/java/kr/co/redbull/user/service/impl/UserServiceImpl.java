@@ -3,10 +3,17 @@ package kr.co.redbull.user.service.impl;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
+
+import javax.mail.Authenticator;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
 import kr.co.redbull.cmn.DTO;
@@ -22,6 +29,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private ExcelWriter excelWriter;
+	
+	@Autowired
+	private MailSender mailSender;
 
 	// Dao와 연결
 	@Autowired
@@ -34,7 +44,7 @@ public class UserServiceImpl implements UserService {
 		// 2.2 SILVER 사용자가 포인트 1000점 이상이면 : SILVER -> GOLD
 		// 2.3 GOLD : 대상 아님
 	// 3. 대상자 업그레이드 레벌 선정 및 업그레이드
-	protected void upgradeLevel(User user) throws SQLException {
+	public void upgradeLevel(User user) throws SQLException {
 		
 		user.upgradeLevel(); // VO 부분에 기능을 만듦
 		
@@ -44,6 +54,76 @@ public class UserServiceImpl implements UserService {
 	
 		
 	}//--upgradeLevel
+	
+	/**등업 사용자에게 메일 전송*/
+	private void sendUpgradeMail(User user) {
+		
+		try {
+			
+			// 보내는 사람
+			String host = "smtp.naver.com";
+			final String userName = "sytemp1234";
+			final String password = "비밀번호";
+			int port = 465;
+			
+			// 받는 사람
+			String recipient = user.getRid();
+			
+			// 제목
+			String title = user.getUname() + "등업(집순이 쇼핑몰)";
+			
+			// 내용
+			String contents = user.getUname() + "님의 등급이 " + user.getLvl().name() + "(로)으로 되었습니다.";
+			
+			// SMTP 서버 설정
+			Properties props = System.getProperties();
+			props.put("mail.smtp.host", host);
+			props.put("mail.smtp.port", port);
+			props.put("mail.smtp.auth", "true");
+			props.put("mail.smtp.ssl.enable", "true");
+			props.put("mail.smtp.ssl.trust", host);
+			
+			// 인증
+			Session session = Session.getInstance(props, new Authenticator() {
+		
+				String uName = userName;
+				String passwd = password;
+
+				@Override
+				protected PasswordAuthentication getPasswordAuthentication() {
+					
+					return new PasswordAuthentication(uName, passwd);
+				}
+				
+			});
+			
+			SimpleMailMessage mimeMessage = new SimpleMailMessage();
+			
+			// 보내는 사람
+			mimeMessage.setFrom("sytemp1234@naver.com");
+		
+			// 받는 사람
+			mimeMessage.setTo(recipient);
+			
+			// 제목
+			mimeMessage.setSubject(title);
+			
+			// 내용
+			mimeMessage.setText(contents);
+			
+			this.mailSender.send(mimeMessage);
+			
+				
+		}catch(Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		LOG.info("===============================");
+		LOG.info("=mail send=");
+		LOG.info("===============================");
+		
+	}//--sendUpgradeMail
 	
 	
 	@Override
@@ -127,5 +207,6 @@ public class UserServiceImpl implements UserService {
 		return saveFileNm; // 생성한 엑셀 파일의 저장파일명을 반환
 		
 	}
+
 
 }//--class
