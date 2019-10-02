@@ -22,9 +22,15 @@ public interface CartService {
 	public int total(DTO dto);
 	
 	/**동일상품 확인*/
-	public int product_check(DTO dto);
+	public int countCart(DTO dto);
 	
 	/**동일상품 수량 변경*/
-	public int accumulation(DTO dto);
+	public int updateCart(DTO dto);
+	
+	/**배송비 */
+	public int delivery(DTO dto);
+	
+	/**할인가격*/
+	public int sale(DTO dto);
 
 }
