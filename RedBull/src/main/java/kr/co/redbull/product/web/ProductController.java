@@ -31,6 +31,14 @@ public class ProductController {
 	private final String VIEW_DETAIL  ="product/product_detail";
 	private final String VIEW_MNG_NM  ="product/product_mng";
 	
+	@RequestMapping(value = "product/do_product_mng.do", method = RequestMethod.GET)
+	public String do_product_mng(Model model, HttpServletRequest request) {
+		LOG.debug("================================");
+		LOG.debug("do_product_mng");
+		LOG.debug("================================");
+		return VIEW_MNG_NM;
+	}
+	
 	@RequestMapping(value = "product/get_retrieve.do", method = RequestMethod.GET)
 	public String get_retrieve(Search search, Model model, HttpServletRequest request) {
 		
