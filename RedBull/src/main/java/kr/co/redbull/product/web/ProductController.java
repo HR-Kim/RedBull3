@@ -30,12 +30,28 @@ public class ProductController {
 	private String viewListNm ="product/category_all";
 	private final String VIEW_DETAIL  ="product/product_detail";
 	private final String VIEW_MNG_NM  ="product/product_mng";
+	private final String VIEW_OPT_NM  ="product/product_option";
 	
+	//옵션 추가 화면 이동
+	@RequestMapping(value = "product/do_product_option.do", method = RequestMethod.GET)
+	public String do_product_option(Model model, HttpServletRequest request) {
+		LOG.debug("================================");
+		LOG.debug("do_product_option");
+		LOG.debug("================================");		
+		
+		return VIEW_OPT_NM;
+	}
+	//글쓰기 화면 이동
 	@RequestMapping(value = "product/do_product_mng.do", method = RequestMethod.GET)
 	public String do_product_mng(Model model, HttpServletRequest request) {
 		LOG.debug("================================");
 		LOG.debug("do_product_mng");
 		LOG.debug("================================");
+		
+		//새로운 Pnum 생성
+		Product newProduct = (Product) productService.get_nextPnum();
+		model.addAttribute("nextPnum",newProduct.getpNum());
+		
 		return VIEW_MNG_NM;
 	}
 	

@@ -32,7 +32,7 @@ public class ProductDaoImpl implements WorkDiv {
 		LOG.debug("=2.statement="+statement);
 		LOG.debug("======================================");
 		
-		Product outVO = (Product) this.sqlSessionTemplate.selectList(statement);
+		Product outVO = (Product) this.sqlSessionTemplate.selectOne(statement);
 		LOG.debug("======================================");
 		LOG.debug("=2.outVO="+outVO);
 		LOG.debug("======================================");

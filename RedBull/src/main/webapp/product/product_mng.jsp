@@ -29,7 +29,7 @@
 	<br>
 	<form id="detail_photo_frm" enctype="multipart/form-data">
 		<input type="hidden" name="root_path" value=<%=uploadPath%> size="15"><br/>
-		<input type="hidden" name="root_path" value=<%=uploadPath%> size="15"><br/>
+		<input type="hidden" name="nextPnum" value=${nextPnum} size="15"><br/>
 		
 		<!-- 카테고리 -->
 		<div class="form-group">
@@ -102,8 +102,9 @@
 	<script>
 		$("#opt_add").on("click",function(){
 			//alert("opt_add");
-			
-			
+			var frm = document.productFrm;
+			frm.action = "${context}/product/do_product_option.do";
+    		frm.submit();			
 		});
 		
 		$(document).ready(function(){
