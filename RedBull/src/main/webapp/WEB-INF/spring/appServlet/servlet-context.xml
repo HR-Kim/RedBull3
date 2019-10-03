@@ -28,7 +28,7 @@
 	</beans:bean>
 	
 	<!-- FileDownload View -->
-	<beans:bean id="downloadView" class="kr.co.redbull.cmn.DownloadView"/>
+	<beans:bean id="downloadView" class="kr.co.redbull.cmn.DownloadView"/> 
 	
 	<context:component-scan base-package="kr.co.redbull" />
 	

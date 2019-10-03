@@ -83,92 +83,154 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+	<link rel="stylesheet" href="${context}/resources/vendors/linericon/style.css" />
+	<link rel="stylesheet" href="${context}/resources/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="${context}/resources/css/themify-icons.css" />
+	<link rel="stylesheet" href="${context}/resources/vendors/lightbox/simpleLightbox.css" />
+	<link rel="stylesheet" href="${context}/resources/vendors/nice-select/css/nice-select.css" />
+	<link rel="stylesheet" href="${context}/resources/vendors/animate-css/animate.css" />
+	<!-- main css -->
+	<link rel="stylesheet" href="${context}/resources/css/style.css" />
+	<link rel="stylesheet" href="${context}/resources/css/responsive.css" />
 
   </head>
 <body>
-	<!-- div container -->
-	<div class="container">
-		<!-- div title -->
-		<div class="page-header">
-			<h1>스토어</h1>
-		</div>
-		<!--// div title -->
-
-		<!-- 검색영역 -->
-		<div class="row">
-			<div class="col-md-12 text-center">
-				<form class="form-inline" name="productFrm" id="productFrm" method="get">
-					<input type="hidden" name="pageNum" id="pageNum" value="${vo.pageNum}" />
-					<input type="hidden" name="searchDiv" id="searchDiv" />
-					<input type="hidden" name="pNum" id="pNum" />
-					<div class="form-group ">
-						<div class="col-sm-12">
-							<input type="text" class="form-control input-sm " id="searchWord" name="searchWord" placeholder="검색어" />
-							<button type="button" class="btn btn-default btn-sm" id="do_retrieve">검색</button>
-							<button type="button" class="btn btn-default btn-sm" id="do_mng">글쓰기</button>
-						</div>
-					</div>
-				</form>
+<!--================Home Banner Area =================-->
+<section class="banner_area">
+	<div class="banner_inner d-flex align-items-center">
+		<div class="container">
+			<div
+				class="banner_content d-md-flex justify-content-between align-items-center">
+				<div class="mb-3 mb-md-0">
+					<h2>스토어</h2>
+				</div>
+				<div class="page_link">
+					<a href="index.html">Home</a> <a href="single-product.html">Product	Details</a>
+				</div>
 			</div>
 		</div>
-		<!--// 검색영역 -->
+	</div>
+</section>
+<!--================End Home Banner Area =================-->
 
-		<!-- Grid영역 -->
-
-		<c:choose>
-			<c:when test="${list.size()>0}">
-				<c:forEach var="vo" items="${list}">
+	<!--================Category Product Area =================-->
+	<section class="cat_product_area section_gap">
+		<div class="container">
+			<div class="row flex-row-reverse">
+				<div class="col-lg-9">
+					<div class="col-lg-3">
+						<div class="left_sidebar_area">
+							<aside class="left_widgets p_filter_widgets">
+								<div class="l_w_title">
+									<h3>Browse Categories</h3>
+								</div>
+								<div class="widgets_inner">
+									<ul class="list">
+										<li><a href="#">가구</a></li>
+										<li><a href="#">침구</a></li>
+										<li><a href="#">생활용품</a></li>
+									</ul>
+								</div>
+							</aside>
+						</div>
+					</div>
+					<!-- div container -->
 					<div class="container">
-						<table class="table table-bordered table-sm" id="listTable">
-							<tr>
-								<td style="display: none;">${vo.pNum}</td>
-								<td colspan="5" style="cursor: pointer;"><b>${vo.pName}</b></td>
-								<td class="text-left col-md-1 col-xs-1" rowspan="3"><img src="${context}/board/noimage.jpg" class="img-thumbnail"></td>
-							</tr>
-							<tr>
-								<td class="text-left col-md-4 col-xs-4" colspan="5">${vo.bPrice}</td>
-							</tr>
-							<tr>
-								<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">할인 ${vo.discount}</td>
-							</tr>
-							<tr style="border-bottom: 1px;"></tr>
-						</table>
-						<br />
+
+						<!-- 검색영역 -->
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<form class="form-inline" name="productFrm" id="productFrm"
+									method="get">
+									<input type="hidden" name="pageNum" id="pageNum"
+										value="${vo.pageNum}" /> <input type="hidden"
+										name="searchDiv" id="searchDiv" /> <input type="hidden"
+										name="pNum" id="pNum" />
+									<div class="form-group ">
+										<div class="col-sm-12">
+											<input type="text" class="form-control input-sm "
+												id="searchWord" name="searchWord" placeholder="검색어" />
+											<button type="button" class="btn btn-default btn-sm"
+												id="do_retrieve">검색</button>
+											<button type="button" class="btn btn-default btn-sm"
+												id="do_write">글쓰기</button>
+
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+						<!--검색영역 end -->
+
+					
+
+
+					</div>
+					<!--// div container -->
+
+					<div class="latest_product_inner" id="listTable">
+						<div class="row">
+							<div class="col-lg-4 col-md-6">
+								<c:choose>
+									<c:when test="${list.size()>0}">
+										<c:forEach var="vo" items="${list}">
+
+											<div class="single-product">
+												<div class="product-img">
+													<img class="card-img"
+														src="${context}/resources/img/product/inspired-product/i1.jpg"
+														alt="" />
+													<div class="p_icon">
+														<a href="#"> <i class="ti-eye"></i>
+														</a> <a href="#"> <i class="ti-heart"></i>
+														</a> <a href="#"> <i class="ti-shopping-cart"></i>
+														</a>
+													</div>
+												</div>
+												<div class="product-btm">
+													<a href="#" class="d-block">
+														<h4>${vo.pName}</h4>
+													</a>
+													<div class="mt-3">
+														<span class="mr-4">${vo.bPrice}</span>
+														<del>${vo.discount}</del>
+													</div>
+												</div>
+											</div>
+										</c:forEach>
+									</c:when>
+									<c:otherwise>
+										<tr>
+											<td colspan="99">등록된 게시물이 없습니다.</td>
+										</tr>
+									</c:otherwise>
+								</c:choose>
+
+
+							</div>
+						</div>
 					</div>
 
-				</c:forEach>
-			</c:when>
-			<c:otherwise>
-				<tr>
-					<td colspan="99">등록된 게시물이 없습니다.</td>
-				</tr>
-			</c:otherwise>
-		</c:choose>
-
-		<!--// Grid영역 -->
-
-		<!-- pagenation -->
-		<div class="text-center">
-			<%=StringUtil.renderPaging(maxNum, currPageNo, rowPerPage, bottomCount, url, scriptName)%>
-		</div>
-		<!--// pagenation -->
-
-	</div>
-	<!--// div container -->
+					<!-- pagenation -->
+				<div class="text-center">
+					<%=StringUtil.renderPaging(maxNum, currPageNo, rowPerPage, bottomCount, url, scriptName)%>
+				</div>
+				<!--// pagenation -->
+	</section>
+	<!--================End Category Product Area =================-->
+	
 	<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
 	<script src="${context}/resources/js/jquery-1.12.4.js"></script>
 	<!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
-	<script src="${context}/resources/js/bootstrap.min.js"></script>    
+	<script src="${context}/resources/js/bootstrap.min.js"></script>  
+	<script src="${context}/resources/js/stellar.js"></script>
+	<script src="${context}/resources/vendors/lightbox/simpleLightbox.min.js"></script>
+	<script src="${context}/resources/vendors/isotope/imagesloaded.pkgd.min.js"></script>
+	<script src="${context}/resources/vendors/isotope/isotope-min.js"></script>
 	<script type="text/javascript">
-		//글쓰기
-		$("#do_mng").on("click", function(){
-			alert('do_mng');
-			var frm = document.productFrm;
-			frm.action = "${context}/product/do_product_mng.do";
-    		frm.submit();
-		});
 		//단건조회
-	    $("#listTable>tbody").on("click","tr",function(){
+		//listTable
+	    $("#listTable>img").on("click","a",function(){
 	    	var tr  = $(this);
 	    	var td  =  tr.children();
 	    	var pNum = td.eq(0).text();

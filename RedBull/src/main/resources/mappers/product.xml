@@ -18,7 +18,7 @@
 		CASE TO_CHAR(moddt, 'yyyy/mm/dd') when TO_CHAR(sysdate, 'yyyy/mm/dd') THEN TO_CHAR(sysdate, 'HH24:MI')
   		ELSE TO_CHAR(moddt, 'yyyy/mm/dd') END AS modDt
 	</sql>
-	<!-- 아이디검색 -->
+	<!-- 검색어 설정 -->
 	<sql id="baseCondition">
 			<choose>
 				<when test="'10' == searchDiv">
@@ -30,6 +30,12 @@
 				<otherwise></otherwise>							
 			</choose>
 	</sql>
+	
+	<!-- NEXT PNUM 조회 -->
+	<select id="get_nextPnum" resultType="Product">
+		SELECT MAX(PNUM)+1 as pNum
+		FROM PRODUCT
+	</select>
 	
 	<!-- 카테고리상품 목록조회 -->
 	<select id="get_categoryList" parameterType="Search" resultType="Product">

@@ -4,6 +4,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.Arrays;
@@ -35,6 +36,7 @@ import com.google.gson.Gson;
 import kr.co.redbull.user.service.Level;
 import kr.co.redbull.user.service.User;
 import kr.co.redbull.user.service.impl.UserDaoImpl;
+import kr.co.redbull.user.service.impl.UserServiceImpl;
 
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -50,6 +52,9 @@ public class UserWebTest {
 	@Autowired
 	private UserDaoImpl userDaoImpl;
 	
+	@Autowired
+	private UserServiceImpl userServiceImpl;
+	
 	List<User> users;
 	
 	// 웹 애플리케이션을 애플리케이션 서버에 배포하지 않고도 스프링 MVC의 동작을 재현할 수 있는 클래스
@@ -63,14 +68,14 @@ public class UserWebTest {
 		LOG.debug("=========================");
 		
 		// public User(String rid, String passwd, String uname, String birth, String phone, int postnum, String address,
-		//			   String detadd, (int lvl, int upoint,) int inum, (String regdt))
+		//			   String detadd, int lvl, int upoint, int inum, String regdt)
 		users = Arrays.asList(
 				new User("j01_145", "password", "이상무145_01", "1900/01/01", "010-1111-1111", 12345, "주소",
-						 "상세주소", 9999), 
-				new User("j02_145", "password", "이상무145_02", "1900/01/01", "010-1111-1111", 12345, "주소",
-						 "상세주소", 9999), 
+						 "상세주소", Level.BASIC, 2000, 9999, "2019/10/01"), 
+				new User("sytemp1234@naver.com", "password", "이상무145_02", "1900/01/01", "010-1111-1111", 12345, "주소",
+						 "상세주소", Level.SILVER, 3000, 9999, "2019/10/01"),  
 				new User("j03_145", "password", "이상무145_03", "1900/01/01", "010-1111-1111", 12345, "주소",
-						 "상세주소", 9999)	
+						 "상세주소", Level.GOLD, 0, 9999, "2019/10/01")
 		);
 		
 		mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
@@ -80,6 +85,70 @@ public class UserWebTest {
 		LOG.debug("mockMvc: " + mockMvc);
 		LOG.debug("userDaoImpl: " + userDaoImpl);
 		LOG.debug("=========================");
+	}
+	
+	/**등업*/
+	@Test
+	@Ignore
+	public void upgradeLevel() throws Exception {
+		
+		User user = users.get(1);
+		
+		upgradeLevel(user);
+		
+	}
+	
+	public void upgradeLevel(User user) throws Exception {
+		
+		userServiceImpl.upgradeLevel(user);
+	}
+	
+	/**화면전환*/
+	@Test
+	@Ignore
+	public void doUserView() throws Exception {
+		
+		// Request call : url, param
+		MockHttpServletRequestBuilder createMessage = MockMvcRequestBuilders.get("/user/do_user_view.do");
+		
+		mockMvc.perform(createMessage)
+		.andExpect(status().isOk())
+		.andExpect(forwardedUrl("/user/join.jsp"))
+		.andDo(print());
+	}
+	
+	/**엑셀 다운 - 안 됨!!*/
+	@Test
+	@Ignore
+	public void excelDown() throws Exception {
+		
+		// 목록 조회 메소드를 호출하고 
+		MockHttpServletRequestBuilder createMessage = MockMvcRequestBuilders.get("/user/do_exceldown.do")
+				.param("rid", "excel") // 파라미터 넘기기
+				.param("passwd", "excel")
+				.param("uname", "excel")
+				.param("birth", "excel")
+				.param("phone", "excel")
+				.param("postnum", 5555+"")
+				.param("address", "excel")
+				.param("detadd", "excel")
+				.param("lvl", 10+"")
+				.param("upoint", 55+"")
+				.param("inum",5555+"")
+				.param("ext", "xlsx");
+		
+		
+		ResultActions resultActions =  mockMvc.perform(createMessage)
+				.andExpect(status().isOk());
+				
+		String result = resultActions.andDo(print())
+				.andReturn()
+				.getResponse().getContentAsString();
+		
+		LOG.debug("=========================");
+		LOG.debug("result: " + result);
+		LOG.debug("=========================");
+		
 	}
 	
 	@Test
@@ -140,7 +209,7 @@ public class UserWebTest {
 		LOG.debug("=02. 데이터를 입력=");
 		LOG.debug("=========================");
 		
-		do_save(users.get(0));
+		userDaoImpl.do_save(users.get(0));
 		
 		User user01 = users.get(0);
 		user01.setRid("j01_145");
@@ -151,7 +220,7 @@ public class UserWebTest {
 		user01.setPostnum(1212);
 		user01.setAddress("업데이트");
 		user01.setDetadd("업데이트");
-		user01.setLvl(30);
+		user01.setLvl(Level.GOLD);
 		user01.setUpoint(1212);
 		user01.setInum(1212);
 		
@@ -255,6 +324,8 @@ public class UserWebTest {
 				.param("postnum", user.getPostnum()+"")
 				.param("address", user.getAddress())
 				.param("detadd", user.getDetadd())
+				.param("lvl", user.getLvl()+"")
+				.param("upoint", user.getUpoint()+"")
 				.param("inum", user.getInum()+"");
 		
 		ResultActions resultActions =  mockMvc.perform(createMessage)
@@ -313,9 +384,22 @@ public class UserWebTest {
 		
 	}
 	
-	/**단건조회: 비밀번호 찾기*/
+	/**비밀번호 찾기: 단건조회 -> 비밀번호 메일 보내기*/
 	@Test
 //	@Ignore
+	public void find_passwd() throws Exception {
+		
+		User user = users.get(1);
+		
+		User outVO = (User) userDaoImpl.get_selectOne(user);
+		
+		userServiceImpl.sendPasswdMail(outVO);
+		
+	}
+	
+	/**단건조회*/
+	@Test
+	@Ignore
 	public void get_selectOne() throws Exception {
 		
 		// 단건조회 메소드를 호출하고 
