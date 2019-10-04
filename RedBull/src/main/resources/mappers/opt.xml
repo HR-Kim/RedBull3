@@ -11,6 +11,12 @@
 		INUM    as iNum 
 	</sql>	
 	
+	<!-- NEXT ONUM 조회 -->
+	<select id="get_nextOnum" resultType="Opt">
+		SELECT MAX(ONUM)+1 as oNum
+		FROM OPT
+	</select>
+	
 	<!-- 상품명으로 목록조회 -->
 	<select id="get_pnumList" parameterType="Search" resultType="Opt">
 		SELECT

@@ -6,6 +6,10 @@ import kr.co.redbull.cmn.DTO;
 import kr.co.redbull.cmn.Search;
 
 public interface ImageService {
+	
+	/**Next Inum 조회*/
+	public DTO get_nextInum();
+	
 	/**refNum으로 조회 */
 	public List<?> get_refnumList(DTO dto);
 

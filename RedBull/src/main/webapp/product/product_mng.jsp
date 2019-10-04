@@ -11,12 +11,7 @@
 	//git에 저장
 	String uploadPath = "git/RedBull3/RedBull/src/main/webapp/resources/img/product";
 	String user =  System.getProperty("user.home");
-	uploadPath = user+File.separator+uploadPath;
-	
-	//New Product Session
-	Product newProduct = new Product();
-	newProduct = (Product)session.getAttribute("newProduct");
-	String pCategory = newProduct.getpCategory();
+	uploadPath = user+File.separator+uploadPath;	
 %>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -39,32 +34,32 @@
 		<!-- 카테고리 -->
 		<div class="form-group">
 			<label class="control-label requiredField" for="pCategory">카테고리<span class="asteriskField">*</span></label>
-			<input class="form-control" id="pCategory" name="pCategory" type="text" value="" />
+			<input class="form-control" id="pCategory" name="pCategory" type="text" value="${newProduct.pCategory}" />
 		</div>
 		<!-- 제품명 -->
 		<div class="form-group">
 			<label class="control-label requiredField" for="pName">제품명<span class="asteriskField">*</span></label>
-			<input class="form-control" id="pName" name="pName" type="text" value="" />
+			<input class="form-control" id="pName" name="pName" type="text" value="${newProduct.pName}" />
 		</div>
 		<!-- 기본가격 -->
 		<div class="form-group">
 			<label class="control-label requiredField" for="bPrice">기본가격<span class="asteriskField">*</span></label>
-			<input class="form-control" id="bPrice" name="bPrice" type="text" value="" />
+			<input class="form-control" id="bPrice" name="bPrice" type="text" value="${newProduct.bPrice}" />
 		</div>
 		<!-- 할인율 -->
 		<div class="form-group">
 			<label class="control-label" for="discount">할인율</label>
-			<input class="form-control" id="discount" name="discount" type="text" value="" />
+			<input class="form-control" id="discount" name="discount" type="text" value="${newProduct.discount}" />
 		</div>
 		<!-- 배송비 -->
 		<div class="form-group">
 			<label class="control-label" for="dPrice">배송비</label>
-			<input class="form-control" id="dPrice" name="dPrice" type="text" value="" />
+			<input class="form-control" id="dPrice" name="dPrice" type="text" value="${newProduct.dPrice}" />
 		</div>
 		<!-- 상세정보 -->
 		<div class="form-group">
 			<label class="control-label requiredField" for="detail">상세정보<span class="asteriskField">*</span></label>
-			<textarea id="detail" name="detail" class="form-control" rows="10" cols="40"></textarea>
+			<textarea id="detail" name="detail" class="form-control" rows="10" cols="40">${newProduct.detail}</textarea>
 		</div>
 		<!-- 옵션 -->
 		<div class="form-group">
@@ -98,7 +93,7 @@
 	</form>
 	<div class="form-group">
 		<button class="btn btn-primary" >글 작성</button>
-		<button class="btn btn-primary" >취소</button>
+		<a class="btn btn-primary" href="${context}/product/do_cancel_write.do" >취소</a>
 	</div>
 	<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
 	<script src="${context}/resources/js/jquery-1.12.4.js"></script>

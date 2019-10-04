@@ -136,35 +136,24 @@
 					</div>
 					<!-- div container -->
 					<div class="container">
-
 						<!-- 검색영역 -->
 						<div class="row">
 							<div class="col-md-12 text-center">
-								<form class="form-inline" name="productFrm" id="productFrm"
-									method="get">
-									<input type="hidden" name="pageNum" id="pageNum"
-										value="${vo.pageNum}" /> <input type="hidden"
-										name="searchDiv" id="searchDiv" /> <input type="hidden"
-										name="pNum" id="pNum" />
+								<form class="form-inline" name="productFrm" id="productFrm" method="get">
+									<input type="hidden" name="pageNum" id="pageNum" value="${vo.pageNum}" />
+									<input type="hidden" name="searchDiv" id="searchDiv" />
+									<input type="hidden" name="pNum" id="pNum" />
 									<div class="form-group ">
 										<div class="col-sm-12">
-											<input type="text" class="form-control input-sm "
-												id="searchWord" name="searchWord" placeholder="검색어" />
-											<button type="button" class="btn btn-default btn-sm"
-												id="do_retrieve">검색</button>
-											<button type="button" class="btn btn-default btn-sm"
-												id="do_write">글쓰기</button>
-
+											<input type="text" class="form-control input-sm" id="searchWord" name="searchWord" placeholder="검색어" />
+											<button type="button" class="btn btn-default btn-sm" id="do_retrieve">검색</button>
+											<a class="btn btn-default btn-sm" href="${context}/product/do_product_mng.do">글쓰기</a>
 										</div>
 									</div>
 								</form>
 							</div>
 						</div>
 						<!--검색영역 end -->
-
-					
-
-
 					</div>
 					<!--// div container -->
 
@@ -174,7 +163,6 @@
 								<c:choose>
 									<c:when test="${list.size()>0}">
 										<c:forEach var="vo" items="${list}">
-
 											<div class="single-product">
 												<div class="product-img">
 													<img class="card-img"
@@ -188,9 +176,7 @@
 													</div>
 												</div>
 												<div class="product-btm">
-													<a href="#" class="d-block">
-														<h4>${vo.pName}</h4>
-													</a>
+													<a href="#" class="d-block"><h4>${vo.pName}</h4></a>
 													<div class="mt-3">
 														<span class="mr-4">${vo.bPrice}</span>
 														<del>${vo.discount}</del>
@@ -205,17 +191,17 @@
 										</tr>
 									</c:otherwise>
 								</c:choose>
-
-
 							</div>
 						</div>
 					</div>
-
 					<!-- pagenation -->
-				<div class="text-center">
-					<%=StringUtil.renderPaging(maxNum, currPageNo, rowPerPage, bottomCount, url, scriptName)%>
+					<div class="text-center">
+						<%=StringUtil.renderPaging(maxNum, currPageNo, rowPerPage, bottomCount, url, scriptName)%>
+					</div>
+					<!--// pagenation -->
 				</div>
-				<!--// pagenation -->
+			</div>
+		</div>
 	</section>
 	<!--================End Category Product Area =================-->
 	

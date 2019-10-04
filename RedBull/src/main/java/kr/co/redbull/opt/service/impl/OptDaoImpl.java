@@ -10,6 +10,7 @@ import kr.co.redbull.cmn.DTO;
 import kr.co.redbull.cmn.Search;
 import kr.co.redbull.cmn.WorkDiv;
 import kr.co.redbull.opt.service.Opt;
+import kr.co.redbull.product.service.Product;
 
 @Repository
 public class OptDaoImpl implements WorkDiv {
@@ -20,6 +21,26 @@ public class OptDaoImpl implements WorkDiv {
 	
 	private final String NAMESPACE = "kr.co.redbull.opt";
 	
+	//새로운 시퀀스 넘버 조회
+	public DTO get_nextOnum() {
+		String statement = NAMESPACE+".get_nextOnum";
+		LOG.debug("======================================");
+		LOG.debug("=1.no param=");
+		LOG.debug("======================================");
+		
+		LOG.debug("======================================");
+		LOG.debug("=2.statement="+statement);
+		LOG.debug("======================================");
+		
+		Opt outVO = (Opt) this.sqlSessionTemplate.selectOne(statement);
+		LOG.debug("======================================");
+		LOG.debug("=2.outVO="+outVO);
+		LOG.debug("======================================");
+		
+		return outVO;
+	}
+	
+	//상품번호로 조회
 	public List<?> get_pNumList(DTO dto) {
 		String statement = NAMESPACE+".get_pnumList";
 		Search search = (Search) dto;
