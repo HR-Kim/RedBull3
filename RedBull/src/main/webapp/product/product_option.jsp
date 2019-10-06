@@ -75,7 +75,7 @@
 					
 					var image = {
 							refNum : $("#nextOnum").val(),
-							oFile : $("input[name='oFile']").eq(i)[0].files[0],	
+							oFile : $("input[name='oFile']").eq(i)[0].files[0]	
 					};
 					imageList.push(image);
 					
@@ -87,20 +87,15 @@
 						oName : $("input[name='oName']").eq(i).val(),
 						oPrice : $("input[name='oPrice']").eq(i).val(),
 						pNum : $("#nextPnum").val(),
-						iNum : tmpFile,
+						iNum : tmpFile
 				};
 				//값 전달 후 nextOnum 증가
 				$("#nextOnum").val() = $("#nextOnum").val()+1;
 				optList.push(opt);
-			});		
+			});
+			//두 VO List 값 확인
 			console.log(optList);
 			console.log(imageList);
-			//form : image, opt List 전달
-			var form = {
-					imageList : imageList,
-					optList : optList,
-			};
-			console.log(form);
 			
 			//--ajax
 			$.ajax({
@@ -110,7 +105,8 @@
 				processData: false,
 	            contentType: false,
 				data : {
-					JSON.stringify(form),
+					"optList" : optList,
+					"imageList" : imageList
 				},
 				success : function(data) {
 					var jData = JSON.parse(data);
@@ -126,11 +122,6 @@
 					alert("error:" + error);
 				}
 			});
-			//--ajax  
-			//var frm = document.opt_frm;
-			//frm.action = "${context}/product/do_save_option.do"
-			//frm.method = "post";
-			//frm.submit();
 		}
 		//옵션 input 추가
 		var inputNum = 1;

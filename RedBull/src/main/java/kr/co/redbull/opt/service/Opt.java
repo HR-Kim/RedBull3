@@ -11,7 +11,7 @@ public class Opt extends DTO {
 	private int    oPrice  ;
 	private String pNum    ;
 	private String iNum    ;
-	private List<Opt> optList ;
+	private List<OptList> optList ;
 	
 	
 	
@@ -26,14 +26,10 @@ public class Opt extends DTO {
 		this.iNum = iNum;
 	}
 	
-
-	public List<Opt> getList() {
-		return optList;
+	public static class OptList extends Opt{
+		
 	}
-
-	public void setList(List<Opt> optList) {
-		this.optList = optList;
-	}
+	
 
 	public String getoNum() {
 		return oNum;
