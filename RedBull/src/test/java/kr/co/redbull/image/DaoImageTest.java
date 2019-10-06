@@ -51,11 +51,11 @@ public class DaoImageTest {
 	@Before
 	public void setUp() {
 		list = Arrays.asList(
-				new Image("noinum","56","orgFileNm1","saveFileNm1","1","ext"),
-				new Image("noinum","57","orgFileNm2","saveFileNm2","2","ext"),
-				new Image("noinum","58","orgFileNm3","saveFileNm3","3","ext"),
-				new Image("noinum","59","orgFileNm4","saveFileNm4","4","ext"),
-				new Image("noinum","60","orgFileNm5","saveFileNm5","5","ext")
+				new Image("noinum","56","orgFileNm1","saveFileNm1",1,"ext"),
+				new Image("noinum","57","orgFileNm2","saveFileNm2",2,"ext"),
+				new Image("noinum","58","orgFileNm3","saveFileNm3",3,"ext"),
+				new Image("noinum","59","orgFileNm4","saveFileNm4",4,"ext"),
+				new Image("noinum","60","orgFileNm5","saveFileNm5",5,"ext")
 				);
 				
 				

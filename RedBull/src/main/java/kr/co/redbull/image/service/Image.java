@@ -1,5 +1,7 @@
 package kr.co.redbull.image.service;
 
+import java.util.List;
+
 import kr.co.redbull.cmn.DTO;
 
 public class Image extends DTO {
@@ -9,6 +11,8 @@ public class Image extends DTO {
 	private String saveFileNm ;//저장파일명
 	private long fileSize   ;//사이즈
 	private String extNm      ;//확장자
+	private List<Image> imageList;
+	
 	
 	public Image() {}
 
@@ -20,6 +24,16 @@ public class Image extends DTO {
 		this.saveFileNm = saveFileNm;
 		this.fileSize = fileSize;
 		this.extNm = extNm;
+	}
+
+	
+	
+	public List<Image> getList() {
+		return imageList;
+	}
+
+	public void setList(List<Image> imageList) {
+		this.imageList = imageList;
 	}
 
 	public String getiNum() {

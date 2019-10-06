@@ -1,4 +1,7 @@
+
 package kr.co.redbull.opt.service;
+
+import java.util.List;
 
 import kr.co.redbull.cmn.DTO;
 
@@ -8,6 +11,9 @@ public class Opt extends DTO {
 	private int    oPrice  ;
 	private String pNum    ;
 	private String iNum    ;
+	private List<Opt> optList ;
+	
+	
 	
 	public Opt() {}
 
@@ -18,6 +24,15 @@ public class Opt extends DTO {
 		this.oPrice = oPrice;
 		this.pNum = pNum;
 		this.iNum = iNum;
+	}
+	
+
+	public List<Opt> getList() {
+		return optList;
+	}
+
+	public void setList(List<Opt> optList) {
+		this.optList = optList;
 	}
 
 	public String getoNum() {
@@ -63,8 +78,7 @@ public class Opt extends DTO {
 	@Override
 	public String toString() {
 		return "Opt [oNum=" + oNum + ", oName=" + oName + ", oPrice=" + oPrice + ", pNum=" + pNum + ", iNum=" + iNum
-				+ ", toString()=" + super.toString() + "]";
+				+ ", optList=" + optList + "]";
 	}
-
 	
 }

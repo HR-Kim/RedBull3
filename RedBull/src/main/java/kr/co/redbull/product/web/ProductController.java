@@ -6,16 +6,25 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import com.google.gson.Gson;
+
+import kr.co.redbull.cmn.Message;
 import kr.co.redbull.cmn.Search;
 import kr.co.redbull.cmn.StringUtil;
 import kr.co.redbull.image.service.Image;
@@ -43,9 +52,65 @@ public class ProductController {
 	private final String VIEW_MNG_NM  ="product/product_mng";
 	private final String VIEW_OPT_NM  ="product/product_option";
 	
+	//등록 
+	@RequestMapping(value = "product/do_save_option.do", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String do_save_option(HttpSession session,HttpServletRequest request, HttpServletResponse response){
+		LOG.debug("================================");
+		LOG.debug("do_save_option");
+		LOG.debug("================================");
+		
+		String optJson = (String) request.getParameter("optJson");
+		
+		LOG.debug("optJson : "+optJson);
+		
+		Message msg = new Message();
+		msg.setMsgId("10");
+		msg.setMsgMsg("옵션 수정 완료");
+		//JSON
+		Gson gson=new Gson();
+		String json = gson.toJson(msg);
+		LOG.debug("2=========================");
+		LOG.debug("=@Controller=json=="+json);
+		LOG.debug("2=========================");
+		return json;
+	}
+	
+	//등록 테스트2
+	@RequestMapping(value = "", method = RequestMethod.POST)
+	public String do_save_option2(@RequestParam("oName") String oName, @RequestParam("oPrice") String oPrice, MultipartHttpServletRequest mReg ){
+		LOG.debug("================================");
+		LOG.debug("do_save_option");
+		LOG.debug("================================");
+		
+		LOG.debug("oName : "+oName);
+		LOG.debug("oPrice : "+oPrice);
+		
+		String[] oNames = oName.split(",");
+		String[] oPrices = oPrice.split(",");
+		Opt tmpOpt = (Opt)optService.get_nextOnum();
+		int nextOnum = Integer.parseInt(tmpOpt.getoNum());
+		String nextPnum = mReg.getParameter("nextPnum");
+		
+		List<Opt> optList = new ArrayList<Opt>();
+		for(int i=0; i<oNames.length; i++) {
+			Opt opt = new Opt();
+			opt.setoNum(String.valueOf(nextOnum));
+			opt.setoName(oNames[i]);
+			opt.setoPrice(Integer.parseInt(oPrices[i]));
+			opt.setpNum(nextPnum);
+			nextOnum++;
+			
+			optList.add(opt);
+		}
+		LOG.debug("optList : "+optList);
+		
+		return VIEW_MNG_NM;
+	}
+	
 	//옵션 추가 취소
 	@RequestMapping(value = "product/do_cancel_option.do", method = RequestMethod.GET)
-	public String do_cancel_option(MultipartHttpServletRequest mReg, Model model, HttpSession session) throws IllegalStateException, IOException {
+	public String do_cancel_option(@RequestBody Opt optList, MultipartHttpServletRequest mReg, Model model, HttpSession session) throws IllegalStateException, IOException {
 		LOG.debug("================================");
 		LOG.debug("do_cancel_option");
 		LOG.debug("================================");
@@ -177,7 +242,17 @@ public class ProductController {
 		product.setdPrice(Integer.parseInt(StringUtil.nvl(request.getParameter("dPrice"),"0")));
 		product.setDetail(request.getParameter("detail"));
 		
+		//입력 중인 값 세션에 저장
 		session.setAttribute("newProduct", product);
+		
+		//Next VO Num 설정
+		Opt tmpOnum = (Opt) optService.get_nextOnum();
+		int nextOnum = Integer.parseInt(tmpOnum.getoNum());
+		Image tmpImage = (Image) imageService.get_nextInum();
+		int nextInum = Integer.parseInt(tmpImage.getiNum());
+		
+		model.addAttribute("nextOnum", nextOnum);
+		model.addAttribute("nextInum", nextInum);
 		
 		return VIEW_OPT_NM;
 	}
