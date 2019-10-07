@@ -6,6 +6,9 @@ import kr.co.redbull.cmn.DTO;
 
 public interface CartService {
 	
+	/**단건조회: 조회Count증가+ */
+	public DTO get_selectOne(DTO dto);
+	
 	/**저장*/
 	public int do_save(DTO dto);
 	

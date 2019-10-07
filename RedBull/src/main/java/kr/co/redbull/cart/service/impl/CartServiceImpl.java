@@ -77,4 +77,12 @@ public class CartServiceImpl implements CartService {
 		return cartDaoImpl.sale(dto);
 	}
 
+	@Override
+	public DTO get_selectOne(DTO dto) {
+		
+		Cart cart = (Cart) cartDaoImpl.get_selectOne(dto);
+		
+		return cart;
+	}
+
 }

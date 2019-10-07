@@ -184,8 +184,20 @@ public class CartDaoImpl implements WorkDiv {
 
 	@Override
 	public DTO get_selectOne(DTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+		String statement = this.NAMESPACE +".get_selectOne";
+		Cart inVO = (Cart) dto;
+		LOG.debug("==================================");
+		LOG.debug("1. param: " + inVO);
+		LOG.debug("2. statement: " + statement);
+		LOG.debug("==================================");
+		
+		Cart outVO = this.sqlSessionTemplate.selectOne(statement, inVO);
+		
+		LOG.debug("==================================");
+		LOG.debug("3. flag: " + outVO);
+		LOG.debug("==================================");
+		
+		return outVO;
 	}
 	
 	

@@ -4,11 +4,22 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.redbull.cart">
 
+ 	 <sql id="cartColumns">
+               i.SAVE_FILE_NM as saveFileNm,
+               c.CARTNUM as cartNum,
+               p.BPRICE as bPrice,
+               p.PNAME as pName,
+               p.PNUM as pNum,
+               p.DPRICE as dPrice,
+               p.bprice - (p.bprice * p.discount) as afterPrice,
+               c.CARTCNT as cartCnt,
+               c.REGID as regId
+ 	 </sql>
 
  	 <sql id="baseCondition">
  	 		<choose>
  	 		 	<when test="'10' == searchDiv">
- 	 				 and REG_ID LIKE '%' || #{searchWord} || '%'
+ 	 				 and c.regid LIKE '%' || #{searchWord} || '%'
  	 			</when>
  	 			<otherwise></otherwise>
  	 		</choose>
@@ -18,7 +29,7 @@
 			<select id="sale" resultType="int">
 				<![CDATA[
 					SELECT NVL(SUM(p.bprice * p.discount * c.cartcnt),0) as save
-					FROM cart c JOIN PRODUCT p
+					FROM CART c JOIN PRODUCT p
 					ON c.pnum = p.pnum
 					AND c.regid = #{regId, jdbcType=VARCHAR}
 				]]>
@@ -28,7 +39,7 @@
 		<select id="delivery" resultType="int">
 			<![CDATA[
 				SELECT NVL(SUM(p.dprice),0) delivery
-				FROM cart c JOIN PRODUCT p
+				FROM CART c JOIN PRODUCT p
 				ON c.pnum = p.pnum
 				AND c.regid = #{regId, jdbcType=VARCHAR}
 			]]>
@@ -43,6 +54,18 @@
 			AND c.regid = #{regId, jdbcType=VARCHAR}
 		]]>
 	</select>
+	
+	 <!-- 단건조회 -->
+ 	 <select id="get_selectOne" parameterType="Cart" resultType="Cart">
+ 	 	 SELECT	
+ 	 	 	<include refid="cartColumns" />								
+         FROM CART c JOIN PRODUCT p
+         ON c.pNum = p.pNum
+         JOIN IMAGE i
+         ON c.pNum = i.refNum
+		WHERE c.regid = #{regId, jdbcType=VARCHAR}
+ 	 
+ 	 </select>
 	
  	 <!-- Cart 조회 -->
  	 <select id="get_cartList" parameterType="Search" resultType="Cart">

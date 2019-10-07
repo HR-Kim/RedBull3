@@ -71,7 +71,31 @@ public class CartWebTest {
 		LOG.debug("================================");
 	}
 	
+	//단건조회 
+	@Test
+	public void get_selectOne() throws Exception {
+		//uri, param
+		MockHttpServletRequestBuilder createMessage = 
+				MockMvcRequestBuilders.get("/cart/get_selectOne.do")
+				.param("regId", "cart_130");
+		
+		//url 호출 , 결과 return
+		ResultActions resultActions = mockMvc.perform(createMessage)
+				.andExpect(status().isOk());
+		
+		//result: return VO 객체로 됨.(결과 출력 안됨)
+		String result = resultActions.andDo(print())
+				.andReturn()
+				.getResponse().getContentAsString();
+	
+		LOG.debug("=====================================");
+		LOG.debug("=result=" + result);
+		LOG.debug("=====================================");
+	}
+	
+		
 	//cart 조회 test
+	//code값 넣고 다시 run
 	@Test
 	@Ignore
 	public void get_retrieve() throws Exception{

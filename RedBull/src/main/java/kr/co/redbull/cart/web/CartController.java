@@ -44,6 +44,21 @@ public class CartController {
 	private final String VUEW_MNG_NM = "cart/cart_mng";
 	
 	
+	/**단건 조회*/
+	@RequestMapping(value="cart/get_selectOne.do", method=RequestMethod.GET)
+	public String get_selectOne(Cart inVO, Model model) {
+		
+		LOG.debug("=================================");
+		LOG.debug("=board=" + inVO);
+		LOG.debug("=================================");
+		
+		Cart outVO = (Cart) this.cartService.get_selectOne(inVO);
+		model.addAttribute("vo",outVO);
+		
+		return VUEW_MNG_NM;
+		
+	}
+	
 	/**목록조회*/
 	@RequestMapping(value="cart/get_retrieve.do", method=RequestMethod.GET)
 	public String get_retrieve(HttpServletRequest req,Search search, Model model){
