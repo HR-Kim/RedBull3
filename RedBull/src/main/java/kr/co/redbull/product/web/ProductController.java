@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -32,6 +33,7 @@ import kr.co.redbull.opt.service.Opt;
 import kr.co.redbull.opt.service.OptService;
 import kr.co.redbull.product.service.Product;
 import kr.co.redbull.product.service.ProductService;
+import net.sf.json.JSONArray;
 
 @Controller
 public class ProductController {
@@ -52,17 +54,29 @@ public class ProductController {
 	private final String VIEW_OPT_NM  ="product/product_option";
 	
 	//등록 
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "product/do_save_option.do", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public String do_save_option(@RequestBody Opt optList, @RequestBody Image imageList, HttpSession session,HttpServletRequest request, HttpServletResponse response){
+	public String do_save_option(HttpServletRequest request, @RequestBody String paramData){
 		LOG.debug("================================");
 		LOG.debug("do_save_option");
 		LOG.debug("================================");
 		
-		
-		LOG.debug("optList : "+optList);
-		LOG.debug("imageList : "+imageList);
-		
+		//JSONArray jsonArray = JSONArray.fromObject(paramData);
+		 
+	    List<Map<String,Object>> resultMap = new ArrayList<Map<String,Object>>();
+	    resultMap = JSONArray.fromObject(paramData);
+	         
+	    for (Map<String, Object> map : resultMap) {
+	    	LOG.debug("oName : " +map.get("oName") +", oPrice : "+map.get("oPrice")+", "+
+				      "pNum : "  +map.get("pNum")  +", iNum : "  +map.get("iNum")  +", "+
+				      "refNum : "+map.get("refNum")+", oFile : "+ map.get("oFile")
+	        		);
+	        //oName : 1, oPrice : 10, pNum : 371, iNum : 0, refNum : 0, oFile : null
+	        //oName : 2, oPrice : 20, pNum : 371, iNum : 63, refNum : 42, oFile : {}
+	    }
+
+
 		Message msg = new Message();
 		msg.setMsgId("10");
 		msg.setMsgMsg("옵션 수정 완료");
@@ -245,13 +259,19 @@ public class ProductController {
 		session.setAttribute("newProduct", product);
 		
 		//Next VO Num 설정
+		//Opt
 		Opt tmpOnum = (Opt) optService.get_nextOnum();
 		int nextOnum = Integer.parseInt(tmpOnum.getoNum());
+		//Image
 		Image tmpImage = (Image) imageService.get_nextInum();
 		int nextInum = Integer.parseInt(tmpImage.getiNum());
+		//Product
+		Product tmpProduct = (Product) productService.get_nextPnum();
+		int nextPnum = Integer.parseInt(tmpProduct.getpNum());
 		
 		model.addAttribute("nextOnum", nextOnum);
 		model.addAttribute("nextInum", nextInum);
+		model.addAttribute("nextPnum", nextPnum);
 		
 		return VIEW_OPT_NM;
 	}
