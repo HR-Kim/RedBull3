@@ -81,7 +81,7 @@
       <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light w-100">
           <!-- Brand and toggle get grouped for better mobile display -->
-          <a class="navbar-brand logo_h" href="index.html">
+          <a class="navbar-brand logo_h" href="${context}/main/main.do">
             <img src="${context}/resources/img/logo.png" alt="" />
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -95,54 +95,34 @@
             <div class="row w-100 mr-0">
               <div class="col-lg-7 pr-0">
                 <ul class="nav navbar-nav center_nav pull-right">
+                
+                  <li class="nav-item submenu dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                      aria-expanded="false">스토어</a>
+                    <ul class="dropdown-menu">
+                      <li class="nav-item">
+                        <a class="nav-link" href="${context}/product/get_retrieve.do">카테고리</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="${context}/product/get_retrieve.do">신상</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="${context}/product/get_retrieve.do">랭킹</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="${context}/product/get_retrieve.do">핫세일</a>
+                      </li>
+                    </ul>
+                  </li>
+                
                   <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Home</a>
+                    <a class="nav-link" href="${context}/board/get_retrieve.do?searchDiv=20">질문과답변</a>
                   </li>
-                  <li class="nav-item submenu dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                      aria-expanded="false">Shop</a>
-                    <ul class="dropdown-menu">
-                      <li class="nav-item">
-                        <a class="nav-link" href="category.html">Shop Category</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="single-product.html">Product Details</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="checkout.html">Product Checkout</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="cart.html">Shopping Cart</a>
-                      </li>
-                    </ul>
+                  
+                  <li class="nav-item active">
+                    <a class="nav-link" href="${context}/board/get_retrieve.do?searchDiv=10">공지사항</a>
                   </li>
-                  <li class="nav-item submenu dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                      aria-expanded="false">Blog</a>
-                    <ul class="dropdown-menu">
-                      <li class="nav-item">
-                        <a class="nav-link" href="blog.html">Blog</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="single-blog.html">Blog Details</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="nav-item submenu dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                      aria-expanded="false">Pages</a>
-                    <ul class="dropdown-menu">
-                      <li class="nav-item">
-                        <a class="nav-link" href="tracking.html">Tracking</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="elements.html">Elements</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
-                  </li>
+                  
                 </ul>
               </div>
 
@@ -167,9 +147,7 @@
                   </li>
 
                   <li class="nav-item">
-                    <a href="#" class="icons">
-                      <i class="ti-heart" aria-hidden="true"></i>
-                    </a>
+                        <a class="nav-link" href="${context}/product/do_product_option.do">상품등록</a>
                   </li>
                 </ul>
               </div>

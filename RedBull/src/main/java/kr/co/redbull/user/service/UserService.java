@@ -7,6 +7,9 @@ import kr.co.redbull.cmn.DTO;
 
 public interface UserService {
 	
+	/**아이디/비밀번호 체크*/
+	public DTO idPassCheck(DTO dto); 
+	
 	/**수정 */
 	public int do_update(DTO dto);
 

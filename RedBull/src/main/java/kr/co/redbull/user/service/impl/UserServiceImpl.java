@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.redbull.cmn.DTO;
 import kr.co.redbull.cmn.ExcelWriter;
+import kr.co.redbull.cmn.Message;
 import kr.co.redbull.user.service.Level;
 import kr.co.redbull.user.service.User;
 import kr.co.redbull.user.service.UserService;
@@ -206,7 +207,51 @@ public class UserServiceImpl implements UserService {
 		
 		return saveFileNm; // 생성한 엑셀 파일의 저장파일명을 반환
 		
-	}
+	}//--get_excelDown
+
+	@Override
+	public DTO idPassCheck(DTO dto) {
+		
+		// 메시지 객체 생성
+		Message outMsg = new Message();
+		
+		//------1. 아이디 체크-------
+		int flag = userDaoImpl.id_check(dto);
+		
+		if(flag < 1) { // 아이디 확인 실패
+			
+			outMsg.setMsgId("10");
+			outMsg.setMsgMsg("아이디를 확인하시오");
+			
+			return outMsg;
+
+		}
+		
+		//------2. 비밀번호 체크------
+		flag = userDaoImpl.passwd_check(dto);
+		
+		if(flag < 1) { // 비밀번호 확인 실패
+			
+			outMsg.setMsgId("20");
+			outMsg.setMsgMsg("비밀번호를 확인하시오");
+			
+			return outMsg;
+
+		}
+		
+		//------3. 로그인 성공 체크------
+		if(flag == 1) { // 로그인 성공 
+			
+			outMsg.setMsgId("30");			
+		}
+		
+		LOG.debug("=========================");
+		LOG.debug("=outMsg=" + outMsg);
+		LOG.debug("=========================");
+		
+		return outMsg;
+		
+	}//--idPassCheck
 
 
 }//--class
