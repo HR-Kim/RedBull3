@@ -14,7 +14,7 @@ import kr.co.redbull.cmn.DTO;
 @Service
 public class CartServiceImpl implements CartService {
 	
-	private Logger LOG = LoggerFactory.getLogger(this.getClass());
+	Logger LOG = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	private CartDaoImpl cartDaoImpl;

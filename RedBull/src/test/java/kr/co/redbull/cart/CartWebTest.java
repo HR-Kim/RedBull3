@@ -47,7 +47,7 @@ public class CartWebTest {
 	private WebApplicationContext context;
 	
 	@Autowired
-	private CartDaoImpl cartDaoImpl;
+	CartDaoImpl cartDaoImpl;
 	
 	List<Cart> list;
 	
@@ -59,9 +59,8 @@ public class CartWebTest {
 		LOG.debug("setUp()");
 		LOG.debug("^^^^^^^^^^^^^^^^^^^^^^^");
 		list = Arrays.asList(
-				new Cart(1,336,1,"J01등록자_125")
-				//new Cart(2,187,1,"J01등록자_126"),
-				//new Cart(3,188,1,"J01등록자_127")
+				new Cart(1,336,1,"cart_130"),
+				new Cart(2,367,1,"cart_131")
 				);
 		
 		mockMvc = MockMvcBuilders.webAppContextSetup(context).build(); //mockMvc생성자
@@ -71,12 +70,18 @@ public class CartWebTest {
 		LOG.debug("=cartDaoImpl=" + cartDaoImpl);
 		LOG.debug("================================");
 	}
-
+	
 	//cart 조회 test
 	@Test
+	@Ignore
 	public void get_retrieve() throws Exception{
-		MockHttpServletRequestBuilder createMessage = MockMvcRequestBuilders.get("/cart/get_retrieve.do");
+		MockHttpServletRequestBuilder createMessage = MockMvcRequestBuilders.get("/cart/get_retrieve.do")
+				.param("searchDiv", "10")
+				.param("searchWord", "_130")
+				.param("pageSize", "10")
+				.param("pageNum", "1");
 	
+		//url 호출 , 결과 return
 		ResultActions resultActions = mockMvc.perform(createMessage)
 				.andExpect(status().isOk());
 		
@@ -91,10 +96,11 @@ public class CartWebTest {
 	
 	//cart 수량 변경 test
 	@Test
+	@Ignore
 	public void do_update() throws Exception{
 		MockHttpServletRequestBuilder createMessage = MockMvcRequestBuilders.post("/cart/do_update.do")
 				.param("pNum", "366") //param연결
-				.param("cartCnt", "2")
+				.param("cartCnt", "3")
 				.param("regId", "cart_130");
 		
 		ResultActions resultActions = mockMvc.perform(createMessage)
@@ -153,9 +159,9 @@ public class CartWebTest {
 	}
 	
 	@Test 
-	public void instacnceTesst() {
+	public void getBean() {
 		LOG.debug("^^^^^^^^^^^^^^^^^^");
-		LOG.debug("=instacnceTesst()=");
+		LOG.debug("=getBean()=");
 		LOG.debug("^^^^^^^^^^^^^^^^^^");
 	}
 	
