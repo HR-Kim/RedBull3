@@ -87,6 +87,32 @@ public class UserWebTest {
 		LOG.debug("=========================");
 	}
 	
+	// login/do_login.do
+	@Test
+	@Ignore
+	public void do_login() throws Exception {
+		
+		User user = users.get(1);
+		
+		MockHttpServletRequestBuilder createMessage = 
+				MockMvcRequestBuilders.post("/login/do_login.do")
+				.param("rid", user.getRid()) // 파라미터 넘기기
+				.param("passwd", user.getPasswd());
+				
+		ResultActions resultActions =mockMvc.perform(createMessage)
+				.andExpect(status().isOk())
+				.andExpect(forwardedUrl("/main/main.jsp"));
+		
+		String result =	resultActions.andDo(print())
+				.andReturn()
+				.getResponse().getContentAsString();
+
+		LOG.debug("===============================");
+		LOG.debug("=result="+result);
+		LOG.debug("===============================");
+	
+	}//--do_login
+	
 	/**등업*/
 	@Test
 	@Ignore
@@ -193,7 +219,7 @@ public class UserWebTest {
 	
 	/**회원정보 수정*/
 	@Test
-	@Ignore
+//	@Ignore
 	public void do_update() throws Exception {
 
 		LOG.debug("=========================");
@@ -386,7 +412,7 @@ public class UserWebTest {
 	
 	/**비밀번호 찾기: 단건조회 -> 비밀번호 메일 보내기*/
 	@Test
-//	@Ignore
+	@Ignore
 	public void find_passwd() throws Exception {
 		
 		User user = users.get(1);

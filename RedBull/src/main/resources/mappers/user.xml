@@ -35,6 +35,21 @@
 		</where>	
 	</sql>
 	
+	<!-- 아이디 체크 -->
+	<select id="id_check" parameterType="User" resultType="int">
+		SELECT COUNT(*) CNT
+		FROM RUSER
+		WHERE RID = #{rid,jdbcType=VARCHAR}	
+	</select>
+	
+	<!-- 비밀번호 체크 -->
+	<select id="passwd_check" parameterType="User" resultType="int">
+		SELECT COUNT(*) CNT
+		FROM RUSER
+		WHERE RID = #{rid,jdbcType=VARCHAR}	
+		AND PASSWD = #{passwd,jdbcType=VARCHAR}	
+	</select>
+	
 	<!-- 사용자 전체 조회 -->
 	<select id="get_all" resultType="User"> <!-- Alias 사용 -->
 		SELECT                                   

@@ -22,7 +22,60 @@ public class UserDaoImpl implements WorkDiv {
 	private SqlSessionTemplate sqlSessionTemplate; // mybatis
 	
 	private final String NAMESPACE = "kr.co.redbull.user"; // 쿼리찾을 때 필요
+	
+	public UserDaoImpl() {
 		
+	}
+		
+	/**아이디 체크
+	 *  1을 반환(return > 0)하면 성공
+	 * */
+	public int id_check(DTO dto) {
+		
+		String statement = this.NAMESPACE + ".id_check"; // kr.co.redbull.user.id_check
+		
+		User user = (User) dto;
+		
+		LOG.debug("=============================");
+		LOG.debug("01. statement="+statement);
+		LOG.debug("=============================");			
+		
+		LOG.debug("=============================");
+		LOG.debug("02. param="+user);
+		LOG.debug("=============================");	
+		
+		int flag = this.sqlSessionTemplate.selectOne(statement, user);
+		LOG.debug("=============================");
+		LOG.debug("03. flag="+flag);
+		LOG.debug("=============================");	
+		
+		return flag;
+	}
+	
+	/**비밀번호 체크
+	 *  1을 반환(return > 0)하면 성공
+	 * */
+	public int passwd_check(DTO dto) {
+		
+		String statement = this.NAMESPACE + ".passwd_check"; // kr.co.redbull.user.passwd_check
+		
+		User user = (User) dto;
+		
+		LOG.debug("=============================");
+		LOG.debug("01. statement="+statement);
+		LOG.debug("=============================");			
+		
+		LOG.debug("=============================");
+		LOG.debug("02. param="+user);
+		LOG.debug("=============================");	
+		
+		int flag = this.sqlSessionTemplate.selectOne(statement, user);
+		LOG.debug("=============================");
+		LOG.debug("03. flag="+flag);
+		LOG.debug("=============================");	
+		
+		return flag;
+	}
 
 	/**회원정보 수정*/
 	@Override
