@@ -5,6 +5,15 @@
 <mapper namespace="kr.co.redbull.cart">
 
 
+ 	 <sql id="baseCondition">
+ 	 		<choose>
+ 	 		 	<when test="'10' == searchDiv">
+ 	 				 and REG_ID LIKE '%' || #{searchWord} || '%'
+ 	 			</when>
+ 	 			<otherwise></otherwise>
+ 	 		</choose>
+ 	 </sql>
+
 	<!-- 할인가격 -->
 			<select id="sale" resultType="int">
 				<![CDATA[
@@ -36,24 +45,53 @@
 	</select>
 	
  	 <!-- Cart 조회 -->
- 	 <select id="get_cartList" parameterType="Cart" resultType="Cart">
-		 	<![CDATA[
-					SELECT 
-						   i.save_file_nm as saveFileNm,
-						   c.cartnum as cartNum,
-						   p.bprice as bPrice,
-						   p.pname as pName,
-						   p.pnum as pNum,
-					       p.dprice as dPrice,
-					       p.bprice - (p.bprice * p.discount) as afterPrice,
-					       c.cartcnt as cartCnt,
-					       c.regid as regId
-					FROM CART c JOIN PRODUCT p
-					ON c.pnum = p.pnum
-					JOIN IMAGE i
-					ON c.pnum = i.refnum
-					AND c.regid = #{regId, jdbcType=VARCHAR}
-			]]>
+ 	 <select id="get_cartList" parameterType="Search" resultType="Cart">
+		 	SELECT T1.*, T2.*
+		    FROM
+		    (
+		        SELECT
+		            B.rnum,
+		            B.saveFileNm,
+		            B.cartnum,
+		            B.bprice,
+		            B.pname,
+		            B.pnum,
+		            B.dprice,
+		            B.afterPrice,
+		            B.cartcnt,
+		            B.regid
+		        FROM(
+		            SELECT ROWNUM AS rnum, A.*
+		            FROM(
+		                 SELECT 
+		                       i.save_file_nm as saveFileNm,
+		                       c.cartnum as cartNum,
+		                       p.bprice as bPrice,
+		                       p.pname as pName,
+		                       p.pnum as pNum,
+		                       p.dprice as dPrice,
+		                       p.bprice - (p.bprice * p.discount) as afterPrice,
+		                       c.cartcnt as cartCnt,
+		                       c.regid as regId
+							FROM CART c JOIN PRODUCT p
+							ON c.pnum = p.pnum
+							JOIN IMAGE i
+							ON c.pnum = i.refnum
+							<!-- search condition -->
+							<include refid="baseCondition" />
+		                    )A
+		            WHERE rownum <![CDATA[ <= ]]> (#{pageSize} * ( #{pageNum}-1)+ #{pageSize} ) 
+		            )B
+					WHERE B.rnum <![CDATA[ >= ]]> (#{pageSize} * (#{pageNum}-1)+1)
+					)T1
+		        CROSS JOIN(
+						SELECT COUNT(*) total_cnt
+						FROM CART c JOIN PRODUCT p
+						ON c.pnum = p.pnum
+						JOIN IMAGE i
+						ON c.pnum = i.refnum
+						<include refid="baseCondition" />
+						)T2
  	 </select>
 
 	<!-- cart 수량 수정 -->
