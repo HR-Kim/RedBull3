@@ -53,30 +53,72 @@ public class ProductController {
 	private final String VIEW_MNG_NM  ="product/product_mng";
 	private final String VIEW_OPT_NM  ="product/product_option";
 	
-	//등록 
+	//글쓰기
+	@RequestMapping(value = "product/do_write.do", method = RequestMethod.POST)
+	public String do_write(HttpServletRequest request, HttpServletResponse response, HttpSession session){
+		//저장할 값 가져오기
+		Product newProduct = (Product) session.getAttribute("newProduct");
+		
+		//Product 저장
+		//세션이 없을 때
+		if(newProduct == null) {
+			//VO 설정
+			newProduct = new Product();
+			newProduct.setpCategory(request.getParameter("pCategory"));
+			newProduct.setpName(request.getParameter("pName"));
+			newProduct.setbPrice(Integer.parseInt(StringUtil.nvl(request.getParameter("bPrice"),"0")));
+			newProduct.setDiscount(Double.parseDouble(StringUtil.nvl(request.getParameter("discount"),"0")));
+			newProduct.setdPrice(Integer.parseInt(StringUtil.nvl(request.getParameter("dPrice"),"0")));
+			newProduct.setDetail(request.getParameter("detail"));
+		}
+		//세션이 있을 때
+		productService.do_save(newProduct);
+		LOG.debug("new product save completed : "+newProduct);
+		
+		//세션에서 저장할 값 가져오기
+		List<Opt> newOptList = (List<Opt>) session.getAttribute("newOptList");
+		List<Image> newImageList = (List<Image>) session.getAttribute("newImageList");
+		
+		//Opt 저장
+		for(Opt newOpt : newOptList) {
+			optService.do_save(newOpt);
+			LOG.debug("new option save completed : "+newOpt);
+		}
+		//Image 저장
+		for(Image newImage : newImageList) {
+			imageService.do_save(newImage);
+			LOG.debug("new image save completed : "+newImage);
+		}
+		return VIEW_LIST_NM;
+	}
+	
+	//옵션 등록
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "product/do_save_option.do", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public String do_save_option(HttpServletRequest request, @RequestBody String paramData){
+	public String do_save_option(HttpServletRequest request, @RequestBody String paramData, HttpSession session){
 		LOG.debug("================================");
 		LOG.debug("do_save_option");
 		LOG.debug("================================");
 		
 		//JSONArray jsonArray = JSONArray.fromObject(paramData);
-		 
+		
 	    List<Map<String,Object>> resultMap = new ArrayList<Map<String,Object>>();
 	    resultMap = JSONArray.fromObject(paramData);
-	         
+	    List<Opt> list = new ArrayList<Opt>();
 	    for (Map<String, Object> map : resultMap) {
-	    	LOG.debug("oName : " +map.get("oName") +", oPrice : "+map.get("oPrice")+", "+
-				      "pNum : "  +map.get("pNum")  +", iNum : "  +map.get("iNum")  +", "+
-				      "refNum : "+map.get("refNum")+", oFile : "+ map.get("oFile")
-	        		);
-	        //oName : 1, oPrice : 10, pNum : 371, iNum : 0, refNum : 0, oFile : null
-	        //oName : 2, oPrice : 20, pNum : 371, iNum : 63, refNum : 42, oFile : {}
+	    	//LOG.debug("oName : " +map.get("oName") +", oPrice : "+map.get("oPrice")+", "+"pNum : "  +map.get("pNum"));
+	        //oName : 1, oPrice : 10, pNum : 371, iNum : 0
+	        //oName : 2, oPrice : 20, pNum : 371, iNum : 63
+	    	Opt tmpOpt = new Opt();
+	    	tmpOpt.setoName(map.get("oName").toString());
+	    	tmpOpt.setoPrice(Integer.parseInt(map.get("oPrice").toString()));
+	    	tmpOpt.setpNum(map.get("pNum").toString());
+	    	list.add(tmpOpt);
 	    }
-
-
+	    LOG.debug("list : "+list.toString());
+	    session.setAttribute("newOptList", list);
+	    
 		Message msg = new Message();
 		msg.setMsgId("10");
 		msg.setMsgMsg("옵션 수정 완료");
@@ -89,37 +131,6 @@ public class ProductController {
 		return json;
 	}
 	
-	//등록 테스트2
-	@RequestMapping(value = "", method = RequestMethod.POST)
-	public String do_save_option2(@RequestParam("oName") String oName, @RequestParam("oPrice") String oPrice, MultipartHttpServletRequest mReg ){
-		LOG.debug("================================");
-		LOG.debug("do_save_option");
-		LOG.debug("================================");
-		
-		LOG.debug("oName : "+oName);
-		LOG.debug("oPrice : "+oPrice);
-		
-		String[] oNames = oName.split(",");
-		String[] oPrices = oPrice.split(",");
-		Opt tmpOpt = (Opt)optService.get_nextOnum();
-		int nextOnum = Integer.parseInt(tmpOpt.getoNum());
-		String nextPnum = mReg.getParameter("nextPnum");
-		
-		List<Opt> optList = new ArrayList<Opt>();
-		for(int i=0; i<oNames.length; i++) {
-			Opt opt = new Opt();
-			opt.setoNum(String.valueOf(nextOnum));
-			opt.setoName(oNames[i]);
-			opt.setoPrice(Integer.parseInt(oPrices[i]));
-			opt.setpNum(nextPnum);
-			nextOnum++;
-			
-			optList.add(opt);
-		}
-		LOG.debug("optList : "+optList);
-		
-		return VIEW_MNG_NM;
-	}
 	
 	//옵션 추가 취소
 	@RequestMapping(value = "product/do_cancel_option.do", method = RequestMethod.GET)
@@ -235,12 +246,14 @@ public class ProductController {
 		
 		//상품 추가 세션 삭제
 		session.removeAttribute("newProduct");
+		session.removeAttribute("newOptList");
+		session.removeAttribute("newImageList");
 		
 		return VIEW_LIST_NM;
 	}
 	
 	//옵션 추가 화면 이동
-	@RequestMapping(value = "product/do_product_option.do", method = RequestMethod.GET)
+	@RequestMapping(value = "product/do_product_option.do", method = RequestMethod.POST)
 	public String do_product_option(Model model, HttpServletRequest request, HttpSession session) {
 		LOG.debug("================================");
 		LOG.debug("do_product_option");

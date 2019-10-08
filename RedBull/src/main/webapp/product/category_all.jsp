@@ -67,22 +67,22 @@
 	
 %> 
 <html lang="ko">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
-    <title>스토어</title>
-
-    <!-- 부트스트랩 -->
-    <link href="${context}/resources/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- IE8 에서 HTML5 요소와 미디어 쿼리를 위한 HTML5 shim 와 Respond.js -->
-    <!-- WARNING: Respond.js 는 당신이 file:// 을 통해 페이지를 볼 때는 동작하지 않습니다. -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
+	<title>스토어</title>
+	
+	<!-- 부트스트랩 -->
+	<link rel="stylesheet" href="${context}/resources/css/bootstrap.css" />
+	
+	<!-- IE8 에서 HTML5 요소와 미디어 쿼리를 위한 HTML5 shim 와 Respond.js -->
+	<!-- WARNING: Respond.js 는 당신이 file:// 을 통해 페이지를 볼 때는 동작하지 않습니다. -->
+	<!--[if lt IE 9]>
+	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
 	<link rel="stylesheet" href="${context}/resources/vendors/linericon/style.css" />
 	<link rel="stylesheet" href="${context}/resources/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="${context}/resources/css/themify-icons.css" />
@@ -92,123 +92,449 @@
 	<!-- main css -->
 	<link rel="stylesheet" href="${context}/resources/css/style.css" />
 	<link rel="stylesheet" href="${context}/resources/css/responsive.css" />
-
-  </head>
+</head>
 <body>
-<!--================Home Banner Area =================-->
-<section class="banner_area">
-	<div class="banner_inner d-flex align-items-center">
-		<div class="container">
-			<div
-				class="banner_content d-md-flex justify-content-between align-items-center">
-				<div class="mb-3 mb-md-0">
-					<h2>스토어</h2>
-				</div>
-				<div class="page_link">
-					<a href="index.html">Home</a> <a href="single-product.html">Product	Details</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!--================End Home Banner Area =================-->
-
-	<!--================Category Product Area =================-->
-	<section class="cat_product_area section_gap">
-		<div class="container">
-			<div class="row flex-row-reverse">
-				<div class="col-lg-9">
-					<div class="col-lg-3">
-						<div class="left_sidebar_area">
-							<aside class="left_widgets p_filter_widgets">
-								<div class="l_w_title">
-									<h3>Browse Categories</h3>
-								</div>
-								<div class="widgets_inner">
-									<ul class="list">
-										<li><a href="#">가구</a></li>
-										<li><a href="#">침구</a></li>
-										<li><a href="#">생활용품</a></li>
-									</ul>
-								</div>
-							</aside>
-						</div>
+	<!--================Home Banner Area =================-->
+	<section class="banner_area">
+		<div class="banner_inner d-flex align-items-center">
+			<div class="container">
+				<div
+					class="banner_content d-md-flex justify-content-between align-items-center">
+					<div class="mb-3 mb-md-0">
+						<h2>스토어</h2>
 					</div>
-					<!-- div container -->
-					<div class="container">
-						<!-- 검색영역 -->
-						<div class="row">
-							<div class="col-md-12 text-center">
-								<form class="form-inline" name="productFrm" id="productFrm" method="get">
-									<input type="hidden" name="pageNum" id="pageNum" value="${vo.pageNum}" />
-									<input type="hidden" name="searchDiv" id="searchDiv" />
-									<input type="hidden" name="pNum" id="pNum" />
-									<div class="form-group ">
-										<div class="col-sm-12">
-											<input type="text" class="form-control input-sm" id="searchWord" name="searchWord" placeholder="검색어" />
-											<button type="button" class="btn btn-default btn-sm" id="do_retrieve">검색</button>
-											<a class="btn btn-default btn-sm" href="${context}/product/do_product_mng.do">글쓰기</a>
-										</div>
-									</div>
-								</form>
-							</div>
-						</div>
-						<!--검색영역 end -->
+					<div class="page_link">
+						<a href="index.html">메인 화면</a>
+						<a href="single-product.html">스토어</a>
 					</div>
-					<!--// div container -->
-
-					<div class="latest_product_inner" id="listTable">
-						<div class="row">
-							<div class="col-lg-4 col-md-6">
-								<c:choose>
-									<c:when test="${list.size()>0}">
-										<c:forEach var="vo" items="${list}">
-											<div class="single-product">
-												<div class="product-img">
-													<img class="card-img"
-														src="${context}/resources/img/product/inspired-product/i1.jpg"
-														alt="" />
-													<div class="p_icon">
-														<a href="#"> <i class="ti-eye"></i>
-														</a> <a href="#"> <i class="ti-heart"></i>
-														</a> <a href="#"> <i class="ti-shopping-cart"></i>
-														</a>
-													</div>
-												</div>
-												<div class="product-btm">
-													<a href="#" class="d-block"><h4>${vo.pName}</h4></a>
-													<div class="mt-3">
-														<span class="mr-4">${vo.bPrice}</span>
-														<del>${vo.discount}</del>
-													</div>
-												</div>
-											</div>
-										</c:forEach>
-									</c:when>
-									<c:otherwise>
-										<tr>
-											<td colspan="99">등록된 게시물이 없습니다.</td>
-										</tr>
-									</c:otherwise>
-								</c:choose>
-							</div>
-						</div>
-					</div>
-					<!-- pagenation -->
-					<div class="text-center">
-						<%=StringUtil.renderPaging(maxNum, currPageNo, rowPerPage, bottomCount, url, scriptName)%>
-					</div>
-					<!--// pagenation -->
 				</div>
 			</div>
 		</div>
 	</section>
+	<!--================End Home Banner Area =================-->
+	
+	<!--================Category Product Area =================-->
+	<section class="cat_product_area section_gap">
+	  <div class="container">
+	    <div class="row flex-row-reverse">
+	      <div class="col-lg-9">
+	        <div class="product_top_bar">
+	          <div class="left_dorp">
+	            <select class="sorting">
+	              <option value="1">Default sorting</option>
+	              <option value="2">Default sorting 01</option>
+	              <option value="4">Default sorting 02</option>
+	            </select>
+	            <select class="show">
+	              <option value="1">Show 12</option>
+	              <option value="2">Show 14</option>
+	              <option value="4">Show 16</option>
+	            </select>
+	          </div>
+	        </div>
+	        
+	        <div class="latest_product_inner">
+	          <div class="row">
+	            <div class="col-lg-4 col-md-6">
+	              <div class="single-product">
+	                <div class="product-img">
+	                  <img
+	                    class="card-img"
+	                    src="${context}/resources/img/product/inspired-product/i1.jpg"
+	                    alt=""
+	                  />
+	                  <div class="p_icon">
+	                    <a href="#">
+	                      <i class="ti-eye"></i>
+	                    </a>
+	                    <a href="#">
+	                      <i class="ti-heart"></i>
+	                    </a>
+	                    <a href="#">
+	                      <i class="ti-shopping-cart"></i>
+	                    </a>
+	                  </div>
+	                </div>
+	                <div class="product-btm">
+	                  <a href="#" class="d-block">
+	                    <h4>Latest men’s sneaker</h4>
+	                  </a>
+	                  <div class="mt-3">
+	                    <span class="mr-4">$25.00</span>
+	                    <del>$35.00</del>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	
+	            <div class="col-lg-4 col-md-6">
+	              <div class="single-product">
+	                <div class="product-img">
+	                  <img
+	                    class="card-img"
+	                    src="${context}/resources/img/product/inspired-product/i2.jpg"
+	                    alt=""
+	                  />
+	                  <div class="p_icon">
+	                    <a href="#">
+	                      <i class="ti-eye"></i>
+	                    </a>
+	                    <a href="#">
+	                      <i class="ti-heart"></i>
+	                    </a>
+	                    <a href="#">
+	                      <i class="ti-shopping-cart"></i>
+	                    </a>
+	                  </div>
+	                </div>
+	                <div class="product-btm">
+	                  <a href="#" class="d-block">
+	                    <h4>Latest men’s sneaker</h4>
+	                  </a>
+	                  <div class="mt-3">
+	                    <span class="mr-4">$25.00</span>
+	                    <del>$35.00</del>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	
+	            <div class="col-lg-4 col-md-6">
+	              <div class="single-product">
+	                <div class="product-img">
+	                  <img
+	                    class="card-img"
+	                    src="${context}/resources/img/product/inspired-product/i3.jpg"
+	                    alt=""
+	                  />
+	                  <div class="p_icon">
+	                    <a href="#">
+	                      <i class="ti-eye"></i>
+	                    </a>
+	                    <a href="#">
+	                      <i class="ti-heart"></i>
+	                    </a>
+	                    <a href="#">
+	                      <i class="ti-shopping-cart"></i>
+	                    </a>
+	                  </div>
+	                </div>
+	                <div class="product-btm">
+	                  <a href="#" class="d-block">
+	                    <h4>Latest men’s sneaker</h4>
+	                  </a>
+	                  <div class="mt-3">
+	                    <span class="mr-4">$25.00</span>
+	                    <del>$35.00</del>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	
+	            <div class="col-lg-4 col-md-6">
+	              <div class="single-product">
+	                <div class="product-img">
+	                  <img
+	                    class="card-img"
+	                    src="${context}/resources/img/product/inspired-product/i4.jpg"
+	                    alt=""
+	                  />
+	                  <div class="p_icon">
+	                    <a href="#">
+	                      <i class="ti-eye"></i>
+	                    </a>
+	                    <a href="#">
+	                      <i class="ti-heart"></i>
+	                    </a>
+	                    <a href="#">
+	                      <i class="ti-shopping-cart"></i>
+	                    </a>
+	                  </div>
+	                </div>
+	                <div class="product-btm">
+	                  <a href="#" class="d-block">
+	                    <h4>Latest men’s sneaker</h4>
+	                  </a>
+	                  <div class="mt-3">
+	                    <span class="mr-4">$25.00</span>
+	                    <del>$35.00</del>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	
+	            <div class="col-lg-4 col-md-6">
+	              <div class="single-product">
+	                <div class="product-img">
+	                  <img
+	                    class="card-img"
+	                    src="${context}/resources/img/product/inspired-product/i5.jpg"
+	                    alt=""
+	                  />
+	                  <div class="p_icon">
+	                    <a href="#">
+	                      <i class="ti-eye"></i>
+	                    </a>
+	                    <a href="#">
+	                      <i class="ti-heart"></i>
+	                    </a>
+	                    <a href="#">
+	                      <i class="ti-shopping-cart"></i>
+	                    </a>
+	                  </div>
+	                </div>
+	                <div class="product-btm">
+	                  <a href="#" class="d-block">
+	                    <h4>Latest men’s sneaker</h4>
+	                  </a>
+	                  <div class="mt-3">
+	                    <span class="mr-4">$25.00</span>
+	                    <del>$35.00</del>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	
+	            <div class="col-lg-4 col-md-6">
+	              <div class="single-product">
+	                <div class="product-img">
+	                  <img
+	                    class="card-img"
+	                    src="${context}/resources/img/product/inspired-product/i6.jpg"
+	                    alt=""
+	                  />
+	                  <div class="p_icon">
+	                    <a href="#">
+	                      <i class="ti-eye"></i>
+	                    </a>
+	                    <a href="#">
+	                      <i class="ti-heart"></i>
+	                    </a>
+	                    <a href="#">
+	                      <i class="ti-shopping-cart"></i>
+	                    </a>
+	                  </div>
+	                </div>
+	                <div class="product-btm">
+	                  <a href="#" class="d-block">
+	                    <h4>Latest men’s sneaker</h4>
+	                  </a>
+	                  <div class="mt-3">
+	                    <span class="mr-4">$25.00</span>
+	                    <del>$35.00</del>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	
+	            <div class="col-lg-4 col-md-6">
+	              <div class="single-product">
+	                <div class="product-img">
+	                  <img
+	                    class="card-img"
+	                    src="${context}/resources/img/product/inspired-product/i7.jpg"
+	                    alt=""
+	                  />
+	                  <div class="p_icon">
+	                    <a href="#">
+	                      <i class="ti-eye"></i>
+	                    </a>
+	                    <a href="#">
+	                      <i class="ti-heart"></i>
+	                    </a>
+	                    <a href="#">
+	                      <i class="ti-shopping-cart"></i>
+	                    </a>
+	                  </div>
+	                </div>
+	                <div class="product-btm">
+	                  <a href="#" class="d-block">
+	                    <h4>Latest men’s sneaker</h4>
+	                  </a>
+	                  <div class="mt-3">
+	                    <span class="mr-4">$25.00</span>
+	                    <del>$35.00</del>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	
+	            <div class="col-lg-4 col-md-6">
+	              <div class="single-product">
+	                <div class="product-img">
+	                  <img
+	                    class="card-img"
+	                    src="${context}/resources/img/product/inspired-product/i8.jpg"
+	                    alt=""
+	                  />
+	                  <div class="p_icon">
+	                    <a href="#">
+	                      <i class="ti-eye"></i>
+	                    </a>
+	                    <a href="#">
+	                      <i class="ti-heart"></i>
+	                    </a>
+	                    <a href="#">
+	                      <i class="ti-shopping-cart"></i>
+	                    </a>
+	                  </div>
+	                </div>
+	                <div class="product-btm">
+	                  <a href="#" class="d-block">
+	                    <h4>Latest men’s sneaker</h4>
+	                  </a>
+	                  <div class="mt-3">
+	                    <span class="mr-4">$25.00</span>
+	                    <del>$35.00</del>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	
+	            <div class="col-lg-4 col-md-6">
+	              <div class="single-product">
+	                <div class="product-img">
+	                  <img
+	                    class="card-img"
+	                    src="${context}/resources/img/product/inspired-product/i2.jpg"
+	                    alt=""
+	                  />
+	                  <div class="p_icon">
+	                    <a href="#">
+	                      <i class="ti-eye"></i>
+	                    </a>
+	                    <a href="#">
+	                      <i class="ti-heart"></i>
+	                    </a>
+	                    <a href="#">
+	                      <i class="ti-shopping-cart"></i>
+	                    </a>
+	                  </div>
+	                </div>
+	                <div class="product-btm">
+	                  <a href="#" class="d-block">
+	                    <h4>Latest men’s sneaker</h4>
+	                  </a>
+	                  <div class="mt-3">
+	                    <span class="mr-4">$25.00</span>
+	                    <del>$35.00</del>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	
+	      <div class="col-lg-3">
+	        <div class="left_sidebar_area">
+	          <aside class="left_widgets p_filter_widgets">
+	            <div class="l_w_title">
+	              <h3>Browse Categories</h3>
+	            </div>
+	            <div class="widgets_inner">
+	              <ul class="list">
+	                <li>
+	                  <a href="#">Frozen Fish</a>
+	                </li>
+	                <li>
+	                  <a href="#">Dried Fish</a>
+	                </li>
+	                <li>
+	                  <a href="#">Fresh Fish</a>
+	                </li>
+	                <li>
+	                  <a href="#">Meat Alternatives</a>
+	                </li>
+	                <li>
+	                  <a href="#">Fresh Fish</a>
+	                </li>
+	                <li>
+	                  <a href="#">Meat Alternatives</a>
+	                </li>
+	                <li>
+	                  <a href="#">Meat</a>
+	                </li>
+	              </ul>
+	            </div>
+	          </aside>
+	
+	          <aside class="left_widgets p_filter_widgets">
+	            <div class="l_w_title">
+	              <h3>Product Brand</h3>
+	            </div>
+	            <div class="widgets_inner">
+	              <ul class="list">
+	                <li>
+	                  <a href="#">Apple</a>
+	                </li>
+	                <li>
+	                  <a href="#">Asus</a>
+	                </li>
+	                <li class="active">
+	                  <a href="#">Gionee</a>
+	                </li>
+	                <li>
+	                  <a href="#">Micromax</a>
+	                </li>
+	                <li>
+	                  <a href="#">Samsung</a>
+	                </li>
+	              </ul>
+	            </div>
+	          </aside>
+	
+	          <aside class="left_widgets p_filter_widgets">
+	            <div class="l_w_title">
+	              <h3>Color Filter</h3>
+	            </div>
+	            <div class="widgets_inner">
+	              <ul class="list">
+	                <li>
+	                  <a href="#">Black</a>
+	                </li>
+	                <li>
+	                  <a href="#">Black Leather</a>
+	                </li>
+	                <li class="active">
+	                  <a href="#">Black with red</a>
+	                </li>
+	                <li>
+	                  <a href="#">Gold</a>
+	                </li>
+	                <li>
+	                  <a href="#">Spacegrey</a>
+	                </li>
+	              </ul>
+	            </div>
+	          </aside>
+	
+	          <aside class="left_widgets p_filter_widgets">
+	            <div class="l_w_title">
+	              <h3>Price Filter</h3>
+	            </div>
+	            <div class="widgets_inner">
+	              <div class="range_item">
+	                <div id="slider-range"></div>
+	                <div class="">
+	                  <label for="amount">Price : </label>
+	                  <input type="text" id="amount" readonly />
+	                </div>
+	              </div>
+	            </div>
+	          </aside>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</section>
 	<!--================End Category Product Area =================-->
 	
+	<!-- Optional JavaScript -->
 	<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
 	<script src="${context}/resources/js/jquery-1.12.4.js"></script>
 	<!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
-	<script src="${context}/resources/js/bootstrap.min.js"></script>  
+	<script src="${context}/resources/js/bootstrap.min.js"></script>
 	<script src="${context}/resources/js/stellar.js"></script>
 	<script src="${context}/resources/vendors/lightbox/simpleLightbox.min.js"></script>
 	<script src="${context}/resources/vendors/isotope/imagesloaded.pkgd.min.js"></script>

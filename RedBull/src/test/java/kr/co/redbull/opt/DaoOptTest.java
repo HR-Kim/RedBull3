@@ -29,8 +29,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.context.WebApplicationContext;
 
 import kr.co.redbull.cmn.Search;
-import kr.co.redbull.product.service.Product;
-import kr.co.redbull.product.service.impl.ProductDaoImpl;
+import kr.co.redbull.opt.service.Opt;
+import kr.co.redbull.opt.service.impl.OptDaoImpl;
 
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -44,19 +44,19 @@ public class DaoOptTest {
 	private WebApplicationContext context;
 	
 	@Autowired
-	private ProductDaoImpl productDaoImpl;
+	private OptDaoImpl optDaoImpl;
 	
-	List<Product> list;
+	List<Opt> list;
 	
 	//public Board(String boardId, String title, int readCnt, String contents, String regId, String regDt) {
 	@Before
 	public void setUp() {
 		list = Arrays.asList(
-				new Product("noBoardId","J01상품명_125",10000,"J01상세정보_125",0.1,1000,"10","J01등록자_125","noDate","noUser","noDate"),
-				new Product("noBoardId","J02상품명_125",20000,"J02상세정보_125",0.2,2000,"10","J01등록자_125","noDate","noUser","noDate"),
-				new Product("noBoardId","J03상품명_125",30000,"J03상세정보_125",0.3,3000,"20","J01등록자_125","noDate","noUser","noDate"),
-				new Product("noBoardId","J04상품명_125",40000,"J04상세정보_125",0.4,4000,"30","J01등록자_125","noDate","noUser","noDate"),
-				new Product("noBoardId","J05상품명_125",50000,"J05상세정보_125",0.5,5000,"30","J01등록자_125","noDate","noUser","noDate")
+				new Opt("noOnum","J01옵션명_125",10000,"391","1"),
+				new Opt("noOnum","J02옵션명_125",20000,"391","1"),
+				new Opt("noOnum","J03옵션명_125",30000,"391","1"),
+				new Opt("noOnum","J04옵션명_125",40000,"391","1"),
+				new Opt("noOnum","J05옵션명_125",50000,"391","1")
 				);
 				
 				
@@ -70,22 +70,23 @@ public class DaoOptTest {
 	}
 	
 	@Test
+	@Ignore
 	public void get_retrieve() {
 		LOG.debug("======================================");
 		LOG.debug("=01. 기존 데이터 삭제=");
 		LOG.debug("======================================");	
 		Search search=new Search();
-		search.setSearchWord("125");
-		List<Product> getList = (List<Product>) productDaoImpl.get_pnameList(search);
-		for(Product vo:getList) {
-			productDaoImpl.do_delete(vo);
+		search.setSearchWord("");
+		List<Opt> getList = (List<Opt>) optDaoImpl.get_pNumList(search);
+		for(Opt vo:getList) {
+			optDaoImpl.do_delete(vo);
 		}	
 		
 		LOG.debug("======================================");
 		LOG.debug("=02. 데이터 추가=");
 		LOG.debug("======================================");	
-		for(Product vo:list) { 
-			int flag = productDaoImpl.do_save(vo);
+		for(Opt vo:list) { 
+			int flag = optDaoImpl.do_save(vo);
 			assertThat(1, is(flag));
 		}		
 		
@@ -95,7 +96,7 @@ public class DaoOptTest {
 		search.setSearchDiv("10");
 		search.setPageSize(10);
 		search.setPageNum(1);
-		List<Product> addlistData = (List<Product>) productDaoImpl.get_retrieve(search);
+		List<Opt> addlistData = (List<Opt>) optDaoImpl.get_retrieve(search);
 		assertThat(5, is(addlistData.size()));		
 	}
 	
@@ -105,31 +106,30 @@ public class DaoOptTest {
 		//01. 기존 데이터 삭제
 		Search search = new Search();
 		search.setSearchWord("125");
-		List<Product> getList = (List<Product>) productDaoImpl.get_pnameList(search);
-		for(Product vo : getList) {
-			int flag = productDaoImpl.do_delete(vo);			
+		List<Opt> getList = (List<Opt>) optDaoImpl.get_pNumList(search);
+		for(Opt vo : getList) {
+			int flag = optDaoImpl.do_delete(vo);			
 		}		
 		//02. 데이터 추가
-		for(Product vo : list) {
-			int flag = productDaoImpl.do_save(vo);
+		for(Opt vo : list) {
+			int flag = optDaoImpl.do_save(vo);
 			assertThat(flag,is(1));
 		}
 		//02.01.데이터 조회
-		List<Product> addListData = (List<Product>) productDaoImpl.get_pnameList(search);
+		List<Opt> addListData = (List<Opt>) optDaoImpl.get_pNumList(search);
 		assertThat(5, is(addListData.size()));
 		
 		//03. 데이터 수정
-		Product changeData = addListData.get(0);
-		changeData.setpName(changeData.getpName()+"_U");
-		changeData.setDetail(changeData.getDetail()+"_U");
-		changeData.setModId(changeData.getRegId()+"_U");
+		Opt changeData = addListData.get(0);
+		changeData.setoName("J01옵션명_125_U");
+		changeData.setoPrice(99999);
 		
 		//03.01. 수정 데이터 등록
-		int flag = productDaoImpl.do_update(changeData);
+		int flag = optDaoImpl.do_update(changeData);
 		assertThat(1, is(flag));
 		
 		//04. 등록 데이터 조회
-		addListData = (List<Product>) productDaoImpl.get_pnameList(search);
+		addListData = (List<Opt>) optDaoImpl.get_pNumList(search);
 		
 		//05. 비교
 		checkData(changeData,addListData.get(0));
@@ -137,22 +137,21 @@ public class DaoOptTest {
 	}
 	
 	@Test
-	@Ignore
 	public void addAndGet() {
 		//0.데이터 삭제
 		Search search = new Search();
-		search.setSearchWord("125");
-		List<Product> getList = (List<Product>) productDaoImpl.get_pnameList(search);
-		for(Product vo : getList) {
-			int flag = productDaoImpl.do_delete(vo);			
+		search.setSearchWord("");
+		List<Opt> getList = (List<Opt>) optDaoImpl.get_pNumList(search);
+		for(Opt vo : getList) {
+			int flag = optDaoImpl.do_delete(vo);			
 		}
 		//1.데이터 등록
-		for(Product vo : list) {
-			int flag = productDaoImpl.do_save(vo);
+		for(Opt vo : list) {
+			int flag = optDaoImpl.do_save(vo);
 			assertThat(flag,is(1));
 		}
 		//2.데이터 조회
-		List<Product> getList2 = (List<Product>) productDaoImpl.get_pnameList(search);
+		List<Opt> getList2 = (List<Opt>) optDaoImpl.get_pNumList(search);
 		assertThat(5, is(getList2.size()));
 		
 		//3.데이터 비교:boardId는 자동 증가이므로 비교 할 수 없음.(제목,내용,등록자)
@@ -161,10 +160,9 @@ public class DaoOptTest {
 		}		
 	}
 	
-	private void checkData(Product org,Product vs) {
-		assertThat(org.getpName(), is(vs.getpName()));
-		assertThat(org.getDetail(), is(vs.getDetail()));
-		assertThat(org.getModId(), is(vs.getModId()));		
+	private void checkData(Opt org,Opt vs) {
+		assertThat(org.getoName(), is(vs.getoName()));
+		assertThat(org.getoPrice(), is(vs.getoPrice()));	
 	}
 	
 	@Test
@@ -172,9 +170,9 @@ public class DaoOptTest {
 	public void getBean() {
 		LOG.debug("====================================================");
 		LOG.debug("=context="+context);
-		LOG.debug("=boardDaoImpl="+productDaoImpl);
+		LOG.debug("=boardDaoImpl="+optDaoImpl);
 		LOG.debug("====================================================");
 		assertThat(context, is(notNullValue()));
-		assertThat(productDaoImpl, is(notNullValue()));
+		assertThat(optDaoImpl, is(notNullValue()));
 	}	
 }
