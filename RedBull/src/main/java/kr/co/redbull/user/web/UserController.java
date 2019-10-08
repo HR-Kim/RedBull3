@@ -249,10 +249,6 @@ public class UserController {
 			throw new IllegalArgumentException("주소를 입력하시오");
 		}
 		
-		if(null == user.getDetadd() || "".equals(user.getDetadd().trim())) {
-			
-			throw new IllegalArgumentException("상세주소를 입력하시오");
-		}
 		
 		// 등록 성공여부 반환
 		int flag = userService.do_save(user); 
