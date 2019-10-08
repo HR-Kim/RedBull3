@@ -200,6 +200,24 @@ public class CartDaoImpl implements WorkDiv {
 		return outVO;
 	}
 	
+	public List<?> get_cartIdList(DTO dto){
+		String statement = this.NAMESPACE + ".get_cartIdList";
+		Search search = (Search) dto;
+		
+		LOG.debug("==================================");
+		LOG.debug("1. param: " +search);
+		LOG.debug("2. statement: " + statement);
+		LOG.debug("==================================");
+		
+		List<Cart> list = this.sqlSessionTemplate.selectList(statement, search);
+		
+		LOG.debug("==================================");
+		LOG.debug("3. list: " + list);
+		LOG.debug("==================================");
+		
+		return list;
+	}
+	
 	
 	@Override
 	public List<?> get_retrieve(DTO dto) {

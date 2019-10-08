@@ -34,10 +34,16 @@
 		<input type="text" id="nextOnum" name="nextOnum" value="${nextOnum}" size="15"><br/>
 		<table class="table" id="optAddTable">
 			<tbody>
+				<c:forEach var="opt" items="${newOptList}">
+					<tr name="tr_opt">
+						<td><input type="text" name="oName" placeholder="옵션명" value="${opt.oName}" /></td>
+						<td><input type="text" name="oPrice" placeholder="가격(원)" value="${opt.oPrice}" /></td>
+						<td><a href="#this" name="oFile_delete" class="btn">삭제하기</a></td>
+					</tr>
+				</c:forEach>
 				<tr name="tr_opt"><!--OPT : ONAME,OPRICE,PNUM,INUM // IMAGE : REFNUM,ORG_FILE_NM,SAVE_FILE_NM,FILE_SIZE,EXT_NM-->
 					<td><input type="text" name="oName" placeholder="옵션명" /></td>
 					<td><input type="text" name="oPrice" placeholder="가격(원)" /></td>
-					<td><input type="file" name="oFile" /></td>
 					<td><a href="#this" name="oFile_delete" class="btn">삭제하기</a></td>
 				</tr>
 			</tbody>
@@ -74,26 +80,7 @@
 				obj.oPrice = $("input[name='oPrice']").eq(i).val();
 				obj.pNum   = $("#nextPnum").val();
 				
-				if($("input[name='oFile']").eq(i)[0].files[0]!="" || $("input[name='oFile']").eq(i)[0].files[0]!=null ){
-					var tmpInum = $("#nextInum").val();
-					var tmpOnum = $("#nextOnum").val();
-					
-					obj.iNum = tmpInum;
-					obj.refNum = tmpOnum;
-					obj.oFile  = $("input[name='oFile']").eq(i)[0].files[0];
-					
-					arr.push(obj);
-					
-					//값 전달 후 시퀀스 값 증가
-					$("#nextInum").val((tmpInum<< 0)+1);
-					$("#nextOnum").val((tmpOnum<< 0)+1);
-				}else{
-					obj.iNum = new String("");
-					obj.refNum = new String("");
-					obj.oFile  = new File();
-					
-					arr.push(obj);
-				}
+				arr.push(obj);
 				
 			});
 			
@@ -102,14 +89,13 @@
 				type : "POST",
 				url : "${context}/product/do_save_option.do",
 				dataType : "json",
-				processData: false,
 	            contentType: false,
 				data : JSON.stringify(arr),
 				success : function(data) {
 					alert(JSON.stringify(arr));
 					if(null != data || data.msgId == "10"){
 						alert(data.msgMsg);
-						//location.href = "${context}/product/do_product_mng.do";
+						location.href = "${context}/product/do_product_mng.do";
 					}
 				},
 				complete : function(data) {
@@ -125,7 +111,7 @@
 		$("#input_add").on("click",function(e){
 			//alert("oFile_add");	
 			e.preventDefault();
-			var str = "<tr name='tr_opt'><td><input type='text' name='oName' placeholder='옵션명' /></td><td><input type='text' name='oPrice' placeholder='가격(원)' /></td><td><input type='file' name='oFile' /></td><td><a href='#this' name='oFile_delete' class='btn'>삭제하기</a></td></tr>";
+			var str = "<tr name='tr_opt'><td><input type='text' name='oName' placeholder='옵션명' /></td><td><input type='text' name='oPrice' placeholder='가격(원)' /></td><td><a href='#this' name='oFile_delete' class='btn'>삭제하기</a></td></tr>";
 			$("#optAddTable").append(str);
 			inputNum++;
 			

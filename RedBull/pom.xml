@@ -8,6 +8,7 @@
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version> 
 	<properties>
+		<jackson-liv.version>2.9.8</jackson-liv.version>
 		<json-lib-version>2.4</json-lib-version>
 		<log4jdbc-remix-version>0.2.7</log4jdbc-remix-version>
 	    <mybatis-spring.version>1.3.2</mybatis-spring.version>
@@ -48,6 +49,19 @@
 
 
 	<dependencies>
+		<!-- jackson-core -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson-liv.version}</version>
+		</dependency>
+		<!-- jackson-databind -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson-liv.version}</version>
+		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/org.lazyluke/log4jdbc-remix -->
 		<dependency>
 		    <groupId>org.lazyluke</groupId>
