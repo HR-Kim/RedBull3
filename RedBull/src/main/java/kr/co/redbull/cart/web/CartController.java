@@ -41,7 +41,7 @@ public class CartController {
 	
 	//View
 	private final String VIEW_LIST_NM = "cart/cart_list";
-	private final String VUEW_MNG_NM = "cart/cart_mng";
+	private final String VIEW_MNG_NM = "cart/cart_mng";
 	
 	
 	/**단건 조회*/
@@ -55,7 +55,7 @@ public class CartController {
 		Cart outVO = (Cart) this.cartService.get_selectOne(inVO);
 		model.addAttribute("vo",outVO);
 		
-		return VUEW_MNG_NM;
+		return VIEW_MNG_NM;
 		
 	}
 	
