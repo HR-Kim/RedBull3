@@ -57,14 +57,26 @@
 	
 	 <!-- 단건조회 -->
  	 <select id="get_selectOne" parameterType="Cart" resultType="Cart">
- 	 	 SELECT	
- 	 	 	<include refid="cartColumns" />								
-         FROM CART c JOIN PRODUCT p
-         ON c.pNum = p.pNum
-         JOIN IMAGE i
-         ON c.pNum = i.refNum
-		WHERE c.regid = #{regId, jdbcType=VARCHAR}
+	 	 	 SELECT	
+	 	 	 	<include refid="cartColumns" />								
+	         FROM CART c JOIN PRODUCT p
+	         ON c.pNum = p.pNum
+	         JOIN IMAGE i
+	         ON c.pNum = i.refNum
+			WHERE c.regid = #{regId, jdbcType=VARCHAR}
+ 	 </select>
  	 
+ 	 <!-- get_cartIdList -->
+ 	 <select id="get_cartIdList" parameterType="Search" resultType="Cart">
+			SELECT
+			        <include refid="cartColumns" />
+			FROM
+			        CART c JOIN PRODUCT p
+			        ON c.pNum = p.pNum
+			        JOIN IMAGE i
+			        ON c.pNum = i.refNum
+			WHERE c.regId LIKE '%' || #{searchWord} || '%'
+			ORDER BY p.pNum ASC
  	 </select>
 	
  	 <!-- Cart 조회 -->
