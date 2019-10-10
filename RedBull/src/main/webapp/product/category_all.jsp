@@ -25,7 +25,7 @@
 --%>
 <%
 	/**페이지 사이즈*/
-	String pageSize = "10";	
+	String pageSize = "9";	
 	/**페이지 번호*/	
 	String pageNum = "1";
 	/**검색조건*/
@@ -36,12 +36,12 @@
 	Search vo = (Search)request.getAttribute("vo");
 	
 	if(null!=vo){
-		pageSize   = StringUtil.nvl(vo.getPageSize()+"", "10");
+		pageSize   = StringUtil.nvl(vo.getPageSize()+"", "9");
 		pageNum    = StringUtil.nvl(vo.getPageNum()+"", "1");
 		searchDiv  = StringUtil.nvl(vo.getSearchDiv(), "");
 		searchWord = StringUtil.nvl(vo.getSearchWord(), "");
 	}else{
-		pageSize   = "10";
+		pageSize   = "9";
 		pageNum    = "1";
 		searchDiv  = "20";
 		searchWord = "";
@@ -51,9 +51,9 @@
 	//maxNum, currPageNo, rowPerPage, bottomCount, url, scriptName
 	
 	int maxNum      = 0;  //totalCnt
-	int bottomCount = 10;
+	int bottomCount = 9;
 	int currPageNo  = 1;  //pageNum
-	int rowPerPage  = 10; //pageSize
+	int rowPerPage  = 9; //pageSize
 	
 	String url 	  	  = request.getContextPath()+"/product/get_retrieve.do";
 	String scriptName = "search_page"; 
@@ -114,86 +114,97 @@
 	<!--================End Home Banner Area =================-->
 	<!--================Category Product Area =================-->
 	<section class="cat_product_area section_gap">
-	  <div class="container">
-	    <div class="row flex-row-reverse">
-	      <div class="col-lg-9">
-			<!--================Top Area =================-->
-	        <div class="product_top_bar">
-	          <div class="left_dorp">
-	            <select class="sorting">
-	              <option value="1">Default sorting</option>
-	              <option value="2">Default sorting 01</option>
-	              <option value="4">Default sorting 02</option>
-	            </select>
-	            <select class="show">
-	              <option value="1">Show 12</option>
-	              <option value="2">Show 14</option>
-	              <option value="4">Show 16</option>
-	            </select>
-				<!-- 검색영역 -->
-				<form class="form-inline" name="productFrm" id="productFrm" method="get">
-					<input type="hidden" name="pageNum" id="pageNum" value="${vo.pageNum}" />
-					<input type="hidden" name="searchDiv" id="searchDiv" />
-					<input type="hidden" name="pNum" id="pNum" />
-					<div class="form-group ">
-						<input type="text" class="sorting" id="searchWord" name="searchWord" placeholder="검색어" />
-						<button type="button" class="genric-btn default" id="do_retrieve">검색</button>
-						<a class="btn btn-default btn-sm" href="${context}/product/do_product_mng.do">글쓰기</a>
+		<div class="container">
+			<div class="row flex-row-reverse">
+				<div class="col-lg-9">
+					<!--================Top Area =================-->
+					<div class="product_top_bar">
+						<div class="left_dorp">
+						<select class="sorting">
+							<option value="1">Default sorting</option>
+							<option value="2">Default sorting 01</option>
+							<option value="4">Default sorting 02</option>
+						</select>
+						<select class="show">
+							<option value="1">Show 12</option>
+							<option value="2">Show 14</option>
+							<option value="4">Show 16</option>
+						</select>
+						<!-- 검색영역 -->
+						<form class="form-inline" name="productFrm" id="productFrm" method="get">
+							<input type="hidden" name="pageNum" id="pageNum" value="${vo.pageNum}" />
+						<input type="hidden" name="searchDiv" id="searchDiv" />
+						<input type="hidden" name="pNum" id="pNum" />
+						<div class="form-group">
+							<input type="text" class="sorting" id="searchWord" name="searchWord" placeholder="검색어" />
+							<button type="button" class="genric-btn default" id="do_retrieve">검색</button>
+							<a class="btn btn-default btn-sm" href="${context}/product/do_product_mng.do">글쓰기</a>
+							</div>
+						</form>
+						<!--검색영역 end -->
+						</div>
 					</div>
-				</form>
-				<!--검색영역 end -->
-	          </div>
-	        </div>
-			<!--//================Top Area =================-->
-	 		<!--================Product Area =================-->     
-	        <div class="latest_product_inner">
-	          <div class="row">
-	            <div class="col-lg-4 col-md-6">
-	              <div class="single-product">
-	                <div class="product-img">
-	                  <img class="card-img" src="${context}/resources/img/product/inspired-product/i1.jpg"
-	                    alt=""
-	                  />
-	                </div>
-	                <div class="product-btm">
-	                  <a href="#" class="d-block"><h4>Latest men’s sneaker</h4></a>
-	                  <div class="mt-3">
-	                    <span class="mr-4">$25.00</span>
-	                    <del>$35.00</del>
-	                  </div>
-	                </div>
-	              </div>
-	            </div>
-	          </div>
-	        </div>
-	        <!--//================Product Area =================--> 
-	      </div>
-	      <!--================Left Area =================--> 
-	      <div class="col-lg-3">
-	        <div class="left_sidebar_area">
-	          <aside class="left_widgets p_filter_widgets">
-	            <div class="l_w_title">
-	              <h3>Categories</h3>
-	            </div>
-	            <div class="widgets_inner">
-	              <ul class="list">
-	                <li>
-	                  <a href="#">가구</a>
-	                </li>
-	                <li>
-	                  <a href="#">침구</a>
-	                </li>
-	                <li>
-	                  <a href="#">생활용품</a>
-	                </li>
-	              </ul>
-	            </div>
-	          </aside>
-	        </div>
-	      </div>
-	      <!--================Left Area =================-->
-	    </div>
-	  </div>
+					<!--//================Top Area =================-->
+					<!--================Product Area =================-->
+					<c:choose>
+						<c:when test="${list.size()>0}">
+							<div class="latest_product_inner">
+								<div class="row">
+									<c:forEach var="product" items="${list}">
+										<div class="col-lg-4 col-md-6">
+											<div class="single-product">
+												<div class="product-img">
+												  <img class="card-img" src="${context}/resources/img/product/inspired-product/i1.jpg"
+												    alt=""
+												  />
+												</div>
+												<div class="product-btm">
+													<a href="#" class="d-block"><h4>${product.pName}</h4></a>
+													<div class="mt-3">
+													  <span class="mr-4">${product.bPrice}원</span>
+													  <del>${Math.round(product.bPrice*(product.discount+1))}원</del>
+													</div>
+												</div>
+											</div>
+										</div>
+									</c:forEach>
+								</div>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div>
+								<h3>등록된 게시물이 없습니다.</h3>
+							</div>
+						</c:otherwise>
+					</c:choose>
+					<!--//================Product Area =================--> 
+				</div>
+				<!--================Left Area =================--> 
+				<div class="col-lg-3">
+					<div class="left_sidebar_area">
+						<aside class="left_widgets p_filter_widgets">
+					<div class="l_w_title">
+						<h3>Categories</h3>
+					</div>
+					<div class="widgets_inner">
+						<ul class="list">
+							<li>
+								<a href="#">가구</a>
+							</li>
+							<li>
+								<a href="#">침구</a>
+							</li>
+							<li>
+								<a href="#">생활용품</a>
+							</li>
+						</ul>
+					</div>
+						</aside>
+					</div>
+				</div>
+				<!--================Left Area =================-->
+			</div>
+		</div>
 	</section>
 	<!--================End Category Product Area =================-->
 	

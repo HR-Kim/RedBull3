@@ -306,7 +306,7 @@ public class ProductController {
 		LOG.debug("search:"+search);
 		LOG.debug("================================");
 		
-		if(search.getPageSize()==0) search.setPageSize(10);
+		if(search.getPageSize()==0) search.setPageSize(9);
 		if(search.getPageNum()==0)  search.setPageNum(1);
 		
 		
