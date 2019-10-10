@@ -112,7 +112,6 @@
 		</div>
 	</section>
 	<!--================End Home Banner Area =================-->
-	
 	<!--================Category Product Area =================-->
 	<section class="cat_product_area section_gap">
 	  <div class="container">
@@ -131,6 +130,18 @@
 	              <option value="2">Show 14</option>
 	              <option value="4">Show 16</option>
 	            </select>
+				<!-- 검색영역 -->
+				<form class="form-inline" name="productFrm" id="productFrm" method="get">
+					<input type="hidden" name="pageNum" id="pageNum" value="${vo.pageNum}" />
+					<input type="hidden" name="searchDiv" id="searchDiv" />
+					<input type="hidden" name="pNum" id="pNum" />
+					<div class="form-group ">
+						<input type="text" class="sorting" id="searchWord" name="searchWord" placeholder="검색어" />
+						<button type="button" class="genric-btn default" id="do_retrieve">검색</button>
+						<a class="btn btn-default btn-sm" href="${context}/product/do_product_mng.do">글쓰기</a>
+					</div>
+				</form>
+				<!--검색영역 end -->
 	          </div>
 	        </div>
 			<!--//================Top Area =================-->
@@ -140,27 +151,12 @@
 	            <div class="col-lg-4 col-md-6">
 	              <div class="single-product">
 	                <div class="product-img">
-	                  <img
-	                    class="card-img"
-	                    src="${context}/resources/img/product/inspired-product/i1.jpg"
+	                  <img class="card-img" src="${context}/resources/img/product/inspired-product/i1.jpg"
 	                    alt=""
 	                  />
-	                  <div class="p_icon">
-	                    <a href="#">
-	                      <i class="ti-eye"></i>
-	                    </a>
-	                    <a href="#">
-	                      <i class="ti-heart"></i>
-	                    </a>
-	                    <a href="#">
-	                      <i class="ti-shopping-cart"></i>
-	                    </a>
-	                  </div>
 	                </div>
 	                <div class="product-btm">
-	                  <a href="#" class="d-block">
-	                    <h4>Latest men’s sneaker</h4>
-	                  </a>
+	                  <a href="#" class="d-block"><h4>Latest men’s sneaker</h4></a>
 	                  <div class="mt-3">
 	                    <span class="mr-4">$25.00</span>
 	                    <del>$35.00</del>
@@ -168,7 +164,6 @@
 	                </div>
 	              </div>
 	            </div>
-	            
 	          </div>
 	        </div>
 	        <!--//================Product Area =================--> 
@@ -183,25 +178,13 @@
 	            <div class="widgets_inner">
 	              <ul class="list">
 	                <li>
-	                  <a href="#">Frozen Fish</a>
+	                  <a href="#">가구</a>
 	                </li>
 	                <li>
-	                  <a href="#">Dried Fish</a>
+	                  <a href="#">침구</a>
 	                </li>
 	                <li>
-	                  <a href="#">Fresh Fish</a>
-	                </li>
-	                <li>
-	                  <a href="#">Meat Alternatives</a>
-	                </li>
-	                <li>
-	                  <a href="#">Fresh Fish</a>
-	                </li>
-	                <li>
-	                  <a href="#">Meat Alternatives</a>
-	                </li>
-	                <li>
-	                  <a href="#">Meat</a>
+	                  <a href="#">생활용품</a>
 	                </li>
 	              </ul>
 	            </div>
