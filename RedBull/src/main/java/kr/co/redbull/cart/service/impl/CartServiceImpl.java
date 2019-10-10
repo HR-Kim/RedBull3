@@ -14,7 +14,7 @@ import kr.co.redbull.cmn.DTO;
 @Service
 public class CartServiceImpl implements CartService {
 	
-	private Logger LOG = LoggerFactory.getLogger(this.getClass());
+	Logger LOG = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	private CartDaoImpl cartDaoImpl;
@@ -26,7 +26,7 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public int do_updateI(DTO dto) {
+	public int do_update(DTO dto) {
 		
 		return cartDaoImpl.do_update(dto);
 	}
@@ -75,6 +75,14 @@ public class CartServiceImpl implements CartService {
 	public int sale(DTO dto) {
 		
 		return cartDaoImpl.sale(dto);
+	}
+
+	@Override
+	public DTO get_selectOne(DTO dto) {
+		
+		Cart cart = (Cart) cartDaoImpl.get_selectOne(dto);
+		
+		return cart;
 	}
 
 }

@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.redbull.cmn.DTO;
 import kr.co.redbull.cmn.ExcelWriter;
+import kr.co.redbull.cmn.Message;
 import kr.co.redbull.user.service.Level;
 import kr.co.redbull.user.service.User;
 import kr.co.redbull.user.service.UserService;
@@ -55,25 +56,25 @@ public class UserServiceImpl implements UserService {
 		
 	}//--upgradeLevel
 	
-	/**등업 사용자에게 메일 전송*/
-	private void sendUpgradeMail(User user) {
+	/**비밀번호 찾기 메일 전송*/
+	public void sendPasswdMail(User user) {
 		
 		try {
 			
 			// 보내는 사람
 			String host = "smtp.naver.com";
 			final String userName = "sytemp1234";
-			final String password = "비밀번호";
+			final String password = "비밀번호넣기";
 			int port = 465;
 			
 			// 받는 사람
 			String recipient = user.getRid();
 			
 			// 제목
-			String title = user.getUname() + "등업(집순이 쇼핑몰)";
+			String title = user.getUname() + "님의 비밀번호";
 			
 			// 내용
-			String contents = user.getUname() + "님의 등급이 " + user.getLvl().name() + "(로)으로 되었습니다.";
+			String contents = user.getUname() + "님의 비밀번호는 " + user.getPasswd() + "입니다.";
 			
 			// SMTP 서버 설정
 			Properties props = System.getProperties();
@@ -206,7 +207,51 @@ public class UserServiceImpl implements UserService {
 		
 		return saveFileNm; // 생성한 엑셀 파일의 저장파일명을 반환
 		
-	}
+	}//--get_excelDown
+
+	@Override
+	public DTO idPassCheck(DTO dto) {
+		
+		// 메시지 객체 생성
+		Message outMsg = new Message();
+		
+		//------1. 아이디 체크-------
+		int flag = userDaoImpl.id_check(dto);
+		
+		if(flag < 1) { // 아이디 확인 실패
+			
+			outMsg.setMsgId("10");
+			outMsg.setMsgMsg("아이디를 확인하시오");
+			
+			return outMsg;
+
+		}
+		
+		//------2. 비밀번호 체크------
+		flag = userDaoImpl.passwd_check(dto);
+		
+		if(flag < 1) { // 비밀번호 확인 실패
+			
+			outMsg.setMsgId("20");
+			outMsg.setMsgMsg("비밀번호를 확인하시오");
+			
+			return outMsg;
+
+		}
+		
+		//------3. 로그인 성공 체크------
+		if(flag == 1) { // 로그인 성공 
+			
+			outMsg.setMsgId("30");			
+		}
+		
+		LOG.debug("=========================");
+		LOG.debug("=outMsg=" + outMsg);
+		LOG.debug("=========================");
+		
+		return outMsg;
+		
+	}//--idPassCheck
 
 
 }//--class

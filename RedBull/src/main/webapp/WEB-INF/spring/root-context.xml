@@ -4,10 +4,17 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	
+	<!-- jsonView 설정 -->
+	<bean id="jsonMapper" class="com.fasterxml.jackson.databind.ObjectMapper" />
+	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+		<property name="objectMapper" ref="jsonMapper" />
+	</bean>
 	
 	<!-- File Upload설정 -->
 	<bean id="multipartResolver" 
@@ -20,21 +27,21 @@
 		
 	<!-- mail  -->
 	<!-- 개발용 메일 -->
-	<bean id="mailSender" class="kr.co.redbull.user.service.impl.DummyMailSender" />
+<!-- 	<bean id="mailSender" class="kr.co.redbull.user.service.impl.DummyMailSender" /> -->
 	
 	<!-- 운용 메일: ONLINE -->
-	<!-- 	<bean id="mailSender"
+	<bean id="mailSender"
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="session" ref="emailSession"></property>
 
-	</bean> -->
+	</bean>
 	
 	<bean id="passwordAuth" class="javax.mail.PasswordAuthentication">
 		<constructor-arg>
 			<value>sytemp1234</value>
 		</constructor-arg>
 		<constructor-arg>
-			<value>비밀번호</value>
+			<value>비밀번호넣기</value>
 		</constructor-arg>
 	</bean>
 

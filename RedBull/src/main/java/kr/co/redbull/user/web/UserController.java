@@ -4,6 +4,8 @@ import java.io.File;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,6 +45,62 @@ public class UserController {
 	// View를 상수로 선언
 	private final String VIEW_JOIN_NM = "user/join";
 	private final String VIEW_UPDATE_NM = "user/update";
+	
+	
+	@RequestMapping(value="login/do_login.do",method=RequestMethod.POST,produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String do_login(User user, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+		
+		LOG.debug("1=========================");
+		LOG.debug("1=user="+user); // 아이디와 비밀번호
+		LOG.debug("1=========================");
+		
+		//String language = StringUtil.nvl(request.getParameter("lang"), "ko");
+		//LOG.debug("=language="+language); // 아이디와 비밀번호
+		
+		Message msg = (Message) userService.idPassCheck(user);
+		
+		LOG.debug("2=========================");
+		LOG.debug("2= msg="+ msg); 
+		LOG.debug("2=========================");
+		
+		// 10: 아이디 오류, 20: 비밀번호 오류
+		if(msg.getMsgId().equals("10") || msg.getMsgId().equals("20")) {
+			
+//			return "user/login"; // 로그인 화면으로 던지기
+		}
+		else { // 아이디, 비밀번호 체크 둘 다 성공하면
+			
+			// 데이터 단건 조회
+			User outVO = (User) userService.get_selectOne(user);
+			outVO.setintlvl(outVO.getLvl().intValue());
+			
+			LOG.debug("3=========================");
+			LOG.debug("3= outVO="+ outVO); 
+			LOG.debug("3=========================");
+			
+//			Locale  locale=new Locale(user.getLang());
+//			localeResolver.setLocale(request, response, locale);
+			
+			session.setAttribute("user", outVO);
+			
+//			return "main/main"; // 메인 화면 던지기 
+//			return "redirect:/main/main.jsp"; // sendredirect와 같은 개념
+			
+		}
+		
+		// JSON
+		Gson gson = new Gson();
+		String json = gson.toJson(msg);
+		
+		LOG.debug("2============================");
+		LOG.debug("2=@Controller json=" + json);
+		LOG.debug("2============================");
+		
+		return json;
+		
+	}//--do_login
+	
 	
 	/**ExcelDown*/
 	@RequestMapping(value="user/do_exceldown.do",method=RequestMethod.GET)
@@ -191,10 +249,6 @@ public class UserController {
 			throw new IllegalArgumentException("주소를 입력하시오");
 		}
 		
-		if(null == user.getDetadd() || "".equals(user.getDetadd().trim())) {
-			
-			throw new IllegalArgumentException("상세주소를 입력하시오");
-		}
 		
 		// 등록 성공여부 반환
 		int flag = userService.do_save(user); 

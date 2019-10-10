@@ -72,8 +72,8 @@ public class UserWebTest {
 		users = Arrays.asList(
 				new User("j01_145", "password", "이상무145_01", "1900/01/01", "010-1111-1111", 12345, "주소",
 						 "상세주소", Level.BASIC, 2000, 9999, "2019/10/01"), 
-				new User("j02_145", "password", "이상무145_02", "1900/01/01", "010-1111-1111", 12345, "주소",
-						 "상세주소", Level.SILVER, 0, 9999, "2019/10/01"),  
+				new User("sytemp1234@naver.com", "password", "이상무145_02", "1900/01/01", "010-1111-1111", 12345, "주소",
+						 "상세주소", Level.SILVER, 3000, 9999, "2019/10/01"),  
 				new User("j03_145", "password", "이상무145_03", "1900/01/01", "010-1111-1111", 12345, "주소",
 						 "상세주소", Level.GOLD, 0, 9999, "2019/10/01")
 		);
@@ -87,11 +87,38 @@ public class UserWebTest {
 		LOG.debug("=========================");
 	}
 	
+	// login/do_login.do
+	@Test
+	@Ignore
+	public void do_login() throws Exception {
+		
+		User user = users.get(1);
+		
+		MockHttpServletRequestBuilder createMessage = 
+				MockMvcRequestBuilders.post("/login/do_login.do")
+				.param("rid", user.getRid()) // 파라미터 넘기기
+				.param("passwd", user.getPasswd());
+				
+		ResultActions resultActions =mockMvc.perform(createMessage)
+				.andExpect(status().isOk())
+				.andExpect(forwardedUrl("/main/main.jsp"));
+		
+		String result =	resultActions.andDo(print())
+				.andReturn()
+				.getResponse().getContentAsString();
+
+		LOG.debug("===============================");
+		LOG.debug("=result="+result);
+		LOG.debug("===============================");
+	
+	}//--do_login
+	
+	/**등업*/
 	@Test
 	@Ignore
 	public void upgradeLevel() throws Exception {
 		
-		User user = users.get(0);
+		User user = users.get(1);
 		
 		upgradeLevel(user);
 		
@@ -102,6 +129,7 @@ public class UserWebTest {
 		userServiceImpl.upgradeLevel(user);
 	}
 	
+	/**화면전환*/
 	@Test
 	@Ignore
 	public void doUserView() throws Exception {
@@ -115,6 +143,7 @@ public class UserWebTest {
 		.andDo(print());
 	}
 	
+	/**엑셀 다운 - 안 됨!!*/
 	@Test
 	@Ignore
 	public void excelDown() throws Exception {
@@ -190,7 +219,7 @@ public class UserWebTest {
 	
 	/**회원정보 수정*/
 	@Test
-	@Ignore
+//	@Ignore
 	public void do_update() throws Exception {
 
 		LOG.debug("=========================");
@@ -381,7 +410,20 @@ public class UserWebTest {
 		
 	}
 	
-	/**단건조회: 비밀번호 찾기*/
+	/**비밀번호 찾기: 단건조회 -> 비밀번호 메일 보내기*/
+	@Test
+	@Ignore
+	public void find_passwd() throws Exception {
+		
+		User user = users.get(1);
+		
+		User outVO = (User) userDaoImpl.get_selectOne(user);
+		
+		userServiceImpl.sendPasswdMail(outVO);
+		
+	}
+	
+	/**단건조회*/
 	@Test
 	@Ignore
 	public void get_selectOne() throws Exception {

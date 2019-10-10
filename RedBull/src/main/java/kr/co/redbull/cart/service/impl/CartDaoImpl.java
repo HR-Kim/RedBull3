@@ -176,7 +176,7 @@ public class CartDaoImpl implements WorkDiv {
 		
 		int flag = this.sqlSessionTemplate.insert(statement, cart);
 		LOG.debug("================================");
-		LOG.debug("3. falg: " + flag);
+		LOG.debug("3. flag: " + flag);
 		LOG.debug("================================");
 		
 		return flag;
@@ -184,8 +184,38 @@ public class CartDaoImpl implements WorkDiv {
 
 	@Override
 	public DTO get_selectOne(DTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+		String statement = this.NAMESPACE +".get_selectOne";
+		Cart inVO = (Cart) dto;
+		LOG.debug("==================================");
+		LOG.debug("1. param: " + inVO);
+		LOG.debug("2. statement: " + statement);
+		LOG.debug("==================================");
+		
+		Cart outVO = this.sqlSessionTemplate.selectOne(statement, inVO);
+		
+		LOG.debug("==================================");
+		LOG.debug("3. flag: " + outVO);
+		LOG.debug("==================================");
+		
+		return outVO;
+	}
+	
+	public List<?> get_cartIdList(DTO dto){
+		String statement = this.NAMESPACE + ".get_cartIdList";
+		Search search = (Search) dto;
+		
+		LOG.debug("==================================");
+		LOG.debug("1. param: " +search);
+		LOG.debug("2. statement: " + statement);
+		LOG.debug("==================================");
+		
+		List<Cart> list = this.sqlSessionTemplate.selectList(statement, search);
+		
+		LOG.debug("==================================");
+		LOG.debug("3. list: " + list);
+		LOG.debug("==================================");
+		
+		return list;
 	}
 	
 	

@@ -41,9 +41,11 @@
 <link rel="stylesheet" href="${context}/resources/vendors/linericon/style.css" />
 <link rel="stylesheet" href="${context}/resources/css/font-awesome.min.css" />
 <link rel="stylesheet" href="${context}/resources/css/themify-icons.css" />
+<link rel="stylesheet" href="${context}/resources/vendors/owl-carousel/owl.carousel.min.css" />
 <link rel="stylesheet" href="${context}/resources/vendors/lightbox/simpleLightbox.css" />
 <link rel="stylesheet" href="${context}/resources/vendors/nice-select/css/nice-select.css" />
 <link rel="stylesheet" href="${context}/resources/vendors/animate-css/animate.css" />
+<link rel="stylesheet" href="${context}/resources/vendors/jquery-ui/jquery-ui.css" />
 <!-- main css -->
 <link rel="stylesheet" href="${context}/resources/css/style.css" />
 <link rel="stylesheet" href="${context}/resources/css/responsive.css" />
@@ -158,7 +160,7 @@
 						<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button">
 							<i class="lnr lnr-chevron-up"></i>
 						</button>
-						<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button">
+						<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button">
 							<i class="lnr lnr-chevron-down"></i>
 						</button>
 					</div>

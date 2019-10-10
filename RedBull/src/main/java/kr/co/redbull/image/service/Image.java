@@ -1,5 +1,7 @@
 package kr.co.redbull.image.service;
 
+import java.util.List;
+
 import kr.co.redbull.cmn.DTO;
 
 public class Image extends DTO {
@@ -7,12 +9,14 @@ public class Image extends DTO {
 	private String refNum     ;//참조번호
 	private String orgFileNm  ;//원본파일명
 	private String saveFileNm ;//저장파일명
-	private String fileSize   ;//사이즈
+	private long fileSize   ;//사이즈
 	private String extNm      ;//확장자
+	private List<Image> imageList;
+	
 	
 	public Image() {}
 
-	public Image(String iNum, String refNum, String orgFileNm, String saveFileNm, String fileSize, String extNm) {
+	public Image(String iNum, String refNum, String orgFileNm, String saveFileNm, long fileSize, String extNm) {
 		super();
 		this.iNum = iNum;
 		this.refNum = refNum;
@@ -20,6 +24,16 @@ public class Image extends DTO {
 		this.saveFileNm = saveFileNm;
 		this.fileSize = fileSize;
 		this.extNm = extNm;
+	}
+
+	
+	
+	public List<Image> getList() {
+		return imageList;
+	}
+
+	public void setList(List<Image> imageList) {
+		this.imageList = imageList;
 	}
 
 	public String getiNum() {
@@ -54,11 +68,11 @@ public class Image extends DTO {
 		this.saveFileNm = saveFileNm;
 	}
 
-	public String getFileSize() {
+	public long getFileSize() {
 		return fileSize;
 	}
 
-	public void setFileSize(String fileSize) {
+	public void setFileSize(long fileSize) {
 		this.fileSize = fileSize;
 	}
 
@@ -73,7 +87,8 @@ public class Image extends DTO {
 	@Override
 	public String toString() {
 		return "Image [iNum=" + iNum + ", refNum=" + refNum + ", orgFileNm=" + orgFileNm + ", saveFileNm=" + saveFileNm
-				+ ", fileSize=" + fileSize + ", extNm=" + extNm + ", toString()=" + super.toString() + "]";
+				+ ", fileSize=" + fileSize + ", extNm=" + extNm + "]";
 	}
+
 	
 }

@@ -45,4 +45,9 @@ public class ImageServiceImpl implements ImageService{
 	public List<?> get_refnumList(DTO dto) {
 		return imageDaoImpl.get_refnumList(dto);
 	}
+
+	@Override
+	public DTO get_nextInum() {
+		return imageDaoImpl.get_nextInum();
+	}
 }
