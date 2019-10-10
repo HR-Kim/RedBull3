@@ -65,6 +65,8 @@
 	currPageNo = Integer.parseInt(pageNum);
 	rowPerPage = Integer.parseInt(pageSize);
 	
+	//git으로 할때
+	String user =  System.getProperty("user.home");
 %> 
 <html lang="ko">
 <head>
@@ -75,7 +77,7 @@
 	<title>스토어</title>
 	
 	<!-- 부트스트랩 -->
-	<link rel="stylesheet" href="${context}/resources/css/bootstrap.css" />
+	<link rel="stylesheet" href="${context}/resources/css/bootstrap.min.css" />
 	
 	<!-- IE8 에서 HTML5 요소와 미디어 쿼리를 위한 HTML5 shim 와 Respond.js -->
 	<!-- WARNING: Respond.js 는 당신이 file:// 을 통해 페이지를 볼 때는 동작하지 않습니다. -->
@@ -133,14 +135,12 @@
 						<!-- 검색영역 -->
 						<form class="form-inline" name="productFrm" id="productFrm" method="get">
 							<input type="hidden" name="pageNum" id="pageNum" value="${vo.pageNum}" />
-						<input type="hidden" name="searchDiv" id="searchDiv" />
-						<input type="hidden" name="pNum" id="pNum" />
-						<div class="form-group">
+							<input type="hidden" name="searchDiv" id="searchDiv" />
+							<input type="hidden" name="pNum" id="pNum" />
 							<input type="text" class="sorting" id="searchWord" name="searchWord" placeholder="검색어" />
-							<button type="button" class="genric-btn default" id="do_retrieve">검색</button>
-							<a class="btn btn-default btn-sm" href="${context}/product/do_product_mng.do">글쓰기</a>
-							</div>
 						</form>
+						<button type="button" class="genric-btn default" onclick="javascript:do_retrieve()" >검색</button>
+						<a class="btn btn-default btn-sm" href="${context}/product/do_product_mng.do">글쓰기</a>
 						<!--검색영역 end -->
 						</div>
 					</div>
@@ -149,20 +149,19 @@
 					<c:choose>
 						<c:when test="${list.size()>0}">
 							<div class="latest_product_inner">
-								<div class="row">
+								<div id="listTable" class="row">
 									<c:forEach var="product" items="${list}">
 										<div class="col-lg-4 col-md-6">
 											<div class="single-product">
+												<input type="hidden" value="${product.pNum}" />
 												<div class="product-img">
-												  <img class="card-img" src="${context}/resources/img/product/inspired-product/i1.jpg"
-												    alt=""
-												  />
+													<img class="card-img" src="${context}/${product.detail}" alt="" />
 												</div>
 												<div class="product-btm">
 													<a href="#" class="d-block"><h4>${product.pName}</h4></a>
 													<div class="mt-3">
-													  <span class="mr-4">${product.bPrice}원</span>
-													  <del>${Math.round(product.bPrice*(product.discount+1))}원</del>
+														<span class="mr-4">${product.bPrice}원</span>
+														<del>${Math.round(product.bPrice*(product.discount+1))}원</del>
 													</div>
 												</div>
 											</div>
@@ -220,35 +219,28 @@
 	<script type="text/javascript">
 		//단건조회
 		//listTable
-	    $("#listTable>img").on("click","a",function(){
-	    	var tr  = $(this);
-	    	var td  =  tr.children();
-	    	var pNum = td.eq(0).text();
-	    	console.log("pNum:"+pNum);
+	    $("#listTable>div>div").on("click",function(e){
+	    	e.preventDefault();
+	    	var div  = $(this);
+	    	var input  =  div.children("input");
+	    	console.log("input:"+input.val());
 	    	
-    		if(null==pNum || pNum.length==1) return;
+    		//if(null==input || input.length==1) return;
     		
     		var frm = document.productFrm;
-    		frm.pNum.value = pNum;
+    		frm.pNum.value = input.val();
     		frm.action = "${context}/product/get_selectOne.do";
     		frm.submit(); 
 	    });
 		
 		//목록조회
 		function do_retrieve(){
-			
 			var searchWord = $("#searchWord").text();
-			
 			var frm = document.productFrm;
 			frm.pageNum.value= 1;
 			frm.action = "${context}/product/get_retrieve.do";
 			frm.submit();
 		}
-	
-		$("#do_retrieve").on("click", function(){
-			//alert('doRetrieve');
-			do_retrieve();
-		});
 	</script>
 </body>
 </html>
