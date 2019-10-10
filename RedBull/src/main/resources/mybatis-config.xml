@@ -18,6 +18,7 @@
 		<typeAlias type="kr.co.redbull.opt.service.Opt" alias="Opt" />
 		<typeAlias type="kr.co.redbull.image.service.Image" alias="Image" />
 		<typeAlias type="kr.co.redbull.review.service.Review" alias="Review" />
+		<typeAlias type="kr.co.redbull.mypage.service.MyGood" alias="MyGood" />
 	</typeAliases>
 
 </configuration>  
