@@ -4,6 +4,7 @@ import java.io.File;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -12,13 +13,30 @@ import org.apache.commons.lang3.StringEscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import kr.co.redbull.code.service.Code;
+import kr.co.redbull.product.service.Product;
 
 public class StringUtil {
 	private static Logger LOG = LoggerFactory.getLogger(StringUtil.class);
 	
 	// File Root 디렉토리
 	public static final String UPLOAD_ROOT = "D:\\HR_FILE";
-
+	
+	/**
+	 * Product 리스트에서 startNum에서 LastNum까지 추출하는 메소드
+	 * 0번째 부터 시작
+	 */
+	public static List<Product> selectList(List<Product> list, int startNum, int lastNum){
+		List<Product> outList = new ArrayList<Product>();
+		for(int i=0; i<list.size(); i++) {
+			if(i>=startNum && i<=lastNum) {
+				Product getOne = list.get(i);
+				outList.add(getOne);
+			}
+		}
+		return outList;
+	}
+	
+	
 	/**
 	 * D:\\HR_FILE\2019\09
 	 */
