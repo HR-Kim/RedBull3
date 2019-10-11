@@ -197,7 +197,7 @@
 						<div class="row total_rate">
 							<div class="col-6">
 								<div class="box_total">
-									<h5>Overall</h5>
+									<h5>평균</h5>
 									<h4>4.0</h4>
 									<h6>(03 Reviews)</h6>
 								</div>
