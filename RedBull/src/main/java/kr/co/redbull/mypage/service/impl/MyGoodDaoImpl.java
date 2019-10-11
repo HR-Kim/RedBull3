@@ -35,7 +35,7 @@ public class MyGoodDaoImpl implements WorkDiv {
 		LOG.debug("=2.statement="+statement);
 		LOG.debug("======================================");
 		
-		List<Product> list = this.sqlSessionTemplate.selectList(statement, search);
+		List<MyGood> list = this.sqlSessionTemplate.selectList(statement, search);
 		LOG.debug("======================================");
 		LOG.debug("=2.list="+list);
 		LOG.debug("======================================");
