@@ -3,32 +3,16 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="context" value="${pageContext.request.contextPath }" />    
-
-<%--
-  /**
-  * @Class Name : login.jsp
-  * @Description : login 화면
-  * @Modification Information
-  *
-  *   수정일                   수정자                      수정내용
-  *  -------    --------    ---------------------------
-  *  2019.09.27            최초 생성
-  *
-  * author SIST 개발팀
-  * since 2019.09.26
-  *
-  * Copyright (C) 2009 by KandJang  All right reserved.
-  */
---%>
      
 <html lang="ko">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
     
     <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="${context}/resources/vendors/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="${context}/resources/vendors/bootstrap/css/bootstrap.min.css">
 	<!--===============================================================================================-->
 		<link rel="stylesheet" type="text/css" href="${context}/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 	<!--===============================================================================================-->
@@ -48,7 +32,6 @@
 		<link rel="stylesheet" type="text/css" href="${context}/resources/css/main.css">
 	<!--===============================================================================================-->
     
-    <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
     <title>로그인</title>
 
     <!-- 부트스트랩 -->
@@ -126,7 +109,7 @@
     <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
     <script src="${context}/resources/js/bootstrap.min.js"></script>   
     
-        <script type="text/javascript">
+    <script type="text/javascript">
         
         function do_login() {
         

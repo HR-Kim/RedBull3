@@ -4,7 +4,7 @@ import kr.co.redbull.cmn.DTO;
 
 public class Cart extends DTO {
 	private int cartNum    ;//장바구니번호
-	private int pNum       ;//상품번호
+	private int oNum       ;//옵션번호
 	private int cartCnt    ;//수량
 	private String regId   ;//등록자
 	
@@ -12,10 +12,10 @@ public class Cart extends DTO {
 	public Cart() {}
 
 
-	public Cart(int cartNum, int pNum, int cartCnt, String regId) {
+	public Cart(int cartNum, int oNum, int cartCnt, String regId) {
 		super();
 		this.cartNum = cartNum;
-		this.pNum = pNum;
+		this.oNum = oNum;
 		this.cartCnt = cartCnt;
 		this.regId = regId;
 	}
@@ -31,13 +31,13 @@ public class Cart extends DTO {
 	}
 
 
-	public int getpNum() {
-		return pNum;
+	public int getoNum() {
+		return oNum;
 	}
 
 
-	public void setpNum(int pNum) {
-		this.pNum = pNum;
+	public void setoNum(int oNum) {
+		this.oNum = oNum;
 	}
 
 
@@ -63,8 +63,8 @@ public class Cart extends DTO {
 
 	@Override
 	public String toString() {
-		return "Cart [cartNum=" + cartNum + ", pNum=" + pNum + ", cartCnt=" + cartCnt + ", regId=" + regId
+		return "Cart [cartNum=" + cartNum + ", oNum=" + oNum + ", cartCnt=" + cartCnt + ", regId=" + regId
 				+ ", toString()=" + super.toString() + "]";
 	}
-	
+
 }

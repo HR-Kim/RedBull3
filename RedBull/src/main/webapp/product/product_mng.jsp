@@ -28,9 +28,7 @@
 <body>
 	<h2>상품 등록</h2>
 	<br>
-	<form id="frm_mng" name="frm_mng" enctype="multipart/form-data">
-		<input type="hidden" name="root_path" value=<%=uploadPath%> size="15"><br/>
-		
+	<form id="frm_mng" name="frm_mng"  method="POST" enctype="multipart/form-data">
 		<!-- 카테고리 -->
 		<div class="form-group">
 			<label class="control-label requiredField" for="pCategory">카테고리<span class="asteriskField">*</span></label>
@@ -63,36 +61,84 @@
 		</div>
 		<!-- 옵션 -->
 		<div class="form-group">
-			<label class="control-label" for="opt">옵션</label>
+			<label class="control-label">옵션</label>
 			<button class="btn btn-primary btn-sm" id="add_opt">추가</button>
-			${optList}
 			<div class="table-responsive">
-			<table class="table table-striped table-bordered table-hover" id="optTable">
+				<table class="table table-striped table-bordered table-hover" id="optTable">
+					<thead>
+						<tr>
+							<th class="text-center">옵션명</th>
+							<th class="text-center">옵션가격</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:choose>
+							<c:when test="${newOptList.size()>0 }">
+								<c:forEach  var="opt"  items="${newOptList}">
+									<tr>
+										<td class="text-center"><c:out value="${opt.oName}"/></td>
+										<td class="text-center"><c:out value="${opt.oPrice}"/></td>
+									</tr>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<td colspan="99">옵션이 없습니다.</td>
+								</tr>
+							</c:otherwise>	
+						</c:choose>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	<label class="control-label">이미지</label>
+	<button class="btn btn-primary btn-sm" id="add_image" name="add_image">전송</button>
+		<!-- 이미지 -->
+		<div class="form-group">
+			<input type="hidden" id="pNum" name="pNum" value="${newProduct.pNum}" />
+			<div class="table-responsive">
+				<input type="hidden" id="root_path" name="root_path" value=<%=uploadPath%> size="15"><br/>
+				<input type="file" id="file01" name="file01" />
+			</div>
+		</div>
+	</form>
+	<div class="form-group">
+		<div class="table-responsive">
+			<table class="table table-striped table-bordered table-hover" id="imageTable">
+				<thead>
+					<tr>
+						<th class="text-center">상품번호</th>
+						<th class="text-center">파일명</th>
+						<th class="text-center">사이즈</th>
+						<th class="text-center">확장자</th>
+						<th class="text-center"></th>
+					</tr>
+				</thead>
 				<tbody>
 					<c:choose>
-						<c:when test="${optList.size()>0 }">
-							<c:forEach  var="opt"  items="${optList}">
+						<c:when test="${newImageList.size()>0 }">
+							<c:forEach  var="image"  items="${newImageList}">
 								<tr>
-									<td class="text-center"><c:out value="${opt.oName}"/></td>
-									<td class="text-center"><c:out value="${opt.oPrice}"/></td>
-									<td class="text-left"><input type="file" /></td>
-									<td class="text-left"><a href="#this" name="opt_delete" class="btn">삭제하기</a></td>
+									<td class="text-center"><c:out value="${image.refNum}"/></td>
+									<td class="text-center"><c:out value="${image.orgFileNm}"/></td>
+									<td class="text-center"><c:out value="${image.fileSize}"/></td>
+									<td class="text-center"><c:out value="${image.extNm}"/></td>
+									<td class="text-center"><a href="#this" name="img_delete" class="btn">삭제하기</a></td>
 								</tr>
 							</c:forEach>
 						</c:when>
 						<c:otherwise>
 							<tr>
-								<td colspan="99">옵션이 없습니다.</td>
+								<td colspan="99">이미지가 없습니다.</td>
 							</tr>
 						</c:otherwise>	
 					</c:choose>
 				</tbody>
 			</table>
 		</div>
-		</div>
-	</form>
+	</div>
 	<div class="form-group">
-		<button class="btn btn-primary" >글 작성</button>
+		<button class="btn btn-primary" id="btn_write" >글 작성</button>
 		<a class="btn btn-primary" href="${context}/product/do_cancel_write.do" >취소</a>
 	</div>
 	<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
@@ -100,6 +146,58 @@
 	<!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
 	<script src="${context}/resources/js/bootstrap.min.js"></script>
 	<script>
+		//이미지 삭제
+		$("a[name='img_delete']").on("click",function(e){
+			alert("img_delete");	
+		    e.preventDefault();
+		    tr_imgDelete($(this));
+		    
+		})
+		function tr_imgDelete(obj){
+			obj.closest("tr").remove();
+		}
+		//글작성
+		$("#btn_write").on("click", function(e){
+			//alert("btn_write");
+			e.preventDefault();
+			var frm = document.frm_mng;
+			frm.action = "${context}/product/do_write.do";
+			frm.method = "POST";
+			frm.submit();
+		});
+		//이미지 추가
+		var newImageList = new Array();
+		$("#add_image").on("click", function(e){
+			//alert("add_image");
+			e.preventDefault();
+			var frm = document.frm_mng;
+			//frm.action = "${context}/file/do_img_save.do";
+			//frm.method = "POST";
+			//frm.submit();
+			var data = new FormData(frm);
+			
+			$.ajax({
+	            type: "POST",
+	            enctype: 'multipart/form-data',
+	            url: "${context}/file/do_img_save.do",
+	            data: data,
+	            processData: false,
+	            contentType: false,
+	            dataType: "json",
+	            cache: false,
+	            timeout: 600000,
+	            success: function (data) {
+	                //alert("complete : "+data.newImage);
+	                location.href = "${context}/product/do_product_mng.do";
+	            },
+	            error: function (e) {
+	                console.log("ERROR : ", e);
+	                alert("fail");
+	            }
+	        });
+		});
+		
+		//옵션추가
 		$("#add_opt").on("click", function(e){
 			//alert("add_opt");
 			e.preventDefault();

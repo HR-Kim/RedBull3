@@ -29,15 +29,21 @@
 	<br>
 	<form id="opt_frm" name="opt_frm" enctype="multipart/form-data">
 		<input type="hidden" name="root_path" value=<%=uploadPath%> size="15"><br/>
-		<input type="hidden" id="nextPnum" name="nextPnum" value=${nextPnum} size="15"><br/>
-		<input type="hidden" id="nextInum" name="nextInum" value=${nextInum} size="15"><br/>
-		<input type="hidden" id="nextOnum" name="nextOnum" value=${nextOnum} size="15"><br/>
+		<input type="hidden" id="nextPnum" name="nextPnum" value="${nextPnum}" size="15"><br/>
+		<input type="hidden" id="nextInum" name="nextInum" value="${nextInum}" size="15"><br/>
+		<input type="hidden" id="nextOnum" name="nextOnum" value="${nextOnum}" size="15"><br/>
 		<table class="table" id="optAddTable">
 			<tbody>
+				<c:forEach var="opt" items="${newOptList}">
+					<tr name="tr_opt">
+						<td><input type="text" name="oName" placeholder="옵션명" value="${opt.oName}" /></td>
+						<td><input type="text" name="oPrice" placeholder="가격(원)" value="${opt.oPrice}" /></td>
+						<td><a href="#this" name="oFile_delete" class="btn">삭제하기</a></td>
+					</tr>
+				</c:forEach>
 				<tr name="tr_opt"><!--OPT : ONAME,OPRICE,PNUM,INUM // IMAGE : REFNUM,ORG_FILE_NM,SAVE_FILE_NM,FILE_SIZE,EXT_NM-->
 					<td><input type="text" name="oName" placeholder="옵션명" /></td>
 					<td><input type="text" name="oPrice" placeholder="가격(원)" /></td>
-					<td><input type="file" name="oFile" /></td>
 					<td><a href="#this" name="oFile_delete" class="btn">삭제하기</a></td>
 				</tr>
 			</tbody>
@@ -65,54 +71,31 @@
 			//입력값 확인
 			if(form_validate()==false)return;
 			
-			var optList = [];
-			var imageList = [];
+			var arr = new Array();
+			
 			$("tr[name='tr_opt']").each(function (i){
-				var tmpFile = "";
-				//image
-				if($("input[name='oFile']").eq(i)[0].files[0]!="" || $("input[name='oFile']").eq(i)[0].files[0]!=null ){
-					tmpFile = $("#nextInum").val();
-					
-					var image = {
-							refNum : $("#nextOnum").val(),
-							oFile : $("input[name='oFile']").eq(i)[0].files[0]	
-					};
-					imageList.push(image);
-					
-					//값 전달 후 nextInum 증가
-					$("#nextInum").val() = $("#nextInum").val()+1;					
-				}
-				//opt
-				var opt = {						
-						oName : $("input[name='oName']").eq(i).val(),
-						oPrice : $("input[name='oPrice']").eq(i).val(),
-						pNum : $("#nextPnum").val(),
-						iNum : tmpFile
-				};
-				//값 전달 후 nextOnum 증가
-				$("#nextOnum").val() = $("#nextOnum").val()+1;
-				optList.push(opt);
+				var obj = new Object();
+				
+				obj.oName  = $("input[name='oName']").eq(i).val();
+				obj.oPrice = $("input[name='oPrice']").eq(i).val();
+				obj.pNum   = $("#nextPnum").val();
+				
+				arr.push(obj);
+				
 			});
-			//두 VO List 값 확인
-			console.log(optList);
-			console.log(imageList);
 			
 			//--ajax
 			$.ajax({
 				type : "POST",
 				url : "${context}/product/do_save_option.do",
-				dataType : "html",
-				processData: false,
+				dataType : "json",
 	            contentType: false,
-				data : {
-					"optList" : optList,
-					"imageList" : imageList
-				},
+				data : JSON.stringify(arr),
 				success : function(data) {
-					var jData = JSON.parse(data);
-					if(null != jData || jData.msgId == "10"){
-						alert(jData.msgMsg);
-						//location.href = "${context}/product/do_product_mng.do";
+					//alert(JSON.stringify(arr));
+					if(null != data || data.msgId == "10"){
+						//alert(data.msgMsg);
+						location.href = "${context}/product/do_product_mng.do";
 					}
 				},
 				complete : function(data) {
@@ -128,7 +111,7 @@
 		$("#input_add").on("click",function(e){
 			//alert("oFile_add");	
 			e.preventDefault();
-			var str = "<tr name='tr_opt'><td><input type='text' name='oName' placeholder='옵션명' /></td><td><input type='text' name='oPrice' placeholder='가격(원)' /></td><td><input type='file' name='oFile' /></td><td><a href='#this' name='oFile_delete' class='btn'>삭제하기</a></td></tr>";
+			var str = "<tr name='tr_opt'><td><input type='text' name='oName' placeholder='옵션명' /></td><td><input type='text' name='oPrice' placeholder='가격(원)' /></td><td><a href='#this' name='oFile_delete' class='btn'>삭제하기</a></td></tr>";
 			$("#optAddTable").append(str);
 			inputNum++;
 			

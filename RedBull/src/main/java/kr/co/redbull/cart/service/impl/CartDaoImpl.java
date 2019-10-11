@@ -25,8 +25,8 @@ public class CartDaoImpl implements WorkDiv {
 	
 	
 	//할인가격
-	public int sale(DTO dto) {
-		String statement = this.NAMESPACE+".sale";
+	public int pay(DTO dto) {
+		String statement = this.NAMESPACE+".pay";
 		Cart cart = (Cart) dto;
 		LOG.debug("================================");
 		LOG.debug("1. statement: " + statement);
@@ -200,11 +200,29 @@ public class CartDaoImpl implements WorkDiv {
 		return outVO;
 	}
 	
+	public List<?> get_cartIdList(DTO dto){
+		String statement = this.NAMESPACE + ".get_cartIdList";
+		Search search = (Search) dto;
+		
+		LOG.debug("==================================");
+		LOG.debug("1. param: " +search);
+		LOG.debug("2. statement: " + statement);
+		LOG.debug("==================================");
+		
+		List<Cart> list = this.sqlSessionTemplate.selectList(statement, search);
+		
+		LOG.debug("==================================");
+		LOG.debug("3. list: " + list);
+		LOG.debug("==================================");
+		
+		return list;
+	}
+	
 	
 	@Override
 	public List<?> get_retrieve(DTO dto) {
-		String statement = this.NAMESPACE +".get_cartList";
-		Cart inVO = (Cart) dto;
+		String statement = this.NAMESPACE +".get_retrieve";
+		Search inVO = (Search) dto;
 		LOG.debug("==================================");
 		LOG.debug("1. param: " +inVO);
 		LOG.debug("2. statement: " + statement);

@@ -4,7 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.redbull.cart">
 
- 	 <sql id="cartColumns">
+
+ 	  <!-- <sql id="cartColumns">
                i.SAVE_FILE_NM as saveFileNm,
                c.CARTNUM as cartNum,
                p.BPRICE as bPrice,
@@ -14,7 +15,7 @@
                p.bprice - (p.bprice * p.discount) as afterPrice,
                c.CARTCNT as cartCnt,
                c.REGID as regId
- 	 </sql>
+ 	 </sql> -->
 
  	 <sql id="baseCondition">
  	 		<choose>
@@ -25,12 +26,12 @@
  	 		</choose>
  	 </sql>
 
-	<!-- 할인가격 -->
-			<select id="sale" resultType="int">
+	<!-- 결제 금액 -->
+			<select id="pay" resultType="int">
 				<![CDATA[
-					SELECT NVL(SUM(p.bprice * p.discount * c.cartcnt),0) as save
-					FROM CART c JOIN PRODUCT p
-					ON c.pnum = p.pnum
+					SELECT SUM(o.oprice * c.cartCnt) as pay
+					FROM cart c JOIN OPT o
+					ON c.onum = o.onum
 					AND c.regid = #{regId, jdbcType=VARCHAR}
 				]]>
 			</select>
@@ -39,36 +40,53 @@
 		<select id="delivery" resultType="int">
 			<![CDATA[
 				SELECT NVL(SUM(p.dprice),0) delivery
-				FROM CART c JOIN PRODUCT p
-				ON c.pnum = p.pnum
+				FROM CART c JOIN OPT o
+				ON c.onum = o.onum
+				JOIN PRODUCT p
+				ON p.pnum = o.pnum
 				AND c.regid = #{regId, jdbcType=VARCHAR}
 			]]>
 	</select>
 
-	<!-- 총 상품 금액-->
+	<!-- 할인 전 금액 -->
 	<select id="total" resultType="int">
 		<![CDATA[
-			SELECT NVL(SUM(p.bprice * c.cartcnt),0) as total
-			FROM cart c JOIN PRODUCT p
-			ON c.pnum = p.pnum
+			SELECT NVL(SUM(o.oprice * (1+p.discount) * c.cartcnt),0) save
+			FROM cart c JOIN OPT o
+			ON c.onum = o.onum
+			JOIN PRODUCT p
+			ON p.pnum = o.pnum
 			AND c.regid = #{regId, jdbcType=VARCHAR}
 		]]>
 	</select>
 	
 	 <!-- 단건조회 -->
- 	 <select id="get_selectOne" parameterType="Cart" resultType="Cart">
- 	 	 SELECT	
- 	 	 	<include refid="cartColumns" />								
-         FROM CART c JOIN PRODUCT p
-         ON c.pNum = p.pNum
-         JOIN IMAGE i
-         ON c.pNum = i.refNum
-		WHERE c.regid = #{regId, jdbcType=VARCHAR}
+ 	<!--  <select id="get_selectOne" parameterType="Cart" resultType="Cart">
  	 
+	 	 	 SELECT	
+	 	 	 	<include refid="cartColumns" />								
+	         FROM CART c JOIN PRODUCT p
+	         ON c.pNum = p.pNum
+	         JOIN IMAGE i
+	         ON c.pNum = i.refNum
+			 WHERE c.regid = #{regId, jdbcType=VARCHAR}
+ 	 </select>
+ 	 
+ 	 get_cartIdList
+ 	 <select id="get_cartIdList" parameterType="Search" resultType="Cart">
+			SELECT
+			        <include refid="cartColumns" />
+			FROM
+			        CART c JOIN PRODUCT p
+			        ON c.pNum = p.pNum
+			        JOIN IMAGE i
+			        ON c.pNum = i.refNum
+			WHERE c.regId LIKE '%' || #{searchWord} || '%'
+			ORDER BY p.pNum ASC
  	 </select>
 	
- 	 <!-- Cart 조회 -->
- 	 <select id="get_cartList" parameterType="Search" resultType="Cart">
+ 	 Cart 조회
+ 	 <select id="get_retrieve" parameterType="Search" resultType="Cart">
 		 	SELECT T1.*, T2.*
 		    FROM
 		    (
@@ -100,7 +118,7 @@
 							ON c.pnum = p.pnum
 							JOIN IMAGE i
 							ON c.pnum = i.refnum
-							<!-- search condition -->
+							search condition
 							<include refid="baseCondition" />
 		                    )A
 		            WHERE rownum <![CDATA[ <= ]]> (#{pageSize} * ( #{pageNum}-1)+ #{pageSize} ) 
@@ -115,7 +133,9 @@
 						ON c.pnum = i.refnum
 						<include refid="baseCondition" />
 						)T2
- 	 </select>
+ 	 </select> -->
+
+
 
 	<!-- cart 수량 수정 -->
 	<update id="do_update" parameterType="Cart">
@@ -124,8 +144,8 @@
 				
 				SET cartcnt = #{cartCnt, jdbcType=NUMERIC} 
 				
-				WHERE pnum = #{pNum, jdbcType=NUMERIC}
-			    AND	  regid = #{regId, jdbcType=VARCHAR}
+				WHERE onum = #{oNum, jdbcType=NUMERIC}
+			    AND	  cartnum = #{cartNum, jdbcType=NUMERIC}
 		    ]]>
 		      	  
 	</update>
@@ -134,9 +154,9 @@
 	<select id="countCart" resultType="int">
 			<![CDATA[
 				SELECT COUNT(*)
-				FROM CART c, PRODUCT p
-				WHERE c.pnum = p.pnum
-				AND c.regid = #{regId, jdbcType=VARCHAR}
+				FROM CART c, OPT o
+				WHERE c.onum = o.onum
+				AND c.cartnum = #{cartNum, jdbcType=NUMERIC}
 			]]>
 	</select>
 	
@@ -145,19 +165,19 @@
 		<![CDATA[
 			UPDATE CART 
 			SET cartcnt = cartcnt + #{cartCnt, jdbcType=NUMERIC}
-			WHERE regid = #{regId, jdbcType=VARCHAR}
-			AND pnum = #{pNum, jdbcType=NUMERIC}
+			WHERE cartnum = #{cartNum, jdbcType=NUMERIC}
+			AND onum = #{oNum, jdbcType=NUMERIC}
 		]]>
 	</update>
 	
 	<!-- 상품이 없을경우 추가 -->
 	<insert id="do_save" parameterType="Cart">
 			INSERT INTO CART (
-			    PNUM,
+			    ONUM,
 			    CARTCNT,
 			    REGID
 			) VALUES (
-			    #{pNum, jdbcType=NUMERIC},
+			    #{oNum, jdbcType=NUMERIC},
 			    1,
 			    #{regId, jdbcType=VARCHAR}
 			)
@@ -167,7 +187,7 @@
 	<delete id="do_delete" parameterType="Cart">
 		<![CDATA[
 			DELETE FROM CART
-			WHERE regid = #{regId, jdbcType=VARCHAR}
+			WHERE cartnum = #{cartNum, jdbcType=NUMERIC}
 		]]>
 	</delete>
 

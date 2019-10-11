@@ -70,9 +70,24 @@ public class DaoProductTest {
 	}
 	
 	/**
+	 * 카테고리 테스트
+	 * 3X3으로 나와야 함. 9개씩
+	 * row를 검색하면 3개씩 출력
+	 */
+	@Test
+	public void get_list() {
+		Search search=new Search();
+		search.setSearchWord("");
+		search.setPageNum(1);
+		search.setPageSize(3);
+		productDaoImpl.get_retrieve(search);
+	}
+	
+	/**
 	 * 카테고리 순
 	 */
 	@Test
+	@Ignore
 	public void get_categoryList() {
 		LOG.debug("======================================");
 		LOG.debug("=01. 기존 데이터 삭제=");
@@ -106,6 +121,7 @@ public class DaoProductTest {
 	 * 세일순
 	 */
 	@Test
+	@Ignore
 	public void get_hotSaleList() {
 		LOG.debug("======================================");
 		LOG.debug("=01. 기존 데이터 삭제=");
@@ -139,6 +155,7 @@ public class DaoProductTest {
 	 * 신상품순
 	 */
 	@Test
+	@Ignore
 	public void get_newList() {
 		LOG.debug("======================================");
 		LOG.debug("=01. 기존 데이터 삭제=");
@@ -275,7 +292,7 @@ public class DaoProductTest {
 	public void addAndGet() {
 		//0.데이터 삭제
 		Search search = new Search();
-		search.setSearchWord("125");
+		search.setSearchWord("");
 		List<Product> getList = (List<Product>) productDaoImpl.get_pnameList(search);
 		for(Product vo : getList) {
 			int flag = productDaoImpl.do_delete(vo);			
