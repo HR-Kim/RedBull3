@@ -25,7 +25,6 @@ import kr.co.redbull.cart.service.impl.CartDaoImpl;
 import kr.co.redbull.cmn.Message;
 import kr.co.redbull.cmn.Search;
 import kr.co.redbull.cmn.StringUtil;
-import kr.co.redbull.code.service.Code;
 import kr.co.redbull.code.service.CodeService;
 
 @Controller
@@ -36,8 +35,6 @@ public class CartController {
 	@Autowired
 	private CartService cartService;
 	
-	@Autowired
-	private CodeService codeService;
 	
 	//View
 	private final String VIEW_LIST_NM = "cart/cart_list";
@@ -59,12 +56,12 @@ public class CartController {
 		
 	}
 	
-	/**목록조회*/
+	/**장바구니 조회*/
 	@RequestMapping(value="cart/get_retrieve.do", method=RequestMethod.GET)
 	public String get_retrieve(HttpServletRequest req,Search search, Model model){
 		
 		LOG.debug("1==================================");
-		LOG.debug("=1=param="+search);
+		LOG.debug("=1=search="+search);
 		LOG.debug("1==================================");
 		//param
 		if(search.getPageSize() == 0) {
@@ -82,27 +79,6 @@ public class CartController {
 		LOG.debug("2==================================");
 		LOG.debug("=2=search="+search);
 		LOG.debug("2==================================");
-		
-		//code
-		Code code = new Code();
-		
-		//페이지 사이즈
-		code.setCodeId("PAGE_SIZE");
-		
-		List<Code> listPageSize = (List<Code>) this.codeService.get_retrieve(code);
-		model.addAttribute("listPageSize",listPageSize);
-		
-		//엑셀 타입
-		code.setCodeId("EXCEL_TYPE");
-		
-		List<Code> listExcelType = (List<Code>) this.codeService.get_retrieve(code);
-		model.addAttribute("listExcelType",listExcelType);
-		
-		//검색조건
-		code.setCodeId("BOARD_ATTR_SEARCH");
-		
-		List<Code> listBoardSearch = (List<Code>) this.codeService.get_retrieve(code);
-		model.addAttribute("listBoardSearch",listBoardSearch);
 		
 		//목록조회
 		List<Cart> list = (List<Cart>) this.cartService.get_retrieve(search);

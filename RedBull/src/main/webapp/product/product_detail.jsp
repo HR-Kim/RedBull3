@@ -26,10 +26,16 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<style type="text/css">
+	.carousel-control.left, .carousel-control.right {
+	  left: 0;
+	  z-index: 1;
+	}
+</style>
 <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
 <title>상품 상세</title>
 <!-- 부트스트랩 -->
-<link href="${context}/resources/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="${context}/resources/css/bootstrap.css" />
 
 <!-- IE8 에서 HTML5 요소와 미디어 쿼리를 위한 HTML5 shim 와 Respond.js -->
 <!-- WARNING: Respond.js 는 당신이 file:// 을 통해 페이지를 볼 때는 동작하지 않습니다. -->
@@ -37,15 +43,12 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
-
 <link rel="stylesheet" href="${context}/resources/vendors/linericon/style.css" />
 <link rel="stylesheet" href="${context}/resources/css/font-awesome.min.css" />
 <link rel="stylesheet" href="${context}/resources/css/themify-icons.css" />
-<link rel="stylesheet" href="${context}/resources/vendors/owl-carousel/owl.carousel.min.css" />
 <link rel="stylesheet" href="${context}/resources/vendors/lightbox/simpleLightbox.css" />
 <link rel="stylesheet" href="${context}/resources/vendors/nice-select/css/nice-select.css" />
 <link rel="stylesheet" href="${context}/resources/vendors/animate-css/animate.css" />
-<link rel="stylesheet" href="${context}/resources/vendors/jquery-ui/jquery-ui.css" />
 <!-- main css -->
 <link rel="stylesheet" href="${context}/resources/css/style.css" />
 <link rel="stylesheet" href="${context}/resources/css/responsive.css" />
@@ -80,51 +83,35 @@
 		<div class="row s_product_inner">
 			<div class="col-lg-6">
 				<div class="s_product_img">
-					<div id="myCarousel" class="carousel slide" data-ride="carousel">
-						<!-- Indicators -->
-						<ol class="carousel-indicators">
-							<!-- 이미지 제한 사이즈 : 60X60  -->
-							<li data-target="#myCarousel" data-slide-to="0" class="active">
-								<img class="d-block w-100" src="${context}/resources/img/product/single-product/product-small-1.PNG" />
-							</li>
-							<li data-target="#myCarousel" data-slide-to="1">
-								<img class="d-block w-100" src="${context}/resources/img/product/single-product/product-small-2.PNG" />
-							</li>
-							<li data-target="#myCarousel" data-slide-to="2">
-								<img class="d-block w-100" src="${context}/resources/img/product/single-product/product-small-3.PNG" />
-							</li>
-						</ol>
-
+					<div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
 						<!-- Wrapper for slides -->
 						<div class="carousel-inner">
-							<div class="item active">
+							<div class="carousel-item active">
 								<img class="d-block w-100"
 									src="${context}/resources/img/product/single-product/product-1.PNG"
 									alt="First slide" />
 							</div>
-
-							<div class="item">
+	
+							<div class="carousel-item">
 								<img class="d-block w-100"
 									src="${context}/resources/img/product/single-product/product-2.PNG"
 									alt="Second slide" />
 							</div>
-
-							<div class="item">
+	
+							<div class="carousel-item">
 								<img class="d-block w-100"
 									src="${context}/resources/img/product/single-product/product-3.PNG"
 									alt="Third slide" />
 							</div>
 						</div>
-
 						<!-- Left and right controls -->
-						<a class="left carousel-control" href="#myCarousel"
-							data-slide="prev"> <span
-							class="glyphicon glyphicon-chevron-left"></span> <span
-							class="sr-only">Previous</span>
-						</a> <a class="right carousel-control" href="#myCarousel"
-							data-slide="next"> <span
-							class="glyphicon glyphicon-chevron-right"></span> <span
-							class="sr-only">Next</span>
+						<a class="carousel-control-prev carousel-control" href="#carouselExampleInterval" role="button" data-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="sr-only">Previous</span>
+						</a>
+						<a class="carousel-control-next carousel-control" href="#carouselExampleInterval" role="button" data-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="sr-only">Next</span>
 						</a>
 					</div>
 				</div>
@@ -157,10 +144,10 @@
 					<br>
 					<div class="product_count">
 						<label for="qty">Quantity:</label> <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty" />
-						<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button">
+						<button onclick="javascript:countUp()" class="increase items-count" type="button">
 							<i class="lnr lnr-chevron-up"></i>
 						</button>
-						<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button">
+						<button onclick="javascript:countDown()" class="reduced items-count" type="button">
 							<i class="lnr lnr-chevron-down"></i>
 						</button>
 					</div>
@@ -492,11 +479,28 @@
 	<script src="${context}/resources/js/jquery-1.12.4.js"></script>
 	<!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
 	<script src="${context}/resources/js/bootstrap.min.js"></script>
-	<script src="${context}/resources/js/stellar.js"></script>
 	<script src="${context}/resources/vendors/lightbox/simpleLightbox.min.js"></script>
 	<script src="${context}/resources/vendors/isotope/imagesloaded.pkgd.min.js"></script>
 	<script src="${context}/resources/vendors/isotope/isotope-min.js"></script>
 	<script type="text/javascript">
+		//수량 Up
+		function countUp(){
+			var result = document.getElementById('sst');
+			var sst = result.value;
+			if(!isNaN( sst )){
+				result.value++;
+				return false;
+			}
+		}
+		//수량Down
+		function countDown(){
+			var result = document.getElementById('sst');
+			var sst = result.value;
+			if( !isNaN(sst) && sst > 0 ){
+				result.value--;
+				return false;
+			}
+		}
 		//상품 수정
 		function write_product(){
 			alert("write_product");
@@ -508,7 +512,7 @@
 		//탭 변경 시 active 설정 (ul-li-a)
 		$("#myTab li:first a").addClass("active").show();
 		$("#myTab li").on("click",function(){
-			//alert("tab_click");
+			alert("tab_click");
 			$("#myTab li a").removeClass("active");
 			$(this).children('a').addClass("active");
 		});

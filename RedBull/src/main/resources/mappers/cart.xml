@@ -88,7 +88,7 @@
 		            B.rnum,
 		            B.saveFileNm,
 		            B.cartnum,
-		            B.bprice,
+		            B.bprice as bPrice,
 		            B.pname,
 		            B.pnum,
 		            B.dprice,

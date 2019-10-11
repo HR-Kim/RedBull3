@@ -39,12 +39,8 @@ public class CartServiceImpl implements CartService {
 
 	@Override
 	public List<?> get_retrieve(DTO dto) {
-		List<Cart> list = (List<Cart>) cartDaoImpl.get_retrieve(dto);
-		LOG.debug("================================");
-		LOG.debug("list: " + list);
-		LOG.debug("================================");
 		
-		return list;
+		return cartDaoImpl.get_retrieve(dto);
 	}
 
 	@Override

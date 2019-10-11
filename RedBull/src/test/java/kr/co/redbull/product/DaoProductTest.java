@@ -70,6 +70,20 @@ public class DaoProductTest {
 	}
 	
 	/**
+	 * 카테고리 테스트
+	 * 3X3으로 나와야 함. 9개씩
+	 * row를 검색하면 3개씩 출력
+	 */
+	@Test
+	public void get_list() {
+		Search search=new Search();
+		search.setSearchWord("");
+		search.setPageNum(1);
+		search.setPageSize(3);
+		productDaoImpl.get_retrieve(search);
+	}
+	
+	/**
 	 * 카테고리 순
 	 */
 	@Test
@@ -274,6 +288,7 @@ public class DaoProductTest {
 	}
 	
 	@Test
+	@Ignore
 	public void addAndGet() {
 		//0.데이터 삭제
 		Search search = new Search();

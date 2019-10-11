@@ -222,7 +222,7 @@ public class CartDaoImpl implements WorkDiv {
 	@Override
 	public List<?> get_retrieve(DTO dto) {
 		String statement = this.NAMESPACE +".get_cartList";
-		Cart inVO = (Cart) dto;
+		Search inVO = (Search) dto;
 		LOG.debug("==================================");
 		LOG.debug("1. param: " +inVO);
 		LOG.debug("2. statement: " + statement);

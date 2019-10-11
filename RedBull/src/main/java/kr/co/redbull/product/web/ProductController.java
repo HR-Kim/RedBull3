@@ -131,112 +131,6 @@ public class ProductController {
 		return json;
 	}
 	
-	
-	//옵션 추가 취소
-	@RequestMapping(value = "product/do_cancel_option.do", method = RequestMethod.GET)
-	public String do_cancel_option(@RequestBody Opt optList, MultipartHttpServletRequest mReg, Model model, HttpSession session) throws IllegalStateException, IOException {
-		LOG.debug("================================");
-		LOG.debug("do_cancel_option");
-		LOG.debug("================================");
-		
-		//Next Pnum
-		String nextPnum = mReg.getParameter("nextPnum");
-		
-		//OPTION VO 설정 - iNum은 첨부된 파일이 있을 때 생성
-		Opt opt = new Opt();
-		opt.setoName(mReg.getParameter("oName"));
-		opt.setoPrice(Integer.parseInt(StringUtil.nvl(mReg.getParameter("oPrice"),"0")));
-		opt.setpNum(nextPnum);
-		
-		//Upload파일 정보: 원본,저장,사이즈,확장자 List
-		List<Image> imgList = new ArrayList<Image>();
-		
-		//root_path 전달
-		String UPLOAD_ROOT = StringUtil.nvl(mReg.getParameter("root_path"));
-		
-		if(UPLOAD_ROOT.equals("")) {
-			throw new ArithmeticException("root_path 예외 오류.");
-		}
-		
-		//01.동적으로 UPLOAD_ROOT 디렉토리 생성
-		File  fileRootDir = new File(UPLOAD_ROOT);
-		if(fileRootDir.isDirectory() ==false) {  
-			boolean flag = fileRootDir.mkdirs();
-			LOG.debug("=@Controller flag="+flag);
-		}
-		
-		//02.년월 디렉토리 생성:D:\\HR_FILE\2019\09
-		String yyyy = StringUtil.cureDate("yyyy");
-		LOG.debug("=@Controller yyyy="+yyyy);
-		String mm = StringUtil.cureDate("MM");
-		LOG.debug("=@Controller mm="+mm);
-		String datePath = UPLOAD_ROOT+File.separator+yyyy+File.separator+mm;
-		LOG.debug("=@Controller datePath="+datePath);
-		
-		File  fileYearMM = new File(datePath);  
-		
-		if(fileYearMM.isDirectory()==false) {
-			boolean flag = fileYearMM.mkdirs();  
-			LOG.debug("=@Controller fileYearMM flag="+flag);
-		}
-		//01.파일 Read      
-		Iterator<String> files = mReg.getFileNames();
-		while(files.hasNext()) {
-			Image img = new Image();
-			
-			String orgFileNm  = "";      //원본파일명
-			String saveFileNm = "";      //저장파일명
-			long   fileSize   = 0L;      //파일사이즈
-			String ext        = "";      //확장자
-			String iNum	      = "";      //이미지번호
-			
-			String uploadFileNm = files.next();//file01
-			MultipartFile mFile = mReg.getFile(uploadFileNm);
-			orgFileNm = mFile.getOriginalFilename();
-			
-			//파일이 있을 때 실행
-			if(null==orgFileNm || orgFileNm.equals(""))continue;
-			LOG.debug("=@Controller orgFileNm="+orgFileNm);
-			
-			//파일사이즈 - byte
-			fileSize = mFile.getSize();
-			if(orgFileNm.indexOf(".")>-1) {
-				//확장자
-				ext = orgFileNm.substring(orgFileNm.indexOf(".")+1);
-			}
-			LOG.debug("=@Controller fileSize="+fileSize);
-			LOG.debug("=@Controller ext="+ext);
-			
-			//파일 생성 준비
-			File orgFileCheck = new File(datePath,orgFileNm);
-			String newFile = orgFileCheck.getAbsolutePath();
-			
-			//저장파일명 중복 확인 및 이름바꾸기: README -> README1~9999
-			if(orgFileCheck.exists()==true) {
-				newFile = StringUtil.fileRename(orgFileCheck);
-			}
-			
-			img.setOrgFileNm(orgFileNm);
-			img.setSaveFileNm(newFile);
-			img.setFileSize(fileSize);
-			img.setExtNm(ext);
-			//참조번호 = 새상품번호
-			img.setRefNum(nextPnum);
-			//이미지번호
-			Image newImage = (Image) imageService.get_nextInum();
-			iNum = newImage.getiNum();
-			img.setiNum(iNum);
-			
-			imgList.add(img);
-		}
-		
-		//옵션,이미지 세션 추가
-		session.setAttribute("opt", opt);
-		session.setAttribute("imgList", imgList);
-		
-		return VIEW_MNG_NM;
-	}
-	
 	//글쓰기 취소
 	@RequestMapping(value = "product/do_cancel_write.do", method = RequestMethod.GET)
 	public String do_cancel_write(Model model, HttpServletRequest request, HttpSession session) {
@@ -306,20 +200,42 @@ public class ProductController {
 		LOG.debug("search:"+search);
 		LOG.debug("================================");
 		
-		if(search.getPageSize()==0) search.setPageSize(10);
+		if(search.getPageSize()==0) search.setPageSize(9);
 		if(search.getPageNum()==0)  search.setPageNum(1);
 		
 		
 		model.addAttribute("vo", search);
 		
-		List<Product> list = (List<Product>)productService.get_retrieve(search);
+		List<Product> tmpList = (List<Product>)productService.get_retrieve(search);
+		List<Product> outList = new ArrayList<Product>();
+		//썸네일 설정 : 안쓰는 detail에 이미지 경로를 넣자
+		for(int i=0; i<tmpList.size(); i++) {
+			Product getOne = tmpList.get(i);
+			String getPnum = getOne.getpNum();
+			
+			//Pnum으로 검색
+			Search tmpSearch = new Search();
+			tmpSearch.setSearchWord(getPnum);
+			String saveFileNm = "";
+			List<Image> tmpImageList = new ArrayList<Image>();
+			tmpImageList = (List<Image>) imageService.get_refnumList(tmpSearch);
+			//검색 결과가 없다면? : 기본 이미지
+			if(tmpImageList.size()<1) {
+				saveFileNm = "resources/img/product/inspired-product/i7.jpg";
+			}else {
+				saveFileNm = tmpImageList.get(0).getSaveFileNm();
+			}
+			
+			getOne.setDetail(saveFileNm);
+			outList.add(getOne);
+		}
 		
-		model.addAttribute("list", list);
+		model.addAttribute("list", outList);
 		
 		//총건수
 		int totalCnt = 0;
-		if(null!=list && list.size()>0) {
-			totalCnt = list.get(0).getTotalCnt();
+		if(null!=outList && outList.size()>0) {
+			totalCnt = outList.get(0).getTotalCnt();
 			model.addAttribute("totalCnt", totalCnt);
 		}
 		

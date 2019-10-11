@@ -61,8 +61,8 @@ public class CartWebTest {
 		LOG.debug("setUp()");
 		LOG.debug("^^^^^^^^^^^^^^^^^^^^^^^");
 		list = Arrays.asList(
-				new Cart(1,366,1,"cart_130"),
-				new Cart(2,367,1,"cart_131")
+				new Cart(1,396,1,"cart_130"),
+				new Cart(2,396,1,"cart_131")
 				);
 		
 		mockMvc = MockMvcBuilders.webAppContextSetup(context).build(); //mockMvc생성자
@@ -74,6 +74,7 @@ public class CartWebTest {
 	}
 	
 	@Test
+	@Ignore
 	public void addAndGet() throws Exception {
 		LOG.debug("======================================");
 		LOG.debug("=01. 기존 데이터 삭제=");
@@ -202,13 +203,13 @@ public class CartWebTest {
 	//cart 조회 test
 	//code값 넣고 다시 run
 	@Test
-	@Ignore
 	public void get_retrieve() throws Exception{
 		MockHttpServletRequestBuilder createMessage = MockMvcRequestBuilders.get("/cart/get_retrieve.do")
-				.param("searchDiv", "10")
-				.param("searchWord", "_130")
 				.param("pageSize", "10")
-				.param("pageNum", "1");
+				.param("pageNum", "1")
+				.param("searchDiv", "10")
+				.param("searchWord", "cart_130");
+
 	
 		//url 호출 , 결과 return
 		ResultActions resultActions = mockMvc.perform(createMessage)

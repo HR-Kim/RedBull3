@@ -112,6 +112,7 @@ public class FileController {
 		
 		//root_path 전달
 		String UPLOAD_ROOT = StringUtil.nvl(mReg.getParameter("root_path"));
+		String SAVE_ROOT = "resources"+File.separator+"img"+File.separator+"product";
 		//pNum
 		String pNum = StringUtil.nvl(mReg.getParameter("pNum"));
 		if(pNum.equals("") || pNum == null) {
@@ -140,7 +141,9 @@ public class FileController {
 		String mm = StringUtil.cureDate("MM");
 		LOG.debug("=@Controller mm="+mm);
 		String datePath = UPLOAD_ROOT+File.separator+yyyy+File.separator+mm;
+		SAVE_ROOT = SAVE_ROOT+File.separator+yyyy+File.separator+mm;
 		LOG.debug("=@Controller datePath="+datePath);
+		LOG.debug("=@Controller SAVE_ROOT="+SAVE_ROOT);
 		
 		File  fileYearMM = new File(datePath);  
 		
@@ -176,13 +179,16 @@ public class FileController {
 			File orgFileCheck = new File(datePath,orgFileNm);
 			
 			String newFile = orgFileCheck.getAbsolutePath();
+			String saveFile = SAVE_ROOT+File.separator+orgFileNm;
 			//04.파일 rename: README -> README1~9999
 			if(orgFileCheck.exists()==true) {
 				newFile = StringUtil.fileRename(orgFileCheck);
+				saveFile = SAVE_ROOT+File.separator+StringUtil.fileRenameShort(orgFileCheck);
+				LOG.debug(saveFile);
 			}
 			newImage.setRefNum(pNum);
 			newImage.setOrgFileNm(orgFileNm);
-			newImage.setSaveFileNm(newFile);
+			newImage.setSaveFileNm(saveFile);
 			newImage.setFileSize(fileSize);
 			newImage.setExtNm(ext);
 			

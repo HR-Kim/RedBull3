@@ -29,9 +29,9 @@
 	<br>
 	<form id="opt_frm" name="opt_frm" enctype="multipart/form-data">
 		<input type="hidden" name="root_path" value=<%=uploadPath%> size="15"><br/>
-		<input type="text" id="nextPnum" name="nextPnum" value="${nextPnum}" size="15"><br/>
-		<input type="text" id="nextInum" name="nextInum" value="${nextInum}" size="15"><br/>
-		<input type="text" id="nextOnum" name="nextOnum" value="${nextOnum}" size="15"><br/>
+		<input type="hidden" id="nextPnum" name="nextPnum" value="${nextPnum}" size="15"><br/>
+		<input type="hidden" id="nextInum" name="nextInum" value="${nextInum}" size="15"><br/>
+		<input type="hidden" id="nextOnum" name="nextOnum" value="${nextOnum}" size="15"><br/>
 		<table class="table" id="optAddTable">
 			<tbody>
 				<c:forEach var="opt" items="${newOptList}">
@@ -92,9 +92,9 @@
 	            contentType: false,
 				data : JSON.stringify(arr),
 				success : function(data) {
-					alert(JSON.stringify(arr));
+					//alert(JSON.stringify(arr));
 					if(null != data || data.msgId == "10"){
-						alert(data.msgMsg);
+						//alert(data.msgMsg);
 						location.href = "${context}/product/do_product_mng.do";
 					}
 				},
