@@ -85,24 +85,21 @@
 				<div class="s_product_img">
 					<div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
 						<!-- Wrapper for slides -->
-						<div class="carousel-inner">
-							<div class="carousel-item active">
-								<img class="d-block w-100"
-									src="${context}/resources/img/product/single-product/product-1.PNG"
-									alt="First slide" />
-							</div>
-	
-							<div class="carousel-item">
-								<img class="d-block w-100"
-									src="${context}/resources/img/product/single-product/product-2.PNG"
-									alt="Second slide" />
-							</div>
-	
-							<div class="carousel-item">
-								<img class="d-block w-100"
-									src="${context}/resources/img/product/single-product/product-3.PNG"
-									alt="Third slide" />
-							</div>
+						<div id="carousel" class="carousel-inner">
+							<c:choose>
+								<c:when test="${imageList.size()>0}">
+									<c:forEach var="image" items="${imageList}">
+										<div class="carousel-item">
+											<img class="d-block w-100" src="${context}/${image.saveFileNm}" />
+										</div>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<div class="carousel-item">
+										<img class="d-block w-100" src="${context}/resources/img/product/noimage.jpg" />
+									</div>
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<!-- Left and right controls -->
 						<a class="carousel-control-prev carousel-control" href="#carouselExampleInterval" role="button" data-slide="prev">
@@ -172,22 +169,22 @@
 	<div class="container">
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
 			<li class="nav-item">
-				<a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">상품정보</a>
+				<a class="nav-link" id="home-tab" data-toggle="tab" onclick="javascript:goHome();" href="#home" role="tab" aria-controls="home" aria-selected="true">상품정보</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"aria-selected="false">리뷰</a>
+				<a class="nav-link" id="review-tab" data-toggle="tab" onclick="javascript:goReview();" href="#review" role="tab" aria-controls="review"aria-selected="false">리뷰</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">문의</a>
+				<a class="nav-link" id="contact-tab" data-toggle="tab" onclick="javascript:goContact();" href="#contact" role="tab" aria-controls="contact" aria-selected="false">문의</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">교환 및 환불 안내</a>
+				<a class="nav-link" id="profile-tab" data-toggle="tab" onclick="javascript:goProfile();" href="#profile" role="tab" aria-controls="profile" aria-selected="false">교환 및 환불 안내</a>
 			</li>
 		</ul>
 
 		<div class="tab-content" id="myTabContent">
 			<!--================ 상품정보 =================-->
-			<div class="tab-pane fade in active" id="home" role="tabpanel" aria-labelledby="home-tab">
+			<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 				<p>${productVO.detail}</p>
 			</div>
 			<!--//================ 상품정보 =================-->
@@ -452,6 +449,7 @@
 						</tbody>
 					</table>
 					<br>
+					<br>
 					<h4>반품 및 교환 사유에 따른 요청 가능 기간</h4>
 					<p>반품 시 먼저 판매자와 연락하셔서 반품사유, 택배사, 배송비, 반품지 주소 등을 협의하신 후 반품상품을 반송해주시길 바랍니다.</p>
 					<p>1.구매자 단순 변심은 상품 수령 후 7일 이내(구매자 반품배송비 부담)</p>
@@ -483,6 +481,38 @@
 	<script src="${context}/resources/vendors/isotope/imagesloaded.pkgd.min.js"></script>
 	<script src="${context}/resources/vendors/isotope/isotope-min.js"></script>
 	<script type="text/javascript">
+		//홈 탭
+		function goHome(){
+			//alert("goHome");
+			$("#review").removeClass("show active");
+			$("#contact").removeClass("show active");
+			$("#profile").removeClass("show active");
+			$("#home").addClass("show active");
+		}
+		//리뷰 탭
+		function goReview(){
+			//alert("goReview");
+			$("#home").removeClass("show active");
+			$("#contact").removeClass("show active");
+			$("#profile").removeClass("show active");
+			$("#review").addClass("show active");
+		}
+		//문의 탭
+		function goContact(){
+			//alert("goContact");
+			$("#home").removeClass("show active");
+			$("#review").removeClass("show active");
+			$("#profile").removeClass("show active");
+			$("#contact").addClass("show active");
+		}
+		//정보 탭
+		function goProfile(){
+			//alert("goProfile");
+			$("#home").removeClass("show active");
+			$("#review").removeClass("show active");
+			$("#contact").removeClass("show active");
+			$("#profile").addClass("show active");
+		}
 		//수량 Up
 		function countUp(){
 			var result = document.getElementById('sst');
@@ -509,12 +539,18 @@
 		function delete_product(){
 			alert("delete_product");
 		}
-		//탭 변경 시 active 설정 (ul-li-a)
-		$("#myTab li:first a").addClass("active").show();
-		$("#myTab li").on("click",function(){
-			alert("tab_click");
-			$("#myTab li a").removeClass("active");
-			$(this).children('a').addClass("active");
+		$(document).ready( function(){
+			//캐러셀
+			$("#carousel div:first").addClass("active").show();
+			
+			//탭 변경 시 active 설정 (ul-li-a)
+			$("#myTab li:first a").addClass("active").show();
+			$("#myTab li").on("click",function(){
+				//alert("tab_click");
+				$("#myTab li a").removeClass("active");
+				$(this).children('a').addClass("active");
+			});
+			
 		});
 	
 	
