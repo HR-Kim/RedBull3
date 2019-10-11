@@ -111,6 +111,7 @@
 						<th class="text-center">파일명</th>
 						<th class="text-center">사이즈</th>
 						<th class="text-center">확장자</th>
+						<th class="text-center"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -122,6 +123,7 @@
 									<td class="text-center"><c:out value="${image.orgFileNm}"/></td>
 									<td class="text-center"><c:out value="${image.fileSize}"/></td>
 									<td class="text-center"><c:out value="${image.extNm}"/></td>
+									<td class="text-center"><a href="#this" name="img_delete" class="btn">삭제하기</a></td>
 								</tr>
 							</c:forEach>
 						</c:when>
@@ -144,6 +146,16 @@
 	<!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
 	<script src="${context}/resources/js/bootstrap.min.js"></script>
 	<script>
+		//이미지 삭제
+		$("a[name='img_delete']").on("click",function(e){
+			alert("img_delete");	
+		    e.preventDefault();
+		    tr_imgDelete($(this));
+		    
+		})
+		function tr_imgDelete(obj){
+			obj.closest("tr").remove();
+		}
 		//글작성
 		$("#btn_write").on("click", function(e){
 			//alert("btn_write");

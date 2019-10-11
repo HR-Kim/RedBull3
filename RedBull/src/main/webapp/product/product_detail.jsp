@@ -55,8 +55,8 @@
 </head>
 <body>
 <!--================Form Group - Product==============-->
-<form method="post" >
-	<input type="hidden" name="pNum" value="${productVO.pNum}"/>	
+<form name="frm_pNum" method="post" >
+	<input type="hidden" id="pNum" name="pNum" value="${productVO.pNum}"/>	
 </form>
 
 <!--================Home Banner Area =================-->
@@ -150,11 +150,12 @@
 					</div>
 					<div class="card_area">
 						<a class="main_btn" href="#">주문하기</a>
+						<a class="main_btn" href="${context}/product/get_retrieve.do">뒤로</a>
 						<a class="icon_btn" href="#">
 							<i class="lnr lnr lnr-heart"></i>
 						</a>
 						<hr>
-						<a class="main_btn" href="javascript:write_product();">수정하기</a>
+						<a class="main_btn" href="javascript:update_product();">수정하기</a>
 						<a class="main_btn" href="javascript:delete_product();">삭제하기</a>
 					</div>
 				</div>
@@ -532,12 +533,59 @@
 			}
 		}
 		//상품 수정
-		function write_product(){
-			alert("write_product");
+		function update_product(){
+			//alert("update_product");
+			$.ajax({
+				type : "POST",
+				url : "${context}/product/do_update.do",
+				dataType : "html",
+				data : {
+					"pNum" : $("#pNum").val()
+				},
+				success : function(data) {
+					var jData = JSON.parse(data);
+					if (null != jData && jData.msgId == "1") {
+						//alert(jData.msgMsg);
+						location.href = "${context}/product/product_mng.jsp";
+
+					} else {
+						alert("로딩 실패");
+					}
+				},
+				complete : function(data) {
+
+				},
+				error : function(xhr, status, error) {
+					alert("error:" + error);
+				}
+			});
 		}
 		//상품 삭제
 		function delete_product(){
-			alert("delete_product");
+			//alert("delete_product");
+			$.ajax({
+				type : "POST",
+				url : "${context}/product/do_delete.do",
+				dataType : "html",
+				data : {
+					"pNum" : $("#pNum").val()
+				},
+				success : function(data) {
+					var jData = JSON.parse(data);
+					if (null != jData && jData.msgId == "1") {
+						alert(jData.msgMsg);
+						location.href = "${context}/product/get_retrieve.do";
+					} else {
+						alert("로딩 실패");
+					}
+				},
+				complete : function(data) {
+
+				},
+				error : function(xhr, status, error) {
+					alert("error:" + error);
+				}
+			});
 		}
 		$(document).ready( function(){
 			//캐러셀

@@ -1,9 +1,6 @@
 package kr.co.redbull.product.web;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -17,13 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-
 import com.google.gson.Gson;
-
 import kr.co.redbull.cmn.Message;
 import kr.co.redbull.cmn.Search;
 import kr.co.redbull.cmn.StringUtil;
@@ -52,6 +44,119 @@ public class ProductController {
 	private final String VIEW_DETAIL  ="product/product_detail";
 	private final String VIEW_MNG_NM  ="product/product_mng";
 	private final String VIEW_OPT_NM  ="product/product_option";
+	
+	//상품 수정
+	@RequestMapping(value = "product/do_delete.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String do_delete(Product product, HttpSession session){
+		LOG.debug("=======================");
+		LOG.debug("=do_delete=");
+		LOG.debug("product : "+product);
+		LOG.debug("=======================");
+		
+		//3가지 삭제
+		//newProduct(product VO)가 있어야 함 
+		Product newProduct = (Product) productService.get_selectOne(product);
+		LOG.debug("=@do_update.do get_selectOne=");
+		LOG.debug("newProduct : "+newProduct);
+		LOG.debug("=======================");
+		
+		Search searchPnum = new Search();
+		
+		//newOptList(List Opt VO)가 있어야 함 
+		searchPnum.setSearchWord(newProduct.getpNum());
+		List<Opt> newOptList = (List<Opt>) optService.get_pNumList(searchPnum);
+		LOG.debug("=@do_update.do get_selectOne=");
+		LOG.debug("newOptList : "+newOptList);
+		LOG.debug("=======================");
+		
+		//newImageList(List Image VO)가 있어야 함
+		List<Image> newImageList = (List<Image>) imageService.get_refnumList(searchPnum);
+		LOG.debug("=@do_update.do get_selectOne=");
+		LOG.debug("newImageList : "+newImageList);
+		LOG.debug("=======================");
+		
+		//삭제
+		int flag = 0;
+		//이미지
+		for(Image delImage : newImageList) {
+			flag = imageService.do_delete(delImage);
+		}
+		//옵션
+		for(Opt delOpt : newOptList) {
+			flag = optService.do_delete(delOpt);
+		}
+		//상품
+		flag = productService.do_delete(newProduct);
+		
+		//메세지 설정
+		Message  message=new Message();
+		if(flag==1) {
+			message.setMsgId(String.valueOf(flag));
+			message.setMsgMsg("삭제 되었습니다.");
+		}else {
+			message.setMsgId(String.valueOf(flag));
+			message.setMsgMsg("삭제 실패.");
+		}
+		
+		Gson gson=new Gson();
+		String gsonStr = gson.toJson(message);
+		
+		LOG.debug("=gsonStr="+gsonStr);
+		LOG.debug("============================");
+		
+		return gsonStr;
+	}
+	
+	//상품 수정
+	@RequestMapping(value = "product/do_update.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String do_update(Product product, HttpSession session){
+		LOG.debug("=======================");
+		LOG.debug("=do_update=");
+		LOG.debug("product : "+product);
+		LOG.debug("=======================");
+		
+		//세션 설정 3가지
+		//newProduct(product VO)가 있어야 함 
+		Product newProduct = (Product) productService.get_selectOne(product);
+		LOG.debug("=@do_update.do get_selectOne=");
+		LOG.debug("newProduct : "+newProduct);
+		LOG.debug("=======================");
+		
+		Search searchPnum = new Search();
+		
+		//newOptList(List Opt VO)가 있어야 함 
+		searchPnum.setSearchWord(newProduct.getpNum());
+		List<Opt> newOptList = (List<Opt>) optService.get_pNumList(searchPnum);
+		LOG.debug("=@do_update.do get_selectOne=");
+		LOG.debug("newOptList : "+newOptList);
+		LOG.debug("=======================");
+		
+		//newImageList(List Image VO)가 있어야 함
+		List<Image> newImageList = (List<Image>) imageService.get_refnumList(searchPnum);
+		LOG.debug("=@do_update.do get_selectOne=");
+		LOG.debug("newImageList : "+newImageList);
+		LOG.debug("=======================");
+		
+		//세션 설정 3가지
+		session.setAttribute("newProduct", newProduct);
+		session.setAttribute("newOptList", newOptList);
+		session.setAttribute("newImageList", newImageList);
+		
+		//메세지 설정
+		Message  message=new Message();
+		message.setMsgId(String.valueOf("1"));
+		message.setMsgMsg("로딩 되었습니다.");
+		
+		Gson gson=new Gson();
+		String gsonStr = gson.toJson(message);
+		
+		LOG.debug("=gsonStr="+gsonStr);
+		LOG.debug("============================");
+		
+		return gsonStr;
+	}
 	
 	//글쓰기
 	@RequestMapping(value = "product/do_write.do", method = RequestMethod.POST)
@@ -89,6 +194,11 @@ public class ProductController {
 			imageService.do_save(newImage);
 			LOG.debug("new image save completed : "+newImage);
 		}
+		//상품 추가 세션 삭제
+		session.removeAttribute("newProduct");
+		session.removeAttribute("newOptList");
+		session.removeAttribute("newImageList");
+		
 		return VIEW_LIST_NM;
 	}
 	
@@ -200,8 +310,11 @@ public class ProductController {
 		LOG.debug("search:"+search);
 		LOG.debug("================================");
 		
+		//NUll 처리
 		if(search.getPageSize()==0) search.setPageSize(9);
+		if(search.getSearchDiv()==null) search.setSearchDiv("10");
 		if(search.getPageNum()==0)  search.setPageNum(1);
+		if(search.getSearchWord()==null) search.setSearchWord("");
 		
 		
 		model.addAttribute("vo", search);
@@ -221,8 +334,9 @@ public class ProductController {
 			tmpImageList = (List<Image>) imageService.get_refnumList(tmpSearch);
 			//검색 결과가 없다면? : 기본 이미지
 			if(tmpImageList.size()<1) {
-				saveFileNm = "resources/img/product/inspired-product/i7.jpg";
+				saveFileNm = "resources/img/product/noimage.jpg";
 			}else {
+				//있으면 첫번째 이미지
 				saveFileNm = tmpImageList.get(0).getSaveFileNm();
 			}
 			
