@@ -106,7 +106,7 @@ public class CartWebTest {
 	}
 	
 	private void checkData(Cart org, Cart vs) {
-		assertThat(org.getpNum(), is(vs.getpNum()));
+		assertThat(org.getoNum(), is(vs.getoNum()));
 		assertThat(org.getCartCnt(), is(vs.getCartCnt()));
 		assertThat(org.getRegId(), is(vs.getRegId()));
 	}
@@ -139,7 +139,7 @@ public class CartWebTest {
 		//uri, param, post, get
 		MockHttpServletRequestBuilder createMessage = 
 				MockMvcRequestBuilders.post("/cart/do_save.do")
-				.param("pNum", vo.getpNum()+"") //param 연결
+				.param("pNum", vo.getoNum()+"") //param 연결
 				.param("cartCnt", vo.getCartCnt()+"")
 				.param("regId", vo.getRegId());
 		

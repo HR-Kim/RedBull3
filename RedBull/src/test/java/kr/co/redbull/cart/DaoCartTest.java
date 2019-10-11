@@ -46,9 +46,8 @@ public class DaoCartTest {
 	public void setUp() {
 		LOG.debug("setUp()");
 		list = Arrays.asList(
-				new Cart(1,336,1,"J01등록자_125")
-				//new Cart(2,187,1,"J01등록자_126"),
-				//new Cart(3,188,1,"J01등록자_127")
+				new Cart(1,47,1,"cart_130"),
+				new Cart(2,47,1,"cart_140")
 				);
 	}
 	
@@ -127,6 +126,7 @@ public class DaoCartTest {
 	}
 	
 	@Test
+	@Ignore
 	public void addAndGet() {
 		//=======================================
 		//0. 기존 date삭제
@@ -161,7 +161,7 @@ public class DaoCartTest {
 	private void checkData(Cart org, Cart vs) {
 		LOG.debug("checkData()");
 		assertThat(org.getCartNum(), is(vs.getCartNum()));
-		assertThat(org.getpNum(), is(vs.getpNum()));
+		assertThat(org.getoNum(), is(vs.getoNum()));
 		assertThat(org.getCartCnt(), is(vs.getCartCnt()));
 		assertThat(org.getRegId(), is(vs.getRegId()));
 	}
@@ -189,7 +189,6 @@ public class DaoCartTest {
 	}
 	
 	@Test
-	@Ignore
 	public void do_delete() {
 		cartDaoImpl.do_delete(list.get(0));
 	}
