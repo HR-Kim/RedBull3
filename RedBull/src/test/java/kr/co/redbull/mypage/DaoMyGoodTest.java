@@ -75,7 +75,7 @@ public class DaoMyGoodTest {
 		LOG.debug("=01. 기존 데이터 삭제=");
 		LOG.debug("======================================");	
 		Search search=new Search();
-		search.setSearchWord("125");
+		search.setSearchWord("135");
 		List<MyGood> getList = (List<MyGood>) myGoodDaoImpl.get_pnameList(search);
 		for(MyGood vo:getList) {
 			myGoodDaoImpl.do_delete(vo);
