@@ -175,7 +175,7 @@
 	            cache: false,
 	            timeout: 600000,
 	            success: function (data) {
-	                alert("complete : "+data.newImage);
+	                //alert("complete : "+data.newImage);
 	                location.href = "${context}/product/do_product_mng.do";
 	            },
 	            error: function (e) {

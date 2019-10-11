@@ -8,8 +8,7 @@
 		pnum as pNum,
 		link as gLink,
 		regid     as regId,
-		CASE TO_CHAR(regdt, 'yyyy/mm/dd') when TO_CHAR(sysdate, 'yyyy/mm/dd') THEN TO_CHAR(sysdate, 'HH24:MI')
-  		ELSE TO_CHAR(regdt, 'yyyy/mm/dd') END AS regDt
+		TO_CHAR(reg_dt, 'yyyy/mm/dd HH24:MI:SS') as regDt
 	</sql>
 	<sql id="searchCondition">
 		<where>
@@ -73,27 +72,21 @@
 	<!--목록조회  --> 
 	<select id="get_retrieve" parameterType="Search" resultType="MyGood">
 	SELECT T1.*, T2.*
-	FROM (SELECT B.BNUM AS bNum,
-	             B.TITLE,
-	             B.CONTENTS,
-	             B.READCNT AS readCnt,
-	             B.TNUM AS tNum,
-	             B.CATEGORY,
+	FROM (SELECT B.GNUM AS gNum,
+	             B.PNUM AS pNum,
 	             B.REGID AS regId,
 	             CASE TO_CHAR(B.REGDT, 'yyyy.mm.dd') WHEN TO_CHAR(SYSDATE, 'yyyy.mm.dd') THEN TO_CHAR(B.REGDT, 'HH24:MI')
 			     ELSE TO_CHAR(B.REGDT, 'yyyy.mm.dd') END as regDt,
-	             B.MODID AS modId,
-	             B.MODDT AS modDt,
-	             B.rnum AS num
+	             B.LINK AS gLink
       	  FROM (SELECT ROWNUM AS rnum, A.*
-            	FROM(SELECT * FROM BOARD
+            	FROM(SELECT * FROM GOOD
                  	 <include refid="searchCondition" />
                  	 ORDER BY REGDT DESC) A
             	WHERE ROWNUM <![CDATA[<]]>= (#{pageSize, jdbcType=NUMERIC} * (#{pageNum, jdbcType=NUMERIC} -1) + #{pageSize, jdbcType=NUMERIC}))B
       	  WHERE B.rnum <![CDATA[>]]>= (#{pageSize, jdbcType=NUMERIC} * (#{pageNum, jdbcType=NUMERIC} -1)+1)) T1
 	CROSS JOIN
 	(SELECT COUNT(*)
-	 FROM (SELECT * FROM BOARD
+	 FROM (SELECT * FROM GOOD
 	       <include refid="searchCondition" />
 	      ))T2 
 	</select>

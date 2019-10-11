@@ -65,7 +65,47 @@ public class StringUtil {
 		
 		return datePath;
 	}
+	
+	/**
+	 * 파일 Rename 인데 파일명만 뱉음
+	 * 
+	 * @param f
+	 * @return 파일 rename명 cloude.jpg->cloude1~9999.jpg
+	 */
+	public static String fileRenameShort(File f) {
+		String retFileNm = "";
+		// 01.파일 존재 Check
+		if (!f.exists()) {
+			retFileNm = f.getAbsolutePath();
+			return retFileNm;
+		}
 
+		// 02.파일 있으면: rename
+		// cloude + 확장자
+		String name = f.getName();// cloude.jpg
+		LOG.debug("1.name : "+name);
+		String body = null;// cloude
+		String ext = null;// jpg
+		int dot = name.lastIndexOf(".");
+		LOG.debug("2.dot : "+dot);
+		if (dot != -1) {
+			body = name.substring(0, dot);
+			LOG.debug("3.body : "+body);
+			ext = name.substring(dot);// .jpg
+			LOG.debug("4.ext : "+ext);
+		}
+
+		// 03.반복문 처리
+		int count = 0;
+		while (f.exists() && count < 99999) {
+			count++;
+			retFileNm = body + count + ext;
+			f = new File(f.getParent(), retFileNm);
+		}
+
+		return retFileNm;
+	}
+	
 	/**
 	 * 파일 Rename
 	 * 
@@ -83,12 +123,16 @@ public class StringUtil {
 		// 02.파일 있으면: rename
 		// cloude + 확장자
 		String name = f.getName();// cloude.jpg
+		LOG.debug("1.name : "+name);
 		String body = null;// cloude
 		String ext = null;// jpg
 		int dot = name.lastIndexOf(".");
+		LOG.debug("2.dot : "+dot);
 		if (dot != -1) {
 			body = name.substring(0, dot);
+			LOG.debug("3.body : "+body);
 			ext = name.substring(dot);// .jpg
+			LOG.debug("4.ext : "+ext);
 		}
 
 		// 03.반복문 처리
