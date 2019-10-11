@@ -46,19 +46,20 @@ public class DaoCartTest {
 	public void setUp() {
 		LOG.debug("setUp()");
 		list = Arrays.asList(
-				new Cart(1,47,1,"cart_130"),
-				new Cart(2,47,1,"cart_140")
+				//new Cart(1,47,1,"cart_130"),
+				new Cart(167,83,1,"cart_150"),
+				new Cart(168,83,1,"cart_151")
 				);
 	}
 	
-	//할인가
+	//결제금액
 	@Test
 	@Ignore
-	public void sale() {
+	public void pay() {
 		//=======================================
 		// 총 상품금액 조회
 		//=======================================
-		cartDaoImpl.sale(list.get(0));
+		cartDaoImpl.pay(list.get(1));
 	}
 	
 	//배송비
@@ -71,14 +72,14 @@ public class DaoCartTest {
 		cartDaoImpl.delivery(list.get(0));
 	}
 	
-	//전체 금액
+	// 할인 전 금액
 	@Test
 	@Ignore
 	public void total() {
 		//=======================================
 		// 총 상품금액 조회
 		//=======================================
-		cartDaoImpl.total(list.get(0));
+		cartDaoImpl.total(list.get(1));
 	}
 	
 	
@@ -189,6 +190,7 @@ public class DaoCartTest {
 	}
 	
 	@Test
+	@Ignore
 	public void do_delete() {
 		cartDaoImpl.do_delete(list.get(0));
 	}

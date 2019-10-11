@@ -70,7 +70,7 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public int sale(DTO dto) {
 		
-		return cartDaoImpl.sale(dto);
+		return cartDaoImpl.pay(dto);
 	}
 
 	@Override

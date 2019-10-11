@@ -61,8 +61,8 @@ public class CartWebTest {
 		LOG.debug("setUp()");
 		LOG.debug("^^^^^^^^^^^^^^^^^^^^^^^");
 		list = Arrays.asList(
-				new Cart(1,396,1,"cart_130"),
-				new Cart(2,396,1,"cart_131")
+				new Cart(167,83,1,"cart_150"),
+				new Cart(168,83,1,"cart_151")
 				);
 		
 		mockMvc = MockMvcBuilders.webAppContextSetup(context).build(); //mockMvc생성자
@@ -202,6 +202,7 @@ public class CartWebTest {
 		
 	//cart 조회 test
 	@Test
+	@Ignore
 	public void get_retrieve() throws Exception{
 		MockHttpServletRequestBuilder createMessage = MockMvcRequestBuilders.get("/cart/get_retrieve.do")
 				.param("pageSize", "10")
@@ -228,9 +229,10 @@ public class CartWebTest {
 	@Ignore
 	public void do_update() throws Exception{
 		MockHttpServletRequestBuilder createMessage = MockMvcRequestBuilders.post("/cart/do_update.do")
-				.param("pNum", "366") //param연결
+				.param("cartNum", "168")
+				.param("oNum", "83") //param연결
 				.param("cartCnt", "3")
-				.param("regId", "cart_130");
+				.param("regId", "cart_151");
 		
 		ResultActions resultActions = mockMvc.perform(createMessage)
 				.andExpect(MockMvcResultMatchers.content().contentType("application/json;charset=UTF-8"))
@@ -250,9 +252,10 @@ public class CartWebTest {
 	@Ignore
 	public void do_save() throws Exception{
 		MockHttpServletRequestBuilder createMessage = MockMvcRequestBuilders.post("/cart/do_save.do")
-				.param("pNum", "366") //param연결
+				.param("cartNum", "170")
+				.param("oNum", "49") //param연결
 				.param("cartCnt", "1")
-				.param("regId", "cart_130");
+				.param("regId", "cart_160");
 		
 		ResultActions resultActions = mockMvc.perform(createMessage)
 				.andExpect(MockMvcResultMatchers.content().contentType("application/json;charset=UTF-8"))
@@ -272,7 +275,7 @@ public class CartWebTest {
 	@Ignore
 	public void do_delete() throws Exception{
 		MockHttpServletRequestBuilder createMessage = MockMvcRequestBuilders.post("/cart/do_delete.do")
-				.param("regId", "cart_130"); //param연결
+				.param("cartNum", "167"); //param연결
 		
 		ResultActions resultActions = mockMvc.perform(createMessage)
 				.andExpect(MockMvcResultMatchers.content().contentType("application/json;charset=UTF-8"))

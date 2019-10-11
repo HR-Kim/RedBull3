@@ -25,8 +25,8 @@ public class CartDaoImpl implements WorkDiv {
 	
 	
 	//할인가격
-	public int sale(DTO dto) {
-		String statement = this.NAMESPACE+".sale";
+	public int pay(DTO dto) {
+		String statement = this.NAMESPACE+".pay";
 		Cart cart = (Cart) dto;
 		LOG.debug("================================");
 		LOG.debug("1. statement: " + statement);
