@@ -69,7 +69,7 @@ public class DaoMyGoodTest {
 	}
 	
 	@Test
-	@Ignore
+	//@Ignore
 	public void get_retrieve() {
 		LOG.debug("======================================");
 		LOG.debug("=01. 기존 데이터 삭제=");
@@ -100,7 +100,6 @@ public class DaoMyGoodTest {
 	}
 	
 	@Test
-	@Ignore
 	public void getBean() {
 		LOG.debug("====================================================");
 		LOG.debug("=context="+context);
@@ -111,7 +110,7 @@ public class DaoMyGoodTest {
 	}
 	
 	@Test
-	//@Ignore
+	@Ignore
 	public void do_save() {
 		myGoodDaoImpl.do_save(list.get(0));
 	}	

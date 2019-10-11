@@ -122,26 +122,11 @@
 					<!--================Top Area =================-->
 					<div class="product_top_bar">
 						<div class="left_dorp">
-						<select class="sorting">
-							<option value="1">Default sorting</option>
-							<option value="2">Default sorting 01</option>
-							<option value="4">Default sorting 02</option>
-						</select>
-						<select class="show">
-							<option value="1">Show 12</option>
-							<option value="2">Show 14</option>
-							<option value="4">Show 16</option>
-						</select>
-						<!-- 검색영역 -->
-						<form class="form-inline" name="productFrm" id="productFrm" method="get">
-							<input type="hidden" name="pageNum" id="pageNum" value="${vo.pageNum}" />
-							<input type="hidden" name="searchDiv" id="searchDiv" />
-							<input type="hidden" name="pNum" id="pNum" />
-							<input type="text" class="sorting" id="searchWord" name="searchWord" placeholder="검색어" />
-						</form>
-						<button type="button" class="genric-btn default" onclick="javascript:do_retrieve()" >검색</button>
-						<a class="btn btn-default btn-sm" href="${context}/product/do_product_mng.do">글쓰기</a>
-						<!--검색영역 end -->
+							<select class="sorting">
+								<option value="1">Default sorting</option>
+								<option value="2">Default sorting 01</option>
+								<option value="4">Default sorting 02</option>
+							</select>
 						</div>
 					</div>
 					<!--//================Top Area =================-->
@@ -180,24 +165,42 @@
 				</div>
 				<!--================Left Area =================--> 
 				<div class="col-lg-3">
+					<a class="form-control btn btn-success btn-block" href="${context}/product/do_product_mng.do">글쓰기</a>
 					<div class="left_sidebar_area">
 						<aside class="left_widgets p_filter_widgets">
-					<div class="l_w_title">
-						<h3>Categories</h3>
+							<div class="l_w_title">
+								<h3>Search</h3>
+							</div>
+							<div class="widgets_inner">
+								<form name="productFrm" id="productFrm" method="get">
+									<input type="hidden" name="pageNum" id="pageNum" value="${vo.pageNum}" />
+									<input type="hidden" name="searchDiv" id="searchDiv" />
+									<input type="hidden" name="pNum" id="pNum" />
+									<input type="text" class="form-control" id="searchWord" name="searchWord" placeholder="검색어" />
+									<br>
+									<button class="form-control btn btn-success" onclick="javascript:do_retrieve()" >검색</button>
+								</form>
+							</div>
+						</aside>
 					</div>
-					<div class="widgets_inner">
-						<ul class="list">
-							<li>
-								<a href="#">가구</a>
-							</li>
-							<li>
-								<a href="#">침구</a>
-							</li>
-							<li>
-								<a href="#">생활용품</a>
-							</li>
-						</ul>
-					</div>
+					<div class="left_sidebar_area">
+						<aside class="left_widgets p_filter_widgets">
+							<div class="l_w_title">
+								<h3>Categories</h3>
+							</div>
+							<div class="widgets_inner">
+								<ul class="list">
+									<li>
+										<a href="#">가구</a>
+									</li>
+									<li>
+										<a href="#">침구</a>
+									</li>
+									<li>
+										<a href="#">생활용품</a>
+									</li>
+								</ul>
+							</div>
 						</aside>
 					</div>
 				</div>
@@ -238,6 +241,7 @@
 			var searchWord = $("#searchWord").text();
 			var frm = document.productFrm;
 			frm.pageNum.value= 1;
+			frm.searchDiv.value="10";
 			frm.action = "${context}/product/get_retrieve.do";
 			frm.submit();
 		}
