@@ -57,13 +57,14 @@
 	
 	 <!-- 단건조회 -->
  	 <select id="get_selectOne" parameterType="Cart" resultType="Cart">
+ 	 
 	 	 	 SELECT	
 	 	 	 	<include refid="cartColumns" />								
 	         FROM CART c JOIN PRODUCT p
 	         ON c.pNum = p.pNum
 	         JOIN IMAGE i
 	         ON c.pNum = i.refNum
-			WHERE c.regid = #{regId, jdbcType=VARCHAR}
+			 WHERE c.regid = #{regId, jdbcType=VARCHAR}
  	 </select>
  	 
  	 <!-- get_cartIdList -->
@@ -80,7 +81,7 @@
  	 </select>
 	
  	 <!-- Cart 조회 -->
- 	 <select id="get_cartList" parameterType="Search" resultType="Cart">
+ 	 <select id="get_retrieve" parameterType="Search" resultType="Cart">
 		 	SELECT T1.*, T2.*
 		    FROM
 		    (
@@ -88,7 +89,7 @@
 		            B.rnum,
 		            B.saveFileNm,
 		            B.cartnum,
-		            B.bprice as bPrice,
+		            B.bprice,
 		            B.pname,
 		            B.pnum,
 		            B.dprice,
