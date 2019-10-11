@@ -263,9 +263,13 @@ public class ProductController {
 		//옵션테이블
 		List<Opt> optList = (List<Opt>)optService.get_pNumList(searchOne);
 		
+		//이미지리스트
+		List<Image> imageList = (List<Image>) imageService.get_refnumList(searchOne);
+		
 		//파람 전달
 		model.addAttribute("productVO", productVO);
 		model.addAttribute("optList", optList);
+		model.addAttribute("imageList", imageList);
 		
 		return VIEW_DETAIL;
 	}

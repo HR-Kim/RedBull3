@@ -154,8 +154,8 @@
 										<div class="col-lg-4 col-md-6">
 											<div class="single-product">
 												<input type="hidden" value="${product.pNum}" />
-												<div class="product-img">
-													<img class="card-img" src="${context}/${product.detail}" alt="" />
+												<div class="product-img embed-responsive embed-responsive-4by3">
+													<img class="card-img embed-responsive-item" src="${context}/${product.detail}" alt="" />
 												</div>
 												<div class="product-btm">
 													<a href="#" class="d-block"><h4>${product.pName}</h4></a>

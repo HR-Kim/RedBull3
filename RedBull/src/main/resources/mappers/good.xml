@@ -2,7 +2,7 @@
 <!DOCTYPE mapper 
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.co.redbull.mypage">
+   <mapper namespace="kr.co.redbull.mypage">
 	<sql id="goodColumns">
 		gnum as gNo,
 		pnum as pNum,
@@ -10,14 +10,47 @@
 		regid     as regId,
 		TO_CHAR(reg_dt, 'yyyy/mm/dd HH24:MI:SS') as regDt
 	</sql>
+<<<<<<< HEAD
+=======
+	<sql id="searchCondition">
+		<where>
+			<choose>
+				<when test="'10' == searchDiv">
+					TNUM = 10
+					<choose>
+						<when test="searchWord!=null"> AND TITLE LIKE '%' || #{searchWord} || '%'</when>
+					</choose>					
+				</when>
+				<when test="'20' == searchDiv">
+					TNUM = 20
+					<choose>
+						<when test="searchWord!=null"> AND TITLE LIKE '%' || #{searchWord} || '%'</when>
+					</choose>
+				</when>
+				<when test="'30' == searchDiv">
+					TNUM = 20
+					<choose>
+						<when test="searchWord!=null"> AND CATEGORY = #{searchWord} </when>
+					</choose>					
+				</when>
+				<otherwise></otherwise>
+			</choose>
+		</where>
+	</sql>
 	
-	<!-- 삭제  -->
+	<!--게시판번호 가져오기  -->
+	<select id="get_pnameList" parameterType="Search" resultType="MyGood">
+		SELECT * FROM GOOD WHERE TITLE LIKE '%' || #{searchWord} || '%'
+	</select>
+>>>>>>> branch 'master' of https://github.com/HR-Kim/RedBull3.git
+	
+	<!--삭제  --> 
 	<delete id="do_delete" parameterType="MyGood">
 		DELETE FROM GOOD WHERE PNUM = #{pNum, jdbcType=NUMERIC}
 							AND REGID = #{regId, jdbcType=VARCHAR}
 	</delete>
 	
-	<!-- 등록  -->
+	<!--등록   -->
 	<insert id="do_save" parameterType="MyGood">
 		INSERT INTO GOOD (
 			PNUM,
@@ -32,19 +65,40 @@
 		)
 	</insert>
 	
-	<!-- 단건조회 -->
+	<!--단건조회  -->
 	<select id="get_selectOne" parameterType="MyGood" resultType="MyGood">
 		SELECT * FROM GOOD
 		WHERE PNUM = #{pNum, jdbcType=VARCHAR}
 		AND REGID = #{regId, jdbcType=VARCHAR}
 	</select>
 	
-	<!-- 목록조회  -->
+	<!--목록조회  --> 
 	<select id="get_retrieve" parameterType="Search" resultType="MyGood">
+<<<<<<< HEAD
 		SELECT 
 		<include refid="goodColumns"/>
 		FROM GOOD
 		WHERE REGID = #{regId, jdbcType=VARCHAR}
+=======
+	SELECT T1.*, T2.*
+	FROM (SELECT B.GNUM AS gNum,
+	             B.PNUM AS pNum,
+	             B.REGID AS regId,
+	             CASE TO_CHAR(B.REGDT, 'yyyy.mm.dd') WHEN TO_CHAR(SYSDATE, 'yyyy.mm.dd') THEN TO_CHAR(B.REGDT, 'HH24:MI')
+			     ELSE TO_CHAR(B.REGDT, 'yyyy.mm.dd') END as regDt,
+	             B.LINK AS gLink
+      	  FROM (SELECT ROWNUM AS rnum, A.*
+            	FROM(SELECT * FROM GOOD
+                 	 <include refid="searchCondition" />
+                 	 ORDER BY REGDT DESC) A
+            	WHERE ROWNUM <![CDATA[<]]>= (#{pageSize, jdbcType=NUMERIC} * (#{pageNum, jdbcType=NUMERIC} -1) + #{pageSize, jdbcType=NUMERIC}))B
+      	  WHERE B.rnum <![CDATA[>]]>= (#{pageSize, jdbcType=NUMERIC} * (#{pageNum, jdbcType=NUMERIC} -1)+1)) T1
+	CROSS JOIN
+	(SELECT COUNT(*)
+	 FROM (SELECT * FROM GOOD
+	       <include refid="searchCondition" />
+	      ))T2 
+>>>>>>> branch 'master' of https://github.com/HR-Kim/RedBull3.git
 	</select>
 
 </mapper>

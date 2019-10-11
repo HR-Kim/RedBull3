@@ -201,7 +201,6 @@ public class CartWebTest {
 	
 		
 	//cart 조회 test
-	//code값 넣고 다시 run
 	@Test
 	public void get_retrieve() throws Exception{
 		MockHttpServletRequestBuilder createMessage = MockMvcRequestBuilders.get("/cart/get_retrieve.do")
