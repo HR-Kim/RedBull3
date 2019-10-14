@@ -19,6 +19,8 @@ import kr.co.redbull.board.service.Board;
 import kr.co.redbull.board.service.BoardService;
 import kr.co.redbull.cmn.Message;
 import kr.co.redbull.cmn.Search;
+import kr.co.redbull.comment.service.Comment;
+import kr.co.redbull.comment.service.CommentService;
 
 @Controller
 public class BoardController {
@@ -27,6 +29,9 @@ public class BoardController {
 	
 	@Autowired
 	BoardService boardService;
+	
+	@Autowired
+	CommentService commentService;
 	
 	private final String VIEW_DETAIL  ="board/board_detail"; 
 	//private final String VIEW_NOTICE_LIST_NM ="board/notice_list";
@@ -106,6 +111,20 @@ public class BoardController {
 		Board outVO = (Board)boardService.get_selectOne(board);
 		
 		model.addAttribute("vo", outVO);
+		
+		//댓글		
+		Search search = new Search();
+		search.setPageSize(10);
+		search.setPageNum(1);
+		search.setSearchDiv(String.valueOf(outVO.gettNum()));
+		search.setSearchWord(String.valueOf(outVO.getbNum()));
+		
+		LOG.debug("================================");
+		LOG.debug("search:"+search);
+		LOG.debug("================================");
+		
+		List<Comment> commentList = (List<Comment>)commentService.get_retrieve(search);
+		model.addAttribute("commentList", commentList);
 		
 		return VIEW_DETAIL;
 	}

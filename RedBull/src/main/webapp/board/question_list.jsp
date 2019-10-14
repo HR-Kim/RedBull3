@@ -49,18 +49,18 @@
 	
 	//paging
 	//maxNum, currPageNo, rowPerPage, bottomCount, url, scriptName
-	
+		
 	int maxNum      = 0;  //totalCnt
 	int bottomCount = 10;
 	int currPageNo  = 1;  //pageNum
 	int rowPerPage  = 10; //pageSize
-	
+		
 	String url 	  	  = request.getContextPath()+"/board/get_retrieve.do";
 	String scriptName = "search_page"; 
-	
+		
 	//totalCnt
 	String totalCnt = (request.getAttribute("totalCnt")==null)? "0":request.getAttribute("totalCnt").toString();
-	
+		
 	maxNum     = Integer.parseInt(totalCnt);
 	currPageNo = Integer.parseInt(pageNum);
 	rowPerPage = Integer.parseInt(pageSize);
@@ -87,6 +87,8 @@
   </head>
  
   <body>
+  ${totalCnt }
+  
     <!-- div container -->
    <div class="container">
         <!-- div title --> 
@@ -180,6 +182,7 @@
     	function search_page(url, pageNum){
     		var frm = document.boardFrm;
     		frm.pageNum.value = pageNum;
+    		frm.searchDiv.value = "20";
 			frm.action = url;
 			frm.submit();
     	}

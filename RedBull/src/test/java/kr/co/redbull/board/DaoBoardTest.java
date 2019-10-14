@@ -154,7 +154,7 @@ public class DaoBoardTest {
 		addedDataList = (List<Board>)boardDaoImpl.get_boardIdList(search);
 		
 		//--------------------------------------
-		// 6. 수정된 데이터 조회
+		// 7. 비교
 		//--------------------------------------
 		
 		this.checkData(updated, addedDataList.get(0));
