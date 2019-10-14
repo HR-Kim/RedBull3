@@ -14,19 +14,16 @@
 		<where>
 			<choose>
 				<when test="'10' == searchDiv">
-					TNUM = 10
 					<choose>
-						<when test="searchWord!=null"> AND TITLE LIKE '%' || #{searchWord} || '%'</when>
+						<when test="searchWord!=null"> AND REGID LIKE '%' || #{searchWord} || '%'</when>
 					</choose>					
 				</when>
 				<when test="'20' == searchDiv">
-					TNUM = 20
 					<choose>
-						<when test="searchWord!=null"> AND TITLE LIKE '%' || #{searchWord} || '%'</when>
+						<when test="searchWord!=null"> AND REGID LIKE '%' || #{searchWord} || '%'</when>
 					</choose>
 				</when>
 				<when test="'30' == searchDiv">
-					TNUM = 20
 					<choose>
 						<when test="searchWord!=null"> AND CATEGORY = #{searchWord} </when>
 					</choose>					
@@ -38,7 +35,7 @@
 	
 	<!--게시판번호 가져오기  -->
 	<select id="get_pnameList" parameterType="Search" resultType="MyGood">
-		SELECT * FROM GOOD WHERE TITLE LIKE '%' || #{searchWord} || '%'
+		SELECT * FROM GOOD WHERE REGID LIKE '%' || #{searchWord} || '%'
 	</select>
 	
 	<!--삭제  --> 
@@ -51,7 +48,7 @@
 	<insert id="do_save" parameterType="MyGood">
 		INSERT INTO GOOD (
 			PNUM,
-			GLINK,
+			LINK,
 			REGID,
 			REGDT		
 		) VALUES (
@@ -75,8 +72,7 @@
 	FROM (SELECT B.GNUM AS gNum,
 	             B.PNUM AS pNum,
 	             B.REGID AS regId,
-	             CASE TO_CHAR(B.REGDT, 'yyyy.mm.dd') WHEN TO_CHAR(SYSDATE, 'yyyy.mm.dd') THEN TO_CHAR(B.REGDT, 'HH24:MI')
-			     ELSE TO_CHAR(B.REGDT, 'yyyy.mm.dd') END as regDt,
+	             TO_CHAR(REGDT, 'yyyy/mm/dd HH24:MI:SS') as regDt,
 	             B.LINK AS gLink
       	  FROM (SELECT ROWNUM AS rnum, A.*
             	FROM(SELECT * FROM GOOD

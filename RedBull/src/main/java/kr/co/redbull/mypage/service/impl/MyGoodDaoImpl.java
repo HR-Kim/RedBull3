@@ -113,7 +113,7 @@ public class MyGoodDaoImpl implements WorkDiv {
 	@Override
 	public List<?> get_retrieve(DTO dto) {
 		Search search = (Search)dto;
-		String statement = NAMESPACE + ".get_myGoodList";
+		String statement = NAMESPACE + ".get_retrieve";
 		
 		LOG.debug("==============================");
 		LOG.debug("1.param:"+search);
