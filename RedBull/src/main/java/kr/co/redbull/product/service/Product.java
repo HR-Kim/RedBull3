@@ -1,5 +1,7 @@
 package kr.co.redbull.product.service;
 
+import java.util.List;
+
 import kr.co.redbull.cmn.DTO;
 
 public class Product extends DTO {
@@ -14,10 +16,24 @@ public class Product extends DTO {
 	private String regDt    ;//등록일
 	private String modId    ;//수정자
 	private String modDt    ;//수정일
+	private List<Product> list;
+	
 	
 	public Product() {}
 
 	
+
+	public List<Product> getList() {
+		return list;
+	}
+
+
+
+	public void setList(List<Product> list) {
+		this.list = list;
+	}
+
+
 
 	public String getpNum() {
 		return pNum;

@@ -14,7 +14,7 @@ import kr.co.redbull.cmn.DTO;
 @Service
 public class CartServiceImpl implements CartService {
 	
-	private Logger LOG = LoggerFactory.getLogger(this.getClass());
+	Logger LOG = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	private CartDaoImpl cartDaoImpl;
@@ -26,7 +26,7 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public int do_updateI(DTO dto) {
+	public int do_update(DTO dto) {
 		
 		return cartDaoImpl.do_update(dto);
 	}
@@ -39,30 +39,46 @@ public class CartServiceImpl implements CartService {
 
 	@Override
 	public List<?> get_retrieve(DTO dto) {
-		List<Cart> list = (List<Cart>) cartDaoImpl.get_retrieve(dto);
-		LOG.debug("================================");
-		LOG.debug("list: " + list);
-		LOG.debug("================================");
 		
-		return list;
+		return cartDaoImpl.get_retrieve(dto);
 	}
 
 	@Override
 	public int total(DTO dto) { //밑에 3개 CartDaoImpl에 추가
-		// TODO Auto-generated method stub
-		return 0;
+	
+		return cartDaoImpl.total(dto);
 	}
 
 	@Override
-	public int product_check(DTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int countCart(DTO dto) {
+		
+		return cartDaoImpl.countCart(dto);
 	}
 
 	@Override
-	public int accumulation(DTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateCart(DTO dto) {
+		
+		return cartDaoImpl.updateCart(dto);
+	}
+
+	@Override
+	public int delivery(DTO dto) {
+		
+		return cartDaoImpl.delivery(dto);
+	}
+
+	@Override
+	public int sale(DTO dto) {
+		
+		return cartDaoImpl.pay(dto);
+	}
+
+	@Override
+	public DTO get_selectOne(DTO dto) {
+		
+		Cart cart = (Cart) cartDaoImpl.get_selectOne(dto);
+		
+		return cart;
 	}
 
 }

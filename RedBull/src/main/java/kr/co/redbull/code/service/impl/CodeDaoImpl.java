@@ -8,11 +8,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import kr.co.redbull.cmn.DTO;
 import kr.co.redbull.cmn.WorkDiv;
 import kr.co.redbull.code.service.Code;
 
+@Repository
 public class CodeDaoImpl implements WorkDiv  {
 	Logger LOG = LoggerFactory.getLogger(this.getClass());
 	

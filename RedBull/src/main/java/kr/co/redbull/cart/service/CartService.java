@@ -6,11 +6,14 @@ import kr.co.redbull.cmn.DTO;
 
 public interface CartService {
 	
+	/**단건조회: 조회Count증가+ */
+	public DTO get_selectOne(DTO dto);
+	
 	/**저장*/
 	public int do_save(DTO dto);
 	
 	/**수정*/
-	public int do_updateI(DTO dto);
+	public int do_update(DTO dto);
 	
 	/**삭제*/
 	public int do_delete(DTO dto);
@@ -22,9 +25,15 @@ public interface CartService {
 	public int total(DTO dto);
 	
 	/**동일상품 확인*/
-	public int product_check(DTO dto);
+	public int countCart(DTO dto);
 	
 	/**동일상품 수량 변경*/
-	public int accumulation(DTO dto);
+	public int updateCart(DTO dto);
+	
+	/**배송비 */
+	public int delivery(DTO dto);
+	
+	/**할인가격*/
+	public int sale(DTO dto);
 
 }

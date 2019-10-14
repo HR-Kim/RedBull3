@@ -12,6 +12,12 @@
 		EXT_NM       as extNm   
 	</sql>	
 	
+	<!-- NEXT INUM 조회 -->
+	<select id="get_nextInum" resultType="Image">
+		SELECT MAX(INUM)+1 as iNum
+		FROM IMAGE
+	</select>
+	
 	<!-- 참조번호로 목록조회 -->
 	<select id="get_refnumList" parameterType="Search" resultType="Image">
 		SELECT

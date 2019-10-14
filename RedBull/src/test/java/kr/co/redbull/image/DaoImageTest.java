@@ -51,11 +51,11 @@ public class DaoImageTest {
 	@Before
 	public void setUp() {
 		list = Arrays.asList(
-				new Image("noinum","56","orgFileNm1","saveFileNm1","1","ext"),
-				new Image("noinum","57","orgFileNm2","saveFileNm2","2","ext"),
-				new Image("noinum","58","orgFileNm3","saveFileNm3","3","ext"),
-				new Image("noinum","59","orgFileNm4","saveFileNm4","4","ext"),
-				new Image("noinum","60","orgFileNm5","saveFileNm5","5","ext")
+				new Image("noinum","56","orgFileNm1","saveFileNm1",1,"ext"),
+				new Image("noinum","57","orgFileNm2","saveFileNm2",2,"ext"),
+				new Image("noinum","58","orgFileNm3","saveFileNm3",3,"ext"),
+				new Image("noinum","59","orgFileNm4","saveFileNm4",4,"ext"),
+				new Image("noinum","60","orgFileNm5","saveFileNm5",5,"ext")
 				);
 				
 				
@@ -68,7 +68,16 @@ public class DaoImageTest {
 		LOG.debug("^^^^^^^^^^^^^^^^^^");
 	}
 	
+	//category_all()에서 출력
 	@Test
+	public void get_category() {
+		Search search=new Search();
+		search.setSearchWord("");
+		List<Image> getList = (List<Image>) imageDaoImpl.get_refnumList(search);
+	}
+	
+	@Test
+	@Ignore
 	public void get_retrieve() {
 		LOG.debug("======================================");
 		LOG.debug("=01. 기존 데이터 삭제=");

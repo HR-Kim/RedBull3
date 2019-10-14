@@ -22,20 +22,115 @@ public class UserDaoImpl implements WorkDiv {
 	private SqlSessionTemplate sqlSessionTemplate; // mybatis
 	
 	private final String NAMESPACE = "kr.co.redbull.user"; // 쿼리찾을 때 필요
+	
+	public UserDaoImpl() {
 		
+	}
+		
+	/**아이디 체크
+	 *  1을 반환(return > 0)하면 성공
+	 * */
+	public int id_check(DTO dto) {
+		
+		String statement = this.NAMESPACE + ".id_check"; // kr.co.redbull.user.id_check
+		
+		User user = (User) dto;
+		
+		LOG.debug("=============================");
+		LOG.debug("01. statement="+statement);
+		LOG.debug("=============================");			
+		
+		LOG.debug("=============================");
+		LOG.debug("02. param="+user);
+		LOG.debug("=============================");	
+		
+		int flag = this.sqlSessionTemplate.selectOne(statement, user);
+		LOG.debug("=============================");
+		LOG.debug("03. flag="+flag);
+		LOG.debug("=============================");	
+		
+		return flag;
+	}
+	
+	/**비밀번호 체크
+	 *  1을 반환(return > 0)하면 성공
+	 * */
+	public int passwd_check(DTO dto) {
+		
+		String statement = this.NAMESPACE + ".passwd_check"; // kr.co.redbull.user.passwd_check
+		
+		User user = (User) dto;
+		
+		LOG.debug("=============================");
+		LOG.debug("01. statement="+statement);
+		LOG.debug("=============================");			
+		
+		LOG.debug("=============================");
+		LOG.debug("02. param="+user);
+		LOG.debug("=============================");	
+		
+		int flag = this.sqlSessionTemplate.selectOne(statement, user);
+		LOG.debug("=============================");
+		LOG.debug("03. flag="+flag);
+		LOG.debug("=============================");	
+		
+		return flag;
+	}
 
 	/**회원정보 수정*/
 	@Override
 	public int do_update(DTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		String statement = this.NAMESPACE + ".do_update"; // kr.co.redbull.user.do_update
+		
+		User user = (User) dto;
+		
+		// User의 레벨 값 바꾸기(문자 -> 숫자)
+		user.setintlvl(user.getLvl().intValue());
+		
+		LOG.debug("=============================");
+		LOG.debug("01. statement="+statement);
+		LOG.debug("=============================");			
+		
+		LOG.debug("=============================");
+		LOG.debug("02. param="+user);
+		LOG.debug("=============================");	
+		
+		int flag = this.sqlSessionTemplate.update(statement, user);
+		
+		LOG.debug("=============================");
+		LOG.debug("03. flag="+flag);
+		LOG.debug("=============================");	
+		
+		return flag;
+		
 	}
 
 	/**회원 탈퇴*/
 	@Override
 	public int do_delete(DTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		String statement = this.NAMESPACE + ".do_delete"; // kr.co.redbull.user.do_delete
+		
+		User user = (User) dto;
+		
+//		Object[] args = {user.getU_id()}; // Object 배열 만들기
+		
+		LOG.debug("=============================");
+		LOG.debug("01. statement="+statement);
+		LOG.debug("=============================");			
+		
+		LOG.debug("=============================");
+		LOG.debug("02. param="+user);
+		LOG.debug("=============================");	
+		
+		int flag = this.sqlSessionTemplate.delete(statement, user);
+		LOG.debug("=============================");
+		LOG.debug("03. flag="+flag);
+		LOG.debug("=============================");	
+		
+		return flag;
+		
 	}
 
 	/**회원 가입(회원정보 등록)*/
@@ -45,6 +140,9 @@ public class UserDaoImpl implements WorkDiv {
 		String statement = this.NAMESPACE + ".do_save"; // kr.co.redbull.user.do_save
 		
 		User user = (User) dto;
+		
+		// User의 레벨 값 바꾸기(문자 -> 숫자)
+		user.setintlvl(user.getLvl().intValue());
 		
 		LOG.debug("=============================");
 		LOG.debug("01. statement="+statement);
@@ -65,8 +163,25 @@ public class UserDaoImpl implements WorkDiv {
 	/**비밀번호 찾기(회원정보 단건 조회)*/
 	@Override
 	public DTO get_selectOne(DTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		String statement = this.NAMESPACE + ".get_selectOne"; // kr.co.redbull.user.get_selectOne
+		
+		User user = (User) dto;
+		
+		LOG.debug("=============================");
+		LOG.debug("01. statement="+statement);
+		LOG.debug("=============================");			
+		
+		LOG.debug("=============================");
+		LOG.debug("02. param="+user);
+		LOG.debug("=============================");	
+		
+		User outUser = this.sqlSessionTemplate.selectOne(statement, user);
+		LOG.debug("=============================");
+		LOG.debug("03. outUser="+outUser);
+		LOG.debug("=============================");	
+		
+		return outUser;
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import java.io.File;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -12,13 +13,30 @@ import org.apache.commons.lang3.StringEscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import kr.co.redbull.code.service.Code;
+import kr.co.redbull.product.service.Product;
 
 public class StringUtil {
 	private static Logger LOG = LoggerFactory.getLogger(StringUtil.class);
 	
 	// File Root 디렉토리
 	public static final String UPLOAD_ROOT = "D:\\HR_FILE";
-
+	
+	/**
+	 * Product 리스트에서 startNum에서 LastNum까지 추출하는 메소드
+	 * 0번째 부터 시작
+	 */
+	public static List<Product> selectList(List<Product> list, int startNum, int lastNum){
+		List<Product> outList = new ArrayList<Product>();
+		for(int i=0; i<list.size(); i++) {
+			if(i>=startNum && i<=lastNum) {
+				Product getOne = list.get(i);
+				outList.add(getOne);
+			}
+		}
+		return outList;
+	}
+	
+	
 	/**
 	 * D:\\HR_FILE\2019\09
 	 */
@@ -47,7 +65,47 @@ public class StringUtil {
 		
 		return datePath;
 	}
+	
+	/**
+	 * 파일 Rename 인데 파일명만 뱉음
+	 * 
+	 * @param f
+	 * @return 파일 rename명 cloude.jpg->cloude1~9999.jpg
+	 */
+	public static String fileRenameShort(File f) {
+		String retFileNm = "";
+		// 01.파일 존재 Check
+		if (!f.exists()) {
+			retFileNm = f.getAbsolutePath();
+			return retFileNm;
+		}
 
+		// 02.파일 있으면: rename
+		// cloude + 확장자
+		String name = f.getName();// cloude.jpg
+		LOG.debug("1.name : "+name);
+		String body = null;// cloude
+		String ext = null;// jpg
+		int dot = name.lastIndexOf(".");
+		LOG.debug("2.dot : "+dot);
+		if (dot != -1) {
+			body = name.substring(0, dot);
+			LOG.debug("3.body : "+body);
+			ext = name.substring(dot);// .jpg
+			LOG.debug("4.ext : "+ext);
+		}
+
+		// 03.반복문 처리
+		int count = 0;
+		while (f.exists() && count < 99999) {
+			count++;
+			retFileNm = body + count + ext;
+			f = new File(f.getParent(), retFileNm);
+		}
+
+		return retFileNm;
+	}
+	
 	/**
 	 * 파일 Rename
 	 * 
@@ -65,12 +123,16 @@ public class StringUtil {
 		// 02.파일 있으면: rename
 		// cloude + 확장자
 		String name = f.getName();// cloude.jpg
+		LOG.debug("1.name : "+name);
 		String body = null;// cloude
 		String ext = null;// jpg
 		int dot = name.lastIndexOf(".");
+		LOG.debug("2.dot : "+dot);
 		if (dot != -1) {
 			body = name.substring(0, dot);
+			LOG.debug("3.body : "+body);
 			ext = name.substring(dot);// .jpg
+			LOG.debug("4.ext : "+ext);
 		}
 
 		// 03.반복문 처리

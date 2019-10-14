@@ -10,6 +10,7 @@ import kr.co.redbull.cmn.DTO;
 import kr.co.redbull.cmn.Search;
 import kr.co.redbull.cmn.WorkDiv;
 import kr.co.redbull.image.service.Image;
+import kr.co.redbull.product.service.Product;
 
 @Repository
 public class ImageDaoImpl implements WorkDiv {
@@ -19,7 +20,27 @@ public class ImageDaoImpl implements WorkDiv {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	private final String NAMESPACE = "kr.co.redbull.image";
-
+	
+	//새로운 시퀀스 넘버 조회
+	public DTO get_nextInum() {
+		String statement = NAMESPACE+".get_nextInum";
+		LOG.debug("======================================");
+		LOG.debug("=1.no param=");
+		LOG.debug("======================================");
+		
+		LOG.debug("======================================");
+		LOG.debug("=2.statement="+statement);
+		LOG.debug("======================================");
+		
+		Image outVO = (Image) this.sqlSessionTemplate.selectOne(statement);
+		LOG.debug("======================================");
+		LOG.debug("=2.outVO="+outVO);
+		LOG.debug("======================================");
+		
+		return outVO;
+	}
+	
+	//참조번호로 조회
 	public List<?> get_refnumList(DTO dto) {
 		String statement = NAMESPACE+".get_refnumList";
 		Search search = (Search) dto;

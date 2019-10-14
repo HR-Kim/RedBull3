@@ -47,7 +47,7 @@
   
  
  <!-- Application Loggers -->
- <logger name="kr.co.ehr">
+ <logger name="kr.co.redbull">
   <level value="debug" />
  </logger>
  

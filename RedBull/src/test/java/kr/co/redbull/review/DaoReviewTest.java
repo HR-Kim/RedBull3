@@ -68,6 +68,15 @@ public class DaoReviewTest {
 	}
 	
 	@Test
+	public void get_list() {
+		LOG.debug("======================================");
+		LOG.debug("=01. get_list=");
+		LOG.debug("======================================");
+		Search search=new Search();
+		search.setSearchWord("");
+		List<Review> getList = (List<Review>) reviewDaoImpl.get_pnumList(search);
+	}
+	@Test
 	@Ignore
 	public void get_retrieve() {
 		LOG.debug("======================================");
@@ -133,6 +142,7 @@ public class DaoReviewTest {
 	}
 	
 	@Test
+	@Ignore
 	public void addAndGet() {
 		//0.데이터 삭제
 		Search search = new Search();

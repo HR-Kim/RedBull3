@@ -6,6 +6,10 @@ import kr.co.redbull.cmn.DTO;
 import kr.co.redbull.cmn.Search;
 
 public interface OptService {
+	
+	/**Next Onum 조회 */
+	public DTO get_nextOnum();
+	
 	/**pNum으로 조회 */
 	public List<?> get_pNumList(DTO dto);
 	

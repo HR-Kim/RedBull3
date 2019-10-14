@@ -26,10 +26,16 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<style type="text/css">
+	.carousel-control.left, .carousel-control.right {
+	  left: 0;
+	  z-index: 1;
+	}
+</style>
 <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
 <title>상품 상세</title>
 <!-- 부트스트랩 -->
-<link href="${context}/resources/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="${context}/resources/css/bootstrap.css" />
 
 <!-- IE8 에서 HTML5 요소와 미디어 쿼리를 위한 HTML5 shim 와 Respond.js -->
 <!-- WARNING: Respond.js 는 당신이 file:// 을 통해 페이지를 볼 때는 동작하지 않습니다. -->
@@ -37,7 +43,6 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
-
 <link rel="stylesheet" href="${context}/resources/vendors/linericon/style.css" />
 <link rel="stylesheet" href="${context}/resources/css/font-awesome.min.css" />
 <link rel="stylesheet" href="${context}/resources/css/themify-icons.css" />
@@ -49,6 +54,11 @@
 <link rel="stylesheet" href="${context}/resources/css/responsive.css" />
 </head>
 <body>
+<!--================Form Group - Product==============-->
+<form name="frm_pNum" method="post" >
+	<input type="hidden" id="pNum" name="pNum" value="${productVO.pNum}"/>	
+</form>
+
 <!--================Home Banner Area =================-->
 <section class="banner_area">
 	<div class="banner_inner d-flex align-items-center">
@@ -73,51 +83,32 @@
 		<div class="row s_product_inner">
 			<div class="col-lg-6">
 				<div class="s_product_img">
-					<div id="myCarousel" class="carousel slide" data-ride="carousel">
-						<!-- Indicators -->
-						<ol class="carousel-indicators">
-							<!-- 이미지 제한 사이즈 : 60X60  -->
-							<li data-target="#myCarousel" data-slide-to="0" class="active">
-								<img class="d-block w-100" src="${context}/resources/img/product/single-product/product-small-1.PNG" />
-							</li>
-							<li data-target="#myCarousel" data-slide-to="1">
-								<img class="d-block w-100" src="${context}/resources/img/product/single-product/product-small-2.PNG" />
-							</li>
-							<li data-target="#myCarousel" data-slide-to="2">
-								<img class="d-block w-100" src="${context}/resources/img/product/single-product/product-small-3.PNG" />
-							</li>
-						</ol>
-
+					<div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
 						<!-- Wrapper for slides -->
-						<div class="carousel-inner">
-							<div class="item active">
-								<img class="d-block w-100"
-									src="${context}/resources/img/product/single-product/product-1.PNG"
-									alt="First slide" />
-							</div>
-
-							<div class="item">
-								<img class="d-block w-100"
-									src="${context}/resources/img/product/single-product/product-2.PNG"
-									alt="Second slide" />
-							</div>
-
-							<div class="item">
-								<img class="d-block w-100"
-									src="${context}/resources/img/product/single-product/product-3.PNG"
-									alt="Third slide" />
-							</div>
+						<div id="carousel" class="carousel-inner">
+							<c:choose>
+								<c:when test="${imageList.size()>0}">
+									<c:forEach var="image" items="${imageList}">
+										<div class="carousel-item">
+											<img class="d-block w-100" src="${context}/${image.saveFileNm}" />
+										</div>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<div class="carousel-item">
+										<img class="d-block w-100" src="${context}/resources/img/product/noimage.jpg" />
+									</div>
+								</c:otherwise>
+							</c:choose>
 						</div>
-
 						<!-- Left and right controls -->
-						<a class="left carousel-control" href="#myCarousel"
-							data-slide="prev"> <span
-							class="glyphicon glyphicon-chevron-left"></span> <span
-							class="sr-only">Previous</span>
-						</a> <a class="right carousel-control" href="#myCarousel"
-							data-slide="next"> <span
-							class="glyphicon glyphicon-chevron-right"></span> <span
-							class="sr-only">Next</span>
+						<a class="carousel-control-prev carousel-control" href="#carouselExampleInterval" role="button" data-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="sr-only">Previous</span>
+						</a>
+						<a class="carousel-control-next carousel-control" href="#carouselExampleInterval" role="button" data-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="sr-only">Next</span>
 						</a>
 					</div>
 				</div>
@@ -150,18 +141,22 @@
 					<br>
 					<div class="product_count">
 						<label for="qty">Quantity:</label> <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty" />
-						<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button">
+						<button onclick="javascript:countUp()" class="increase items-count" type="button">
 							<i class="lnr lnr-chevron-up"></i>
 						</button>
-						<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button">
+						<button onclick="javascript:countDown()" class="reduced items-count" type="button">
 							<i class="lnr lnr-chevron-down"></i>
 						</button>
 					</div>
 					<div class="card_area">
 						<a class="main_btn" href="#">주문하기</a>
+						<a class="main_btn" href="${context}/product/get_retrieve.do">뒤로</a>
 						<a class="icon_btn" href="#">
 							<i class="lnr lnr lnr-heart"></i>
 						</a>
+						<hr>
+						<a class="main_btn" href="javascript:update_product();">수정하기</a>
+						<a class="main_btn" href="javascript:delete_product();">삭제하기</a>
 					</div>
 				</div>
 			</div>
@@ -175,22 +170,22 @@
 	<div class="container">
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
 			<li class="nav-item">
-				<a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">상품정보</a>
+				<a class="nav-link" id="home-tab" data-toggle="tab" onclick="javascript:goHome();" href="#home" role="tab" aria-controls="home" aria-selected="true">상품정보</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"aria-selected="false">리뷰</a>
+				<a class="nav-link" id="review-tab" data-toggle="tab" onclick="javascript:goReview();" href="#review" role="tab" aria-controls="review"aria-selected="false">리뷰</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">문의</a>
+				<a class="nav-link" id="contact-tab" data-toggle="tab" onclick="javascript:goContact();" href="#contact" role="tab" aria-controls="contact" aria-selected="false">문의</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">교환 및 환불 안내</a>
+				<a class="nav-link" id="profile-tab" data-toggle="tab" onclick="javascript:goProfile();" href="#profile" role="tab" aria-controls="profile" aria-selected="false">교환 및 환불 안내</a>
 			</li>
 		</ul>
 
 		<div class="tab-content" id="myTabContent">
 			<!--================ 상품정보 =================-->
-			<div class="tab-pane fade in active" id="home" role="tabpanel" aria-labelledby="home-tab">
+			<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 				<p>${productVO.detail}</p>
 			</div>
 			<!--//================ 상품정보 =================-->
@@ -202,7 +197,7 @@
 						<div class="row total_rate">
 							<div class="col-6">
 								<div class="box_total">
-									<h5>Overall</h5>
+									<h5>평균</h5>
 									<h4>4.0</h4>
 									<h6>(03 Reviews)</h6>
 								</div>
@@ -455,6 +450,7 @@
 						</tbody>
 					</table>
 					<br>
+					<br>
 					<h4>반품 및 교환 사유에 따른 요청 가능 기간</h4>
 					<p>반품 시 먼저 판매자와 연락하셔서 반품사유, 택배사, 배송비, 반품지 주소 등을 협의하신 후 반품상품을 반송해주시길 바랍니다.</p>
 					<p>1.구매자 단순 변심은 상품 수령 후 7일 이내(구매자 반품배송비 부담)</p>
@@ -482,17 +478,127 @@
 	<script src="${context}/resources/js/jquery-1.12.4.js"></script>
 	<!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
 	<script src="${context}/resources/js/bootstrap.min.js"></script>
-	<script src="${context}/resources/js/stellar.js"></script>
 	<script src="${context}/resources/vendors/lightbox/simpleLightbox.min.js"></script>
 	<script src="${context}/resources/vendors/isotope/imagesloaded.pkgd.min.js"></script>
 	<script src="${context}/resources/vendors/isotope/isotope-min.js"></script>
 	<script type="text/javascript">
-		//탭 변경 시 active 설정 (ul-li-a)
-		$("#myTab li:first a").addClass("active").show();
-		$("#myTab li").on("click",function(){
-			//alert("tab_click");
-			$("#myTab li a").removeClass("active");
-			$(this).children('a').addClass("active");
+		//홈 탭
+		function goHome(){
+			//alert("goHome");
+			$("#review").removeClass("show active");
+			$("#contact").removeClass("show active");
+			$("#profile").removeClass("show active");
+			$("#home").addClass("show active");
+		}
+		//리뷰 탭
+		function goReview(){
+			//alert("goReview");
+			$("#home").removeClass("show active");
+			$("#contact").removeClass("show active");
+			$("#profile").removeClass("show active");
+			$("#review").addClass("show active");
+		}
+		//문의 탭
+		function goContact(){
+			//alert("goContact");
+			$("#home").removeClass("show active");
+			$("#review").removeClass("show active");
+			$("#profile").removeClass("show active");
+			$("#contact").addClass("show active");
+		}
+		//정보 탭
+		function goProfile(){
+			//alert("goProfile");
+			$("#home").removeClass("show active");
+			$("#review").removeClass("show active");
+			$("#contact").removeClass("show active");
+			$("#profile").addClass("show active");
+		}
+		//수량 Up
+		function countUp(){
+			var result = document.getElementById('sst');
+			var sst = result.value;
+			if(!isNaN( sst )){
+				result.value++;
+				return false;
+			}
+		}
+		//수량Down
+		function countDown(){
+			var result = document.getElementById('sst');
+			var sst = result.value;
+			if( !isNaN(sst) && sst > 0 ){
+				result.value--;
+				return false;
+			}
+		}
+		//상품 수정
+		function update_product(){
+			//alert("update_product");
+			$.ajax({
+				type : "POST",
+				url : "${context}/product/do_update.do",
+				dataType : "html",
+				data : {
+					"pNum" : $("#pNum").val()
+				},
+				success : function(data) {
+					var jData = JSON.parse(data);
+					if (null != jData && jData.msgId == "1") {
+						//alert(jData.msgMsg);
+						location.href = "${context}/product/product_mng.jsp";
+
+					} else {
+						alert("로딩 실패");
+					}
+				},
+				complete : function(data) {
+
+				},
+				error : function(xhr, status, error) {
+					alert("error:" + error);
+				}
+			});
+		}
+		//상품 삭제
+		function delete_product(){
+			//alert("delete_product");
+			$.ajax({
+				type : "POST",
+				url : "${context}/product/do_delete.do",
+				dataType : "html",
+				data : {
+					"pNum" : $("#pNum").val()
+				},
+				success : function(data) {
+					var jData = JSON.parse(data);
+					if (null != jData && jData.msgId == "1") {
+						alert(jData.msgMsg);
+						location.href = "${context}/product/get_retrieve.do";
+					} else {
+						alert("로딩 실패");
+					}
+				},
+				complete : function(data) {
+
+				},
+				error : function(xhr, status, error) {
+					alert("error:" + error);
+				}
+			});
+		}
+		$(document).ready( function(){
+			//캐러셀
+			$("#carousel div:first").addClass("active").show();
+			
+			//탭 변경 시 active 설정 (ul-li-a)
+			$("#myTab li:first a").addClass("active").show();
+			$("#myTab li").on("click",function(){
+				//alert("tab_click");
+				$("#myTab li a").removeClass("active");
+				$(this).children('a').addClass("active");
+			});
+			
 		});
 	
 	
