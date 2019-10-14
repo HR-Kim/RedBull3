@@ -82,7 +82,7 @@
 												 		<td class="text-left col-md-1 col-xs-1">${vo.regDt }</td>
 												 		<td class="text-left col-md-6 col-xs-6">
 												 		<td class="text-right col-md-4 col-xs-4">
-												 			<button type="button" class="btn btn-default btn-sm" id="do_commentComment">댓글달기</button>
+												 			<button type="button" class="btn btn-default btn-sm" id="do_commentAdd">댓글달기</button>
 															<button type="button" class="btn btn-default btn-sm" id="do_commentUpdate">수정</button>  
 															<button type="button" class="btn btn-default btn-sm" id="do_commentDelete">삭제</button>  
 												 		</td>
@@ -90,7 +90,7 @@
 											 		<tr>
 											 			<td colspan="12">${vo.contents}</td>
 											 		</tr>
-											 		<tr>
+											 		<tr class="editComment" style="visibility: hidden;">
 														<td colspan="6">
 															<div class="container-fluid">
 																<div class="row">
@@ -153,6 +153,11 @@
 		//버튼 누르면 대댓글 창 나타나기
 		$("#do_commentComment").on("click", function(){
 			
+			var commentButton = $(this);
+			var tb = commentButton.parent().parent().parent();
+			var trs = tb.children();
+			var editComment = trs.find(".editComment");
+			editComment.style.visibility = "visible";
 			/* var 
 			frm.text.style.visibility="visible"; */
 		});
