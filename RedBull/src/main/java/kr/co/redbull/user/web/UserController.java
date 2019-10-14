@@ -288,11 +288,6 @@ public class UserController {
 		LOG.debug("1============================");
 		
 		// validation
-		if(null == user.getRid() || "".equals(user.getRid().trim())) {
-			
-			throw new IllegalArgumentException("아이디를 입력하시오");
-		}
-		
 		if(null == user.getPasswd() || "".equals(user.getPasswd().trim())) {
 			
 			throw new IllegalArgumentException("비밀번호를 입력하시오");

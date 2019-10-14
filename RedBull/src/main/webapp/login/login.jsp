@@ -91,7 +91,7 @@
 					</div>
 
 					<div class="text-center">
-						<a href="#" class="txt2 hov1">
+						<a href="${context}/user/join.jsp" class="txt2 hov1">
 							회원가입
 						</a>
 					</div>
@@ -150,13 +150,13 @@
 					
 						else if (jData.msgId == "10") { // 아이디 체크 실패
 							$("#rid").focus();
-							alert(jData.msgId + "|" + jData.msgMsg);
+							alert(jData.msgMsg);
 											
 						}
 					
 						else if (jData.msgId == "20") { // 비밀번호 체크 실패
 							$("#passwd").focus();
-							alert(jData.msgId + "|" + jData.msgMsg);
+							alert(jData.msgMsg);
 						}	
 					
 					}

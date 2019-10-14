@@ -12,7 +12,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
 	
-	<title>회원가입</title>
+	<title>회원정보 수정</title>
 	
 	<!-- Font Icon -->
     <link rel="stylesheet" href="${context}/resources/fonts/material-design-iconic-font.min.css">
@@ -100,12 +100,19 @@
                                     <input type="text" name="detadd" id="detadd" placeholder="상세 주소" maxlength="100"/>
                                 </div>
                                 
+                                <div class="form-input">
+                                    <input type="hidden" name="lvl" id="lvl" placeholder="레벨" />
+                                </div>
+                                <div class="form-input">
+                                    <input type="hidden" name="upoint" id="upoint" placeholder="포인트" />
+                                </div>
+                                
                             </div>
                             
                         </div>
 
                         <div class="form-submit">
-                            <input type="submit" value="Submit" class="submit" id="submit" name="submit" />
+                            <input type="submit" value="udpate" class="submit" id="update" name="udpate" />
                             <input type="submit" value="Reset" class="submit" id="reset" name="reset" />
                         </div>
                     </form>
@@ -182,16 +189,16 @@
 	        }).open();
 	    }
     	
-		// 등록
-		$("#submit").on("click", function() {
+		// 수정
+		$("#update").on("click", function() {
 			
 			//alert("submit");
 			
-			if(confirm("가입하시겠습니까?") == false) return;
+			if(confirm("수정하시겠습니까?") == false) return;
 			
 	        $.ajax({
 	            type:"POST",
-	            url:"${context}/user/do_save.do",
+	            url:"${context}/user/do_update.do",
 	            dataType:"html",// JSON
 	            data:{
 	            	"rid": $("#rid").val(),
@@ -202,18 +209,21 @@
 	            	"postnum": $("#postnum").val(),
 	            	"address": $("#address").val(),
 	            	"detadd": $("#detadd").val()
+/* 	            	"lvl": $("#lvl").val(),
+	            	"upoint": $("#upoint").val() */
 	            },
 	            success: function(data){//통신이 성공적으로 이루어 졌을때 받을 함수
 	            	
-	             	console.log(data); // {"msgId":"1","msgMsg":"1234님 등록성공"}
+	             	console.log(data); // {"msgId":"1","msgMsg":"1234님 수정성공"}
 	             
-	            	var parseData = $.parseJSON(data);
+	            	//var parseData = $.parseJSON(data);
+	            	var parseData = JSON.parse(data);
 	            	
-	            	if(parseData.msgId == "1") { // 성공하면
+	            	if(null != parseData && parseData.msgId == "1") { // 성공하면
 	            		
 	            		alert(parseData.msgMsg); // 메시지값 
 	            		location.href="${context}/main/main.do";
-	            		
+
 	            	}
 	            	else { // 실패하면
 	            		
@@ -226,7 +236,8 @@
 	             
 	            },
 	            error: function(xhr,status,error){
-	            	alert("error:" + error);
+	             
+	            	alert("error: " + error)
 	            }
 	        }); 
 			

@@ -5,7 +5,7 @@
      
 <html lang="ko">
   <body>
-<%--   	${user } --%>
+	${user }
 	<!--================Header Menu Area =================-->
 	<jsp:include page="header.jsp"></jsp:include>
   
