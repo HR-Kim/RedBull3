@@ -56,70 +56,73 @@
 								 	<c:choose>
 								 		<c:when test="${vo.cLevel==1 }">
 								 			<div class="container-fluid">
-												<table class="table table-striped table-sm">
+												<table class="table table-striped table-sm" id="listTable">
 										 			
 										 </c:when>
 										 <c:when test="${vo.cLevel==2 }">
 											 <div class="container-fluid">
-													<table class="table table-striped table-sm" style="width: 95%; float: right;">
+													<table class="table table-striped table-sm" id="listTable" style="width: 95%; float: right;">
 										 </c:when>
 										 <c:when test="${vo.cLevel==3 }">
 											 <div class="container-fluid">
-													<table class="table table-striped table-sm" style="width: 90%; float: right;">
+													<table class="table table-striped table-sm" id="listTable" style="width: 90%; float: right;">
 										 </c:when>
 										 <c:when test="${vo.cLevel==4 }">
 											 <div class="container-fluid">
-													<table class="table table-striped table-sm" style="width: 85%; float: right;">
+													<table class="table table-striped table-sm" id="listTable" style="width: 85%; float: right;">
 										 </c:when>
 										 <c:when test="${vo.cLevel>=5 }">
 											 <div class="container-fluid">
-													<table class="table table-striped table-sm" style="width: 80%; float: right;">
+													<table class="table table-striped table-sm" id="listTable" style="width: 80%; float: right;">
 										 </c:when>
 									</c:choose>
-									<tr>
-												 		<td class="text-left col-md-1 col-xs-1">${vo.cNum }</td>
-												 		<td class="text-left col-md-1 col-xs-1">${vo.regId }</td>
-												 		<td class="text-left col-md-1 col-xs-1">${vo.regDt }</td>
-												 		<td class="text-left col-md-6 col-xs-6">
-												 		<td class="text-right col-md-4 col-xs-4">
-												 			<button type="button" class="btn btn-default btn-sm" id="do_commentAdd">댓글달기</button>
-															<button type="button" class="btn btn-default btn-sm" id="do_commentUpdate">수정</button>  
-															<button type="button" class="btn btn-default btn-sm" id="do_commentDelete">삭제</button>  
-												 		</td>
-											 		</tr>
-											 		<tr>
-											 			<td colspan="12">${vo.contents}</td>
-											 		</tr>
-											 		<tr class="editComment" style="visibility: hidden;">
-														<td colspan="6">
-															<div class="container-fluid">
-																<div class="row">
-																	<div class="form-group col-xs-11">
-																		<form class="form-horizontal" name="commentForm" id="commentForm" method="get" >
-																			<input type="hidden" name="tNum" id="tNum" />
-																			<input type="hidden" name="refNum" id="refNum"/>
-																			<input type="text" name="contents" id="contents" class="form-control input-sm"/>
-																			<input type="hidden" name="hcNum" id="hcNum"/>
-														       				<input type="hidden" name="regId" id="regId" />
-														       				<input type="hidden" name="cLevel" id="cLevel"/>
-														     			</form>
-													       			</div>
-													       			<button type="button" class="btn btn-default btn-sm" id="do_save_comment">등록</button>
-																</div>
-												        	</div>
-														</td>
-													</tr>
-											 	</table>
-										 	</div>
-								</c:forEach>
-							</c:when>
-						</c:choose>
-					</div>
-				</td>
-			</tr>
-			<!-- //댓글목록 -->
-			<!-- 댓글입력 폼 -->
-			<tr>
+									<tbody>
+										<tr class="orgComment">
+											<td class="text-left col-md-1 col-xs-1 cNum">${vo.cNum }</td>
+											<td class="text-left col-md-1 col-xs-1">${vo.regId }</td>
+											<td class="text-left col-md-1 col-xs-1">${vo.regDt }</td>
+											<td class="text-left col-md-6 col-xs-6">
+											<td class="text-right col-md-4 col-xs-4">
+												<button type="button" class="btn btn-default btn-sm do_commentAdd" id="do_commentAdd">댓글달기</button>
+												<button type="button" class="btn btn-default btn-sm" id="do_commentUpdate">수정</button>  
+												<button type="button" class="btn btn-default btn-sm" id="do_commentDelete">삭제</button>  
+											</td>
+											<td class="hide cLevel">${vo.cLevel}</td>
+										</tr>
+										<tr>
+											<td colspan="12">${vo.contents}</td>
+										</tr>
+										<tr class="hide editComment">
+											<td colspan="6">
+												<div class="container-fluid">
+													<div class="row">
+														<div class="form-group col-xs-11">
+															<form class="form-horizontal" name="commentForm" id="commentForm" method="get" >
+																<input type="hidden" name="tNum" id="tNum" />
+																<input type="hidden" name="refNum" id="refNum"/>
+																<input type="text" name="contents" id="contents" class="form-control input-sm"/>
+																<input type="hidden" name="hcNum" id="hcNum" value=""/>
+											       				<input type="hidden" name="regId" id="regId" />
+											       				<input type="hidden" name="cLevel" id="cLevel"/>
+											     			</form>
+											   			</div>
+														<button type="button" class="btn btn-default btn-sm do_save_comment" id="do_save_comment">등록</button>
+													</div>
+											   	</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</c:forEach>
+					</c:when>
+				</c:choose>
+			</div>
+		</td>
+		</tr>
+		<!-- //댓글목록 -->
+		<!-- 댓글입력 폼 -->
+		<tr>
 				<td colspan="6">
 					<div class="container-fluid">
 						<div class="row">
@@ -133,7 +136,7 @@
 				       				<input type="hidden" name="cLevel" id="cLevel"/>
 				     			</form>
 			       			</div>
-			       			<button type="button" class="btn btn-default btn-sm" id="do_save_comment">등록</button>
+			       			<button type="button" class="btn btn-default btn-sm do_save_comment" id="do_save_comment">등록</button>
 						</div>
 		        	</div>
 				</td>
@@ -150,20 +153,24 @@
 	<script src="${context}/resources/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 	
-		//버튼 누르면 대댓글 창 나타나기
-		$("#do_commentComment").on("click", function(){
+		//버튼 누르면 대댓글 창 열고 닫기
+		$("#listTable>tbody").on("click", ".do_commentAdd",function(){
+			var table = $(this).parent().parent().parent().parent();
+			var editComment = table.find('.editComment');
+			editComment.toggleClass( 'hide' );
 			
-			var commentButton = $(this);
-			var tb = commentButton.parent().parent().parent();
-			var trs = tb.children();
-			var editComment = trs.find(".editComment");
-			editComment.style.visibility = "visible";
-			/* var 
-			frm.text.style.visibility="visible"; */
+			/* var hcNum = table.find('.cNum').text();
+			var cLevel = Number(table.find('.cLevel').text())+1;
+			
+			var frm = document.commentForm;
+			console.log(hcNum);
+			console.log(cLevel);
+			frm.hcNum = hcNum;
+			frm.cLevel = cLevel; */
 		});
 		
 		//댓글쓰기
-		function addComment(){
+ 		function addComment(){
 			var tNum = ${vo.tNum};
 			var refNum = $("#num").text();
 			var contents = $("#contents").val();
@@ -205,14 +212,21 @@
 				}
 			});
 			//--ajax  
-		}
+		} 
 		
 		//버튼 클릭하면 댓글 등록 이벤트
-		$("#do_save_comment").on("click", function(){
-			
-//			var tNum = ${vo.tNum};
-//			var regId = "test";
-/* 			//validation
+		$(".do_save_comment").on("click", function(){
+
+			var tNum = ${vo.tNum};
+			var refNum = $("#num").text();
+			var contents = $("#contents").val();
+			//나중에 세션에서 가져와야 함
+			var regId = "test";
+			//var hcNum = 
+			//if(hcNum==)
+			//var cLevel = 
+				
+ 			//validation
 			if (confirm("댓글을 등록하시겠습니까?") == false) return;
 			
 			//alert('댓글등록');
@@ -245,8 +259,7 @@
 					alert("error:" + error);
 				}
 			});
-			//--ajax   */
-			addComment();
+			//--ajax  
 		});
 		
 		//수정
