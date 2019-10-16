@@ -187,7 +187,6 @@
 			
 			//alert("submit");
 			
-			
 			if(confirm("가입하시겠습니까?") == false) return;
 			
 	        $.ajax({
@@ -202,18 +201,19 @@
 	            	"phone": $("#phone").val(),
 	            	"postnum": $("#postnum").val(),
 	            	"address": $("#address").val(),
-	            	"detadd": $("#detadd").val(),
+	            	"detadd": $("#detadd").val()
 	            },
 	            success: function(data){//통신이 성공적으로 이루어 졌을때 받을 함수
 	            	
-	             	console.log(data); // {"msgId":"1","msgMsg":"1234님 등록성공","totalCnt":0,"num":0}
+	             	console.log(data); // {"msgId":"1","msgMsg":"1234님 등록성공"}
 	             
 	            	var parseData = $.parseJSON(data);
 	            	
 	            	if(parseData.msgId == "1") { // 성공하면
 	            		
 	            		alert(parseData.msgMsg); // 메시지값 
-	            		doRetrieve(); // 그리고 다시 조회
+	            		location.href="${context}/main/main.do";
+	            		
 	            	}
 	            	else { // 실패하면
 	            		
@@ -226,10 +226,27 @@
 	             
 	            },
 	            error: function(xhr,status,error){
-	             
+	            	alert("error:" + error);
 	            }
 	        }); 
 			
+		});
+		
+		// 초기화
+		$("#reset").on("click", function() {
+	
+			//alert("doInit");
+			
+			// input 데이터 클리어
+			$("#rid").val("");
+			$("#passwd").val("");
+			$("#uname").val("");
+			$("#birth").val("");
+			$("#phone").val("");
+			$("#postnum").val("");
+			$("#address").val("");
+			$("#detadd").val("");
+		
 		});
 
     </script>

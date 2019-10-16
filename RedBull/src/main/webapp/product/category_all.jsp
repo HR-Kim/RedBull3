@@ -69,33 +69,9 @@
 	String user =  System.getProperty("user.home");
 %> 
 <html lang="ko">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
-	<title>스토어</title>
-	
-	<!-- 부트스트랩 -->
-	<link rel="stylesheet" href="${context}/resources/css/bootstrap.min.css" />
-	
-	<!-- IE8 에서 HTML5 요소와 미디어 쿼리를 위한 HTML5 shim 와 Respond.js -->
-	<!-- WARNING: Respond.js 는 당신이 file:// 을 통해 페이지를 볼 때는 동작하지 않습니다. -->
-	<!--[if lt IE 9]>
-	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
-	<link rel="stylesheet" href="${context}/resources/vendors/linericon/style.css" />
-	<link rel="stylesheet" href="${context}/resources/css/font-awesome.min.css" />
-	<link rel="stylesheet" href="${context}/resources/css/themify-icons.css" />
-	<link rel="stylesheet" href="${context}/resources/vendors/lightbox/simpleLightbox.css" />
-	<link rel="stylesheet" href="${context}/resources/vendors/nice-select/css/nice-select.css" />
-	<link rel="stylesheet" href="${context}/resources/vendors/animate-css/animate.css" />
-	<!-- main css -->
-	<link rel="stylesheet" href="${context}/resources/css/style.css" />
-	<link rel="stylesheet" href="${context}/resources/css/responsive.css" />
-</head>
 <body>
+	<!--================Header Menu Area =================-->
+	<jsp:include page="/main/header.jsp"></jsp:include>
 	<!--================Home Banner Area =================-->
 	<section class="banner_area">
 		<div class="banner_inner d-flex align-items-center">
@@ -145,8 +121,8 @@
 												<div class="product-btm">
 													<a href="#" class="d-block"><h4>${product.pName}</h4></a>
 													<div class="mt-3">
-														<span class="mr-4">${product.bPrice}원</span>
-														<del>${Math.round(product.bPrice*(product.discount+1))}원</del>
+														<span class="mr-4">${Math.round(product.bPrice*(product.discount))}원</span>
+														<del>${product.bPrice}원</del>
 													</div>
 												</div>
 											</div>
@@ -165,7 +141,6 @@
 				</div>
 				<!--================Left Area =================--> 
 				<div class="col-lg-3">
-					<a class="form-control btn btn-success btn-block" href="${context}/product/do_product_mng.do">글쓰기</a>
 					<div class="left_sidebar_area">
 						<aside class="left_widgets p_filter_widgets">
 							<div class="l_w_title">
@@ -203,22 +178,32 @@
 							</div>
 						</aside>
 					</div>
+					<div class="left_sidebar_area">
+						<aside class="left_widgets p_filter_widgets">
+							<div class="l_w_title">
+								<h3>목록별 조회</h3>
+							</div>
+							<div class="widgets_inner">
+								<form name="productFrmq" id="productFrmq" method="get">
+									<input type="hidden" name="pageNum" id="pageNum" value="${vo.pageNum}" />
+									<input type="hidden" name="searchDiv" id="searchDiv" />
+									<input type="hidden" name="pNum" id="pNum" />
+									<br>
+									<button class="form-control btn btn-success" onclick="javascript:do_newList()" >신상검색</button>
+									<button class="form-control btn btn-success" onclick="javascript:do_hotSaleList()" >세일검색</button>
+									<button class="form-control btn btn-success" onclick="javascript:do_rankList()" >베스트검색</button>
+								</form>
+							</div>
+						</aside>
+					</div> 
 				</div>
 				<!--================Left Area =================-->
 			</div>
 		</div>
 	</section>
 	<!--================End Category Product Area =================-->
-	
-	<!-- Optional JavaScript -->
-	<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
-	<script src="${context}/resources/js/jquery-1.12.4.js"></script>
-	<!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
-	<script src="${context}/resources/js/bootstrap.min.js"></script>
-	<script src="${context}/resources/js/stellar.js"></script>
-	<script src="${context}/resources/vendors/lightbox/simpleLightbox.min.js"></script>
-	<script src="${context}/resources/vendors/isotope/imagesloaded.pkgd.min.js"></script>
-	<script src="${context}/resources/vendors/isotope/isotope-min.js"></script>
+	<!--================footer Area  =================-->
+	<jsp:include page="/main/footer.jsp"></jsp:include>
 	<script type="text/javascript">
 		//단건조회
 		//listTable
@@ -245,6 +230,34 @@
 			frm.action = "${context}/product/get_retrieve.do";
 			frm.submit();
 		}
+		//신상품 조회
+		function do_newList(){
+			var frm = document.productFrmq;
+			frm.pageNum.value= 1;
+			frm.searchDiv.value="10";
+			frm.action = "${context}/product/get_newList.do";
+			frm.submit();
+			
+		}
+		//세일상품 조회
+		function do_hotSaleList(){
+			var frm = document.productFrmq;
+			frm.pageNum.value= 1;
+			frm.searchDiv.value="10";
+			frm.action = "${context}/product/get_hotSaleList.do";
+			frm.submit();
+			
+		}
+		//베스트상품 조회
+		function do_rankList(){
+			var frm = document.productFrmq;
+			frm.pageNum.value= 1;
+			frm.searchDiv.value="10";
+			frm.action = "${context}/product/get_rankList.do";
+			frm.submit();
+			
+		}
+		
 	</script>
 </body>
 </html>

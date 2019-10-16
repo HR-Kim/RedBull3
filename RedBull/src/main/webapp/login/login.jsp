@@ -85,13 +85,13 @@
 					</div>
 
 					<div class="text-center p-t-45 p-b-4">
-						<a href="#" class="txt2 hov1">
+						<a href="${context}/user/find.jsp" class="txt2 hov1">
 							비밀번호 찾기
 						</a>
 					</div>
 
 					<div class="text-center">
-						<a href="#" class="txt2 hov1">
+						<a href="${context}/user/join.jsp" class="txt2 hov1">
 							회원가입
 						</a>
 					</div>
@@ -141,7 +141,7 @@
 					
 					var jData = JSON.parse(data); // String 데이터를 json으로 파싱
 					
-					if(null != jData) { // 데이터가 없으면
+					if(null != jData) { // 데이터가 있으면
 						
 						if (jData.msgId == "30") { // 로그인이 성공하면
 
@@ -150,13 +150,13 @@
 					
 						else if (jData.msgId == "10") { // 아이디 체크 실패
 							$("#rid").focus();
-							alert(jData.msgId + "|" + jData.msgMsg);
+							alert(jData.msgMsg);
 											
 						}
 					
 						else if (jData.msgId == "20") { // 비밀번호 체크 실패
 							$("#passwd").focus();
-							alert(jData.msgId + "|" + jData.msgMsg);
+							alert(jData.msgMsg);
 						}	
 					
 					}

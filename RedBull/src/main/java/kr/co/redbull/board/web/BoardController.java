@@ -19,6 +19,8 @@ import kr.co.redbull.board.service.Board;
 import kr.co.redbull.board.service.BoardService;
 import kr.co.redbull.cmn.Message;
 import kr.co.redbull.cmn.Search;
+import kr.co.redbull.comment.service.Comment;
+import kr.co.redbull.comment.service.CommentService;
 
 @Controller
 public class BoardController {
@@ -27,6 +29,9 @@ public class BoardController {
 	
 	@Autowired
 	BoardService boardService;
+	
+	@Autowired
+	CommentService commentService;
 	
 	private final String VIEW_DETAIL  ="board/board_detail"; 
 	//private final String VIEW_NOTICE_LIST_NM ="board/notice_list";
@@ -78,6 +83,8 @@ public class BoardController {
 		
 		model.addAttribute("list", list);
 		
+		
+		
 		//총건수
 		int totalCnt = 0;
 		if(null!=list && list.size()>0) {
@@ -95,10 +102,14 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "board/get_selectOne.do", method = RequestMethod.GET)
-	public String get_selectOne(Board board, Model model) {
+	public String get_selectOne(Board board, Model model, Search search) {
 		
 		LOG.debug("================================");
 		LOG.debug("board:"+board);
+		LOG.debug("================================");
+		
+		LOG.debug("================================");
+		LOG.debug("search:"+search);
 		LOG.debug("================================");
 		
 		if(board.getbNum()==0) throw new IllegalArgumentException("글이 존재하지 않습니다.");
@@ -106,6 +117,33 @@ public class BoardController {
 		Board outVO = (Board)boardService.get_selectOne(board);
 		
 		model.addAttribute("vo", outVO);
+		
+		//댓글		
+		Search searchVO = new Search();
+		searchVO.setPageSize(10);
+		if(search.getPageNum()==0) {
+			searchVO.setPageNum(1);
+		}else {
+			searchVO.setPageNum(search.getPageNum());
+		}
+		searchVO.setSearchDiv(String.valueOf(outVO.gettNum()));
+		searchVO.setSearchWord(String.valueOf(outVO.getbNum()));
+		
+		model.addAttribute("searchVO", searchVO);
+		
+		LOG.debug("================================");
+		LOG.debug("search:"+search);
+		LOG.debug("================================");
+		
+		List<Comment> commentList = (List<Comment>)commentService.get_retrieve(searchVO);
+		model.addAttribute("commentList", commentList);
+		
+		//총건수
+		int totalCnt = 0;
+		if(null!=commentList && commentList.size()>0) {
+			totalCnt = commentList.get(0).getTotalCnt();
+			model.addAttribute("totalCnt", totalCnt);
+		}
 		
 		return VIEW_DETAIL;
 	}
