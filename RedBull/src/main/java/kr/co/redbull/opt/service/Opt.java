@@ -4,8 +4,9 @@ package kr.co.redbull.opt.service;
 import java.util.List;
 
 import kr.co.redbull.cmn.DTO;
+import kr.co.redbull.image.service.Image;
 
-public class Opt extends DTO {
+public class Opt extends Image {
 	private String oNum    ;
 	private String oName   ;
 	private int    oPrice  ;
