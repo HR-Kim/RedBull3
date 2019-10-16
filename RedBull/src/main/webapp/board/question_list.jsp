@@ -6,6 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 <%--
   /**
@@ -24,6 +25,10 @@
   */
 --%>
 <%
+
+	pageContext.setAttribute("cn", "\n"); //Enter
+	pageContext.setAttribute("br", "<br/>"); //br 태그
+
 	/**페이지 사이즈*/
 	String pageSize = "10";	
 	/**페이지 번호*/	
@@ -68,6 +73,14 @@
 %> 
 <html lang="ko">
   <head>
+  <style type="text/css">
+  .showContents{
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	  white-space: nowrap;
+	  height: 100px;
+  }
+  </style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -133,12 +146,16 @@
 </td>
 						</tr>
 						<tr>
-							<td class="text-left col-md-4 col-xs-4" colspan="5"> ${vo.contents}</td>
+							<td class="text-left col-md-4 col-xs-4" colspan="5"> 
+								<div class="showContents">
+									${fn:replace(vo.contents, cn, br)}
+								</div>
+							</td>
 						</tr>    	
 						<tr>
 							<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">글쓴이 ${vo.regId}</td>
 							<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">${vo.regDt}</td>
-							<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">댓글 00개</td>	
+							<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">댓글 ${vo.commentCnt}개</td>	
 							<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">조회수 ${vo.readCnt}</td>	
 							<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">카테고리 ${vo.category}</td>						
 						</tr>

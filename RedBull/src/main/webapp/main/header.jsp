@@ -13,6 +13,12 @@
   	<!-- meta -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+	.carousel-control.left, .carousel-control.right {
+	  left: 0;
+	  z-index: 1;
+	}
+	</style>
     <!-- favicon -->
 	<link rel="shortcut icon" href="${context}/resources/img/favicon3.ico" type="image/x-icon">
 	<link rel="icon" href="${context}/resources/img/favicon3.ico" type="image/x-icon">
@@ -25,18 +31,12 @@
 	  <link rel="stylesheet" href="${context}/resources/css/font-awesome.min.css" />
 	  <link rel="stylesheet" href="${context}/resources/css/themify-icons.css" />
 	  <link rel="stylesheet" href="${context}/resources/css/flaticon.css" />
-	  <link rel="stylesheet" href="${context}/resources/vendors/owl-carousel/owl.carousel.min.css" />
 	  <link rel="stylesheet" href="${context}/resources/vendors/lightbox/simpleLightbox.css" />
 	  <link rel="stylesheet" href="${context}/resources/vendors/nice-select/css/nice-select.css" />
 	  <link rel="stylesheet" href="${context}/resources/vendors/animate-css/animate.css" />
-	  <link rel="stylesheet" href="${context}/resources/vendors/jquery-ui/jquery-ui.css" />
 	  <!-- main css -->
 	  <link rel="stylesheet" href="${context}/resources/css/style.css" />
 	  <link rel="stylesheet" href="${context}/resources/css/responsive.css" />
-	  
-    <!-- 부트스트랩 -->
-    <link href="${context}/resources/css/bootstrap.min.css" rel="stylesheet">
-    
   </head>
   
 <body>
@@ -151,14 +151,11 @@
   </header>
   <!--================Header Menu Area =================-->
   
-    <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
-    <script src="${context}/resources/js/bootstrap.min.js"></script>   
-    
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="${context}/resources/js/jquery-3.2.1.min.js"></script>
+  <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+  <script src="${context}/resources/js/jquery-1.12.4.js"></script>
+  <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
   <script src="${context}/resources/js/popper.js"></script>
   <script src="${context}/resources/js/bootstrap.min.js"></script>
   <script src="${context}/resources/js/stellar.js"></script>
@@ -166,12 +163,10 @@
   <script src="${context}/resources/vendors/nice-select/js/jquery.nice-select.min.js"></script>
   <script src="${context}/resources/vendors/isotope/imagesloaded.pkgd.min.js"></script>
   <script src="${context}/resources/vendors/isotope/isotope-min.js"></script>
-  <script src="${context}/resources/vendors/owl-carousel/owl.carousel.min.js"></script>
   <script src="${context}/resources/js/jquery.ajaxchimp.min.js"></script>
   <script src="${context}/resources/vendors/counter-up/jquery.waypoints.min.js"></script>
   <script src="${context}/resources/vendors/counter-up/jquery.counterup.js"></script>
   <script src="${context}/resources/js/mail-script.js"></script>
   <script src="${context}/resources/js/theme.js"></script>
-  
 </body>
 </html>
