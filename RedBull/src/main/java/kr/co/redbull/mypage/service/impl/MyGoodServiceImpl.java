@@ -40,5 +40,10 @@ public class MyGoodServiceImpl implements MyGoodService{
 	public List<?> get_retrieve(DTO dto) {
 		return myGoodDaoImpl.get_retrieve(dto);
 	}
+
+	@Override
+	public int countCart(DTO dto) {
+		return myGoodDaoImpl.countCart(dto);
+	}
 	
 }

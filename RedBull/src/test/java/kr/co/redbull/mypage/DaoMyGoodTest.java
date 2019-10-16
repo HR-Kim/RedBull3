@@ -53,11 +53,11 @@ public class DaoMyGoodTest {
 	@Before
 	public void setUp() {
 		list = Arrays.asList(
-				new MyGood(0,"135","J01링크_135","J01등록자_135","noDate"),
-				new MyGood(0,"136","J02링크_135","J01등록자_135","noDate"),
-				new MyGood(0,"137","J03링크_135","J01등록자_135","noDate"),
-				new MyGood(0,"138","J04링크_135","J01등록자_135","noDate"),
-				new MyGood(0,"139","J05링크_135","J01등록자_135","noDate")
+				new MyGood(0,"140","J06링크_135","J06등록자_135","noDate"),
+				new MyGood(0,"141","J07링크_135","J07등록자_135","noDate"),
+				new MyGood(0,"142","J08링크_135","J08등록자_135","noDate"),
+				new MyGood(0,"143","J09링크_135","J09등록자_135","noDate"),
+				new MyGood(0,"144","J10링크_135","J10등록자_135","noDate")
 				);
 	}
 	
@@ -75,10 +75,12 @@ public class DaoMyGoodTest {
 		LOG.debug("=01. 기존 데이터 삭제=");
 		LOG.debug("======================================");	
 		Search search=new Search();
-		search.setSearchWord("135");
-		List<MyGood> getList = (List<MyGood>) myGoodDaoImpl.get_pnameList(search);
-		for(MyGood vo:getList) {
-			myGoodDaoImpl.do_delete(vo);
+		search.setSearchWord("등록자");
+		List<MyGood> idList = (List<MyGood>) myGoodDaoImpl.get_pnameList(search);
+		assertThat(5, is(idList.size()));
+		for(MyGood vo:idList) {
+			int flag = myGoodDaoImpl.do_delete(vo);
+			assertThat(1, is(flag));
 		}	
 		
 		LOG.debug("======================================");
@@ -95,8 +97,7 @@ public class DaoMyGoodTest {
 		search.setSearchDiv("10");
 		search.setPageSize(10);
 		search.setPageNum(1);
-		List<MyGood> addlistData = (List<MyGood>) myGoodDaoImpl.get_retrieve(search);
-		assertThat(5, is(addlistData.size()));		
+		List<MyGood> goodList = (List<MyGood>) myGoodDaoImpl.get_retrieve(search);
 	}
 	
 	@Test

@@ -89,13 +89,13 @@
 				bPrice=10000, detail=J01상세정보_125, 
 				discount=0.1, dPrice=1000, pCategory=10, 
 				regId=J01등록자_125, regDt=2019/09/27, 
-				modId=null, modDt=null, 
+				modId=null, modDt=null,
 				toString()=DTO [totalCnt=0, num=0]]
 			-->
 			<div class="col-lg-5 offset-lg-1">
 				<div class="s_product_text">
 					<h3>${productVO.pName}</h3>
-					<h2>${productVO.bPrice} 원</h2>
+					<h2>${Math.round(productVO.bPrice*(1-productVO.discount))} 원</h2>
 					<ul class="list">
 						<li>
 							<a class="active" href="#"><span>할인</span> : ${productVO.discount*100 }%</a>
