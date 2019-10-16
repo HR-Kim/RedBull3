@@ -32,18 +32,10 @@
 		<link rel="stylesheet" type="text/css" href="${context}/resources/css/main.css">
 	<!--===============================================================================================-->
     
-    <title>로그인</title>
+    <title>비밀번호 찾기</title>
 
     <!-- 부트스트랩 -->
     <link href="${context}/resources/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- IE8 에서 HTML5 요소와 미디어 쿼리를 위한 HTML5 shim 와 Respond.js -->
-    <!-- WARNING: Respond.js 는 당신이 file:// 을 통해 페이지를 볼 때는 동작하지 않습니다. -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
  
   </head>
 
@@ -53,40 +45,27 @@
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
 
-				<form class="login100-form validate-form" name="loginForm" id="loginForm" action="${context}/login/do_login.do" method="post">
+				<form class="login100-form validate-form" name="findForm" id="findForm" action="${context}/user/find_passwd.do" method="post">
 					<span class="login100-form-title p-b-33">
 						집순이 쇼핑몰
 					</span>
-					
-					<div class="form-group">
-						<select name="lang" id="lang" class="wrap-input100 validate-input" style="width:100px;font-size:16px;">
-							<option value="ko">한국어</option>
-							<option value="en">영어</option>
-						</select>
-					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid id is required: ex@abc.xyz">
 						<input class="input100" type="text" name="rid" id="rid" placeholder=이메일주소>
 						<span class="focus-input100-1"></span>
 						<span class="focus-input100-2"></span>
 					</div>
-
-					<div class="wrap-input100 rs1 validate-input" data-validate="Password is required">
-						<input class="input100" type="password" name="passwd" id="passwd" placeholder=비밀번호>
-						<span class="focus-input100-1"></span>
-						<span class="focus-input100-2"></span>
-					</div>
 				</form>
 				
 					<div class="container-login100-form-btn m-t-20">
-						<button class="login100-form-btn" id="signIn">
-							로그인
+						<button class="login100-form-btn" id="findPasswd">
+							이메일로 비밀번호 찾기
 						</button>
 					</div>
 
 					<div class="text-center p-t-45 p-b-4">
-						<a href="${context}/user/find.jsp" class="txt2 hov1">
-							비밀번호 찾기
+						<a href="${context}/login/login.jsp" class="txt2 hov1">
+							로그인
 						</a>
 					</div>
 
@@ -111,7 +90,7 @@
     
     <script type="text/javascript">
         
-        function do_login() {
+        function find_passwd() {
         
         	var frm = document.loginForm;
         	
@@ -120,44 +99,38 @@
         	
         }
         
-        $("#signIn").on("click", function(){
+        $("#findPasswd").on("click", function(){
         	
         	//alert("signIn");
         	
 			// validation
-			if($("#loginForm").valid() == false) return; // validation이 false이면 수행 안 함
+			if($("#findForm").valid() == false) return; // validation이 false이면 수행 안 함
 			
 			//ajax
 			$.ajax({
 				type : "POST",
-				url : "${context}/login/do_login.do",
+				url : "${context}/user/find_passwd.do",
 				dataType : "html",
 				data : {
-					"lang" : $("#lang").val(),
-					"rid" : $("#rid").val(),
-					"passwd" : $("#passwd").val()
+					"rid" : $("#rid").val()
 				},
 				success : function(data) {
 					
 					var jData = JSON.parse(data); // String 데이터를 json으로 파싱
 					
-					if(null != jData) { // 데이터가 있으면
+					if(null != jData) { // 데이터가 있으먼
 						
-						if (jData.msgId == "30") { // 로그인이 성공하면
+						if (jData.msgId == "30") { // 아이디가 있으면
 
-							location.href="${context}/main/main.do"; // 메인 화면으로 이동
+							alert(jData.msgMsg);
+							location.href="${context}/login/login.jsp"; // 로그인 화면으로 이동
 						}	
 					
-						else if (jData.msgId == "10") { // 아이디 체크 실패
+						else if (jData.msgId == "10") { // 아이디가 없음
 							$("#rid").focus();
 							alert(jData.msgMsg);
 											
 						}
-					
-						else if (jData.msgId == "20") { // 비밀번호 체크 실패
-							$("#passwd").focus();
-							alert(jData.msgMsg);
-						}	
 					
 					}
 				},
@@ -175,27 +148,17 @@
         });
         
 		// form validate
-		$("#loginForm").validate({
+		$("#findForm").validate({
 			rules: {
 				rid: {
 					required: true,
 					minlength: 2,
 					maxlength: 320
-				},
-				passwd: {
-					required: true,
-					minlength: 2,
-					maxlength: 20
 				}
 			},
 			messages: {
 				rid: {
-					required: "id를 입력하시오.",
-					minlength: $.validator.format("{0}자 이상 입력하시오"),
-					maxlength: $.validator.format("{0}자 내로 입력하시오")
-				},
-				passwd: {
-					required: "비밀번호를 입력하시오.",
+					required: "이메일을 입력하시오.",
 					minlength: $.validator.format("{0}자 이상 입력하시오"),
 					maxlength: $.validator.format("{0}자 내로 입력하시오")
 				}

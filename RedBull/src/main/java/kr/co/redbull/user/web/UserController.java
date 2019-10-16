@@ -25,6 +25,7 @@ import kr.co.redbull.cmn.StringUtil;
 import kr.co.redbull.code.service.CodeService;
 import kr.co.redbull.user.service.User;
 import kr.co.redbull.user.service.UserService;
+import kr.co.redbull.user.service.impl.UserServiceImpl;
 
 //UserController 객체 만들기
 @Controller
@@ -47,6 +48,50 @@ public class UserController {
 	private final String VIEW_UPDATE_NM = "user/update";
 	
 	
+	/**비밀번호 찾기*/
+	@RequestMapping(value="user/find_passwd.do", method = RequestMethod.POST ,produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String find_passwd(User user) {
+		
+		LOG.debug("1============================");
+		LOG.debug("1=@Controller outVO=" + user);
+		LOG.debug("1============================");
+		
+		// 이메일 입력란에 입력을 했는지 체크
+		if(null == user.getRid() || "".equals(user.getRid())) {
+			
+			throw new IllegalArgumentException("이메일을 입력하시오.");
+		}
+		
+		// 아이디가 존재 유무 확인
+		Message msg = (Message) userService.idCheck(user);
+		
+		LOG.debug("2=========================");
+		LOG.debug("2= msg="+ msg); 
+		LOG.debug("2=========================");
+		
+		// 아이디가  존재하면
+		if(msg.getMsgId().equals("30")) {
+		
+			User outVO = (User) userService.get_selectOne(user); // 해당 아이디를 단건조회하고
+			userService.find_passwd(outVO); // 비빌번호를 메일로 보내는 메소드 수행
+			
+		} 
+		
+		// JSON
+		Gson gson = new Gson();
+		String json = gson.toJson(msg);
+		
+		LOG.debug("2============================");
+		LOG.debug("2=@Controller json=" + json);
+		LOG.debug("2============================");
+		
+		return json;
+		
+	}//--find_passwd
+	
+	
+	/**로그인*/
 	@RequestMapping(value="login/do_login.do",method=RequestMethod.POST,produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String do_login(User user, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
