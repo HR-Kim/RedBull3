@@ -2,23 +2,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="context" value="${pageContext.request.contextPath }" />
-<%
-	
-	//User sessionUser = (User)session.getAttribute("user"); 
 
-%>     
+<c:set var="context" value="${pageContext.request.contextPath }" />
+    
 <html lang="ko">
   <head>
   	<!-- meta -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style type="text/css">
-	.carousel-control.left, .carousel-control.right {
-	  left: 0;
-	  z-index: 1;
-	}
-	</style>
     <!-- favicon -->
 	<link rel="shortcut icon" href="${context}/resources/img/favicon3.ico" type="image/x-icon">
 	<link rel="icon" href="${context}/resources/img/favicon3.ico" type="image/x-icon">
@@ -31,12 +22,18 @@
 	  <link rel="stylesheet" href="${context}/resources/css/font-awesome.min.css" />
 	  <link rel="stylesheet" href="${context}/resources/css/themify-icons.css" />
 	  <link rel="stylesheet" href="${context}/resources/css/flaticon.css" />
+	  <link rel="stylesheet" href="${context}/resources/vendors/owl-carousel/owl.carousel.min.css" />
 	  <link rel="stylesheet" href="${context}/resources/vendors/lightbox/simpleLightbox.css" />
 	  <link rel="stylesheet" href="${context}/resources/vendors/nice-select/css/nice-select.css" />
 	  <link rel="stylesheet" href="${context}/resources/vendors/animate-css/animate.css" />
+	  <link rel="stylesheet" href="${context}/resources/vendors/jquery-ui/jquery-ui.css" />
 	  <!-- main css -->
 	  <link rel="stylesheet" href="${context}/resources/css/style.css" />
 	  <link rel="stylesheet" href="${context}/resources/css/responsive.css" />
+	  
+    <!-- 부트스트랩 -->
+    <link href="${context}/resources/css/bootstrap.min.css" rel="stylesheet">
+    
   </head>
   
 <body>
@@ -51,17 +48,23 @@
           <div class="col-lg-5">
             <div class="float-right">
               <ul class="right_side">
-<%--                 <li>
-                  <a href="${context}/user/do_update.do">
-                  	회원정보 수정
-                    <c:out value="${sessionUser.uname }" />
-                  </a>
-                </li> --%>
-                <li>
-                  <a href="${context}/product/do_product_mng.do">
-                                   상품 등록
-                  </a>
-                </li>
+				<c:choose>
+                  	<c:when test="${(user != null) && (user.lvl == 'MANAGER') }"> <!-- 세션 값이 있고, 관리자일 경우 -->
+		                <li>
+		                  <a href="${context}/product/do_product_mng.do">
+		                                   상품 등록
+		                  </a>
+		                </li>
+		                <li class="nav-item">
+	                    	<a>${user.uname}님 환영합니다.</a>
+	                  	</li>
+                	</c:when>
+                	<c:when test="${(user != null) && (user.lvl != 'MANAGER') }"> <!-- 세션 값이 있고, 일반 사용자일 경우 -->
+		                <li class="nav-item">
+	                    	${user.uname}님 환영합니다.
+	                  	</li>
+                	</c:when>
+                </c:choose>
               </ul>
             </div>
           </div>
@@ -119,6 +122,14 @@
                     <a class="nav-link" href="${context}/board/get_retrieve.do?searchDiv=10">공지사항</a>
                   </li>
                   
+                  <li class="nav-item">
+                    <a class="nav-link" href="${context}/login/login.jsp">임시 로그인</a>
+                  </li>
+                  
+                  <li class="nav-item">
+                    <a class="nav-link" id="userUpdateBtn">임시 회원수정</a>
+                  </li>
+                  
                 </ul>
               </div>
 
@@ -135,9 +146,19 @@
                       <i class="ti-shopping-cart"></i>
                     </a>
                   </li>
+                  
+                  <c:choose>
+                  	<c:when test="${user != null }"> <!-- 세션 값이 있을 때만 보여줌 -->
+	                  <li class="nav-item">
+	                    <a href="#" class="icons" id="logoutBtn">
+	                      <i class="ti-shift-right"></i> <!-- 로그아웃 -->
+	                    </a>
+	                  </li>
+                  	</c:when>
+                  </c:choose>
 
                   <li class="nav-item">
-                    <a href="${context}/login/login.jsp" class="icons">
+                    <a href="${context}/good/get_myGoodList.do" class="icons"> <!-- 마이페이지/로그인 -->
                       <i class="ti-user" aria-hidden="true"></i>
                     </a>
                   </li>
@@ -151,11 +172,14 @@
   </header>
   <!--================Header Menu Area =================-->
   
+  <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
+  <script src="${context}/resources/js/bootstrap.min.js"></script>   
+    
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
-  <script src="${context}/resources/js/jquery-1.12.4.js"></script>
-  <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
+  <script src="${context}/resources/js/jquery-3.2.1.min.js"></script>
   <script src="${context}/resources/js/popper.js"></script>
   <script src="${context}/resources/js/bootstrap.min.js"></script>
   <script src="${context}/resources/js/stellar.js"></script>
@@ -163,10 +187,84 @@
   <script src="${context}/resources/vendors/nice-select/js/jquery.nice-select.min.js"></script>
   <script src="${context}/resources/vendors/isotope/imagesloaded.pkgd.min.js"></script>
   <script src="${context}/resources/vendors/isotope/isotope-min.js"></script>
+  <script src="${context}/resources/vendors/owl-carousel/owl.carousel.min.js"></script>
   <script src="${context}/resources/js/jquery.ajaxchimp.min.js"></script>
   <script src="${context}/resources/vendors/counter-up/jquery.waypoints.min.js"></script>
   <script src="${context}/resources/vendors/counter-up/jquery.counterup.js"></script>
   <script src="${context}/resources/js/mail-script.js"></script>
   <script src="${context}/resources/js/theme.js"></script>
+  
+  <script type="text/javascript">
+    
+		function logout() {
+			
+			if(confirm("로그아웃 하시겠습니까?")) {
+				
+        		location.href="${context}/login/do_logout.do";
+			}
+		}
+		
+		// 초기화
+		$("#logoutBtn").on("click", function() {
+	
+			//alert("logoutBtn");
+			logout();
+			location.href="${context}/main/main.do"; // 메인 화면으로 이동
+
+		});
+		
+		// 회원정보수정 버튼 클릭: 회원 단건조회
+		$("#userUpdateBtn").on("click", function() {
+	
+			var user = '<%=session.getAttribute("user")%>'
+
+			alert(user);
+			
+			location.href="${context}/user/get_selectone_view.do"; 
+			
+			
+ 			$.ajax({
+	            type:"POST",
+	            url:"${context}/user/get_select_one.do",
+	            dataType:"html",// JSON
+	            data:{
+	            	"rid": rid
+	            },
+	            success: function(data){//통신이 성공적으로 이루어 졌을때 받을 함수
+	             	console.log(data); // 선택한 데이터 전체 출력
+	             	
+	            	var parseData = $.parseJSON(data);
+	            	
+	            	console.log(parseData.rid); // 선택한 데이터 아이디만 출력
+	            	
+	            	$("#rid").val(parseData.rid); // 선택한 데이터의 아이디값이 입력 폼에 들어옴
+	            	$("#passwd").val(parseData.passwd);
+	            	$("#uname").val(parseData.uname);
+	            	$("#birth").val(parseData.birth);
+	            	$("#phone").val(parseData.phone);
+	            	$("#postnum").val(parseData.postnum);
+	            	$("#address").val(parseData.address);
+	            	$("#detadd").val(parseData.detadd);
+	            	$("#lvl").val(parseData.lvl);
+	            	$("#upoint").val(parseData.upoint);
+	            	
+	            	$("#u_id").prop("disabled", true);
+	            		
+	            },
+	            
+	            	complete: function(data){//무조건 수행
+	
+	             
+	            },
+	            	error: function(xhr,status,error){
+	             
+	            }
+            
+        	}); 
+
+		});
+		
+  </script>
+  
 </body>
 </html>

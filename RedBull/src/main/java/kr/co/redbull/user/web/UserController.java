@@ -90,6 +90,27 @@ public class UserController {
 		
 	}//--find_passwd
 	
+	/**로그아웃*/
+	@RequestMapping(value="login/do_logout.do",method=RequestMethod.GET,produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String do_logout(HttpServletRequest request) throws Exception {
+		
+		request.getSession().removeAttribute("user");
+		
+		Message msg = new Message();
+		msg.setMsgMsg("로그아웃되었습니다");
+
+		// JSON
+		Gson gson = new Gson();
+		String json = gson.toJson(msg);
+		
+		LOG.debug("2============================");
+		LOG.debug("2=@Controller json=" + json);
+		LOG.debug("2============================");
+		
+		return json;
+		
+	}//--do_logout
 	
 	/**로그인*/
 	@RequestMapping(value="login/do_login.do",method=RequestMethod.POST,produces = "application/json; charset=UTF-8")
@@ -324,7 +345,7 @@ public class UserController {
 	}//--do_save
 	
 	/**수정*/
-	@RequestMapping(value="user/do_update.do", method = RequestMethod.POST ,produces = "application/json; charset=UTF-8")
+	@RequestMapping(value="user/do_update.do", method = RequestMethod.GET ,produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String do_update(User user) {
 		
