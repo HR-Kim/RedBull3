@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.redbull.opt">
+	<sql id="setColumns">
+		ONUM    as oNum  ,
+		ONAME   as oName ,
+		OPRICE  as oPrice,
+		PNUM    as pNum  ,
+		INUM    as iNum 
+	</sql>	
+	
+	<!-- NEXT ONUM 조회 -->
+	<select id="get_nextOnum" resultType="Opt">
+		SELECT MAX(ONUM)+1 as oNum
+		FROM OPT
+	</select>
+	
+	<!-- 상품명으로 목록조회 -->
+	<select id="get_pnumList" parameterType="Search" resultType="Opt">
+		SELECT
+		   <include refid="setColumns"/>
+		FROM OPT
+		WHERE PNUM LIKE '%' || #{searchWord} || '%'
+		ORDER BY ONUM ASC
+	</select>	
+	
+	<!-- 단건조회 -->
+	<select id="get_selectOne" parameterType="Opt" resultType="Opt">
+		 SELECT
+		 <include refid="setColumns"/>	
+		 FROM OPT
+		 WHERE ONUM = #{oNum, jdbcType=VARCHAR}   
+	</select>
+
+	<!-- 수정 -->
+	<update id="do_update" parameterType="Opt">
+		UPDATE OPT
+		SET ONAME      = #{oName,jdbcType=VARCHAR},
+		    OPRICE     = #{oPrice,jdbcType=NUMERIC},
+		    PNUM       = #{pNum,jdbcType=NUMERIC},
+		    INUM       = #{iNum,jdbcType=NUMERIC}
+		WHERE ONUM = #{oNum, jdbcType=NUMERIC}  
+	</update>
+
+	<!-- 삭제 -->
+	<delete id="do_delete" parameterType="Opt">
+	<![CDATA[
+		DELETE FROM OPT WHERE ONUM = #{oNum, jdbcType=NUMERIC}  
+	]]>
+	</delete>
+
+	<!-- 등록  -->
+	<insert id="do_save" parameterType="Opt">
+		INSERT INTO OPT (
+		    ONAME,
+		    OPRICE,
+		    PNUM,
+		    INUM
+		) VALUES (
+		    #{oName,jdbcType=VARCHAR},
+		    #{oPrice,jdbcType=NUMERIC},
+		    #{pNum,jdbcType=NUMERIC},
+		    #{iNum,jdbcType=NUMERIC}
+		)
+	</insert>
+</mapper>

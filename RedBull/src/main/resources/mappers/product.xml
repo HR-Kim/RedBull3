@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.redbull.product">
+	<sql id="productColumns">
+		pnum      as pNum,     
+		pname     as pName,    
+		bprice    as bPrice,   
+		detail    as detail,  
+		discount  as discount, 
+		dprice    as dPrice,   
+		pcategory as pCategory,
+		regid     as regId,   
+		CASE TO_CHAR(regdt, 'yyyy/mm/dd') when TO_CHAR(sysdate, 'yyyy/mm/dd') THEN TO_CHAR(sysdate, 'HH24:MI')
+  		ELSE TO_CHAR(regdt, 'yyyy/mm/dd') END AS regDt,    
+		modid     as modId,
+		CASE TO_CHAR(moddt, 'yyyy/mm/dd') when TO_CHAR(sysdate, 'yyyy/mm/dd') THEN TO_CHAR(sysdate, 'HH24:MI')
+  		ELSE TO_CHAR(moddt, 'yyyy/mm/dd') END AS modDt
+	</sql>
+	<!-- 검색어 설정 -->
+	<sql id="baseCondition">
+			<choose>
+				<when test="'10' == searchDiv">
+					and PNAME LIKE '%' || #{searchWord} || '%'
+				</when>
+				<when test="'20' == searchDiv">
+					and PCATEGORY LIKE '%' || #{searchWord} || '%'
+				</when>
+				<otherwise></otherwise>							
+			</choose>
+	</sql>
+	
+	<!-- NEXT PNUM 조회 -->
+	<select id="get_nextPnum" resultType="Product">
+		SELECT MAX(PNUM)+1 as pNum
+		FROM PRODUCT
+	</select>
+	
+	<!-- 카테고리상품 목록조회 -->
+	<select id="get_categoryList" parameterType="Search" resultType="Product">
+		SELECT
+		   <include refid="productColumns"/>
+		FROM PRODUCT
+		WHERE PNAME LIKE '%' || #{searchWord} || '%'
+		ORDER BY PCATEGORY DESC
+	</select>
+	
+	<!-- 세일상품 목록조회 -->
+	<select id="get_hotSaleList" parameterType="Search" resultType="Product">
+		SELECT
+		   <include refid="productColumns"/>
+		FROM PRODUCT
+		ORDER BY discount DESC
+	</select>
+	
+	<!-- 신상품 목록조회 -->
+	<select id="get_newList" parameterType="Search" resultType="Product">
+		SELECT
+		   <include refid="productColumns"/>
+		FROM PRODUCT
+		WHERE PNAME LIKE '%' || #{searchWord} || '%'
+		ORDER BY REGDT ASC
+	</select>
+	
+	<!-- 베스트상품 목록조회 -->
+	<select id="get_rankList" parameterType="Search" resultType="Product">
+		SELECT 
+			a.pnum as pNum,
+			a.PNAME as pName,
+			a.DISCOUNT as discount,
+			a.BPRICE as bPrice,
+			count(b.pnum) as good
+		FROM product a
+		JOIN good b
+		ON a.PNUM = b.PNUM
+		GROUP
+		BY a.pnum, a.PNAME, a.DISCOUNT, a.BPRICE
+		ORDER BY count(b.pnum) DESC
+	</select>
+	
+	<!-- 상품명으로 목록조회 -->
+	<select id="get_pnameList" parameterType="Search" resultType="Product">
+		SELECT
+		   <include refid="productColumns"/>
+		FROM PRODUCT
+		WHERE PNAME LIKE '%' || #{searchWord} || '%'
+		ORDER BY PNUM ASC
+	</select>
+	
+	<!-- 목록조회 -->
+	<select id="get_retrieve" parameterType="Search" resultType="Product">
+		 SELECT T1.*,T2.*													
+		 FROM                                                              
+		 (                                                                 
+		 	SELECT
+			B.pnum      as pNum,     
+			B.pname     as pName,    
+			B.bprice    as bPrice,   
+			B.detail    as detail,  
+			B.discount  as discount, 
+			B.dprice    as dPrice,   
+			B.pcategory as pCategory,
+			B.regid     as regId,   
+			CASE TO_CHAR(B.regdt, 'yyyy/mm/dd') when TO_CHAR(sysdate, 'yyyy/mm/dd') THEN TO_CHAR(sysdate, 'HH24:MI')
+			ELSE TO_CHAR(B.regdt, 'yyyy/mm/dd') END AS regDt,    
+			B.modid     as modId,
+			CASE TO_CHAR(B.moddt, 'yyyy/mm/dd') when TO_CHAR(sysdate, 'yyyy/mm/dd') THEN TO_CHAR(sysdate, 'HH24:MI')
+			ELSE TO_CHAR(B.moddt, 'yyyy/mm/dd') END AS modDt,
+			B.rnum  as num		                          
+		 	FROM                                                           
+		 	( 	SELECT ROWNUM AS rnum, A.*                                 
+		 		FROM                                                       
+		 		(                                                           
+		 			SELECT  *                                              
+		 			FROM   PRODUCT
+		 			WHERE  1=1                          
+	  				AND regdt <![CDATA[ >  ]]> to_date('19700101','yyyymmdd')
+		 			<include refid="baseCondition"/>                                        
+		 			ORDER BY regdt DESC                                   
+		 		)A                                                         
+		 	   WHERE rownum <![CDATA[ <= ]]> (#{pageSize} * (#{pageNum}-1)+#{pageSize})    						       
+		 	) B                                                            
+		 	WHERE B.rnum <![CDATA[ >= ]]> (#{pageSize} * (#{pageNum}-1)+1)                  				   
+		 )T1
+		 NATURAL JOIN                                                      
+		 (                                                                 
+		     SELECT COUNT(*) totalCnt                                     
+		     FROM PRODUCT
+		     WHERE  1=1                                           
+		 	 <include refid="baseCondition"/>        		                               
+		 )T2   
+	</select>
+	
+	<!-- 단건조회 -->
+	<select id="get_selectOne" parameterType="Product" resultType="Product">
+		 SELECT
+		 <include refid="productColumns"/>	
+		 FROM PRODUCT
+		 WHERE PNUM = #{pNum, jdbcType=VARCHAR}   
+	</select>
+
+	<!-- 수정 -->
+	<update id="do_update" parameterType="Product">
+		UPDATE PRODUCT
+		SET PNAME      = #{pName,jdbcType=VARCHAR},
+		    BPRICE     = #{bPrice,jdbcType=NUMERIC},
+		    DETAIL     = #{detail,jdbcType=VARCHAR},
+		    DISCOUNT   = #{discount,jdbcType=NUMERIC},
+		    DPRICE     = #{dPrice,jdbcType=NUMERIC},
+		    PCATEGORY  = #{pCategory,jdbcType=NUMERIC},
+		    MODID      = #{modId,jdbcType=VARCHAR},
+		    MODDT      = SYSDATE
+		WHERE PNUM = #{pNum, jdbcType=VARCHAR}
+	</update>
+
+	<!-- 삭제 -->
+	<delete id="do_delete" parameterType="Product">
+	<![CDATA[
+		DELETE FROM PRODUCT WHERE PNUM = #{pNum, jdbcType=VARCHAR}
+	]]>
+	</delete>
+
+	<!-- 등록  -->
+	<insert id="do_save" parameterType="Product">
+		INSERT INTO PRODUCT (
+		    PNAME,
+		    BPRICE,
+		    DETAIL,
+		    DISCOUNT,
+		    DPRICE,
+		    PCATEGORY,
+		    REGID,
+		    REGDT
+		) VALUES (
+		    #{pName, jdbcType=VARCHAR},
+		    #{bPrice, jdbcType=NUMERIC},
+		    #{detail, jdbcType=VARCHAR},
+		    #{discount, jdbcType=NUMERIC},
+		    #{dPrice, jdbcType=NUMERIC},
+		    #{pCategory, jdbcType=NUMERIC},
+		    #{regId, jdbcType=VARCHAR},
+		    SYSDATE
+		)
+	</insert>
+</mapper>

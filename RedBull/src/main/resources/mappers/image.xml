@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.redbull.image">
+	<sql id="setColumns">
+		INUM         as iNum       ,
+		REFNUM       as refNum     ,
+		ORG_FILE_NM  as orgFileNm  ,
+		SAVE_FILE_NM as saveFileNm ,
+		FILE_SIZE    as fileSize   ,
+		EXT_NM       as extNm   
+	</sql>	
+	
+	<!-- NEXT INUM 조회 -->
+	<select id="get_nextInum" resultType="Image">
+		SELECT MAX(INUM)+1 as iNum
+		FROM IMAGE
+	</select>
+	
+	<!-- 참조번호로 목록조회 -->
+	<select id="get_refnumList" parameterType="Search" resultType="Image">
+		SELECT
+		   <include refid="setColumns"/>
+		FROM IMAGE
+		WHERE REFNUM LIKE '%' || #{searchWord} || '%'
+		ORDER BY INUM ASC
+	</select>	
+	
+	<!-- 단건조회 -->
+	<select id="get_selectOne" parameterType="Image" resultType="Image">
+		 SELECT
+		 <include refid="setColumns"/>	
+		 FROM IMAGE
+		 WHERE INUM = #{iNum, jdbcType=NUMERIC}   
+	</select>
+
+	<!-- 수정 -->
+	<update id="do_update" parameterType="Image">
+		UPDATE IMAGE
+		SET REFNUM       = #{refNum,jdbcType=NUMERIC},
+			ORG_FILE_NM  = #{orgFileNm,jdbcType=VARCHAR},
+			SAVE_FILE_NM = #{saveFileNm,jdbcType=VARCHAR},
+			FILE_SIZE    = #{fileSize,jdbcType=VARCHAR},
+			EXT_NM       = #{extNm,jdbcType=VARCHAR}
+		WHERE INUM = #{iNum, jdbcType=VARCHAR}  
+	</update>
+
+	<!-- 삭제 -->
+	<delete id="do_delete" parameterType="Image">
+	<![CDATA[
+		DELETE FROM IMAGE WHERE INUM = #{iNum, jdbcType=NUMERIC}    
+	]]>
+	</delete>
+
+	<!-- 등록  -->
+	<insert id="do_save" parameterType="Image">
+		INSERT INTO IMAGE (
+		    REFNUM       ,
+			ORG_FILE_NM  ,
+			SAVE_FILE_NM ,
+			FILE_SIZE    ,
+			EXT_NM      
+		) VALUES (
+		    #{refNum,jdbcType=NUMERIC},
+			#{orgFileNm,jdbcType=VARCHAR},
+			#{saveFileNm,jdbcType=VARCHAR},
+			#{fileSize,jdbcType=VARCHAR},
+			#{extNm,jdbcType=VARCHAR}
+		)
+	</insert>
+</mapper>
