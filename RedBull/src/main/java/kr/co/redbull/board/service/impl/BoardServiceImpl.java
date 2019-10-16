@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.redbull.board.service.Board;
 import kr.co.redbull.board.service.BoardService;
 import kr.co.redbull.cmn.DTO;
 
@@ -35,7 +36,12 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public DTO get_selectOne(DTO dto) {
-		return boardDaoImpl.get_selectOne(dto);
+		
+		Board outVO = (Board)boardDaoImpl.get_selectOne(dto);
+		
+		if(null!=outVO) boardDaoImpl.do_updateReadCnt(dto);
+		
+		return outVO;
 	}
 
 	@Override

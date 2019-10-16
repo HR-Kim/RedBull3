@@ -23,6 +23,24 @@ public class BoardDaoImpl implements WorkDiv {
 	
 	private final String NAMESPACE = "kr.co.redbull.board";
 	
+	public int do_updateReadCnt(DTO dto) {
+		String statement = NAMESPACE+".do_updateReadCnt";
+		Board board = (Board)dto;
+		LOG.debug("==========================");
+		LOG.debug("1.param:"+board);
+		LOG.debug("==========================");
+		LOG.debug("==========================");
+		LOG.debug("2.statement:"+statement);
+		LOG.debug("==========================");
+		
+		int flag = this.sqlSessionTemplate.update(statement, board);
+		LOG.debug("==========================");
+		LOG.debug("3.flag:"+flag);
+		LOG.debug("==========================");
+		
+		return flag;
+	}
+	
 	public List<?> get_boardIdList(DTO dto){
 		Search search = (Search)dto;
 		String statement = NAMESPACE + ".get_boardIdList";
