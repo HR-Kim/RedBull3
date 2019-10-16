@@ -34,7 +34,7 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<jnuit.version>4.12</jnuit.version>
 		<downloadSources>true</downloadSources>
-		<downloadJavadocs>true</downloadJavadocs>
+		<downloadJavadocs>true</downloadJavadocs> 
 
 	</properties>
 
