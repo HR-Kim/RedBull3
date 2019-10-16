@@ -86,13 +86,14 @@
         <thead class="bg-primary">
          <th class="text-center col-md-1 col-xs-1">
 		 <input type="checkbox" id="checkAll" name="checkAll" onclick="checkAll();"></th>
-         <th class="text-center col-md-3 col-xs-3">상품 사진</th>
-         <th class="text-center col-md-3 col-xs-3 ">상품 이름</th>
+         <th class="text-center col-md-3 col-xs-2">상품 사진</th>
+         <th class="text-center col-md-3 col-xs-2 ">상품 이름</th>
          <th class="text-center col-md-1 col-xs-1">상품가격</th>
          <th class="text-center col-md-1 col-xs-1">할인 가</th>
          <th class="text-center col-md-1 col-xs-1">수량</th>
          <th class="text-center col-md-1 col-xs-1">배송비</th>
          <th class="text-center col-md-1 col-xs-1">할인 가격</th>
+         <th class="text-center col-md-2 col-xs-1">최종 가격</th>
         </thead>
         
 		<tbody>
@@ -103,13 +104,14 @@
 				<c:forEach var="cart" items="${list}">
 	        	<tr>
 	        		<td class="text-center"><input type="checkbox" name="check"></td>
-						<td class="text-center"></td>
-						<td class="text-left"></td>
-						<td class="text-left"><c:out value="${B.dPrice}"/></td>
-						<td class="text-left"><c:out value="${B.pName}"/></td>
+						<td class="text-center"><c:out value="${cart.saveFileNm}"/></td>
+						<td class="text-left"><c:out value="${cart.pName}"/></td>
+						<td class="text-left"><c:out value="${cart.bPrice}"/></td>
+						<td class="text-left"><c:out value="${cart.bPrice*(1-cart.discount)}"/></td>
 						<td class="text-right"><c:out value="${cart.cartCnt}"/></td>
-						<td class="text-center"><c:out value="${B.dPrice}"/></td>
-						<td class="text-center"></td>
+						<td class="text-right"><c:out value="${cart.dPrice}"/></td>
+						<td class="text-right"><c:out value="${cart.bPrice-(cart.bPrice*(1-cart.discount))}"/></td>
+						<td class="text-center"><c:out value="${cart.bPrice-(cart.bPrice*(1-cart.discount))+cart.dPrice+cart.oPrice}"/></td>
 					</tr>
 				</c:forEach> 
 		    </c:when>

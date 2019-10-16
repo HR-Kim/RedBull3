@@ -37,7 +37,7 @@ public class CartController {
 	
 	
 	//View
-	private final String VIEW_LIST_NM = "cart/cart_list";
+	private final String VIEW_LIST_NM = "cart/cart";
 	private final String VIEW_MNG_NM = "cart/cart_mng";
 	
 	
