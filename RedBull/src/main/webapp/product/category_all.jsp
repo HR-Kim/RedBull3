@@ -121,7 +121,7 @@
 												<div class="product-btm">
 													<a href="#" class="d-block"><h4>${product.pName}</h4></a>
 													<div class="mt-3">
-														<span class="mr-4">${Math.round(product.bPrice*(product.discount))}원</span>
+														<span class="mr-4">${Math.round(product.bPrice*(1-product.discount))}원</span>
 														<del>${product.bPrice}원</del>
 													</div>
 												</div>
