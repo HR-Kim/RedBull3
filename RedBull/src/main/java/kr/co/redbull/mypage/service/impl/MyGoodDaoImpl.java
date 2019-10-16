@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.redbull.mypage.service.MyGood;
 import kr.co.redbull.product.service.Product;
+import kr.co.redbull.cart.service.Cart;
 import kr.co.redbull.cmn.DTO;
 import kr.co.redbull.cmn.Search;
 import kr.co.redbull.cmn.WorkDiv;
@@ -145,6 +146,23 @@ public class MyGoodDaoImpl implements WorkDiv {
 		return 0;
 	}
 	
-	
+	public int countCart(DTO dto) {
+		String statement = this.NAMESPACE+".countCart";
+		Cart cart = (Cart) dto;
+		LOG.debug("================================");
+		LOG.debug("1. statement: " + statement);
+		LOG.debug("================================");
+		
+		LOG.debug("================================");
+		LOG.debug("2. param: " + cart);
+		LOG.debug("================================");
+		
+		int flag = this.sqlSessionTemplate.selectOne(statement, cart);
+		LOG.debug("================================");
+		LOG.debug("3. flag: " + flag);
+		LOG.debug("================================");
+		
+		return flag;
+	}
 
 }

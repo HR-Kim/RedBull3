@@ -21,4 +21,6 @@ public interface MyGoodService {
 	/**목록조회 */
 	public List<?> get_retrieve(DTO dto);
 	
+	/**동일상품 확인*/
+	public int countCart(DTO dto);
 }
