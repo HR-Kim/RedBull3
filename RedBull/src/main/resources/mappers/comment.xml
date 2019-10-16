@@ -82,8 +82,7 @@
                         MODID,
                         MODDT            	
             		 FROM COMMENTS
-                 	 WHERE TNUM = TO_NUMBER(#{searchDiv, jdbcType=NUMERIC})
-                     AND REFNUM = TO_NUMBER(#{searchWord, jdbcType=NUMERIC})
+                 	 WHERE REFNUM = TO_NUMBER(#{searchWord, jdbcType=NUMERIC})
                      START WITH HCNUM = 0
                      CONNECT BY PRIOR CNUM = HCNUM
                      ORDER SIBLINGS BY REGDT) A
@@ -92,8 +91,7 @@
 	CROSS JOIN
 	(SELECT COUNT(*) AS totalCnt
 	 FROM (SELECT * FROM COMMENTS
-	 	   WHERE TNUM = TO_NUMBER(#{searchDiv, jdbcType=NUMERIC})
-           AND REFNUM = TO_NUMBER(#{searchWord, jdbcType=NUMERIC})
+	 	   WHERE REFNUM = TO_NUMBER(#{searchWord, jdbcType=NUMERIC})
 	      ))T2
 	</select> 
 
