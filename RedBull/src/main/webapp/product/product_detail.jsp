@@ -118,7 +118,7 @@
 				bPrice=10000, detail=J01상세정보_125, 
 				discount=0.1, dPrice=1000, pCategory=10, 
 				regId=J01등록자_125, regDt=2019/09/27, 
-				modId=null, modDt=null, 
+				modId=null, modDt=null,
 				toString()=DTO [totalCnt=0, num=0]]
 			-->
 			<div class="col-lg-5 offset-lg-1">
