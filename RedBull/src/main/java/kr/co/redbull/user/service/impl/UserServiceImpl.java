@@ -56,6 +56,16 @@ public class UserServiceImpl implements UserService {
 		
 	}//--upgradeLevel
 	
+	@Override
+	public DTO find_passwd(DTO dto) {
+		
+		User user = (User) dto;
+		
+		sendPasswdMail(user);
+		
+		return null;
+	}
+	
 	/**비밀번호 찾기 메일 전송*/
 	public void sendPasswdMail(User user) {
 		
@@ -209,6 +219,7 @@ public class UserServiceImpl implements UserService {
 		
 	}//--get_excelDown
 
+	/**아이디/비밀번호 체크: 로그인용 */
 	@Override
 	public DTO idPassCheck(DTO dto) {
 		
@@ -253,5 +264,38 @@ public class UserServiceImpl implements UserService {
 		
 	}//--idPassCheck
 
+	/**아이디 체크: 비밀번호 찾기용*/
+	@Override
+	public DTO idCheck(DTO dto) {
+
+		// 메시지 객체 생성
+		Message outMsg = new Message();
+		
+		//------1. 아이디 체크-------
+		int flag = userDaoImpl.id_check(dto);
+		
+		if(flag < 1) { // 아이디 확인 실패
+			
+			outMsg.setMsgId("10");
+			outMsg.setMsgMsg("이메일을 확인하십시오.");
+			
+			return outMsg;
+
+		}
+		
+		//------2. 아이디 존재 체크------
+		if(flag == 1) { // 아이디 존재 
+			
+			outMsg.setMsgId("30");	
+			outMsg.setMsgMsg("비밀번호를 메일로 전송했습니다.");
+		}
+		
+		LOG.debug("=========================");
+		LOG.debug("=outMsg=" + outMsg);
+		LOG.debug("=========================");
+		
+		return outMsg;
+		
+	}//--idCheck
 
 }//--class

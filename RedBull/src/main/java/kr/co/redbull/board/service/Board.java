@@ -14,11 +14,12 @@ public class Board extends DTO {
 	private String regDt    ; //등록일
 	private String modId    ; //수정자
 	private String modDt    ; //수정일
+	private String commentCnt; //댓글갯수
 	
 	public Board() {}
 
 	public Board(int bNum, String title, String contents, int readCnt, int tNum, String category, String regId,
-			String regDt, String modId, String modDt) {
+			String regDt, String modId, String modDt, String commentCnt) {
 		super();
 		this.bNum = bNum;
 		this.title = title;
@@ -30,6 +31,7 @@ public class Board extends DTO {
 		this.regDt = regDt;
 		this.modId = modId;
 		this.modDt = modDt;
+		this.commentCnt = commentCnt;
 	}
 
 	public int getbNum() {
@@ -111,13 +113,20 @@ public class Board extends DTO {
 	public void setModDt(String modDt) {
 		this.modDt = modDt;
 	}
+	
+	public String getCommentCnt() {
+		return commentCnt;
+	}
+
+	public void setCommentCnt(String commentCnt) {
+		this.commentCnt = commentCnt;
+	}
 
 	@Override
 	public String toString() {
 		return "Board [bNum=" + bNum + ", title=" + title + ", contents=" + contents + ", readCnt=" + readCnt
 				+ ", tNum=" + tNum + ", category=" + category + ", regId=" + regId + ", regDt=" + regDt + ", modId="
-				+ modId + ", modDt=" + modDt + ", toString()=" + super.toString() + "]";
+				+ modId + ", modDt=" + modDt + ", commentCnt=" + commentCnt + ", toString()=" + super.toString() + "]";
 	}
-	
-	
+
 }
