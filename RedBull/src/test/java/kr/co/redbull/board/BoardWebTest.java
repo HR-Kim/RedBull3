@@ -53,11 +53,11 @@ public class BoardWebTest {
 		LOG.debug("^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
 		
 		list = Arrays.asList(
-				new Board(0, "J01제목_128", "J01내용_128", 0, 1, "카테고리01", "admin", "noDate", "admin", "noDate"),
-				new Board(0, "J02제목_128", "J02내용_128", 0, 1, "카테고리02", "admin", "noDate", "admin", "noDate"),
-				new Board(0, "J03제목_128", "J03내용_128", 0, 1, "카테고리03", "admin", "noDate", "admin", "noDate"),
-				new Board(0, "J04제목_128", "J04내용_128", 0, 1, "카테고리04", "admin", "noDate", "admin", "noDate"),
-				new Board(0, "J05제목_128", "J05내용_128", 0, 1, "카테고리05", "admin", "noDate", "admin", "noDate")
+				new Board(0, "J01제목_128", "J01내용_128", 0, 1, "카테고리01", "admin", "noDate", "admin", "noDate", "0"),
+				new Board(0, "J02제목_128", "J02내용_128", 0, 1, "카테고리02", "admin", "noDate", "admin", "noDate", "0"),
+				new Board(0, "J03제목_128", "J03내용_128", 0, 1, "카테고리03", "admin", "noDate", "admin", "noDate", "0"),
+				new Board(0, "J04제목_128", "J04내용_128", 0, 1, "카테고리04", "admin", "noDate", "admin", "noDate", "0"),
+				new Board(0, "J05제목_128", "J05내용_128", 0, 1, "카테고리05", "admin", "noDate", "admin", "noDate", "0")
 			);
 		
 		mockMvc = MockMvcBuilders.webAppContextSetup(context).build();

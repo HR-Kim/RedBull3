@@ -45,11 +45,11 @@ public class DaoBoardTest {
 	@Before
 	public void setUp() {
 		list = Arrays.asList(
-				new Board(1, "제목01", "내용01", 0, 1, "카테고리01", "admin", "2019-09-23", "admin", "2019-09-23"),
-				new Board(2, "제목02", "내용02", 0, 1, "카테고리02", "admin", "2019-09-23", "admin", "2019-09-23"),
-				new Board(3, "제목03", "내용03", 0, 1, "카테고리03", "admin", "2019-09-23", "admin", "2019-09-23"),
-				new Board(4, "제목04", "내용04", 0, 1, "카테고리04", "admin", "2019-09-23", "admin", "2019-09-23"),
-				new Board(5, "제목05", "내용05", 0, 1, "카테고리05", "admin", "2019-09-23", "admin", "2019-09-23")
+				new Board(1, "제목01", "내용01", 0, 1, "카테고리01", "admin", "2019-09-23", "admin", "2019-09-23", "0"),
+				new Board(2, "제목02", "내용02", 0, 1, "카테고리02", "admin", "2019-09-23", "admin", "2019-09-23", "0"),
+				new Board(3, "제목03", "내용03", 0, 1, "카테고리03", "admin", "2019-09-23", "admin", "2019-09-23", "0"),
+				new Board(4, "제목04", "내용04", 0, 1, "카테고리04", "admin", "2019-09-23", "admin", "2019-09-23", "0"),
+				new Board(5, "제목05", "내용05", 0, 1, "카테고리05", "admin", "2019-09-23", "admin", "2019-09-23", "0")
 				);
 	}
 	
@@ -154,7 +154,7 @@ public class DaoBoardTest {
 		addedDataList = (List<Board>)boardDaoImpl.get_boardIdList(search);
 		
 		//--------------------------------------
-		// 6. 수정된 데이터 조회
+		// 7. 비교
 		//--------------------------------------
 		
 		this.checkData(updated, addedDataList.get(0));

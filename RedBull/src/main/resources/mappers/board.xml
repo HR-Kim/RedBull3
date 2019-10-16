@@ -29,6 +29,15 @@
 		</where>
 	</sql>
 	
+	<!-- 조회수 증가  -->
+   <update id="do_updateReadCnt" parameterType="Board">
+	   UPDATE BOARD
+		  SET  READCNT = (SELECT NVL(MAX(READCNT),0)+1 
+			 			   FROM BOARD	  
+						   WHERE BNUM = #{bNum,jdbcType=VARCHAR})
+	   WHERE BNUM = #{bNum,jdbcType=VARCHAR}
+   </update>
+	
 	<!-- 게시판번호 가져오기 -->
 	<select id="get_boardIdList" parameterType="Search" resultType="Board">
 		SELECT * FROM BOARD WHERE TITLE LIKE '%' || #{searchWord} || '%'
@@ -96,15 +105,16 @@
 			     ELSE TO_CHAR(B.REGDT, 'yyyy.mm.dd') END as regDt,
 	             B.MODID AS modId,
 	             B.MODDT AS modDt,
-	             B.rnum AS num
+	             B.rnum AS num,
+	             B.commentCnt
       	  FROM (SELECT ROWNUM AS rnum, A.*
-            	FROM(SELECT * FROM BOARD
+            	FROM(SELECT bb.*, (SELECT COUNT(*) FROM COMMENTS WHERE A.BNUM=COMMENTS.REFNUM ) as commentCnt FROM BOARD bb
                  	 <include refid="searchCondition" />
                  	 ORDER BY REGDT DESC) A
             	WHERE ROWNUM <![CDATA[<]]>= (#{pageSize, jdbcType=NUMERIC} * (#{pageNum, jdbcType=NUMERIC} -1) + #{pageSize, jdbcType=NUMERIC}))B
       	  WHERE B.rnum <![CDATA[>]]>= (#{pageSize, jdbcType=NUMERIC} * (#{pageNum, jdbcType=NUMERIC} -1)+1)) T1
 	CROSS JOIN
-	(SELECT COUNT(*)
+	(SELECT COUNT(*) AS totalCnt
 	 FROM (SELECT * FROM BOARD
 	       <include refid="searchCondition" />
 	      ))T2
