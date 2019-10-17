@@ -68,6 +68,16 @@
 %> 
 <html lang="ko">
   <head>
+  <style type="text/css">
+	.title:hover{
+		cursor: pointer;
+		text-decoration: underline;
+	}
+	#listTable{
+		font-size: 12;
+	}
+  </style>
+  
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -87,70 +97,64 @@
   </head>
  
   <body>
-  ${totalCnt }
+  <jsp:include page="/main/header.jsp"></jsp:include>
+    <!--================Home Banner Area =================-->
+	<section class="banner_area">
+		<div class="banner_inner d-flex align-items-center">
+			<div class="container">
+				<div
+					class="banner_content d-md-flex justify-content-between align-items-center">
+					<div class="mb-3 mb-md-0">
+						<h2>공지사항</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================End Home Banner Area =================-->
+
     <!-- div container -->
    <div class="container">
-        <!-- div title --> 
-     <div class="page-header">
-       <h1>공지</h1>
-      </div>
-      <!--// div title -->
-       
-      <!-- 검색영역 -->
-      <div class="row">
-       <div class="col-md-12 text-center">
-       <form class="form-inline" name="boardFrm" id="boardFrm" method="get">
-       	<input type="hidden" name="pageNum" id="pageNum" value="${vo.pageNum}" />
-       	<input type="hidden" name="searchDiv" id="searchDiv" />
-        <div class="form-group ">
-        <div class="col-sm-12">
-     <input type="text"  class="form-control input-sm " id="searchWord" name="searchWord" 
-       placeholder="검색어" />
-       <button type="button" class="btn btn-default btn-sm" id="do_retrieve">검색</button>  
-     <button type="button" class="btn btn-default btn-sm" id="do_write">질문하기</button>  
-       </div>
-     
-        </div>
-       </form>
-        </div> 
-      </div>
-      <!--// 검색영역 -->  
-      
+    <br/>   
       <!-- Grid영역 -->
- 
-         <c:choose>
-         	<c:when test="${list.size()>0}">
-         		<c:forEach var="vo" items = "${list}">
-		        
-		        <div class="container" class="listTable">
-			    	<table class="table table-borderless table-sm">  
-						<tr>
-							<td rowspan="3" style="display:none;">${vo.bNum}</td>
-							<td id="title" class="text-left col-md-4 col-xs-4" colspan="5" style=""><b>${vo.title} </b></td>
-							<td class="text-left col-md-1 col-xs-1" rowspan="3"><img src="${context}/board/noimage.jpg" class="img-thumbnail">
-</td>
-						</tr>
-						<tr>
-							<td class="text-left col-md-4 col-xs-4" colspan="5"> ${vo.contents}</td>
-						</tr>    	
-						<tr>
-							<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">글쓴이 ${vo.regId}</td>
-							<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">${vo.regDt}</td>
-							<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">댓글 00개</td>	
-							<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">조회수 ${vo.readCnt}</td>	
-							<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">카테고리 ${vo.category}</td>						
-						</tr>
-						<tr style="border-bottom: 1px;"></tr>
-			    	</table><br/>
-				</div>
-		        
-	          </c:forEach>
-            </c:when>
-            <c:otherwise>
-          		<tr><td colspan="99">등록된 게시물이 없습니다.</td></tr>
-            </c:otherwise>
-       	</c:choose>
-       
+ 	<div class="table-responsive">
+			<table class="table  table-striped table-bordered table-hover" id="listTable">
+				<thead>
+				    <th class="text-center col-md-1 col-xs-1">글번호</th>
+					<th class="text-center col-md-8 col-xs-8">제목</th>
+					<th class="text-center col-md-1 col-xs-1 ">조회수</th>
+					<th class="text-center col-md-1 col-xs-1">등록자</th>
+					<th class="text-center col-md-1 col-xs-1">등록일</th>
+				</thead>
+				<tbody>
+					<c:choose>
+						<c:when test="${list.size()>0 }">
+							<c:forEach var="vo" items="${list}">
+								<tr>
+									<td class="text-center bNum"><c:out value="${vo.bNum}"/></td>
+									<td class="text-left title"><c:out value="${vo.title}"/>
+									(<c:choose>
+										<c:when test="${empty vo.commentCnt}"> 
+											<c:out value="0"/>
+										</c:when>
+										<c:otherwise>
+											<c:out value="${vo.commentCnt}"></c:out>
+										</c:otherwise>
+									</c:choose>)
+									</td>
+									<td class="text-center"><c:out value="${vo.readCnt}"/></td>
+									<td class="text-center"><c:out value="${vo.regId}"/></td>
+									<td class="text-center"><c:out value="${vo.regDt }"/></td>
+								</tr>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<tr><td class="text-center" colspan="99">등록된 글이 없습니다.</td></tr>
+						</c:otherwise>
+					</c:choose>
+				</tbody>
+			</table>
+		</div>
       <!--// Grid영역 -->
       
       <!-- pagenation -->
@@ -159,7 +163,31 @@
       </div>
       <!--// pagenation -->
       
+      <!-- 검색영역 -->
+   <!--    <div class="row"> -->
+       <div class="col-md-12 text-center">
+       <form class="form-inline" name="boardFrm" id="boardFrm" method="get">
+       	<input type="hidden" name="pageNum" id="pageNum" value="${vo.pageNum}" />
+       	<input type="hidden" name="searchDiv" id="searchDiv" />
+       	<input type="hidden" name="bNum" id="bNum" />
+        <div class="form-group ">
+      <div class="col-sm-12">
+      <input type="text"  class="form-control input-sm " id="searchWord" name="searchWord" 
+       placeholder="검색어" />
+      <button type="button" class="btn btn-success btn-sm" id="do_retrieve">검색</button>  
+      <button type="button" class="btn btn-success btn-sm" id="do_write">글쓰기</button>  
+      </div>
+     
+      </div>
+      </form>
+    <!--     </div>  -->
+      </div>
+      <!--// 검색영역 -->  
+      <form class="form-inline" name="writeForm" id="writeForm" method="get">
+       	<input type="hidden" name="searchDiv" id="searchDiv" />
+      </form>
    </div>
+   <jsp:include page="/main/footer.jsp"></jsp:include>
     <!--// div container -->
     <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
     <script src="${context}/resources/js/jquery-1.12.4.js"></script>
@@ -168,7 +196,7 @@
     <script type="text/javascript">
     	
     	$("#do_write").on("click", function(){
-    		var frm = document.boardFrm;
+    		var frm = document.writeForm;
     		frm.searchDiv.value="10";
     		frm.action = "${context}/board/do_write.do";
     		frm.submit();
@@ -182,21 +210,20 @@
 			frm.submit();
     	}
     	
-    	$("#listTable>tbody").on("click","tr",function(){
+    	$("#listTable>tbody").on("click", "tr", function(){
     		//alert('listTable');
     		var trs = $(this);
-    		var td  = trs.children();
+			var td  = trs.children();
+			if(null==td || td.length==1)return;
+			//console.log(td.text());
+			
+    		var bNum = td.eq(0).text();
+    		//console.log(bNum);
     		
-    		if(null==td || td.length==1) return;
-    		
-    		//console.log(td.text());
-    		var boardId = td.eq(0).text();
-    		//console.log(boardId);
-    		
-    		var frm = document.boardFrm;
-    		frm.boardId.value = boardId;
+    	 	var frm = document.boardFrm;
+    		frm.bNum.value = bNum;
     		frm.action = "${context}/board/get_selectOne.do";
-    		frm.submit();
+    		frm.submit(); 
     		
     	});	
     

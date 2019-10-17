@@ -1,5 +1,11 @@
 package kr.co.redbull.board.web;
 
+import static kr.co.redbull.cmn.StringUtil.UPLOAD_ROOT;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +18,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 
@@ -19,8 +28,11 @@ import kr.co.redbull.board.service.Board;
 import kr.co.redbull.board.service.BoardService;
 import kr.co.redbull.cmn.Message;
 import kr.co.redbull.cmn.Search;
+import kr.co.redbull.cmn.StringUtil;
 import kr.co.redbull.comment.service.Comment;
 import kr.co.redbull.comment.service.CommentService;
+import kr.co.redbull.image.service.Image;
+import kr.co.redbull.product.service.ProductService;
 
 @Controller
 public class BoardController {
@@ -33,10 +45,123 @@ public class BoardController {
 	@Autowired
 	CommentService commentService;
 	
-	private final String VIEW_DETAIL  ="board/board_detail"; 
-	//private final String VIEW_NOTICE_LIST_NM ="board/notice_list";
+	@Autowired
+	ProductService productService;
+	
+	private final String VIEW_DETAIL  ="board/board_detail";
 	private String viewListNm ="board/question_list";
 	private final String VIEW_MNG_NM  ="board/board_mng";
+	
+	@RequestMapping(value="board/do_save_img.do",method = RequestMethod.POST
+	,produces = "application/json;charset=UTF-8")
+	@ResponseBody	
+	public ModelAndView do_save_img(MultipartHttpServletRequest mReg, ModelAndView model) throws IllegalStateException, IOException {
+		
+		LOG.debug("===============================");
+		LOG.debug("=@Controller do_save=");
+		LOG.debug("===============================");
+		
+		//Upload파일 정보: 원본,저장,사이즈,확장자 List
+		List<Image> imageList = new ArrayList<Image>();
+		
+		String refNum = StringUtil.nvl(mReg.getParameter("refNum"));
+		
+		LOG.debug("=@Controller refNum="+refNum);
+		
+		//01.동적으로 UPLOAD_ROOT 디렉토리 생성
+		File  fileRootDir = new File(UPLOAD_ROOT);
+		if(fileRootDir.isDirectory() ==false) {  
+			boolean flag = fileRootDir.mkdirs();
+			LOG.debug("=@Controller flag="+flag);
+		}
+		
+		//02.년월 디렉토리 생성:D:\\HR_FILE\2019\10
+		String yyyy = StringUtil.cureDate("yyyy");
+		LOG.debug("=@Controller yyyy="+yyyy);
+		String mm = StringUtil.cureDate("MM");
+		LOG.debug("=@Controller mm="+mm);
+		String datePath = UPLOAD_ROOT+File.separator+yyyy+File.separator+mm;
+		LOG.debug("=@Controller datePath="+datePath);
+		
+		File  fileYearMM = new File(datePath);  
+		
+		if(fileYearMM.isDirectory()==false) {
+			boolean flag = fileYearMM.mkdirs();  
+			LOG.debug("=@Controller fileYearMM flag="+flag);
+		}
+		
+		int flag  =0;
+		Message message=new Message();
+		
+		//01.파일 Read      
+		Iterator<String> files = mReg.getFileNames();
+		
+		while(files.hasNext()) {
+			Image image=new Image();
+			String orgFileNm  = "";//원본파일명
+			String saveFileNm = "";//저장파일명
+			long   fileSize   = 0L;//파일사이즈
+			String extNm        = "";//확장자
+			
+			String uploadFileNm = files.next();//file01
+			MultipartFile mFile = mReg.getFile(uploadFileNm);
+			orgFileNm = mFile.getOriginalFilename();
+			//file선택이 않되면 continue
+			if(null==orgFileNm || orgFileNm.equals(""))continue;
+			
+			LOG.debug("=@Controller uploadFileNm="+uploadFileNm);
+			LOG.debug("=@Controller orgFileNm="+orgFileNm);
+			fileSize = mFile.getSize();//file size byte
+			
+			if(orgFileNm.indexOf(".")>-1) {
+				extNm = orgFileNm.substring(orgFileNm.lastIndexOf(".")+1);
+			}
+			LOG.debug("=@Controller fileSize="+fileSize);
+			LOG.debug("=@Controller extNm="+extNm);
+			File orgFileCheck = new File(datePath,orgFileNm);
+			
+			String newFile = orgFileCheck.getAbsolutePath();
+			//04.파일 rename: README -> README1~9999
+			if(orgFileCheck.exists()==true) {
+				newFile = StringUtil.fileRename(orgFileCheck);
+			}
+			
+	//		//-----------------------------------------------
+	//		//-FileId 존재 유무로 Key생성 유무 판단.
+	//		//-----------------------------------------------
+	//		//FileId 없는 경우
+	//		if(refNum.equals("0") || refNum.length()!=40) {
+	//			String yyyymmdd = StringUtil.cureDate("yyyyMMdd");
+	//			String fileIdKey= yyyymmdd+StringUtil.getUUID();
+	//			LOG.debug("yyyymmdd:"+yyyymmdd);
+	//			LOG.debug("fileIdKey:"+fileIdKey);
+	//			image.setRefNum(refNum);
+	//			image.setNum(1);
+	//			refNum = fileIdKey;
+	//		//fileID가 있는 경우.	
+	//		}else {
+	//			
+	//			image.setRefNum(refNum);
+	//			
+	//			//max num
+	//			int maxNum = this.fileService.num_max_plus_one(fileVO);
+	//			LOG.debug("maxNum:"+maxNum);
+	//			image.setNum(maxNum);
+	//		}
+			
+			image.setRefNum(refNum);
+			image.setOrgFileNm(orgFileNm);
+			image.setSaveFileNm(newFile);
+			image.setFileSize(fileSize);
+			image.setExtNm(extNm);
+			imageList.add(image);
+			mFile.transferTo(new File(newFile));
+
+		}
+		model.addObject("fileList", imageList);
+		return model;
+	
+	}
 	
 	@RequestMapping(value = "board/do_write.do")
 	public String do_write(Board board, Search search, Model model) {
@@ -82,8 +207,6 @@ public class BoardController {
 		List<Board> list = (List<Board>)boardService.get_retrieve(search);
 		
 		model.addAttribute("list", list);
-		
-		
 		
 		//총건수
 		int totalCnt = 0;
@@ -148,7 +271,7 @@ public class BoardController {
 		return VIEW_DETAIL;
 	}
 	
-	@RequestMapping(value = "board/do_update.do", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "board/do_update.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String do_update(Board board) {
 		

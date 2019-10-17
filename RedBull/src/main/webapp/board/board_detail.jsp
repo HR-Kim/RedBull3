@@ -34,6 +34,7 @@
 	int  currPageNo = 1; //현재페이지
 	int  rowPerPage = 10;//한페이지에 보여질 글수
 	int  bottomCount= 10;//바닥에  보여질 페이지수
+	
 	//호출url
 	String url       =request.getContextPath()+"/board/get_selectOne.do";
 	String scriptName="search_page";
@@ -58,6 +59,27 @@
     <link href="${context}/resources/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+	<jsp:include page="/main/header.jsp"></jsp:include>
+
+    <!--================Home Banner Area =================-->
+	<section class="banner_area">
+		<div class="banner_inner d-flex align-items-center">
+			<div class="container">
+				<div
+					class="banner_content d-md-flex justify-content-between align-items-center">
+					<div class="mb-3 mb-md-0">
+						<h2>
+							<c:choose>
+								<c:when test="${vo.tNum==10}">공지사항</c:when>
+								<c:when test="${vo.tNum==20}">질문과 답변</c:when>
+							</c:choose>
+						</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================End Home Banner Area =================-->
 ${vo }
 	<form name="pagingForm" id="pagingForm">
 		<input type="hidden" id="pageNum" name="pageNum"/>
@@ -76,14 +98,20 @@ ${vo }
 		<table class="table table-bordered table-sm">
 			<!-- 본문 -->
 			<tr>
-				
 				<td id="num" style="display:none;">${vo.bNum}</td>
 				<td colspan="6" class="text-center col-md-1 col-xs-12" style="font-size: 12pt; font-weight: bold;">${vo.title}</td></tr>
 			<tr>
 				<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">${vo.regId}</td>
 				<td class="text-left col-md-2 col-xs-2" style="font-size: 9pt;">${vo.regDt}</td>
-				<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;"></td>
-				<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">${vo.readCnt}</td>
+				<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">댓글<c:choose>
+								<c:when test="${empty vo.commentCnt}"> 
+									<c:out value="0"/>
+								</c:when>
+								<c:otherwise>
+									<c:out value="${vo.commentCnt}"></c:out>
+								</c:otherwise>
+							</c:choose>개</td>
+				<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">조회수 ${vo.readCnt}</td>
 				<td class="text-left col-md-5 col-xs-5" style="font-size: 9pt;">${vo.category}</td>
 				<td class="text-center col-md-2 col-xs-2">
 					<button type="button" class="btn btn-default btn-sm" id="do_update" name="do_update">수정</button>  
@@ -212,7 +240,7 @@ ${vo }
 		<!-- 댓글입력 폼 -->
 		</table>
 		</div>
-		
+	<jsp:include page="/main/footer.jsp"></jsp:include>	
 	<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
 	<script src="${context}/resources/js/jquery-1.12.4.js"></script>
 	<!-- jQuery validate -->

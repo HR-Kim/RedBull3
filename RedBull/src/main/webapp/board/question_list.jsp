@@ -25,7 +25,6 @@
   */
 --%>
 <%
-
 	pageContext.setAttribute("cn", "\n"); //Enter
 	pageContext.setAttribute("br", "<br/>"); //br 태그
 
@@ -80,6 +79,19 @@
 	  white-space: nowrap;
 	  height: 100px;
   }
+  .title:hover{
+  	cursor: pointer;
+  	text-decoration: underline;
+  }
+  td{
+  	font-size: 10pt;
+  }
+  .title{
+  	font-size: 12pt;
+  }
+/*   .listTable>td{
+  	border: none;
+  } */
   </style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -100,15 +112,25 @@
   </head>
  
   <body>
-  ${totalCnt }
-  
+  <jsp:include page="/main/header.jsp"></jsp:include>
+  	<!--================Home Banner Area =================-->
+	<section class="banner_area">
+		<div class="banner_inner d-flex align-items-center">
+			<div class="container">
+				<div
+					class="banner_content d-md-flex justify-content-between align-items-center">
+					<div class="mb-3 mb-md-0">
+						<h2>질문과 답변</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================End Home Banner Area =================-->
+
+	<br/>
     <!-- div container -->
    <div class="container">
-        <!-- div title --> 
-     <div class="page-header">
-       <h1>질문과 답변</h1>
-      </div>
-      <!--// div title -->
        
       <!-- 검색영역 -->
       <div class="row">
@@ -121,8 +143,8 @@
         <div class="col-sm-12">
      <input type="text"  class="form-control input-sm " id="searchWord" name="searchWord" 
        placeholder="검색어" />
-       <button type="button" class="btn btn-default btn-sm" id="do_retrieve">검색</button>  
-     <button type="button" class="btn btn-default btn-sm" id="do_write">질문하기</button>  
+       <button type="button" class="btn btn-success btn-sm" id="do_retrieve">검색</button>  
+     <button type="button" class="btn btn-success btn-sm" id="do_write">질문하기</button>  
        </div>
      
         </div>
@@ -138,28 +160,36 @@
          		<c:forEach var="vo" items = "${list}">
 		        
 		        <div class="container">
-			    	<table class="table table-bordered table-sm">  
+			    	<table class="table table-borderless table-sm listTable">  
 						<tr class="post">
 							<td style="display:none;">${vo.bNum}</td>
-							<td colspan="5" style="cursor:pointer;"><b>${vo.title} </b></td>
+							<td colspan="5" class="title"><b>${vo.title} </b></td>
 							<td class="text-left col-md-1 col-xs-1" rowspan="3"><img src="${context}/board/noimage.jpg" class="img-thumbnail">
 </td>
 						</tr>
 						<tr>
 							<td class="text-left col-md-4 col-xs-4" colspan="5"> 
 								<div class="showContents">
-									${fn:replace(vo.contents, cn, br)}
+									${vo.contents}
 								</div>
 							</td>
 						</tr>    	
 						<tr>
-							<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">글쓴이 ${vo.regId}</td>
-							<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">${vo.regDt}</td>
-							<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">댓글 ${vo.commentCnt}개</td>	
-							<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">조회수 ${vo.readCnt}</td>	
-							<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">카테고리 ${vo.category}</td>						
+							<td class="text-left col-md-1 col-xs-1" >글쓴이 ${vo.regId}</td>
+							<td class="text-left col-md-1 col-xs-1" >${vo.regDt}</td>
+							<td class="text-left col-md-1 col-xs-1" >댓글
+							<c:choose>
+								<c:when test="${empty vo.commentCnt}"> 
+									<c:out value="0"/>
+								</c:when>
+								<c:otherwise>
+									<c:out value="${vo.commentCnt}"></c:out>
+								</c:otherwise>
+							</c:choose>개</td>	
+							<td class="text-left col-md-1 col-xs-1" >조회수 ${vo.readCnt}</td>	
+							<td class="text-left col-md-1 col-xs-1" >${vo.category}</td>						
 						</tr>
-						<tr style="border-bottom: 1px;"></tr>
+						<tr style="border-bottom: none;"></tr>
 			    	</table><br/>
 				</div>
 		        
@@ -179,6 +209,7 @@
       <!--// pagenation -->
       
    </div>
+   <jsp:include page="/main/footer.jsp"></jsp:include>
     <!--// div container -->
     <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
     <script src="${context}/resources/js/jquery-1.12.4.js"></script>

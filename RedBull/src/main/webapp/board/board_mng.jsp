@@ -3,7 +3,12 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="context" value="${pageContext.request.contextPath }" />
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
+
+pageContext.setAttribute("cn", "\n"); //Enter
+pageContext.setAttribute("br", "<br/>"); //br 태그
+
 /* 	Search search = (Search)request.getAttribute("searchVO");
 	
 	String searchDiv = "20";
@@ -53,15 +58,25 @@
 
 </head>
 <body>
+  <%-- <jsp:include page="/main/header.jsp"></jsp:include> --%>
+    <!--================Home Banner Area =================-->
+<section class="banner_area">
+	<div class="banner_inner d-flex align-items-center">
+		<div class="container">
+			<div
+				class="banner_content d-md-flex justify-content-between align-items-center">
+				<div class="mb-3 mb-md-0">
+					<h2>글쓰기</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--================End Home Banner Area =================-->
 ${board }
 ${search }
 	<!-- div container -->
 	<div class="container">
-		<!-- div title -->
-		<div class="page-header">
-			<h1></h1>
-		</div>
-		<!--// div title -->
 
 		<!-- div title -->
 		<form class="form-horizontal" name="boardEditFrm" id="boardEditFrm"
@@ -70,32 +85,32 @@ ${search }
 				value="${board.bNum}" /><br/>
 			
 			<div class="form-group">
-				<label for="inputEmail3" class="col-sm-2 control-label">제목</label>
-				<div class="col-sm-6">
+				<label for="inputEmail3" class="col-sm-1 control-label">제목</label>
+				<div class="col-sm-9">
 					<input type="text" class="form-control" name="title" id="title"
 						placeholder="제목" value="<c:out value='${board.title }' />">
 				</div>
 				<div class="col-sm-2">
-					<select name="category" id="category" class="form-control input-sm" >
+					<select name="category" id="category" class="form-control input-sm" style="width: 145px;" >
 						<option selected disabled hidden>==선택하세요==</option>
-						<option class="opt" value="10">공지</option>
-						<option class="opt" value="20">질답카테고리01</option>
-						<option class="opt" value="20">질답카테고리02</option>
-						<option class="opt" value="20">질답카테고리03</option>
-						<option class="opt" value="20">질답카테고리04</option>
+						<c:choose>
+							<c:when test="${search.searchDiv==10}">
+								<option class="opt" value="10" selected="selected">공지</option>
+							</c:when>
+							<c:when test="${search.searchDiv==20}">
+								<option class="opt" value="20">질답카테고리01</option>
+								<option class="opt" value="20">질답카테고리02</option>
+								<option class="opt" value="20">질답카테고리03</option>
+								<option class="opt" value="20">질답카테고리04</option>
+							</c:when>
+						</c:choose>
 	     			</select>
 				</div>	
 			</div>		
-			
 			<div class="form-group">
-				<label for="inputEmail3" class="col-sm-2 control-label">내용</label>
-				<div class="col-sm-8">
-					<textarea class="form-control" name="contents" id="contents"
-						rows="7" placeholder="내용"><c:out
-							value="${board.contents }" /></textarea>
-				</div>
-			</div>
-			<div class="form-group">
+				<textarea name="summernote" id="summernote"><c:out value="${board.contents }" /></textarea>
+			</div>	
+			<div class="form-group" style="display: none;">
 				<label for="inputEmail3" class="col-sm-2 control-label">등록자
 					아이디</label>
 				<div class="col-sm-8">
@@ -107,7 +122,7 @@ ${search }
 		</form>
 			<!-- Button Area -->
 		<div class="row">
-			<div class="col-lg-10 col-sm-10 col-xs-10">
+			<div class="col-lg-12 col-sm-12 col-xs-12">
 				<div class="text-right">
 					<button type="button" class="btn btn-default btn-sm"
 						id="doRetrieve">목록</button>
@@ -116,11 +131,12 @@ ${search }
 					<button type="button" class="btn btn-default btn-sm" id="doUpdate">수정</button>
 					<button type="button" class="btn btn-default btn-sm" id="doDelete">삭제</button>
 				</div>
+				<br/><br/>
 			</div>
 		</div>
 		<div class="col-lg-10"></div>
 	</div>
-	
+	<%-- <jsp:include page="/main/footer.jsp"></jsp:include> --%>
 
 	
 	<!--// div container -->
@@ -131,10 +147,35 @@ ${search }
 	<script src="${context}/resources/js/jquery.validate.js"></script>
 	<!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
 	<script src="${context}/resources/js/bootstrap.min.js"></script>
+	<!-- include summernote css/js-->
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 
 
 	<script type="text/javascript">
 	
+		//이미지 추가
+		function uploadImage(image) {
+        var data = new FormData();
+        data.append("image", image);
+        $.ajax({
+            type: "post",
+            cache: false,
+            contentType:false,
+            processData: false,
+            dataType :'jsonp',
+            url: '${context}board/do_save_img.do',
+            data: data,
+            success: function(data) {
+                var image = $('<img>').attr('src', 'C:\Users\sist\git\RedBull3\RedBull\src\main\webapp\board\noimage.jpg');
+                $('#summernote').summernote("insertNode", image[0]);
+            },
+            error: function(data) {
+                alert('error : ' +data);
+            }
+          });
+       }
+		
 		//목록
 		$("#doRetrieve").on("click", function() {
 			if (confirm("목록으로 이동 하시겠습니까?") == false)return;
@@ -173,15 +214,15 @@ ${search }
 			if($("#boardEditFrm").valid()==false)return;
 			
 			if (confirm("등록 하시겠습니까?") == false)
-				return;
+				return; 
 			
-			$.ajax({
+			 $.ajax({
 				type : "POST",
 				url : "${context}/board/do_save.do",
 				dataType : "html",
 				data : {
 					"title" : $("#title").val(),
-					"contents" : $("#contents").val(),
+					"contents" : $("#summernote").val(),
 					"tNum":tNum,
 					"category" : category,
 					"regId" : $("#regId").val()
@@ -230,7 +271,7 @@ ${search }
 				data : {
 					"bNum":$("#bNum").val(),
 					"title" : $("#title").val(),
-					"contents" : $("#contents").val(),
+					"contents" : $("#summernote").val(),
 					"tNum":tNum,
 					"category" : category,
 					"regId" : $("#regId").val()
@@ -259,22 +300,22 @@ ${search }
 		//삭제:submit->
 		$("#doDelete").on("click", function() {
 			//validation
-			console.log("boardId:" + $("#boardId").val());
+			console.log("bNum:" + $("#bNum").val());
 			if (confirm("삭제 하시겠습니까?") == false)
 				return;
 
 			$.ajax({
-				type : "POST",
+				type : "GET",
 				url : "${context}/board/do_delete.do",
 				dataType : "html",
 				data : {
-					"boardId" : $("#boardId").val()
+					"bNum" : $("#bNum").val()
 				},
 				success : function(data) {
 					var jData = JSON.parse(data);
 					if (null != jData && jData.msgId == "1") {
 						alert(jData.msgMsg);
-						location.href = "${context}/board/get_retrieve.do";
+						location.href = "${context}/board/get_retrieve.do?searchDiv=20";
 
 					} else {
 						alert(jData.msgId + "|" + jData.msgMsg);
@@ -348,11 +389,26 @@ ${search }
 				     }
 				}
 
-			});			
+			});		
 			
-			
-			
+			 $('#summernote').summernote({
+				 height: 300,   //set editable area's height
+	               callbacks: {
+	                       onImageUpload: function(image) {
+	                        uploadImage(image[0]);
+	                       }
+	               },
+	               lang : 'ko-KR',
+	               placeholder: '이제 본문에 #을 이용한 태그 입력도 가능해요! URL을 통해, 사진 및 youtube를 등록할 수도 있어요!',
+	               codemirror: { // codemirror options
+	               theme: 'monokai'
+	              }
+	     	 });
+			 
 		});
+		
+		jQuery.validator.setDefaults({ ignore: ":hidden:not(#summernote),.note-editable.panel-body"});
+		
 	</script>
 </body>
 </html>
