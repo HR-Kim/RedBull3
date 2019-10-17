@@ -1,6 +1,7 @@
 package kr.co.redbull.user.web;
 
 import java.io.File;
+import java.util.Collection;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -149,6 +150,7 @@ public class UserController {
 //			localeResolver.setLocale(request, response, locale);
 			
 			session.setAttribute("user", outVO);
+			session.setAttribute("rid", outVO.getRid());
 			
 //			return "main/main"; // 메인 화면 던지기 
 //			return "redirect:/main/main.jsp"; // sendredirect와 같은 개념
@@ -243,7 +245,7 @@ public class UserController {
 		
 	}//--do_delete
 	
-	/**단건 조회*/
+	/**단건 조회*: 비밀번호 찾기용*/
 	@RequestMapping(value="user/get_selectOne.do", method = RequestMethod.GET ,produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String get_selectOne(User user, Model model) {
@@ -269,6 +271,58 @@ public class UserController {
 		return json;
 		
 	}//--get_selectOne
+	
+	//------testing---------------------------------------------------------------------------
+	
+//	/**업데이트 화면 던지기*/
+//	@RequestMapping(value="user/get_updateForm.do", method = RequestMethod.GET)
+//	public String get_selectOneUpdate(HttpSession session, Model model) {
+//		
+//		String rid = (String) session.getAttribute("rid");
+//		
+//		
+//		LOG.debug("============================");
+//		LOG.debug("=@@@@@@@@@@@@@@@@@@@@@@Controller user=" + rid);
+//		LOG.debug("============================");
+//		
+////		if(null == user.getRid() || "".equals(user.getRid())) {
+////			
+////			throw new IllegalArgumentException("id를 입력하시오.");
+////		}
+//		
+//		// 조회결과를 변수에 담고 모델에 set함
+////		User outVO = (User) userService.get_selectOne(user);
+////		LOG.debug("============================");
+////		LOG.debug("%%%%%%%%%%%%%%%%%%Controller outVO=" + outVO);
+////		LOG.debug("============================");
+//		model.addAttribute("vo", rid);
+//				
+//		// 업데이트 화면을 던짐
+//		return VIEW_UPDATE_NM;
+//		
+//	}//--get_selectOne
+	
+	/**업데이트 화면 던지기*/
+	@RequestMapping(value="user/get_updateForm.do", method = RequestMethod.GET)
+	public ModelAndView get_selectOneUpdate(HttpSession session) {
+		
+		String rid = (String) session.getAttribute("rid");
+		User outUser = (User) session.getAttribute("user");
+		
+		LOG.debug("============================");
+		LOG.debug("=@@@@@@@@@@@@@@@@@@@@@@Controller outUser=" + outUser);
+		LOG.debug("============================");
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("user", outUser);
+		mav.setViewName(VIEW_UPDATE_NM);
+		
+		return mav;
+		
+	}//--get_selectOne
+	
+	
+	//---testing---------------------------------------------------------------------------------
 	
 	/**등록*/
 	@RequestMapping(value="user/do_save.do", method = RequestMethod.POST ,produces = "application/json; charset=UTF-8")
@@ -347,7 +401,7 @@ public class UserController {
 	/**수정*/
 	@RequestMapping(value="user/do_update.do", method = RequestMethod.GET ,produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public String do_update(User user) {
+	public String do_update(HttpSession session, User user) {
 		
 		LOG.debug("1============================");
 		LOG.debug("1=@Controller user=" + user);
@@ -404,6 +458,8 @@ public class UserController {
 			message.setMsgId(flag+"");
 			message.setMsgMsg(user.getRid() + "님 수정실패");
 		}
+		
+		session.invalidate();
 		
 		// JSON
 		Gson gson = new Gson();

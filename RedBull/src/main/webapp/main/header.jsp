@@ -1,3 +1,4 @@
+<%@page import="kr.co.redbull.user.service.UserService"%>
 <%@page import="kr.co.redbull.user.service.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -127,7 +128,7 @@
                   </li>
                   
                   <li class="nav-item">
-                    <a class="nav-link" id="userUpdateBtn">임시 회원수정</a>
+                    <a class="nav-link" href="#" id="userUpdateBtn">임시 회원수정</a>
                   </li>
                   
                 </ul>
@@ -158,7 +159,7 @@
                   </c:choose>
 
                   <li class="nav-item">
-                    <a href="${context}/good/get_myGoodList.do" class="icons"> <!-- 마이페이지/로그인 -->
+                    <a href="${context}/good/get_myGoodList.do" class="icons"> <!-- 마이페이지/로그인(인터셉터) -->
                       <i class="ti-user" aria-hidden="true"></i>
                     </a>
                   </li>
@@ -213,22 +214,60 @@
 
 		});
 		
+		//-----------------------------------------------------------------
+		
 		// 회원정보수정 버튼 클릭: 회원 단건조회
 		$("#userUpdateBtn").on("click", function() {
-	
-			var user = '<%=session.getAttribute("user")%>'
 
-			alert(user);
+			var rid = '<%=session.getAttribute("rid")%>'
+			alert(rid);
 			
-			location.href="${context}/user/get_selectone_view.do"; 
+ 			//ajax
+			$.ajax({
+				type : "GET",
+				url : "${context}/user/get_selectOne.do",
+				dataType : "html",
+				data : {
+					"rid" : rid
+				},
+				success : function(data) {
+					
+					//var jData = JSON.parse(data); // String 데이터를 json으로 파싱
+					
+					if(null != data) { // 데이터가 있으먼
+
+						location.href="${context}/user/get_updateForm.do"; 
+	
+					}
+					else {
+						
+						location.href="${context}/main/main.do";
+					}
+				},
+				complete : function(data) { 
+
+				},
+				error : function(xhr, status, error) {
+					alert("error:" + error);
+				}
+			});
+			//--ajax  
+			
+/* 			user.action = "${context}/user/get_selectOneUpdate.do";
+			
+			user.submit(); */
+			
+/* 			user.submit();
+			
+			location.href="${context}/user/get_selectOne.do"; 
 			
 			
  			$.ajax({
 	            type:"POST",
-	            url:"${context}/user/get_select_one.do",
+	            url:"${context}/user/get_selectOne.do",
 	            dataType:"html",// JSON
 	            data:{
-	            	"rid": rid
+	            	"rid": user.rid
 	            },
 	            success: function(data){//통신이 성공적으로 이루어 졌을때 받을 함수
 	             	console.log(data); // 선택한 데이터 전체 출력
@@ -248,7 +287,7 @@
 	            	$("#lvl").val(parseData.lvl);
 	            	$("#upoint").val(parseData.upoint);
 	            	
-	            	$("#u_id").prop("disabled", true);
+	            	$("#rid").prop("disabled", true);
 	            		
 	            },
 	            
@@ -260,7 +299,7 @@
 	             
 	            }
             
-        	}); 
+        	});  */
 
 		});
 		

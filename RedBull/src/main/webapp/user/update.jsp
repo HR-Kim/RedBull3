@@ -40,29 +40,29 @@
                 
                 <div class="signup-form">
                 
-                    <form method="POST" class="register-form" id="register-form">
+                    <form method="GET" class="register-form" id="register-form">
                         <div class="form-row">
                         
                             <div class="form-group">
                                 <div class="form-input">
                                     <label for="rid" class="required">아이디</label>
-                                    <input type="text" name="rid" id="rid" placeholder="이메일주소 " maxlength="320"/>
+                                    <input type="text" name="rid" id="rid" placeholder="이메일주소 " maxlength="320" value="${user.rid}" disabled="disabled"/>
                                 </div>
                                 <div class="form-input">
                                     <label for="passwd" class="required">비밀번호</label>
-                                    <input type="password" name="passwd" id="passwd" placeholder="20자 이하 영문 대소문자/숫자" maxlength="20"/>
+                                    <input type="password" name="passwd" id="passwd" placeholder="20자 이하 영문 대소문자/숫자" maxlength="20" value="${user.passwd}"/>
                                 </div>
                                 <div class="form-input">
                                     <label for="passwdchk" class="required">비밀번호 확인</label>
-                                    <input type="password" name="passwdchk" id="passwdchk" placeholder="비밀번호 확인 " maxlength="20"/>
+                                    <input type="password" name="passwdchk" id="passwdchk" placeholder="비밀번호 확인 " maxlength="20" value="${user.passwd}"/>
                                 </div>
                                 <div class="form-input">
                                     <label for="uname" class="required">이름</label>
-                                    <input type="text" name="uname" id="uname" placeholder="이름 " maxlength="17"/>
+                                    <input type="text" name="uname" id="uname" placeholder="이름 " maxlength="17" value="${user.uname}"/>
                                 </div>
                                 <div class="form-input">
                                     <label for="birth" class="required">생년월일</label>
-                                    <input type="text" name="birth" id="birth" placeholder="YYYY-MM-DD" maxlength="10"/>
+                                    <input type="text" name="birth" id="birth" placeholder="YYYY-MM-DD" maxlength="10" value="${user.birth}"/>
                                 </div>
                                 
                             </div>
@@ -70,7 +70,7 @@
                             <div class="form-group">
                                 <div class="form-input">
                                     <label for="phone" class="required">휴대폰 번호</label>
-                                    <input type="text" name="phone" id="phone" placeholder="010-1111-1111" maxlength="13"/>
+                                    <input type="text" name="phone" id="phone" placeholder="010-1111-1111" maxlength="13" value="${user.phone}"/>
                                 </div>
 <!--                                 <div class="form-input">
                                     <label for="phone_number" class="required">우편 번호</label>
@@ -86,7 +86,7 @@
                                 </div> -->
                                 <div class="form-input">
                                     <label for="postnum" class="required" readonly="readonly" >우편번호</label>
-                                    <input class="form-control" style="width: 50%; height: 50px; display: inline;" type="text" name="postnum" id="postnum" placeholder="우편번호" maxlength="5"/>
+                                    <input class="form-control" style="width: 50%; height: 50px; display: inline;" type="text" name="postnum" id="postnum" placeholder="우편번호" maxlength="5" value="${user.postnum}"/>
                                     <button type="button" 
                                     style="height:45px; width:130px; font-family: 'Poppins'; font-weight: bold; 
                                     padding: 5px; border: none; border-radius: 5px" 
@@ -94,19 +94,19 @@
                                 </div>
                                 <div class="form-input">
                                     <label for="address" class="required" readonly="readonly" >주소</label>
-                                    <input type="text" name="address" id="address" placeholder="주소"/>
+                                    <input type="text" name="address" id="address" placeholder="주소" value="${user.address}"/>
                                 </div>
                                 <div class="form-input">
                                     <label for="detadd" >상세 주소</label>
-                                    <input type="text" name="detadd" id="detadd" placeholder="상세 주소" maxlength="100"/>
+                                    <input type="text" name="detadd" id="detadd" placeholder="상세 주소" maxlength="100" value="${user.detadd}"/>
                                 </div>
                                 
                                 <!-- hidden values -->
                                 <div class="form-input">
-                                    <input type="hidden" name="lvl" id="lvl" placeholder="레벨" />
+                                    <input type="hidden" name="lvl" id="lvl" placeholder="레벨" value="${user.lvl}"/>
                                 </div>
                                 <div class="form-input">
-                                    <input type="hidden" name="upoint" id="upoint" placeholder="포인트" />
+                                    <input type="hidden" name="upoint" id="upoint" placeholder="포인트" value="${user.upoint}"/>
                                 </div>
                                 
                             </div>
@@ -210,9 +210,9 @@
 	            	"phone": $("#phone").val(),
 	            	"postnum": $("#postnum").val(),
 	            	"address": $("#address").val(),
-	            	"detadd": $("#detadd").val()
-/* 	            	"lvl": $("#lvl").val(),
-	            	"upoint": $("#upoint").val() */
+	            	"detadd": $("#detadd").val(),
+	            	"lvl": user.lvl,
+	            	"upoint": user.upoint
 	            },
 	            success: function(data){//통신이 성공적으로 이루어 졌을때 받을 함수
 	            	

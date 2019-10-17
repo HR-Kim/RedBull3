@@ -48,6 +48,9 @@
                                     <input type="text" name="rid" id="rid" placeholder="이메일주소 " maxlength="320"/>
                                 </div>
                                 <div class="form-input">
+                                    <div id="id_check"></div>
+                                </div>
+                                <div class="form-input">
                                     <label for="passwd" class="required">비밀번호</label>
                                     <input type="password" name="passwd" id="passwd" placeholder="20자 이하 영문 대소문자/숫자" maxlength="20"/>
                                 </div>
@@ -248,6 +251,7 @@
 			$("#detadd").val("");
 		
 		});
+				
 
     </script>
     
