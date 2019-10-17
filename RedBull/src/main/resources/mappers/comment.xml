@@ -20,7 +20,11 @@
 	
 	<!-- 삭제  -->
 	<delete id="do_delete" parameterType="Comment">
-		DELETE FROM COMMENTS WHERE CNUM = #{cNum, jdbcType=NUMERIC}
+		UPDATE COMMENTS
+			SET CONTENTS = '삭제된 댓글입니다.',
+				MODID = #{modId, jdbcType=VARCHAR},
+				MODDT = SYSDATE
+		WHERE CNUM = #{cNum, jdbcType=NUMERIC}
 	</delete>
 	
 	<!-- 등록  -->
@@ -92,7 +96,7 @@
 	(SELECT COUNT(*) AS totalCnt
 	 FROM (SELECT * FROM COMMENTS
 	 	   WHERE REFNUM = TO_NUMBER(#{searchWord, jdbcType=NUMERIC})
-	      ))T2
+	 ))T2
 	</select> 
 
 </mapper>

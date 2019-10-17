@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <c:set var="context" value="${pageContext.request.contextPath }" />   
 
 <html lang="ko">
@@ -100,6 +101,7 @@
                                     <input type="text" name="detadd" id="detadd" placeholder="상세 주소" maxlength="100"/>
                                 </div>
                                 
+                                <!-- hidden values -->
                                 <div class="form-input">
                                     <input type="hidden" name="lvl" id="lvl" placeholder="레벨" />
                                 </div>
@@ -197,7 +199,7 @@
 			if(confirm("수정하시겠습니까?") == false) return;
 			
 	        $.ajax({
-	            type:"POST",
+	            type:"GET",
 	            url:"${context}/user/do_update.do",
 	            dataType:"html",// JSON
 	            data:{

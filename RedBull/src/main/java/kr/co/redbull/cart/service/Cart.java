@@ -1,10 +1,11 @@
 package kr.co.redbull.cart.service;
 
 import kr.co.redbull.cmn.DTO;
+import kr.co.redbull.product.service.Product;
 
-public class Cart extends DTO {
+public class Cart extends Product {
 	private int cartNum    ;//장바구니번호
-	private int oNum       ;//옵션번호
+	private String pNum       ;//상품번호
 	private int cartCnt    ;//수량
 	private String regId   ;//등록자
 	
@@ -12,10 +13,10 @@ public class Cart extends DTO {
 	public Cart() {}
 
 
-	public Cart(int cartNum, int oNum, int cartCnt, String regId) {
+	public Cart(int cartNum, String pNum, int cartCnt, String regId) {
 		super();
 		this.cartNum = cartNum;
-		this.oNum = oNum;
+		this.pNum = pNum;
 		this.cartCnt = cartCnt;
 		this.regId = regId;
 	}
@@ -31,13 +32,13 @@ public class Cart extends DTO {
 	}
 
 
-	public int getoNum() {
-		return oNum;
+	public String getpNum() {
+		return pNum;
 	}
 
 
-	public void setoNum(int oNum) {
-		this.oNum = oNum;
+	public void setpNum(String pNum) {
+		this.pNum = pNum;
 	}
 
 
@@ -63,8 +64,8 @@ public class Cart extends DTO {
 
 	@Override
 	public String toString() {
-		return "Cart [cartNum=" + cartNum + ", oNum=" + oNum + ", cartCnt=" + cartCnt + ", regId=" + regId
+		return "Cart [cartNum=" + cartNum + ", pNum=" + pNum + ", cartCnt=" + cartCnt + ", regId=" + regId
 				+ ", toString()=" + super.toString() + "]";
 	}
-
+	
 }

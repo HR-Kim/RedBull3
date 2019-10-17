@@ -32,6 +32,16 @@
 	
 	<context:component-scan base-package="kr.co.redbull" />
 	
+	<!-- LoginInterceptor 구현체 -->
+	<beans:bean id="loginInterceptor" class="kr.co.redbull.cmn.web.LoginInterceptor" />
 	
+	<!-- interceptor -->
+	<interceptors>
+		<!-- LoginInterceptor -->
+		<interceptor>
+			<mapping path="/good/**"/> <!-- 마이페이지 인터셉트 -->
+			<beans:ref bean="loginInterceptor" />
+		</interceptor>
+	</interceptors>
 	
 </beans:beans>

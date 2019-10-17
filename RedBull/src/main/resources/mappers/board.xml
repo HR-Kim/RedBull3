@@ -87,8 +87,20 @@
 	
 	<!-- 단건조회 -->
 	<select id="get_selectOne" parameterType="Board" resultType="Board">
-		SELECT * FROM BOARD
-		WHERE BNUM = #{bNum, jdbcType=VARCHAR}
+	SELECT BNUM AS bNum,
+	           TITLE,
+	           CONTENTS,
+	           READCNT AS readCnt,
+	           TNUM AS tNum,
+	           CATEGORY,
+	           REGID AS regId,
+	           CASE TO_CHAR(REGDT, 'yyyy.mm.dd') WHEN TO_CHAR(SYSDATE, 'yyyy.mm.dd') THEN TO_CHAR(REGDT, 'HH24:MI')
+			   ELSE TO_CHAR(REGDT, 'yyyy.mm.dd') END as regDt,
+	           MODID AS modId,
+	           MODDT AS modDt,
+	           (SELECT COUNT(*) AS commentCnt FROM COMMENTS WHERE REFNUM = #{bNum, jdbcType=VARCHAR}) as commentCnt
+	FROM BOARD
+	WHERE BNUM = #{bNum, jdbcType=VARCHAR}
 	</select>
 	
 	<!-- 목록조회  -->
@@ -108,16 +120,20 @@
 	             B.rnum AS num,
 	             B.commentCnt
       	  FROM (SELECT ROWNUM AS rnum, A.*
-            	FROM(SELECT bb.*, (SELECT COUNT(*) FROM COMMENTS WHERE A.BNUM=COMMENTS.REFNUM ) as commentCnt FROM BOARD bb
-                 	 <include refid="searchCondition" />
-                 	 ORDER BY REGDT DESC) A
-            	WHERE ROWNUM <![CDATA[<]]>= (#{pageSize, jdbcType=NUMERIC} * (#{pageNum, jdbcType=NUMERIC} -1) + #{pageSize, jdbcType=NUMERIC}))B
+            	FROM(SELECT D.*, C.commentCnt 
+            		 FROM BOARD D 
+            		 LEFT OUTER JOIN 
+            		 (SELECT REFNUM, COUNT(*) AS commentCnt FROM COMMENTS GROUP BY REFNUM)C 
+            		 ON D.BNUM = C.REFNUM
+                	<include refid="searchCondition" />
+             		ORDER BY REGDT DESC) A
+            	WHERE ROWNUM  <![CDATA[<]]>= (#{pageSize, jdbcType=NUMERIC} * (#{pageNum, jdbcType=NUMERIC} -1) + #{pageSize, jdbcType=NUMERIC}))B
       	  WHERE B.rnum <![CDATA[>]]>= (#{pageSize, jdbcType=NUMERIC} * (#{pageNum, jdbcType=NUMERIC} -1)+1)) T1
 	CROSS JOIN
 	(SELECT COUNT(*) AS totalCnt
 	 FROM (SELECT * FROM BOARD
-	       <include refid="searchCondition" />
-	      ))T2
+ 		  <include refid="searchCondition" />
+	 ))T2
 	</select>
 
 </mapper>

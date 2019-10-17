@@ -25,7 +25,6 @@
   */
 --%>
 <%
-
 	pageContext.setAttribute("cn", "\n"); //Enter
 	pageContext.setAttribute("br", "<br/>"); //br 태그
 
@@ -79,6 +78,10 @@
 	  text-overflow: ellipsis;
 	  white-space: nowrap;
 	  height: 100px;
+  }
+  .title:hover{
+  	cursor: pointer;
+  	text-decoration: underline;
   }
   </style>
     <meta charset="utf-8">
@@ -141,7 +144,7 @@
 			    	<table class="table table-bordered table-sm">  
 						<tr class="post">
 							<td style="display:none;">${vo.bNum}</td>
-							<td colspan="5" style="cursor:pointer;"><b>${vo.title} </b></td>
+							<td colspan="5" class="title"><b>${vo.title} </b></td>
 							<td class="text-left col-md-1 col-xs-1" rowspan="3"><img src="${context}/board/noimage.jpg" class="img-thumbnail">
 </td>
 						</tr>
@@ -155,7 +158,15 @@
 						<tr>
 							<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">글쓴이 ${vo.regId}</td>
 							<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">${vo.regDt}</td>
-							<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">댓글 ${vo.commentCnt}개</td>	
+							<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">댓글
+							<c:choose>
+								<c:when test="${empty vo.commentCnt}"> 
+									<c:out value="0"/>
+								</c:when>
+								<c:otherwise>
+									<c:out value="${vo.commentCnt}"></c:out>
+								</c:otherwise>
+							</c:choose>개</td>	
 							<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">조회수 ${vo.readCnt}</td>	
 							<td class="text-left col-md-1 col-xs-1" style="font-size: 9pt;">카테고리 ${vo.category}</td>						
 						</tr>

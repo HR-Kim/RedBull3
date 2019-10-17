@@ -89,14 +89,14 @@
 	
 	<div id="question" class="tabcontent">
 	  <h3>질문</h3>
-	</div>
+	</div>	
 	
 	<div id="answer" class="tabcontent">
 	  <h3>답변</h3>
 	</div>
     
     <script>
-    function openPage(evt, pageName) {
+    function openCity(evt, cityName) {
     	  // Declare all variables
     	  var i, tabcontent, tablinks;
 
@@ -109,13 +109,13 @@
     	  // Get all elements with class="tablinks" and remove the class "active"
     	  tablinks = document.getElementsByClassName("tablinks");
     	  for (i = 0; i < tablinks.length; i++) {
-    	    tablinks[i].className = tablinks[i].className.replace("active", "");
+    	    tablinks[i].className = tablinks[i].className.replace(" active", "");
     	  }
 
     	  // Show the current tab, and add an "active" class to the button that opened the tab
-    	  document.getElementById(pageName).style.display = "block";
+    	  document.getElementById(cityName).style.display = "block";
     	  evt.currentTarget.className += " active";
-    	}
+    }
     </script>
 </body>
 </html>
