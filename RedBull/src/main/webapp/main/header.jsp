@@ -159,7 +159,7 @@
                   </c:choose>
 
                   <li class="nav-item">
-                    <a href="${context}/good/get_myGoodList.do" class="icons"> <!-- 마이페이지/로그인(인터셉터) -->
+                    <a href="${context}/mypage/get_retrieve.do" class="icons"> <!-- 마이페이지/로그인(인터셉터) -->
                       <i class="ti-user" aria-hidden="true"></i>
                     </a>
                   </li>
