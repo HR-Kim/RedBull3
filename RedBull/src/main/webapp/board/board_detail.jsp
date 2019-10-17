@@ -59,6 +59,27 @@
     <link href="${context}/resources/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+	<jsp:include page="/main/header.jsp"></jsp:include>
+
+    <!--================Home Banner Area =================-->
+	<section class="banner_area">
+		<div class="banner_inner d-flex align-items-center">
+			<div class="container">
+				<div
+					class="banner_content d-md-flex justify-content-between align-items-center">
+					<div class="mb-3 mb-md-0">
+						<h2>
+							<c:choose>
+								<c:when test="${vo.tNum==10}">공지사항</c:when>
+								<c:when test="${vo.tNum==20}">질문과 답변</c:when>
+							</c:choose>
+						</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================End Home Banner Area =================-->
 ${vo }
 	<form name="pagingForm" id="pagingForm">
 		<input type="hidden" id="pageNum" name="pageNum"/>
@@ -219,7 +240,7 @@ ${vo }
 		<!-- 댓글입력 폼 -->
 		</table>
 		</div>
-		
+	<jsp:include page="/main/footer.jsp"></jsp:include>	
 	<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
 	<script src="${context}/resources/js/jquery-1.12.4.js"></script>
 	<!-- jQuery validate -->
