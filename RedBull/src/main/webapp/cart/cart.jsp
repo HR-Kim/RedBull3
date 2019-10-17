@@ -234,130 +234,99 @@
       <div class="container">
         <div class="cart_inner">
           <div class="table-responsive">
-            <table class="table">
+            <table class="table table-striped table-bordered table-hover">
               <thead>
                 <tr>
-                  <th scope="col">제품</th>
-                  <th scope="col">가격</th>
-                  <th scope="col">수량</th>
-                  <th scope="col">배송비</th>
-                  <th scope="col">Total</th>
+			         <th class="text-center col-md-1 col-xs-1">
+					 전체선택<input type="checkbox" id="checkAll" name="checkAll"></th>
+			         <th class="text-center col-md-4 col-xs-4 ">상품</th>
+			         <th class="text-center col-md-1 col-xs-1">상품가격</th>
+			         <th class="text-center col-md-1 col-xs-1">할인 가격</th>
+			         <th class="text-center col-md-1 col-xs-1">수량</th>
+			         <th class="text-center col-md-1 col-xs-1">배송비</th>
+			         <th class="text-center col-md-1 col-xs-1">최종 가격</th>
                 </tr>
               </thead>
+              
               <tbody>
-                <tr>
-                  <td>
-                    <div class="media">
-                      <div class="d-flex">
-                        <img
-                          src="img/product/single-product/cart-1.jpg"
-                          alt=""
-                        />
-                      </div>
-                      <div class="media-body">
-                        <p>Minimalistic shop for multipurpose use</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <h5></h5>
-                  </td>
-                  <td>
-                    <div class="product_count">
-                      <input
-                        type="text"
-                        name="qty"
-                        id="sst"
-                        maxlength="12"
-                        value="1"
-                        title="Quantity:"
-                        class="input-text qty"
-                      />
-                      <button
-                        onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                        class="increase items-count"
-                        type="button"
-                      >
-                        <i class="lnr lnr-chevron-up"></i>
-                      </button>
-                      <button
-                        onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                        class="reduced items-count"
-                        type="button"
-                      >
-                        <i class="lnr lnr-chevron-down"></i>
-                      </button>
-                    </div>
-                  </td>
-                  <td>
-                    <h5></h5>
-                  </td>
-                </tr>
-                 		<c:choose>
-        	<c:when test="${list.size()>0 }">
-                <c:forEach var="cart" items="${list}">
-                <tr>
-                  <td>
-                    <div class="media">
-                      <div class="d-flex">
-                        <img
-                          src="img/product/single-product/cart-1.jpg"
-                          alt=""
-                        />
-                      </div>
-                      <div class="media-body">
-                        <p>Minimalistic shop for multipurpose use</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                  <c:out value="${cart.bPrice}"/>
-                  </td>
-                  <td>
-                    <div class="product_count">
-                      <input
-                        type="text"
-                        name="qty"
-                        id="sst"
-                        maxlength="12"
-                        value="1"
-                        title="Quantity:"
-                        class="input-text qty"
-                      />
-                      <button
-                        onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                        class="increase items-count"
-                        type="button"
-                      >
-                        <i class="lnr lnr-chevron-up"></i>
-                      </button>
-                       <button
-                        onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                        class="reduced items-count"
-                        type="button"
-                      >
-                        <i class="lnr lnr-chevron-down"></i>
-                      </button>
-                    </div>
-                  </td>
-                  <td>
-                    <h5>$720.00</h5>
-                  </td>
-                </tr>
-                				</c:forEach> 
-		    </c:when>
+               <c:choose>
+	        	<c:when test="${list.size()>0 }">
+	                <c:forEach var="cart" items="${list}">
+	                <tr>
+	                <td class="text-center">
+	                <input type="checkbox" name="check" id="check">
+	                </td>
+	                  <td>
+	                    <div class="media">
+	                      <div class="media-left">
+	                        <img
+	                          src="${context}/${cart.saveFileNm}"
+	                          class="media-object"
+	                          style="width: 80px"
+	                          alt=""
+	                        />
+	                      </div>
+	                      <div class="media-body">
+	                     	 <c:out value="${cart.pName}"/>
+	                      </div>
+	                    </div>
+	                  </td>
+	                  <td class="text-center">
+	                  <c:out value="${cart.bPrice * (1-cart.discount) + cart.oPrice}"/>
+	                  </td>
+	                  <td class="text-center">
+	                  <c:out value="${cart.bPrice*(1-cart.discount)}"/>
+	                  </td>
+	                  <td>
+	                    <div class="product_count">
+	                      <input
+	                        type="text"
+	                        name="qty"
+	                        id="sst"
+	                        maxlength="12"
+	                        value="1"
+	                        title="Quantity:"
+	                        class="input-text qty"
+	                      />
+	                      <button
+	                        onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+	                        class="increase items-count"
+	                        type="button"
+	                      >
+	                        <i class="lnr lnr-chevron-up"></i>
+	                      </button>
+	                       <button
+	                        onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+	                        class="reduced items-count"
+	                        type="button"
+	                      >
+	                        <i class="lnr lnr-chevron-down"></i>
+	                      </button>
+	                    </div>
+	                  </td>
+	                  <td class="text-center">
+	                    <c:out value="${cart.dPrice}"/>
+	                  </td>
+	                  <td class="text-center">
+	                   <c:out value="${cart.bPrice * (1-cart.discount) + cart.oPrice + cart.dPrice}"/>
+	                  </td>
+	                </tr>
+	            </c:forEach> 
+			    </c:when>
 		    <c:otherwise>
 		         	<tr>
 		         		<td class="text-center" colspan="99">장바구니가 비었습니다.</td>
 		         	</tr>
 		    </c:otherwise>
 		</c:choose>
-                  <td></td>
+	              <td></td>
                   <td></td>
                   <td></td>
                   <td></td>
                 </tr>
                 <tr>
+                  <td></td>
+                  <td></td>
                   <td></td>
                   <td></td>
                   <td>
@@ -396,101 +365,53 @@
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td>
-                    <div class="checkout_btn_inner">
-                      <input type="button" class="gray_btn" id="gray_btn" value="Continue Shopping" href="#" />
-                      <input type="button" class="main_btn" id="main_btn" value="Proceed to checkout" href="#" />
-                    </div>
-                    
-                  </td>
                 </tr>
               </tbody>
             </table>
+             <input type="button" id="do_delete" value="삭제하기"/>
+           	<td>
+                <div class="container">
+                	<input type="button" class="btn btn-Success" value="쇼핑하기"/>
+                	<input type="submit" class="btn btn-Success" value="결제하기"/>
+<!--                    <input type="button" class="gray_btn" id="gray_btn" value="Continue Shopping" href="#" />
+                  <input type="button" class="main_btn" id="main_btn" value="결제하기" href="#" /> -->
+                </div>
+             </td>
           </div>
         </div>
       </div>
     </section>
     <!--================End Cart Area =================-->
-
-    <!--================ start footer Area  =================-->
-    <footer class="footer-area section_gap">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-2 col-md-6 single-footer-widget">
-            <h4>Top Products</h4>
-            <ul>
-              <li><a href="#">Managed Website</a></li>
-              <li><a href="#">Manage Reputation</a></li>
-              <li><a href="#">Power Tools</a></li>
-              <li><a href="#">Marketing Service</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-2 col-md-6 single-footer-widget">
-            <h4>Quick Links</h4>
-            <ul>
-              <li><a href="#">Jobs</a></li>
-              <li><a href="#">Brand Assets</a></li>
-              <li><a href="#">Investor Relations</a></li>
-              <li><a href="#">Terms of Service</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-2 col-md-6 single-footer-widget">
-            <h4>Features</h4>
-            <ul>
-              <li><a href="#">Jobs</a></li>
-              <li><a href="#">Brand Assets</a></li>
-              <li><a href="#">Investor Relations</a></li>
-              <li><a href="#">Terms of Service</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-2 col-md-6 single-footer-widget">
-            <h4>Resources</h4>
-            <ul>
-              <li><a href="#">Guides</a></li>
-              <li><a href="#">Research</a></li>
-              <li><a href="#">Experts</a></li>
-              <li><a href="#">Agencies</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-4 col-md-6 single-footer-widget">
-            <h4>Newsletter</h4>
-            <p>You can trust us. we only send promo offers,</p>
-            <div class="form-wrap" id="mc_embed_signup">
-              <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                method="get" class="form-inline">
-                <input class="form-control" name="EMAIL" placeholder="Your Email Address" onfocus="this.placeholder = ''"
-                  onblur="this.placeholder = 'Your Email Address '" required="" type="email">
-                <button class="click-btn btn btn-default">Subscribe</button>
-                <div style="position: absolute; left: -5000px;">
-                  <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-                </div>
-  
-                <div class="info"></div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <div class="footer-bottom row align-items-center">
-          <p class="footer-text m-0 col-lg-8 col-md-12"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-          <div class="col-lg-4 col-md-12 footer-social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-dribbble"></i></a>
-            <a href="#"><i class="fa fa-behance"></i></a>
-          </div>
-        </div>
-      </div>
-    </footer>
-    <!--================ End footer Area  =================-->
-
-    <!-- Optional JavaScript -->
+        <!-- Optional JavaScript -->
     	<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
 	<script src="${context}/resources/js/jquery-1.12.4.js"></script>
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="${context}/resources/js/bootstrap.min.js"></script>
+      	<script type="text/javascript">
+       	$("#checkAll").click(function(){
+   			if($("#checkAll").is(':checked')==true){
+   				$("input[name='check']").prop("checked",true); //check
+   				
+   			}else{
+   				$("input[name='check']").prop("checked",false); //check해제
+   			}
+   			
+      	}); 
+       	
+       	$("#do_delete").on("click",function(){
+       		//alert("do_delete");
+       		console.log("cartNum:" + 4("#cartNum").val());
+       		if(confirm("삭제하시겠습니까?") == false) return;
+       	});
+       	
+      	</script>
+      	
+    <!--================ start footer Area  =================-->
+    	<jsp:include page="/main/footer.jsp"></jsp:include>
+    <!--================ End footer Area  =================-->
+    
+     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="${context}/resources/js/popper.js"></script>
-    <script src="${context}/resources/js/bootstrap.min.js"></script>
+
     <script src="${context}/resources/js/stellar.js"></script>
     <script src="${context}/resources/vendors/lightbox/simpleLightbox.min.js"></script>
     <script src="${context}/resources/vendors/nice-select/js/jquery.nice-select.min.js"></script>

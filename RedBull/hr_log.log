@@ -15759,3 +15759,905 @@ Expected: is <10>
 [2019-10-14 14:43:14.783] DEBUG SqlSessionUtils.registerSessionHolder(SqlSessionUtils.java:148) - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7badf1d9] was not registered for synchronization because synchronization is not active
 [2019-10-14 14:43:14.783] DEBUG SqlSessionUtils.closeSqlSession(SqlSessionUtils.java:191) - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7badf1d9]
 >>>>>>> branch 'master' of https://github.com/HR-Kim/RedBull3.git
+[2019-10-17 14:04:56.138] DEBUG SpringJUnit4ClassRunner.<init>(SpringJUnit4ClassRunner.java:140) - SpringJUnit4ClassRunner constructor called with [class kr.co.redbull.cart.CartWebTest]
+[2019-10-17 14:04:56.174] DEBUG BootstrapUtils.createCacheAwareContextLoaderDelegate(BootstrapUtils.java:95) - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+[2019-10-17 14:04:56.180] DEBUG BootstrapUtils.createBootstrapContext(BootstrapUtils.java:78) - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+[2019-10-17 14:04:56.189] DEBUG BootstrapUtils.resolveTestContextBootstrapper(BootstrapUtils.java:131) - Instantiating TestContextBootstrapper for test class [kr.co.redbull.cart.CartWebTest] from class [org.springframework.test.context.web.WebTestContextBootstrapper]
+[2019-10-17 14:04:56.206] DEBUG AbstractDelegatingSmartContextLoader.delegateProcessing(AbstractDelegatingSmartContextLoader.java:96) - Delegating to GenericXmlWebContextLoader to process context configuration [ContextConfigurationAttributes@153f5a29 declaringClass = 'kr.co.redbull.cart.CartWebTest', classes = '{}', locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', inheritLocations = true, initializers = '{}', inheritInitializers = true, name = [null], contextLoaderClass = 'org.springframework.test.context.ContextLoader'].
+[2019-10-17 14:04:56.218] DEBUG ActiveProfilesUtils.resolveActiveProfiles(ActiveProfilesUtils.java:78) - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [kr.co.redbull.cart.CartWebTest]
+[2019-10-17 14:04:56.219] DEBUG AbstractTestContextBootstrapper.getTestExecutionListeners(AbstractTestContextBootstrapper.java:132) - @TestExecutionListeners is not present for class [kr.co.redbull.cart.CartWebTest]: using defaults.
+[2019-10-17 14:04:56.220] INFO  AbstractTestContextBootstrapper.getDefaultTestExecutionListenerClassNames(AbstractTestContextBootstrapper.java:260) - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+[2019-10-17 14:04:56.230] INFO  AbstractTestContextBootstrapper.getTestExecutionListeners(AbstractTestContextBootstrapper.java:187) - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@57baeedf, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@343f4d3d, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@53b32d7, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5442a311, org.springframework.test.context.transaction.TransactionalTestExecutionListener@548e7350, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@1a968a59]
+[2019-10-17 14:04:56.232] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:68) - Retrieved @ProfileValueSourceConfiguration [null] for test class [kr.co.redbull.cart.CartWebTest]
+[2019-10-17 14:04:56.232] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:80) - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [kr.co.redbull.cart.CartWebTest]
+[2019-10-17 14:04:56.294] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:68) - Retrieved @ProfileValueSourceConfiguration [null] for test class [kr.co.redbull.cart.CartWebTest]
+[2019-10-17 14:04:56.294] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:80) - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [kr.co.redbull.cart.CartWebTest]
+[2019-10-17 14:04:56.296] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:68) - Retrieved @ProfileValueSourceConfiguration [null] for test class [kr.co.redbull.cart.CartWebTest]
+[2019-10-17 14:04:56.296] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:80) - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [kr.co.redbull.cart.CartWebTest]
+[2019-10-17 14:04:56.297] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:68) - Retrieved @ProfileValueSourceConfiguration [null] for test class [kr.co.redbull.cart.CartWebTest]
+[2019-10-17 14:04:56.297] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:80) - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [kr.co.redbull.cart.CartWebTest]
+[2019-10-17 14:04:56.299] DEBUG AbstractDirtiesContextTestExecutionListener.beforeOrAfterTestClass(AbstractDirtiesContextTestExecutionListener.java:141) - Before test class: context [DefaultTestContext@13805618 testClass = CartWebTest, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]], class annotated with @DirtiesContext [false] with mode [null].
+[2019-10-17 14:04:56.322] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:68) - Retrieved @ProfileValueSourceConfiguration [null] for test class [kr.co.redbull.cart.CartWebTest]
+[2019-10-17 14:04:56.322] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:80) - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [kr.co.redbull.cart.CartWebTest]
+[2019-10-17 14:04:56.324] DEBUG AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:106) - Delegating to GenericXmlWebContextLoader to load context from [WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]].
+[2019-10-17 14:04:56.324] DEBUG AbstractGenericWebContextLoader.loadContext(AbstractGenericWebContextLoader.java:116) - Loading WebApplicationContext for merged context configuration [WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]].
+[2019-10-17 14:04:56.373] INFO  XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317) - Loading XML bean definitions from file [C:\Users\sist\git\RedBull3\RedBull\src\main\webapp\WEB-INF\spring\appServlet\servlet-context.xml]
+[2019-10-17 14:04:57.062] INFO  XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317) - Loading XML bean definitions from file [C:\Users\sist\git\RedBull3\RedBull\src\main\webapp\WEB-INF\spring\root-context.xml]
+[2019-10-17 14:04:57.110] INFO  AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:583) - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@731a74c: startup date [Thu Oct 17 14:04:57 KST 2019]; root of context hierarchy
+[2019-10-17 14:04:57.265] INFO  AutowiredAnnotationBeanPostProcessor.<init>(AutowiredAnnotationBeanPostProcessor.java:155) - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2019-10-17 14:04:57.442] DEBUG UiApplicationContextUtils.initThemeSource(UiApplicationContextUtils.java:85) - Unable to locate ThemeSource with name 'themeSource': using default [org.springframework.ui.context.support.ResourceBundleThemeSource@6e950bcf]
+[2019-10-17 14:04:57.544] DEBUG LogFactory.setImplementation(LogFactory.java:135) - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+[2019-10-17 14:04:57.559] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/board/get_retrieve.do],methods=[GET]}" onto public java.lang.String kr.co.redbull.board.web.BoardController.get_retrieve(kr.co.redbull.cmn.Search,org.springframework.ui.Model,javax.servlet.http.HttpServletRequest)
+[2019-10-17 14:04:57.560] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/board/do_update.do],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.board.web.BoardController.do_update(kr.co.redbull.board.service.Board)
+[2019-10-17 14:04:57.561] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/board/get_selectOne.do],methods=[GET]}" onto public java.lang.String kr.co.redbull.board.web.BoardController.get_selectOne(kr.co.redbull.board.service.Board,org.springframework.ui.Model,kr.co.redbull.cmn.Search)
+[2019-10-17 14:04:57.561] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/board/do_delete.do],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.board.web.BoardController.do_delete(kr.co.redbull.board.service.Board)
+[2019-10-17 14:04:57.562] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/board/do_save.do],methods=[POST],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.board.web.BoardController.do_save(kr.co.redbull.board.service.Board)
+[2019-10-17 14:04:57.562] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/board/do_write.do]}" onto public java.lang.String kr.co.redbull.board.web.BoardController.do_write(kr.co.redbull.board.service.Board,kr.co.redbull.cmn.Search,org.springframework.ui.Model)
+[2019-10-17 14:04:57.563] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/cart/get_retrieve.do],methods=[GET]}" onto public java.lang.String kr.co.redbull.cart.web.CartController.get_retrieve(javax.servlet.http.HttpServletRequest,kr.co.redbull.cmn.Search,org.springframework.ui.Model)
+[2019-10-17 14:04:57.564] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/cart/do_update.do],methods=[POST],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.cart.web.CartController.do_update(kr.co.redbull.cart.service.Cart)
+[2019-10-17 14:04:57.564] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/cart/get_selectOne.do],methods=[GET]}" onto public java.lang.String kr.co.redbull.cart.web.CartController.get_selectOne(kr.co.redbull.cart.service.Cart,org.springframework.ui.Model)
+[2019-10-17 14:04:57.565] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/cart/do_delete.do],methods=[POST],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.cart.web.CartController.do_delete(kr.co.redbull.cart.service.Cart)
+[2019-10-17 14:04:57.565] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/cart/do_save.do],methods=[POST],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.cart.web.CartController.do_save(kr.co.redbull.cart.service.Cart)
+[2019-10-17 14:04:57.566] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/product/get_newList.do],methods=[GET]}" onto public java.lang.String kr.co.redbull.category.web.CategoryController.get_newList(kr.co.redbull.cmn.Search,org.springframework.ui.Model,javax.servlet.http.HttpServletRequest)
+[2019-10-17 14:04:57.567] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/product/get_rankList.do],methods=[GET]}" onto public java.lang.String kr.co.redbull.category.web.CategoryController.get_rankList(kr.co.redbull.cmn.Search,org.springframework.ui.Model,javax.servlet.http.HttpServletRequest)
+[2019-10-17 14:04:57.567] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/product/get_hotSaleList.do],methods=[GET]}" onto public java.lang.String kr.co.redbull.category.web.CategoryController.get_hotSaleList(kr.co.redbull.cmn.Search,org.springframework.ui.Model,javax.servlet.http.HttpServletRequest)
+[2019-10-17 14:04:57.570] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/comment/get_retrieve.do],methods=[GET]}" onto public java.lang.String kr.co.redbull.comment.web.CommentController.get_retrieve(kr.co.redbull.cmn.Search,org.springframework.ui.Model,javax.servlet.http.HttpServletRequest)
+[2019-10-17 14:04:57.571] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/comment/do_update.do],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.comment.web.CommentController.do_update(kr.co.redbull.comment.service.Comment)
+[2019-10-17 14:04:57.571] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/comment/do_delete.do],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.comment.web.CommentController.do_delete(kr.co.redbull.comment.service.Comment)
+[2019-10-17 14:04:57.572] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/comment/do_save.do],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.comment.web.CommentController.do_save(kr.co.redbull.comment.service.Comment)
+[2019-10-17 14:04:57.573] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/file/do_save.do],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView kr.co.redbull.file.service.impl.FileController.do_save(org.springframework.web.multipart.MultipartHttpServletRequest,org.springframework.web.servlet.ModelAndView) throws java.lang.IllegalStateException,java.io.IOException
+[2019-10-17 14:04:57.574] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/file/uploadfileview.do]}" onto public java.lang.String kr.co.redbull.file.service.impl.FileController.uploadFileView()
+[2019-10-17 14:04:57.574] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/file/download.do],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView kr.co.redbull.file.service.impl.FileController.download(javax.servlet.http.HttpServletRequest,org.springframework.web.servlet.ModelAndView)
+[2019-10-17 14:04:57.575] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/file/do_img_save],methods=[POST],consumes=[multipart/form-data]}" onto public org.springframework.web.servlet.ModelAndView kr.co.redbull.file.service.impl.FileController.do_img_save(org.springframework.web.multipart.MultipartHttpServletRequest,javax.servlet.http.HttpSession) throws java.lang.IllegalStateException,java.io.IOException
+[2019-10-17 14:04:57.575] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/],methods=[GET]}" onto public java.lang.String kr.co.redbull.HomeController.home(java.util.Locale,org.springframework.ui.Model)
+[2019-10-17 14:04:57.576] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/main/main.do],methods=[GET]}" onto public java.lang.String kr.co.redbull.main.web.MainController.main()
+[2019-10-17 14:04:57.578] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/product/get_retrieve.do],methods=[GET]}" onto public java.lang.String kr.co.redbull.product.web.ProductController.get_retrieve(kr.co.redbull.cmn.Search,org.springframework.ui.Model,javax.servlet.http.HttpServletRequest)
+[2019-10-17 14:04:57.578] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/product/do_update.do],methods=[POST],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.product.web.ProductController.do_update(kr.co.redbull.product.service.Product,javax.servlet.http.HttpSession)
+[2019-10-17 14:04:57.578] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/product/get_selectOne.do],methods=[GET]}" onto public java.lang.String kr.co.redbull.product.web.ProductController.get_selectOne(kr.co.redbull.product.service.Product,org.springframework.ui.Model)
+[2019-10-17 14:04:57.579] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/product/do_delete.do],methods=[POST],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.product.web.ProductController.do_delete(kr.co.redbull.product.service.Product,javax.servlet.http.HttpSession)
+[2019-10-17 14:04:57.579] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/product/do_product_option.do],methods=[POST]}" onto public java.lang.String kr.co.redbull.product.web.ProductController.do_product_option(org.springframework.ui.Model,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpSession)
+[2019-10-17 14:04:57.579] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/product/do_write.do],methods=[POST]}" onto public java.lang.String kr.co.redbull.product.web.ProductController.do_write(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,javax.servlet.http.HttpSession)
+[2019-10-17 14:04:57.580] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/product/do_product_mng.do],methods=[GET]}" onto public java.lang.String kr.co.redbull.product.web.ProductController.do_product_mng(org.springframework.ui.Model,javax.servlet.http.HttpServletRequest)
+[2019-10-17 14:04:57.580] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/product/do_save_option.do],methods=[POST],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.product.web.ProductController.do_save_option(javax.servlet.http.HttpServletRequest,java.lang.String,javax.servlet.http.HttpSession)
+[2019-10-17 14:04:57.580] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/product/do_cancel_write.do],methods=[GET]}" onto public java.lang.String kr.co.redbull.product.web.ProductController.do_cancel_write(org.springframework.ui.Model,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpSession)
+[2019-10-17 14:04:57.583] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/user/do_update.do],methods=[POST],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.user.web.UserController.do_update(kr.co.redbull.user.service.User)
+[2019-10-17 14:04:57.583] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/user/get_selectOne.do],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.user.web.UserController.get_selectOne(kr.co.redbull.user.service.User,org.springframework.ui.Model)
+[2019-10-17 14:04:57.584] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/user/do_delete.do],methods=[POST],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.user.web.UserController.do_delete(kr.co.redbull.user.service.User)
+[2019-10-17 14:04:57.584] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/user/do_save.do],methods=[POST],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.user.web.UserController.do_save(kr.co.redbull.user.service.User)
+[2019-10-17 14:04:57.584] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/user/get_selectone_view.do]}" onto public java.lang.String kr.co.redbull.user.web.UserController.get_selectOne_view()
+[2019-10-17 14:04:57.585] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/user/do_exceldown.do],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView kr.co.redbull.user.web.UserController.excelDown(kr.co.redbull.user.service.User,javax.servlet.http.HttpServletRequest,org.springframework.web.servlet.ModelAndView)
+[2019-10-17 14:04:57.585] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/user/find_passwd.do],methods=[POST],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.user.web.UserController.find_passwd(kr.co.redbull.user.service.User)
+[2019-10-17 14:04:57.585] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/user/do_user_view.do],methods=[GET]}" onto public java.lang.String kr.co.redbull.user.web.UserController.doUserView()
+[2019-10-17 14:04:57.585] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/login/do_login.do],methods=[POST],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.user.web.UserController.do_login(kr.co.redbull.user.service.User,javax.servlet.http.HttpSession,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+[2019-10-17 14:04:57.765] INFO  RequestMappingHandlerAdapter.initControllerAdviceCache(RequestMappingHandlerAdapter.java:534) - Looking for @ControllerAdvice: org.springframework.web.context.support.GenericWebApplicationContext@731a74c: startup date [Thu Oct 17 14:04:57 KST 2019]; root of context hierarchy
+[2019-10-17 14:04:57.802] INFO  RequestMappingHandlerAdapter.initControllerAdviceCache(RequestMappingHandlerAdapter.java:534) - Looking for @ControllerAdvice: org.springframework.web.context.support.GenericWebApplicationContext@731a74c: startup date [Thu Oct 17 14:04:57 KST 2019]; root of context hierarchy
+[2019-10-17 14:04:57.851] INFO  AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:362) - Mapped URL path [/resources/**] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0'
+[2019-10-17 14:04:58.009] DEBUG SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:497) - Parsed configuration file: 'class path resource [mybatis-config.xml]'
+[2019-10-17 14:04:58.053] DEBUG SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:529) - Parsed mapper file: 'file [C:\Users\sist\git\RedBull3\RedBull\target\classes\mappers\board.xml]'
+[2019-10-17 14:04:58.081] DEBUG SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:529) - Parsed mapper file: 'file [C:\Users\sist\git\RedBull3\RedBull\target\classes\mappers\cart.xml]'
+[2019-10-17 14:04:58.089] DEBUG SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:529) - Parsed mapper file: 'file [C:\Users\sist\git\RedBull3\RedBull\target\classes\mappers\comment.xml]'
+[2019-10-17 14:04:58.097] DEBUG SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:529) - Parsed mapper file: 'file [C:\Users\sist\git\RedBull3\RedBull\target\classes\mappers\good.xml]'
+[2019-10-17 14:04:58.133] DEBUG SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:529) - Parsed mapper file: 'file [C:\Users\sist\git\RedBull3\RedBull\target\classes\mappers\image.xml]'
+[2019-10-17 14:04:58.149] DEBUG SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:529) - Parsed mapper file: 'file [C:\Users\sist\git\RedBull3\RedBull\target\classes\mappers\opt.xml]'
+[2019-10-17 14:04:58.180] DEBUG SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:529) - Parsed mapper file: 'file [C:\Users\sist\git\RedBull3\RedBull\target\classes\mappers\product.xml]'
+[2019-10-17 14:04:58.186] DEBUG SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:529) - Parsed mapper file: 'file [C:\Users\sist\git\RedBull3\RedBull\target\classes\mappers\review.xml]'
+[2019-10-17 14:04:58.195] DEBUG SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:529) - Parsed mapper file: 'file [C:\Users\sist\git\RedBull3\RedBull\target\classes\mappers\user.xml]'
+[2019-10-17 14:04:58.400] DEBUG NameMatchTransactionAttributeSource.addTransactionalMethod(NameMatchTransactionAttributeSource.java:96) - Adding transactional method [get_*] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly]
+[2019-10-17 14:04:58.400] DEBUG NameMatchTransactionAttributeSource.addTransactionalMethod(NameMatchTransactionAttributeSource.java:96) - Adding transactional method [tx_*] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT]
+[2019-10-17 14:04:58.427] DEBUG DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:118) - Storing ApplicationContext in cache under key [[WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]]
+[2019-10-17 14:04:58.428] DEBUG DefaultContextCache.logStatistics(DefaultContextCache.java:290) - Spring test ApplicationContext cache statistics: [DefaultContextCache@a7f0ab6 size = 1, maxSize = 32, parentContextCount = 0, hitCount = 0, missCount = 1]
+[2019-10-17 14:04:58.428] DEBUG ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:201) - Setting up MockHttpServletRequest, MockHttpServletResponse, ServletWebRequest, and RequestContextHolder for test context [DefaultTestContext@13805618 testClass = CartWebTest, testInstance = kr.co.redbull.cart.CartWebTest@42c2f48c, testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]].
+[2019-10-17 14:04:58.437] DEBUG DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:81) - Performing dependency injection for test context [[DefaultTestContext@13805618 testClass = CartWebTest, testInstance = kr.co.redbull.cart.CartWebTest@42c2f48c, testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]]].
+[2019-10-17 14:04:58.437] DEBUG DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:129) - Retrieved ApplicationContext from cache with key [[WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]]
+[2019-10-17 14:04:58.437] DEBUG DefaultContextCache.logStatistics(DefaultContextCache.java:290) - Spring test ApplicationContext cache statistics: [DefaultContextCache@a7f0ab6 size = 1, maxSize = 32, parentContextCount = 0, hitCount = 1, missCount = 1]
+[2019-10-17 14:04:58.441] DEBUG AbstractDirtiesContextTestExecutionListener.beforeOrAfterTestMethod(AbstractDirtiesContextTestExecutionListener.java:106) - Before test method: context [DefaultTestContext@13805618 testClass = CartWebTest, testInstance = kr.co.redbull.cart.CartWebTest@42c2f48c, testMethod = getBean@CartWebTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]], class annotated with @DirtiesContext [false] with mode [null], method annotated with @DirtiesContext [false] with mode [null].
+[2019-10-17 14:04:58.443] DEBUG CartWebTest.setUp(CartWebTest.java:60) - ^^^^^^^^^^^^^^^^^^^^^^^
+[2019-10-17 14:04:58.444] DEBUG CartWebTest.setUp(CartWebTest.java:61) - setUp()
+[2019-10-17 14:04:58.444] DEBUG CartWebTest.setUp(CartWebTest.java:62) - ^^^^^^^^^^^^^^^^^^^^^^^
+[2019-10-17 14:04:58.453] DEBUG HttpServletBean.init(HttpServletBean.java:149) - Initializing servlet ''
+[2019-10-17 14:04:58.454] INFO  MockServletContext.log(MockServletContext.java:440) - Initializing Spring FrameworkServlet ''
+[2019-10-17 14:04:58.454] INFO  FrameworkServlet.initServletBean(FrameworkServlet.java:489) - FrameworkServlet '': initialization started
+[2019-10-17 14:04:58.455] DEBUG DispatcherServlet.initMultipartResolver(DispatcherServlet.java:508) - Using MultipartResolver [org.springframework.web.multipart.commons.CommonsMultipartResolver@26dcd8c0]
+[2019-10-17 14:04:58.455] DEBUG DispatcherServlet.initLocaleResolver(DispatcherServlet.java:530) - Using LocaleResolver [org.springframework.web.servlet.i18n.SessionLocaleResolver@444548a0]
+[2019-10-17 14:04:58.458] DEBUG DispatcherServlet.initThemeResolver(DispatcherServlet.java:559) - Unable to locate ThemeResolver with name 'themeResolver': using default [org.springframework.web.servlet.theme.FixedThemeResolver@22d1886d]
+[2019-10-17 14:04:58.462] DEBUG DispatcherServlet.initRequestToViewNameTranslator(DispatcherServlet.java:696) - Unable to locate RequestToViewNameTranslator with name 'viewNameTranslator': using default [org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@393881f0]
+[2019-10-17 14:04:58.466] DEBUG DispatcherServlet.initFlashMapManager(DispatcherServlet.java:757) - Unable to locate FlashMapManager with name 'flashMapManager': using default [org.springframework.web.servlet.support.SessionFlashMapManager@682bd3c4]
+[2019-10-17 14:04:58.467] DEBUG FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:568) - Published WebApplicationContext of servlet '' as ServletContext attribute with name [org.springframework.web.servlet.FrameworkServlet.CONTEXT.]
+[2019-10-17 14:04:58.467] INFO  FrameworkServlet.initServletBean(FrameworkServlet.java:508) - FrameworkServlet '': initialization completed in 13 ms
+[2019-10-17 14:04:58.467] DEBUG HttpServletBean.init(HttpServletBean.java:174) - Servlet '' configured successfully
+[2019-10-17 14:04:58.468] DEBUG CartWebTest.setUp(CartWebTest.java:69) - ================================
+[2019-10-17 14:04:58.468] DEBUG CartWebTest.setUp(CartWebTest.java:70) - =context=org.springframework.web.context.support.GenericWebApplicationContext@731a74c: startup date [Thu Oct 17 14:04:57 KST 2019]; root of context hierarchy
+[2019-10-17 14:04:58.468] DEBUG CartWebTest.setUp(CartWebTest.java:71) - =mockMvc=org.springframework.test.web.servlet.MockMvc@77a281fc
+[2019-10-17 14:04:58.468] DEBUG CartWebTest.setUp(CartWebTest.java:72) - =cartDaoImpl=kr.co.redbull.cart.service.impl.CartDaoImpl@2bfbffb2
+[2019-10-17 14:04:58.469] DEBUG CartWebTest.setUp(CartWebTest.java:73) - ================================
+[2019-10-17 14:04:58.469] DEBUG CartWebTest.getBean(CartWebTest.java:293) - ^^^^^^^^^^^^^^^^^^
+[2019-10-17 14:04:58.469] DEBUG CartWebTest.getBean(CartWebTest.java:294) - =getBean()=
+[2019-10-17 14:04:58.469] DEBUG CartWebTest.getBean(CartWebTest.java:295) - ^^^^^^^^^^^^^^^^^^
+[2019-10-17 14:04:58.469] DEBUG CartWebTest.tearDown(CartWebTest.java:300) - tearDown()
+[2019-10-17 14:04:58.470] DEBUG AbstractDirtiesContextTestExecutionListener.beforeOrAfterTestMethod(AbstractDirtiesContextTestExecutionListener.java:106) - After test method: context [DefaultTestContext@13805618 testClass = CartWebTest, testInstance = kr.co.redbull.cart.CartWebTest@42c2f48c, testMethod = getBean@CartWebTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]], class annotated with @DirtiesContext [false] with mode [null], method annotated with @DirtiesContext [false] with mode [null].
+[2019-10-17 14:04:58.470] DEBUG ServletTestExecutionListener.afterTestMethod(ServletTestExecutionListener.java:165) - Resetting RequestContextHolder for test context [DefaultTestContext@13805618 testClass = CartWebTest, testInstance = kr.co.redbull.cart.CartWebTest@42c2f48c, testMethod = getBean@CartWebTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]].
+[2019-10-17 14:04:58.471] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:68) - Retrieved @ProfileValueSourceConfiguration [null] for test class [kr.co.redbull.cart.CartWebTest]
+[2019-10-17 14:04:58.471] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:80) - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [kr.co.redbull.cart.CartWebTest]
+[2019-10-17 14:04:58.471] DEBUG DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:129) - Retrieved ApplicationContext from cache with key [[WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]]
+[2019-10-17 14:04:58.472] DEBUG DefaultContextCache.logStatistics(DefaultContextCache.java:290) - Spring test ApplicationContext cache statistics: [DefaultContextCache@a7f0ab6 size = 1, maxSize = 32, parentContextCount = 0, hitCount = 2, missCount = 1]
+[2019-10-17 14:04:58.472] DEBUG ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:201) - Setting up MockHttpServletRequest, MockHttpServletResponse, ServletWebRequest, and RequestContextHolder for test context [DefaultTestContext@13805618 testClass = CartWebTest, testInstance = kr.co.redbull.cart.CartWebTest@61799544, testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]].
+[2019-10-17 14:04:58.472] DEBUG DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:81) - Performing dependency injection for test context [[DefaultTestContext@13805618 testClass = CartWebTest, testInstance = kr.co.redbull.cart.CartWebTest@61799544, testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]]].
+[2019-10-17 14:04:58.472] DEBUG DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:129) - Retrieved ApplicationContext from cache with key [[WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]]
+[2019-10-17 14:04:58.473] DEBUG DefaultContextCache.logStatistics(DefaultContextCache.java:290) - Spring test ApplicationContext cache statistics: [DefaultContextCache@a7f0ab6 size = 1, maxSize = 32, parentContextCount = 0, hitCount = 3, missCount = 1]
+[2019-10-17 14:04:58.473] DEBUG AbstractDirtiesContextTestExecutionListener.beforeOrAfterTestMethod(AbstractDirtiesContextTestExecutionListener.java:106) - Before test method: context [DefaultTestContext@13805618 testClass = CartWebTest, testInstance = kr.co.redbull.cart.CartWebTest@61799544, testMethod = get_retrieve@CartWebTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]], class annotated with @DirtiesContext [false] with mode [null], method annotated with @DirtiesContext [false] with mode [null].
+[2019-10-17 14:04:58.473] DEBUG CartWebTest.setUp(CartWebTest.java:60) - ^^^^^^^^^^^^^^^^^^^^^^^
+[2019-10-17 14:04:58.473] DEBUG CartWebTest.setUp(CartWebTest.java:61) - setUp()
+[2019-10-17 14:04:58.474] DEBUG CartWebTest.setUp(CartWebTest.java:62) - ^^^^^^^^^^^^^^^^^^^^^^^
+[2019-10-17 14:04:58.474] DEBUG HttpServletBean.init(HttpServletBean.java:149) - Initializing servlet ''
+[2019-10-17 14:04:58.474] INFO  MockServletContext.log(MockServletContext.java:440) - Initializing Spring FrameworkServlet ''
+[2019-10-17 14:04:58.474] INFO  FrameworkServlet.initServletBean(FrameworkServlet.java:489) - FrameworkServlet '': initialization started
+[2019-10-17 14:04:58.474] DEBUG DispatcherServlet.initMultipartResolver(DispatcherServlet.java:508) - Using MultipartResolver [org.springframework.web.multipart.commons.CommonsMultipartResolver@26dcd8c0]
+[2019-10-17 14:04:58.475] DEBUG DispatcherServlet.initLocaleResolver(DispatcherServlet.java:530) - Using LocaleResolver [org.springframework.web.servlet.i18n.SessionLocaleResolver@444548a0]
+[2019-10-17 14:04:58.475] DEBUG DispatcherServlet.initThemeResolver(DispatcherServlet.java:559) - Unable to locate ThemeResolver with name 'themeResolver': using default [org.springframework.web.servlet.theme.FixedThemeResolver@51ec2df1]
+[2019-10-17 14:04:58.476] DEBUG DispatcherServlet.initRequestToViewNameTranslator(DispatcherServlet.java:696) - Unable to locate RequestToViewNameTranslator with name 'viewNameTranslator': using default [org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@15fa55a6]
+[2019-10-17 14:04:58.476] DEBUG DispatcherServlet.initFlashMapManager(DispatcherServlet.java:757) - Unable to locate FlashMapManager with name 'flashMapManager': using default [org.springframework.web.servlet.support.SessionFlashMapManager@7fab4be7]
+[2019-10-17 14:04:58.476] DEBUG FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:568) - Published WebApplicationContext of servlet '' as ServletContext attribute with name [org.springframework.web.servlet.FrameworkServlet.CONTEXT.]
+[2019-10-17 14:04:58.476] INFO  FrameworkServlet.initServletBean(FrameworkServlet.java:508) - FrameworkServlet '': initialization completed in 2 ms
+[2019-10-17 14:04:58.476] DEBUG HttpServletBean.init(HttpServletBean.java:174) - Servlet '' configured successfully
+[2019-10-17 14:04:58.477] DEBUG CartWebTest.setUp(CartWebTest.java:69) - ================================
+[2019-10-17 14:04:58.477] DEBUG CartWebTest.setUp(CartWebTest.java:70) - =context=org.springframework.web.context.support.GenericWebApplicationContext@731a74c: startup date [Thu Oct 17 14:04:57 KST 2019]; root of context hierarchy
+[2019-10-17 14:04:58.477] DEBUG CartWebTest.setUp(CartWebTest.java:71) - =mockMvc=org.springframework.test.web.servlet.MockMvc@736f3e9e
+[2019-10-17 14:04:58.477] DEBUG CartWebTest.setUp(CartWebTest.java:72) - =cartDaoImpl=kr.co.redbull.cart.service.impl.CartDaoImpl@2bfbffb2
+[2019-10-17 14:04:58.477] DEBUG CartWebTest.setUp(CartWebTest.java:73) - ================================
+[2019-10-17 14:04:58.494] DEBUG DispatcherServlet.doService(DispatcherServlet.java:869) - DispatcherServlet with name '' processing GET request for [/cart/get_retrieve.do]
+[2019-10-17 14:04:58.498] DEBUG DispatcherServlet.doDispatch(DispatcherServlet.java:955) - Last-Modified value for [/cart/get_retrieve.do] is: -1
+[2019-10-17 14:04:58.516] DEBUG CartController.get_retrieve(CartController.java:63) - 1==================================
+[2019-10-17 14:04:58.517] DEBUG CartController.get_retrieve(CartController.java:64) - =1=search=Search [pageSize=10, pageNum=1, searchDiv=10, searchWord=cart_150]
+[2019-10-17 14:04:58.517] DEBUG CartController.get_retrieve(CartController.java:65) - 1==================================
+[2019-10-17 14:04:58.518] DEBUG CartController.get_retrieve(CartController.java:79) - 2==================================
+[2019-10-17 14:04:58.518] DEBUG CartController.get_retrieve(CartController.java:80) - =2=search=Search [pageSize=10, pageNum=1, searchDiv=10, searchWord=cart_150]
+[2019-10-17 14:04:58.519] DEBUG CartController.get_retrieve(CartController.java:81) - 2==================================
+[2019-10-17 14:04:58.519] DEBUG CartDaoImpl.get_retrieve(CartDaoImpl.java:226) - ==================================
+[2019-10-17 14:04:58.519] DEBUG CartDaoImpl.get_retrieve(CartDaoImpl.java:227) - 1. param: Search [pageSize=10, pageNum=1, searchDiv=10, searchWord=cart_150]
+[2019-10-17 14:04:58.519] DEBUG CartDaoImpl.get_retrieve(CartDaoImpl.java:228) - 2. statement: kr.co.redbull.cart.get_cartList
+[2019-10-17 14:04:58.519] DEBUG CartDaoImpl.get_retrieve(CartDaoImpl.java:229) - ==================================
+[2019-10-17 14:04:58.522] DEBUG SqlSessionUtils.getSqlSession(SqlSessionUtils.java:97) - Creating a new SqlSession
+[2019-10-17 14:04:58.526] DEBUG SqlSessionUtils.registerSessionHolder(SqlSessionUtils.java:148) - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6136998b] was not registered for synchronization because synchronization is not active
+[2019-10-17 14:04:58.550] DEBUG DataSourceUtils.doGetConnection(DataSourceUtils.java:110) - Fetching JDBC Connection from DataSource
+[2019-10-17 14:04:58.768] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - ... log4jdbc initializing ...
+[2019-10-17 14:04:58.768] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) -   log4jdbc.properties not found on classpath
+[2019-10-17 14:04:58.769] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.debug.stack.prefix is not defined
+[2019-10-17 14:04:58.769] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.sqltiming.warn.threshold is not defined
+[2019-10-17 14:04:58.769] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.sqltiming.error.threshold is not defined
+[2019-10-17 14:04:58.770] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.dump.booleanastruefalse is not defined (using default value false)
+[2019-10-17 14:04:58.770] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.dump.sql.maxlinelength is not defined (using default of 90)
+[2019-10-17 14:04:58.770] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.dump.fulldebugstacktrace is not defined (using default value false)
+[2019-10-17 14:04:58.770] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.statement.warn is not defined (using default value false)
+[2019-10-17 14:04:58.771] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.dump.sql.select is not defined (using default value true)
+[2019-10-17 14:04:58.771] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.dump.sql.insert is not defined (using default value true)
+[2019-10-17 14:04:58.771] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.dump.sql.update is not defined (using default value true)
+[2019-10-17 14:04:58.772] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.dump.sql.delete is not defined (using default value true)
+[2019-10-17 14:04:58.772] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.dump.sql.create is not defined (using default value true)
+[2019-10-17 14:04:58.772] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.dump.sql.addsemicolon is not defined (using default value false)
+[2019-10-17 14:04:58.773] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.auto.load.popular.drivers is not defined (using default value true)
+[2019-10-17 14:04:58.773] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.trim.sql is not defined (using default value true)
+[2019-10-17 14:04:58.773] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.suppress.generated.keys.exception is not defined (using default value false)
+[2019-10-17 14:04:58.774] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.drivers is not defined
+[2019-10-17 14:04:58.776] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) -   FOUND DRIVER oracle.jdbc.OracleDriver
+[2019-10-17 14:04:58.776] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) -   FOUND DRIVER oracle.jdbc.driver.OracleDriver
+[2019-10-17 14:04:58.778] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - ... log4jdbc initialized! ...
+[2019-10-17 14:04:58.780] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - driver name is Oracle JDBC driver
+[2019-10-17 14:04:58.780] INFO  Slf4jSpyLogDelegator.connectionOpened(Slf4jSpyLogDelegator.java:518) - 1. Connection opened  org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:111)
+[2019-10-17 14:04:58.780] DEBUG Slf4jSpyLogDelegator.connectionOpened(Slf4jSpyLogDelegator.java:520) - open connections:  1 (1)
+[2019-10-17 14:04:58.781] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. Connection.new Connection returned   org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:111)
+[2019-10-17 14:04:58.781] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. Connection.getAutoCommit() returned true  org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:83)
+[2019-10-17 14:04:58.781] DEBUG SpringManagedTransaction.openConnection(SpringManagedTransaction.java:87) - JDBC Connection [net.sf.log4jdbc.ConnectionSpy@1fcf9739] will not be managed by Spring
+[2019-10-17 14:04:58.784] DEBUG BaseJdbcLogger.debug(BaseJdbcLogger.java:159) - ==>  Preparing: SELECT T1.*, T2.* FROM ( SELECT B.rnum, B.saveFileNm, B.cartNum, B.bPrice, B.pname, B.discount, B.pNum, B.dprice, B.oPrice, B.afterPrice, B.cartcnt, B.regid FROM( SELECT ROWNUM AS rnum, A.* FROM( SELECT i.SAVE_FILE_NM as saveFileNm, c.CARTCNT as cartCnt, c.cartnum as cartNum, p.bprice as bPrice, p.pnum as pNum, o.OPRICE as oPrice, o.ONAME as oName, p.pname as pName, p.discount as discount, p.DPRICE as dPrice, p.bprice - (p.bprice * p.discount) as afterPrice, c.REGID as regId FROM CART c JOIN OPT o ON c.oNum = o.oNum JOIN IMAGE i ON o.pNum = i.refNum JOIN PRODUCT p ON o.pnum = p.pnum and c.regid LIKE '%' || ? || '%' )A WHERE rownum <= (? * ( ?-1)+ ? ) )B WHERE B.rnum >= (? * (?-1)+1) )T1 CROSS JOIN( SELECT COUNT(*) total_cnt FROM CART c JOIN OPT o ON c.oNum = o.oNum JOIN IMAGE i ON o.pNum = i.refNum JOIN PRODUCT p ON o.pnum = p.pnum and c.regid LIKE '%' || ? || '%' )T2 
+[2019-10-17 14:04:58.840] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.new PreparedStatement returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.841] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. Connection.prepareStatement(SELECT T1.*, T2.*
+		    FROM
+		    (
+		        SELECT
+		            B.rnum,
+		            B.saveFileNm,
+		            B.cartNum,
+		            B.bPrice,
+		            B.pname,
+		            B.discount,
+		            B.pNum,
+		            B.dprice,
+		            B.oPrice,
+		            B.afterPrice,
+		            B.cartcnt,
+		            B.regid
+		        FROM(
+		            SELECT ROWNUM AS rnum, A.*
+		            FROM(
+					 SELECT
+							i.SAVE_FILE_NM as saveFileNm,
+							c.CARTCNT as cartCnt,
+                            c.cartnum as cartNum,
+                            p.bprice as bPrice,
+                            p.pnum as pNum,
+							o.OPRICE as oPrice,
+							o.ONAME as oName,
+							p.pname as pName,
+							p.discount as discount,
+							p.DPRICE as dPrice,
+							p.bprice - (p.bprice * p.discount) as afterPrice,
+							c.REGID as regId
+					FROM
+							CART c JOIN OPT o
+							ON c.oNum = o.oNum
+							JOIN IMAGE i
+							ON o.pNum = i.refNum
+							JOIN PRODUCT p
+							ON o.pnum = p.pnum
+												
+							 
+ 	 		 
+ 	 				 and c.regid LIKE '%' || ? || '%'
+ 	 			 
+ 	  
+							
+		                    )A
+		   			 WHERE rownum   <=   (? * ( ?-1)+ ? ) 
+		            )B
+					WHERE B.rnum   >=   (? * (?-1)+1)
+					)T1
+		        CROSS JOIN(
+					SELECT COUNT(*) total_cnt
+					FROM CART c JOIN OPT o
+							ON c.oNum = o.oNum
+							JOIN IMAGE i
+							ON o.pNum = i.refNum
+							JOIN PRODUCT p
+							ON o.pnum = p.pnum
+				 
+ 	 		 
+ 	 				 and c.regid LIKE '%' || ? || '%'
+ 	 			 
+ 	  
+						)T2) returned net.sf.log4jdbc.PreparedStatementSpy@56078cea  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.848] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.setString(1, "cart_150") returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.848] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.setInt(2, 10) returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.849] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.setInt(3, 1) returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.849] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.setInt(4, 10) returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.849] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.setInt(5, 10) returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.850] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.setInt(6, 1) returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.850] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.setString(7, "cart_150") returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.850] DEBUG BaseJdbcLogger.debug(BaseJdbcLogger.java:159) - ==> Parameters: cart_150(String), 10(Integer), 1(Integer), 10(Integer), 10(Integer), 1(Integer), cart_150(String)
+[2019-10-17 14:04:58.851] INFO  Log4JdbcCustomFormatter.sqlOccured(Log4JdbcCustomFormatter.java:74) - REDBULL_SQL] : SELECT T1.*, T2.*
+		    FROM
+		    (
+		        SELECT
+		            B.rnum,
+		            B.saveFileNm,
+		            B.cartNum,
+		            B.bPrice,
+		            B.pname,
+		            B.discount,
+		            B.pNum,
+		            B.dprice,
+		            B.oPrice,
+		            B.afterPrice,
+		            B.cartcnt,
+		            B.regid
+		        FROM(
+		            SELECT ROWNUM AS rnum, A.*
+		            FROM(
+					 SELECT
+							i.SAVE_FILE_NM as saveFileNm,
+							c.CARTCNT as cartCnt,
+                            c.cartnum as cartNum,
+                            p.bprice as bPrice,
+                            p.pnum as pNum,
+							o.OPRICE as oPrice,
+							o.ONAME as oName,
+							p.pname as pName,
+							p.discount as discount,
+							p.DPRICE as dPrice,
+							p.bprice - (p.bprice * p.discount) as afterPrice,
+							c.REGID as regId
+					FROM
+							CART c JOIN OPT o
+							ON c.oNum = o.oNum
+							JOIN IMAGE i
+							ON o.pNum = i.refNum
+							JOIN PRODUCT p
+							ON o.pnum = p.pnum
+												
+							 
+ 	 		 
+ 	 				
+ and c.regid LIKE '%' || 'cart_150' || '%'
+ 	 			 
+ 	  
+							
+		                    )A
+		   			 WHERE rownum   <=   (10 * ( 1-1)+ 10 ) 
+		            )B
+					WHERE B.rnum   >=   (10 * (1-1)+1)
+					)T1
+		        CROSS JOIN(
+					SELECT COUNT(*) total_cnt
+					FROM CART c JOIN OPT o
+							ON c.oNum = o.oNum
+							JOIN IMAGE i
+							ON o.pNum = i.refNum
+							JOIN PRODUCT p
+							ON o.pnum = p.pnum
+				 
+ 	 		 
+ 	 				
+ and c.regid LIKE '%' || 'cart_150' || '%'
+ 	 			 
+ 	  
+						)T2
+[2019-10-17 14:04:58.887] DEBUG Slf4jSpyLogDelegator.sqlTimingOccured(Slf4jSpyLogDelegator.java:352) -  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+1. SELECT T1.*, T2.* FROM ( SELECT B.rnum, B.saveFileNm, B.cartNum, B.bPrice, B.pname, B.discount, 
+B.pNum, B.dprice, B.oPrice, B.afterPrice, B.cartcnt, B.regid FROM( SELECT ROWNUM AS rnum, A.* 
+FROM( SELECT i.SAVE_FILE_NM as saveFileNm, c.CARTCNT as cartCnt, c.cartnum as cartNum, p.bprice 
+as bPrice, p.pnum as pNum, o.OPRICE as oPrice, o.ONAME as oName, p.pname as pName, p.discount 
+as discount, p.DPRICE as dPrice, p.bprice - (p.bprice * p.discount) as afterPrice, c.REGID 
+as regId FROM CART c JOIN OPT o ON c.oNum = o.oNum JOIN IMAGE i ON o.pNum = i.refNum JOIN PRODUCT 
+p ON o.pnum = p.pnum and c.regid LIKE '%' || 'cart_150' || '%' )A WHERE rownum <= (10 * ( 1-1)+ 
+10 ) )B WHERE B.rnum >= (10 * (1-1)+1) )T1 CROSS JOIN( SELECT COUNT(*) total_cnt FROM CART 
+c JOIN OPT o ON c.oNum = o.oNum JOIN IMAGE i ON o.pNum = i.refNum JOIN PRODUCT p ON o.pnum 
+= p.pnum and c.regid LIKE '%' || 'cart_150' || '%' )T2  {executed in 36 msec}
+[2019-10-17 14:04:58.888] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.execute() returned true  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.895] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.new ResultSet returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.896] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.getResultSet() returned net.sf.log4jdbc.ResultSetSpy@2416498e  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.901] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getMetaData() returned oracle.jdbc.driver.OracleResultSetMetaData@5ec46cdd  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.902] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getType() returned 1003  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.903] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.next() returned true  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.904] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getString(SAVEFILENM) returned resources\img\product\2019\10\product_img12.PNG  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.904] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.905] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getInt(CARTNUM) returned 190  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.905] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.906] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getInt(BPRICE) returned 12900  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.906] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.906] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getString(PNAME) returned 액자테이블 3종 택1  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.907] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.907] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getDouble(DISCOUNT) returned 0.5  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.907] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.911] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getString(PNUM) returned 396  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.912] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.912] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getInt(DPRICE) returned 0  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.912] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.913] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getInt(OPRICE) returned 12900  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.913] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.914] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getInt(CARTCNT) returned 1  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.914] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.914] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getString(REGID) returned cart_150  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.915] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.915] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.next() returned true  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.916] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getString(SAVEFILENM) returned resources\img\product\2019\10\product_img22.PNG  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.916] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.916] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getInt(CARTNUM) returned 190  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.917] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.917] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getInt(BPRICE) returned 12900  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.918] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.918] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getString(PNAME) returned 액자테이블 3종 택1  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.918] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.919] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getDouble(DISCOUNT) returned 0.5  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.919] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.919] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getString(PNUM) returned 396  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.920] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.920] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getInt(DPRICE) returned 0  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.920] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor15.invoke(null:-1)
+[2019-10-17 14:04:58.921] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getInt(OPRICE) returned 12900  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.921] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor15.invoke(null:-1)
+[2019-10-17 14:04:58.921] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getInt(CARTCNT) returned 1  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.922] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor15.invoke(null:-1)
+[2019-10-17 14:04:58.922] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getString(REGID) returned cart_150  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.923] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor15.invoke(null:-1)
+[2019-10-17 14:04:58.923] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.next() returned true  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.923] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getString(SAVEFILENM) returned resources\img\product\2019\10\product_img32.PNG  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.924] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor15.invoke(null:-1)
+[2019-10-17 14:04:58.924] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getInt(CARTNUM) returned 190  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.924] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor15.invoke(null:-1)
+[2019-10-17 14:04:58.925] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getInt(BPRICE) returned 12900  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.925] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor15.invoke(null:-1)
+[2019-10-17 14:04:58.925] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getString(PNAME) returned 액자테이블 3종 택1  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.926] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor15.invoke(null:-1)
+[2019-10-17 14:04:58.927] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getDouble(DISCOUNT) returned 0.5  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.927] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor15.invoke(null:-1)
+[2019-10-17 14:04:58.927] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getString(PNUM) returned 396  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.928] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor15.invoke(null:-1)
+[2019-10-17 14:04:58.928] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getInt(DPRICE) returned 0  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.928] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor15.invoke(null:-1)
+[2019-10-17 14:04:58.929] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getInt(OPRICE) returned 12900  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.929] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor15.invoke(null:-1)
+[2019-10-17 14:04:58.930] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getInt(CARTCNT) returned 1  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.930] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor15.invoke(null:-1)
+[2019-10-17 14:04:58.930] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getString(REGID) returned cart_150  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.930] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor15.invoke(null:-1)
+[2019-10-17 14:04:58.932] INFO  ResultSetCollectorPrinter.println(ResultSetCollectorPrinter.java:108) - |-----|------------------------------------------------|--------|-------|------------|---------|-----|-------|-------|-----------|--------|---------|----------|
+[2019-10-17 14:04:58.932] INFO  ResultSetCollectorPrinter.println(ResultSetCollectorPrinter.java:108) - |RNUM |SAVEFILENM                                      |CARTNUM |BPRICE |PNAME       |DISCOUNT |PNUM |DPRICE |OPRICE |AFTERPRICE |CARTCNT |REGID    |TOTAL_CNT |
+[2019-10-17 14:04:58.933] INFO  ResultSetCollectorPrinter.println(ResultSetCollectorPrinter.java:108) - |-----|------------------------------------------------|--------|-------|------------|---------|-----|-------|-------|-----------|--------|---------|----------|
+[2019-10-17 14:04:58.933] INFO  ResultSetCollectorPrinter.println(ResultSetCollectorPrinter.java:108) - |1    |resources\img\product\2019\10\product_img12.PNG |190     |12900  |액자테이블 3종 택1 |0.5      |396  |0      |12900  |6450       |1       |cart_150 |3         |
+[2019-10-17 14:04:58.933] INFO  ResultSetCollectorPrinter.println(ResultSetCollectorPrinter.java:108) - |2    |resources\img\product\2019\10\product_img22.PNG |190     |12900  |액자테이블 3종 택1 |0.5      |396  |0      |12900  |6450       |1       |cart_150 |3         |
+[2019-10-17 14:04:58.934] INFO  ResultSetCollectorPrinter.println(ResultSetCollectorPrinter.java:108) - |3    |resources\img\product\2019\10\product_img32.PNG |190     |12900  |액자테이블 3종 택1 |0.5      |396  |0      |12900  |6450       |1       |cart_150 |3         |
+[2019-10-17 14:04:58.934] INFO  ResultSetCollectorPrinter.println(ResultSetCollectorPrinter.java:108) - |-----|------------------------------------------------|--------|-------|------------|---------|-----|-------|-------|-----------|--------|---------|----------|
+[2019-10-17 14:04:58.934] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.next() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.934] DEBUG BaseJdbcLogger.debug(BaseJdbcLogger.java:159) - <==      Total: 3
+[2019-10-17 14:04:58.935] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.close() returned null  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.935] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.getConnection() returned net.sf.log4jdbc.ConnectionSpy@1fcf9739  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.935] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. Connection.getMetaData() returned org.apache.commons.dbcp.DelegatingDatabaseMetaData@747d1932  org.apache.ibatis.executor.resultset.DefaultResultSetHandler.getNextResultSet(DefaultResultSetHandler.java:258)
+[2019-10-17 14:04:58.936] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.isClosed() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.936] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.close() returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:04:58.936] DEBUG SqlSessionUtils.closeSqlSession(SqlSessionUtils.java:191) - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6136998b]
+[2019-10-17 14:04:58.936] DEBUG DataSourceUtils.doReleaseConnection(DataSourceUtils.java:327) - Returning JDBC Connection to DataSource
+[2019-10-17 14:04:58.937] INFO  Slf4jSpyLogDelegator.connectionClosed(Slf4jSpyLogDelegator.java:537) - 1. Connection closed  org.springframework.jdbc.datasource.DataSourceUtils.doCloseConnection(DataSourceUtils.java:341)
+[2019-10-17 14:04:58.937] DEBUG Slf4jSpyLogDelegator.connectionClosed(Slf4jSpyLogDelegator.java:539) - open connections:  none
+[2019-10-17 14:04:58.937] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. Connection.close() returned   org.springframework.jdbc.datasource.DataSourceUtils.doCloseConnection(DataSourceUtils.java:341)
+[2019-10-17 14:04:58.937] DEBUG CartDaoImpl.get_retrieve(CartDaoImpl.java:233) - ==================================
+[2019-10-17 14:04:58.938] DEBUG CartDaoImpl.get_retrieve(CartDaoImpl.java:234) - 3. list: [Cart [cartNum=190, oNum=null, cartCnt=1, regId=cart_150, toString()=Product [pNum=396, pName=액자테이블 3종 택1, bPrice=12900, detail=null, discount=0.5, dPrice=0, pCategory=null, regId=null, regDt=null, modId=null, modDt=null, toString()=Opt [oNum=null, oName=null, oPrice=12900, pNum=null, iNum=null, optList=null]]], Cart [cartNum=190, oNum=null, cartCnt=1, regId=cart_150, toString()=Product [pNum=396, pName=액자테이블 3종 택1, bPrice=12900, detail=null, discount=0.5, dPrice=0, pCategory=null, regId=null, regDt=null, modId=null, modDt=null, toString()=Opt [oNum=null, oName=null, oPrice=12900, pNum=null, iNum=null, optList=null]]], Cart [cartNum=190, oNum=null, cartCnt=1, regId=cart_150, toString()=Product [pNum=396, pName=액자테이블 3종 택1, bPrice=12900, detail=null, discount=0.5, dPrice=0, pCategory=null, regId=null, regDt=null, modId=null, modDt=null, toString()=Opt [oNum=null, oName=null, oPrice=12900, pNum=null, iNum=null, optList=null]]]]
+[2019-10-17 14:04:58.938] DEBUG CartDaoImpl.get_retrieve(CartDaoImpl.java:235) - ==================================
+[2019-10-17 14:04:58.938] DEBUG CartController.get_retrieve(CartController.java:85) - 1==================================
+[2019-10-17 14:04:58.938] DEBUG CartController.get_retrieve(CartController.java:86) - =1=list=[Cart [cartNum=190, oNum=null, cartCnt=1, regId=cart_150, toString()=Product [pNum=396, pName=액자테이블 3종 택1, bPrice=12900, detail=null, discount=0.5, dPrice=0, pCategory=null, regId=null, regDt=null, modId=null, modDt=null, toString()=Opt [oNum=null, oName=null, oPrice=12900, pNum=null, iNum=null, optList=null]]], Cart [cartNum=190, oNum=null, cartCnt=1, regId=cart_150, toString()=Product [pNum=396, pName=액자테이블 3종 택1, bPrice=12900, detail=null, discount=0.5, dPrice=0, pCategory=null, regId=null, regDt=null, modId=null, modDt=null, toString()=Opt [oNum=null, oName=null, oPrice=12900, pNum=null, iNum=null, optList=null]]], Cart [cartNum=190, oNum=null, cartCnt=1, regId=cart_150, toString()=Product [pNum=396, pName=액자테이블 3종 택1, bPrice=12900, detail=null, discount=0.5, dPrice=0, pCategory=null, regId=null, regDt=null, modId=null, modDt=null, toString()=Opt [oNum=null, oName=null, oPrice=12900, pNum=null, iNum=null, optList=null]]]]
+[2019-10-17 14:04:58.938] DEBUG CartController.get_retrieve(CartController.java:87) - 1==================================
+[2019-10-17 14:04:58.938] DEBUG CartController.get_retrieve(CartController.java:96) - 1==================================
+[2019-10-17 14:04:58.938] DEBUG CartController.get_retrieve(CartController.java:97) - =1=VIEW_LIST_NM=cart/cart
+[2019-10-17 14:04:58.938] DEBUG CartController.get_retrieve(CartController.java:98) - 1==================================
+[2019-10-17 14:04:58.941] DEBUG DispatcherServlet.render(DispatcherServlet.java:1280) - Rendering view [org.springframework.web.servlet.view.JstlView: name 'cart/cart'; URL [/cart/cart.jsp]] in DispatcherServlet with name ''
+[2019-10-17 14:04:58.944] DEBUG MockRequestDispatcher.forward(MockRequestDispatcher.java:67) - MockRequestDispatcher: forwarding to [/cart/cart.jsp]
+[2019-10-17 14:04:58.944] DEBUG FrameworkServlet.processRequest(FrameworkServlet.java:1000) - Successfully completed request
+[2019-10-17 14:04:58.950] DEBUG CartWebTest.get_retrieve(CartWebTest.java:222) - ===============================
+[2019-10-17 14:04:58.951] DEBUG CartWebTest.get_retrieve(CartWebTest.java:223) - =result=
+[2019-10-17 14:04:58.951] DEBUG CartWebTest.get_retrieve(CartWebTest.java:224) - ===============================
+[2019-10-17 14:04:58.951] DEBUG CartWebTest.tearDown(CartWebTest.java:300) - tearDown()
+[2019-10-17 14:04:58.951] DEBUG AbstractDirtiesContextTestExecutionListener.beforeOrAfterTestMethod(AbstractDirtiesContextTestExecutionListener.java:106) - After test method: context [DefaultTestContext@13805618 testClass = CartWebTest, testInstance = kr.co.redbull.cart.CartWebTest@61799544, testMethod = get_retrieve@CartWebTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]], class annotated with @DirtiesContext [false] with mode [null], method annotated with @DirtiesContext [false] with mode [null].
+[2019-10-17 14:04:58.951] DEBUG ServletTestExecutionListener.afterTestMethod(ServletTestExecutionListener.java:165) - Resetting RequestContextHolder for test context [DefaultTestContext@13805618 testClass = CartWebTest, testInstance = kr.co.redbull.cart.CartWebTest@61799544, testMethod = get_retrieve@CartWebTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]].
+[2019-10-17 14:04:58.951] DEBUG AbstractDirtiesContextTestExecutionListener.beforeOrAfterTestClass(AbstractDirtiesContextTestExecutionListener.java:141) - After test class: context [DefaultTestContext@13805618 testClass = CartWebTest, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]], class annotated with @DirtiesContext [false] with mode [null].
+[2019-10-17 14:04:58.952] INFO  AbstractApplicationContext.doClose(AbstractApplicationContext.java:984) - Closing org.springframework.web.context.support.GenericWebApplicationContext@731a74c: startup date [Thu Oct 17 14:04:57 KST 2019]; root of context hierarchy
+[2019-10-17 14:04:58.953] DEBUG SqlSessionUtils.getSqlSession(SqlSessionUtils.java:97) - Creating a new SqlSession
+[2019-10-17 14:04:58.954] DEBUG SqlSessionUtils.registerSessionHolder(SqlSessionUtils.java:148) - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@20378bdc] was not registered for synchronization because synchronization is not active
+[2019-10-17 14:04:58.954] DEBUG SqlSessionUtils.closeSqlSession(SqlSessionUtils.java:191) - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@20378bdc]
+[2019-10-17 14:45:48.109] DEBUG SpringJUnit4ClassRunner.<init>(SpringJUnit4ClassRunner.java:140) - SpringJUnit4ClassRunner constructor called with [class kr.co.redbull.cart.CartWebTest]
+[2019-10-17 14:45:48.114] DEBUG BootstrapUtils.createCacheAwareContextLoaderDelegate(BootstrapUtils.java:95) - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+[2019-10-17 14:45:48.119] DEBUG BootstrapUtils.createBootstrapContext(BootstrapUtils.java:78) - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+[2019-10-17 14:45:48.127] DEBUG BootstrapUtils.resolveTestContextBootstrapper(BootstrapUtils.java:131) - Instantiating TestContextBootstrapper for test class [kr.co.redbull.cart.CartWebTest] from class [org.springframework.test.context.web.WebTestContextBootstrapper]
+[2019-10-17 14:45:48.143] DEBUG AbstractDelegatingSmartContextLoader.delegateProcessing(AbstractDelegatingSmartContextLoader.java:96) - Delegating to GenericXmlWebContextLoader to process context configuration [ContextConfigurationAttributes@153f5a29 declaringClass = 'kr.co.redbull.cart.CartWebTest', classes = '{}', locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', inheritLocations = true, initializers = '{}', inheritInitializers = true, name = [null], contextLoaderClass = 'org.springframework.test.context.ContextLoader'].
+[2019-10-17 14:45:48.160] DEBUG ActiveProfilesUtils.resolveActiveProfiles(ActiveProfilesUtils.java:78) - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [kr.co.redbull.cart.CartWebTest]
+[2019-10-17 14:45:48.161] DEBUG AbstractTestContextBootstrapper.getTestExecutionListeners(AbstractTestContextBootstrapper.java:132) - @TestExecutionListeners is not present for class [kr.co.redbull.cart.CartWebTest]: using defaults.
+[2019-10-17 14:45:48.162] INFO  AbstractTestContextBootstrapper.getDefaultTestExecutionListenerClassNames(AbstractTestContextBootstrapper.java:260) - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+[2019-10-17 14:45:48.172] INFO  AbstractTestContextBootstrapper.getTestExecutionListeners(AbstractTestContextBootstrapper.java:187) - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@57baeedf, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@343f4d3d, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@53b32d7, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5442a311, org.springframework.test.context.transaction.TransactionalTestExecutionListener@548e7350, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@1a968a59]
+[2019-10-17 14:45:48.173] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:68) - Retrieved @ProfileValueSourceConfiguration [null] for test class [kr.co.redbull.cart.CartWebTest]
+[2019-10-17 14:45:48.173] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:80) - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [kr.co.redbull.cart.CartWebTest]
+[2019-10-17 14:45:48.181] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:68) - Retrieved @ProfileValueSourceConfiguration [null] for test class [kr.co.redbull.cart.CartWebTest]
+[2019-10-17 14:45:48.181] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:80) - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [kr.co.redbull.cart.CartWebTest]
+[2019-10-17 14:45:48.182] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:68) - Retrieved @ProfileValueSourceConfiguration [null] for test class [kr.co.redbull.cart.CartWebTest]
+[2019-10-17 14:45:48.182] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:80) - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [kr.co.redbull.cart.CartWebTest]
+[2019-10-17 14:45:48.183] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:68) - Retrieved @ProfileValueSourceConfiguration [null] for test class [kr.co.redbull.cart.CartWebTest]
+[2019-10-17 14:45:48.183] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:80) - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [kr.co.redbull.cart.CartWebTest]
+[2019-10-17 14:45:48.184] DEBUG AbstractDirtiesContextTestExecutionListener.beforeOrAfterTestClass(AbstractDirtiesContextTestExecutionListener.java:141) - Before test class: context [DefaultTestContext@13805618 testClass = CartWebTest, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]], class annotated with @DirtiesContext [false] with mode [null].
+[2019-10-17 14:45:48.186] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:68) - Retrieved @ProfileValueSourceConfiguration [null] for test class [kr.co.redbull.cart.CartWebTest]
+[2019-10-17 14:45:48.186] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:80) - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [kr.co.redbull.cart.CartWebTest]
+[2019-10-17 14:45:48.187] DEBUG AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:106) - Delegating to GenericXmlWebContextLoader to load context from [WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]].
+[2019-10-17 14:45:48.188] DEBUG AbstractGenericWebContextLoader.loadContext(AbstractGenericWebContextLoader.java:116) - Loading WebApplicationContext for merged context configuration [WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]].
+[2019-10-17 14:45:48.240] INFO  XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317) - Loading XML bean definitions from file [C:\Users\sist\git\RedBull3\RedBull\src\main\webapp\WEB-INF\spring\appServlet\servlet-context.xml]
+[2019-10-17 14:45:48.896] INFO  XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317) - Loading XML bean definitions from file [C:\Users\sist\git\RedBull3\RedBull\src\main\webapp\WEB-INF\spring\root-context.xml]
+[2019-10-17 14:45:48.947] INFO  AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:583) - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@731a74c: startup date [Thu Oct 17 14:45:48 KST 2019]; root of context hierarchy
+[2019-10-17 14:45:49.105] INFO  AutowiredAnnotationBeanPostProcessor.<init>(AutowiredAnnotationBeanPostProcessor.java:155) - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2019-10-17 14:45:49.273] DEBUG UiApplicationContextUtils.initThemeSource(UiApplicationContextUtils.java:85) - Unable to locate ThemeSource with name 'themeSource': using default [org.springframework.ui.context.support.ResourceBundleThemeSource@6e950bcf]
+[2019-10-17 14:45:49.375] DEBUG LogFactory.setImplementation(LogFactory.java:135) - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+[2019-10-17 14:45:49.392] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/board/get_selectOne.do],methods=[GET]}" onto public java.lang.String kr.co.redbull.board.web.BoardController.get_selectOne(kr.co.redbull.board.service.Board,org.springframework.ui.Model,kr.co.redbull.cmn.Search)
+[2019-10-17 14:45:49.397] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/board/do_delete.do],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.board.web.BoardController.do_delete(kr.co.redbull.board.service.Board)
+[2019-10-17 14:45:49.397] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/board/do_save.do],methods=[POST],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.board.web.BoardController.do_save(kr.co.redbull.board.service.Board)
+[2019-10-17 14:45:49.398] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/board/do_update.do],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.board.web.BoardController.do_update(kr.co.redbull.board.service.Board)
+[2019-10-17 14:45:49.398] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/board/get_retrieve.do],methods=[GET]}" onto public java.lang.String kr.co.redbull.board.web.BoardController.get_retrieve(kr.co.redbull.cmn.Search,org.springframework.ui.Model,javax.servlet.http.HttpServletRequest)
+[2019-10-17 14:45:49.398] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/board/do_write.do]}" onto public java.lang.String kr.co.redbull.board.web.BoardController.do_write(kr.co.redbull.board.service.Board,kr.co.redbull.cmn.Search,org.springframework.ui.Model)
+[2019-10-17 14:45:49.400] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/cart/get_selectOne.do],methods=[GET]}" onto public java.lang.String kr.co.redbull.cart.web.CartController.get_selectOne(kr.co.redbull.cart.service.Cart,org.springframework.ui.Model)
+[2019-10-17 14:45:49.401] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/cart/do_delete.do],methods=[POST],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.cart.web.CartController.do_delete(kr.co.redbull.cart.service.Cart)
+[2019-10-17 14:45:49.401] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/cart/do_save.do],methods=[POST],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.cart.web.CartController.do_save(kr.co.redbull.cart.service.Cart)
+[2019-10-17 14:45:49.402] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/cart/do_update.do],methods=[POST],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.cart.web.CartController.do_update(kr.co.redbull.cart.service.Cart)
+[2019-10-17 14:45:49.402] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/cart/get_retrieve.do],methods=[GET]}" onto public java.lang.String kr.co.redbull.cart.web.CartController.get_retrieve(javax.servlet.http.HttpServletRequest,kr.co.redbull.cmn.Search,org.springframework.ui.Model)
+[2019-10-17 14:45:49.404] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/product/get_rankList.do],methods=[GET]}" onto public java.lang.String kr.co.redbull.category.web.CategoryController.get_rankList(kr.co.redbull.cmn.Search,org.springframework.ui.Model,javax.servlet.http.HttpServletRequest)
+[2019-10-17 14:45:49.404] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/product/get_newList.do],methods=[GET]}" onto public java.lang.String kr.co.redbull.category.web.CategoryController.get_newList(kr.co.redbull.cmn.Search,org.springframework.ui.Model,javax.servlet.http.HttpServletRequest)
+[2019-10-17 14:45:49.405] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/product/get_hotSaleList.do],methods=[GET]}" onto public java.lang.String kr.co.redbull.category.web.CategoryController.get_hotSaleList(kr.co.redbull.cmn.Search,org.springframework.ui.Model,javax.servlet.http.HttpServletRequest)
+[2019-10-17 14:45:49.408] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/comment/do_delete.do],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.comment.web.CommentController.do_delete(kr.co.redbull.comment.service.Comment)
+[2019-10-17 14:45:49.409] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/comment/do_save.do],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.comment.web.CommentController.do_save(kr.co.redbull.comment.service.Comment)
+[2019-10-17 14:45:49.409] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/comment/do_update.do],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.comment.web.CommentController.do_update(kr.co.redbull.comment.service.Comment)
+[2019-10-17 14:45:49.410] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/comment/get_retrieve.do],methods=[GET]}" onto public java.lang.String kr.co.redbull.comment.web.CommentController.get_retrieve(kr.co.redbull.cmn.Search,org.springframework.ui.Model,javax.servlet.http.HttpServletRequest)
+[2019-10-17 14:45:49.412] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/file/do_save.do],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView kr.co.redbull.file.service.impl.FileController.do_save(org.springframework.web.multipart.MultipartHttpServletRequest,org.springframework.web.servlet.ModelAndView) throws java.lang.IllegalStateException,java.io.IOException
+[2019-10-17 14:45:49.413] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/file/download.do],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView kr.co.redbull.file.service.impl.FileController.download(javax.servlet.http.HttpServletRequest,org.springframework.web.servlet.ModelAndView)
+[2019-10-17 14:45:49.413] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/file/do_img_save],methods=[POST],consumes=[multipart/form-data]}" onto public org.springframework.web.servlet.ModelAndView kr.co.redbull.file.service.impl.FileController.do_img_save(org.springframework.web.multipart.MultipartHttpServletRequest,javax.servlet.http.HttpSession) throws java.lang.IllegalStateException,java.io.IOException
+[2019-10-17 14:45:49.413] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/file/uploadfileview.do]}" onto public java.lang.String kr.co.redbull.file.service.impl.FileController.uploadFileView()
+[2019-10-17 14:45:49.414] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/],methods=[GET]}" onto public java.lang.String kr.co.redbull.HomeController.home(java.util.Locale,org.springframework.ui.Model)
+[2019-10-17 14:45:49.414] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/main/main.do],methods=[GET]}" onto public java.lang.String kr.co.redbull.main.web.MainController.main()
+[2019-10-17 14:45:49.416] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/product/get_selectOne.do],methods=[GET]}" onto public java.lang.String kr.co.redbull.product.web.ProductController.get_selectOne(kr.co.redbull.product.service.Product,org.springframework.ui.Model)
+[2019-10-17 14:45:49.417] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/product/do_delete.do],methods=[POST],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.product.web.ProductController.do_delete(kr.co.redbull.product.service.Product,javax.servlet.http.HttpSession)
+[2019-10-17 14:45:49.417] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/product/do_update.do],methods=[POST],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.product.web.ProductController.do_update(kr.co.redbull.product.service.Product,javax.servlet.http.HttpSession)
+[2019-10-17 14:45:49.417] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/product/get_retrieve.do],methods=[GET]}" onto public java.lang.String kr.co.redbull.product.web.ProductController.get_retrieve(kr.co.redbull.cmn.Search,org.springframework.ui.Model,javax.servlet.http.HttpServletRequest)
+[2019-10-17 14:45:49.418] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/product/do_product_mng.do],methods=[GET]}" onto public java.lang.String kr.co.redbull.product.web.ProductController.do_product_mng(org.springframework.ui.Model,javax.servlet.http.HttpServletRequest)
+[2019-10-17 14:45:49.418] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/product/do_cancel_write.do],methods=[GET]}" onto public java.lang.String kr.co.redbull.product.web.ProductController.do_cancel_write(org.springframework.ui.Model,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpSession)
+[2019-10-17 14:45:49.418] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/product/do_save_option.do],methods=[POST],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.product.web.ProductController.do_save_option(javax.servlet.http.HttpServletRequest,java.lang.String,javax.servlet.http.HttpSession)
+[2019-10-17 14:45:49.418] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/product/do_product_option.do],methods=[POST]}" onto public java.lang.String kr.co.redbull.product.web.ProductController.do_product_option(org.springframework.ui.Model,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpSession)
+[2019-10-17 14:45:49.419] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/product/do_write.do],methods=[POST]}" onto public java.lang.String kr.co.redbull.product.web.ProductController.do_write(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,javax.servlet.http.HttpSession)
+[2019-10-17 14:45:49.421] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/user/get_selectOne.do],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.user.web.UserController.get_selectOne(kr.co.redbull.user.service.User,org.springframework.ui.Model)
+[2019-10-17 14:45:49.421] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/user/do_delete.do],methods=[POST],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.user.web.UserController.do_delete(kr.co.redbull.user.service.User)
+[2019-10-17 14:45:49.422] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/user/do_save.do],methods=[POST],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.user.web.UserController.do_save(kr.co.redbull.user.service.User)
+[2019-10-17 14:45:49.422] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/user/do_update.do],methods=[POST],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.user.web.UserController.do_update(kr.co.redbull.user.service.User)
+[2019-10-17 14:45:49.422] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/user/find_passwd.do],methods=[POST],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.user.web.UserController.find_passwd(kr.co.redbull.user.service.User)
+[2019-10-17 14:45:49.423] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/login/do_login.do],methods=[POST],produces=[application/json;charset=UTF-8]}" onto public java.lang.String kr.co.redbull.user.web.UserController.do_login(kr.co.redbull.user.service.User,javax.servlet.http.HttpSession,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+[2019-10-17 14:45:49.423] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/user/get_selectone_view.do]}" onto public java.lang.String kr.co.redbull.user.web.UserController.get_selectOne_view()
+[2019-10-17 14:45:49.423] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/user/do_user_view.do],methods=[GET]}" onto public java.lang.String kr.co.redbull.user.web.UserController.doUserView()
+[2019-10-17 14:45:49.423] INFO  AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543) - Mapped "{[/user/do_exceldown.do],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView kr.co.redbull.user.web.UserController.excelDown(kr.co.redbull.user.service.User,javax.servlet.http.HttpServletRequest,org.springframework.web.servlet.ModelAndView)
+[2019-10-17 14:45:49.594] INFO  RequestMappingHandlerAdapter.initControllerAdviceCache(RequestMappingHandlerAdapter.java:534) - Looking for @ControllerAdvice: org.springframework.web.context.support.GenericWebApplicationContext@731a74c: startup date [Thu Oct 17 14:45:48 KST 2019]; root of context hierarchy
+[2019-10-17 14:45:49.631] INFO  RequestMappingHandlerAdapter.initControllerAdviceCache(RequestMappingHandlerAdapter.java:534) - Looking for @ControllerAdvice: org.springframework.web.context.support.GenericWebApplicationContext@731a74c: startup date [Thu Oct 17 14:45:48 KST 2019]; root of context hierarchy
+[2019-10-17 14:45:49.685] INFO  AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:362) - Mapped URL path [/resources/**] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0'
+[2019-10-17 14:45:49.845] DEBUG SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:497) - Parsed configuration file: 'class path resource [mybatis-config.xml]'
+[2019-10-17 14:45:49.904] DEBUG SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:529) - Parsed mapper file: 'file [C:\Users\sist\git\RedBull3\RedBull\target\classes\mappers\board.xml]'
+[2019-10-17 14:45:49.914] DEBUG SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:529) - Parsed mapper file: 'file [C:\Users\sist\git\RedBull3\RedBull\target\classes\mappers\cart.xml]'
+[2019-10-17 14:45:49.920] DEBUG SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:529) - Parsed mapper file: 'file [C:\Users\sist\git\RedBull3\RedBull\target\classes\mappers\comment.xml]'
+[2019-10-17 14:45:49.926] DEBUG SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:529) - Parsed mapper file: 'file [C:\Users\sist\git\RedBull3\RedBull\target\classes\mappers\good.xml]'
+[2019-10-17 14:45:49.932] DEBUG SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:529) - Parsed mapper file: 'file [C:\Users\sist\git\RedBull3\RedBull\target\classes\mappers\image.xml]'
+[2019-10-17 14:45:49.942] DEBUG SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:529) - Parsed mapper file: 'file [C:\Users\sist\git\RedBull3\RedBull\target\classes\mappers\opt.xml]'
+[2019-10-17 14:45:49.950] DEBUG SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:529) - Parsed mapper file: 'file [C:\Users\sist\git\RedBull3\RedBull\target\classes\mappers\product.xml]'
+[2019-10-17 14:45:49.956] DEBUG SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:529) - Parsed mapper file: 'file [C:\Users\sist\git\RedBull3\RedBull\target\classes\mappers\review.xml]'
+[2019-10-17 14:45:49.963] DEBUG SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:529) - Parsed mapper file: 'file [C:\Users\sist\git\RedBull3\RedBull\target\classes\mappers\user.xml]'
+[2019-10-17 14:45:50.148] DEBUG NameMatchTransactionAttributeSource.addTransactionalMethod(NameMatchTransactionAttributeSource.java:96) - Adding transactional method [get_*] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly]
+[2019-10-17 14:45:50.148] DEBUG NameMatchTransactionAttributeSource.addTransactionalMethod(NameMatchTransactionAttributeSource.java:96) - Adding transactional method [tx_*] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT]
+[2019-10-17 14:45:50.174] DEBUG DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:118) - Storing ApplicationContext in cache under key [[WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]]
+[2019-10-17 14:45:50.175] DEBUG DefaultContextCache.logStatistics(DefaultContextCache.java:290) - Spring test ApplicationContext cache statistics: [DefaultContextCache@a7f0ab6 size = 1, maxSize = 32, parentContextCount = 0, hitCount = 0, missCount = 1]
+[2019-10-17 14:45:50.175] DEBUG ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:201) - Setting up MockHttpServletRequest, MockHttpServletResponse, ServletWebRequest, and RequestContextHolder for test context [DefaultTestContext@13805618 testClass = CartWebTest, testInstance = kr.co.redbull.cart.CartWebTest@42c2f48c, testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]].
+[2019-10-17 14:45:50.184] DEBUG DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:81) - Performing dependency injection for test context [[DefaultTestContext@13805618 testClass = CartWebTest, testInstance = kr.co.redbull.cart.CartWebTest@42c2f48c, testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]]].
+[2019-10-17 14:45:50.184] DEBUG DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:129) - Retrieved ApplicationContext from cache with key [[WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]]
+[2019-10-17 14:45:50.184] DEBUG DefaultContextCache.logStatistics(DefaultContextCache.java:290) - Spring test ApplicationContext cache statistics: [DefaultContextCache@a7f0ab6 size = 1, maxSize = 32, parentContextCount = 0, hitCount = 1, missCount = 1]
+[2019-10-17 14:45:50.188] DEBUG AbstractDirtiesContextTestExecutionListener.beforeOrAfterTestMethod(AbstractDirtiesContextTestExecutionListener.java:106) - Before test method: context [DefaultTestContext@13805618 testClass = CartWebTest, testInstance = kr.co.redbull.cart.CartWebTest@42c2f48c, testMethod = getBean@CartWebTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]], class annotated with @DirtiesContext [false] with mode [null], method annotated with @DirtiesContext [false] with mode [null].
+[2019-10-17 14:45:50.190] DEBUG CartWebTest.setUp(CartWebTest.java:60) - ^^^^^^^^^^^^^^^^^^^^^^^
+[2019-10-17 14:45:50.191] DEBUG CartWebTest.setUp(CartWebTest.java:61) - setUp()
+[2019-10-17 14:45:50.191] DEBUG CartWebTest.setUp(CartWebTest.java:62) - ^^^^^^^^^^^^^^^^^^^^^^^
+[2019-10-17 14:45:50.200] DEBUG HttpServletBean.init(HttpServletBean.java:149) - Initializing servlet ''
+[2019-10-17 14:45:50.201] INFO  MockServletContext.log(MockServletContext.java:440) - Initializing Spring FrameworkServlet ''
+[2019-10-17 14:45:50.201] INFO  FrameworkServlet.initServletBean(FrameworkServlet.java:489) - FrameworkServlet '': initialization started
+[2019-10-17 14:45:50.201] DEBUG DispatcherServlet.initMultipartResolver(DispatcherServlet.java:508) - Using MultipartResolver [org.springframework.web.multipart.commons.CommonsMultipartResolver@26dcd8c0]
+[2019-10-17 14:45:50.201] DEBUG DispatcherServlet.initLocaleResolver(DispatcherServlet.java:530) - Using LocaleResolver [org.springframework.web.servlet.i18n.SessionLocaleResolver@444548a0]
+[2019-10-17 14:45:50.205] DEBUG DispatcherServlet.initThemeResolver(DispatcherServlet.java:559) - Unable to locate ThemeResolver with name 'themeResolver': using default [org.springframework.web.servlet.theme.FixedThemeResolver@22d1886d]
+[2019-10-17 14:45:50.208] DEBUG DispatcherServlet.initRequestToViewNameTranslator(DispatcherServlet.java:696) - Unable to locate RequestToViewNameTranslator with name 'viewNameTranslator': using default [org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@393881f0]
+[2019-10-17 14:45:50.212] DEBUG DispatcherServlet.initFlashMapManager(DispatcherServlet.java:757) - Unable to locate FlashMapManager with name 'flashMapManager': using default [org.springframework.web.servlet.support.SessionFlashMapManager@682bd3c4]
+[2019-10-17 14:45:50.212] DEBUG FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:568) - Published WebApplicationContext of servlet '' as ServletContext attribute with name [org.springframework.web.servlet.FrameworkServlet.CONTEXT.]
+[2019-10-17 14:45:50.212] INFO  FrameworkServlet.initServletBean(FrameworkServlet.java:508) - FrameworkServlet '': initialization completed in 11 ms
+[2019-10-17 14:45:50.212] DEBUG HttpServletBean.init(HttpServletBean.java:174) - Servlet '' configured successfully
+[2019-10-17 14:45:50.213] DEBUG CartWebTest.setUp(CartWebTest.java:69) - ================================
+[2019-10-17 14:45:50.213] DEBUG CartWebTest.setUp(CartWebTest.java:70) - =context=org.springframework.web.context.support.GenericWebApplicationContext@731a74c: startup date [Thu Oct 17 14:45:48 KST 2019]; root of context hierarchy
+[2019-10-17 14:45:50.213] DEBUG CartWebTest.setUp(CartWebTest.java:71) - =mockMvc=org.springframework.test.web.servlet.MockMvc@77a281fc
+[2019-10-17 14:45:50.214] DEBUG CartWebTest.setUp(CartWebTest.java:72) - =cartDaoImpl=kr.co.redbull.cart.service.impl.CartDaoImpl@2bfbffb2
+[2019-10-17 14:45:50.214] DEBUG CartWebTest.setUp(CartWebTest.java:73) - ================================
+[2019-10-17 14:45:50.214] DEBUG CartWebTest.getBean(CartWebTest.java:293) - ^^^^^^^^^^^^^^^^^^
+[2019-10-17 14:45:50.214] DEBUG CartWebTest.getBean(CartWebTest.java:294) - =getBean()=
+[2019-10-17 14:45:50.214] DEBUG CartWebTest.getBean(CartWebTest.java:295) - ^^^^^^^^^^^^^^^^^^
+[2019-10-17 14:45:50.214] DEBUG CartWebTest.tearDown(CartWebTest.java:300) - tearDown()
+[2019-10-17 14:45:50.215] DEBUG AbstractDirtiesContextTestExecutionListener.beforeOrAfterTestMethod(AbstractDirtiesContextTestExecutionListener.java:106) - After test method: context [DefaultTestContext@13805618 testClass = CartWebTest, testInstance = kr.co.redbull.cart.CartWebTest@42c2f48c, testMethod = getBean@CartWebTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]], class annotated with @DirtiesContext [false] with mode [null], method annotated with @DirtiesContext [false] with mode [null].
+[2019-10-17 14:45:50.215] DEBUG ServletTestExecutionListener.afterTestMethod(ServletTestExecutionListener.java:165) - Resetting RequestContextHolder for test context [DefaultTestContext@13805618 testClass = CartWebTest, testInstance = kr.co.redbull.cart.CartWebTest@42c2f48c, testMethod = getBean@CartWebTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]].
+[2019-10-17 14:45:50.216] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:68) - Retrieved @ProfileValueSourceConfiguration [null] for test class [kr.co.redbull.cart.CartWebTest]
+[2019-10-17 14:45:50.216] DEBUG ProfileValueUtils.retrieveProfileValueSource(ProfileValueUtils.java:80) - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [kr.co.redbull.cart.CartWebTest]
+[2019-10-17 14:45:50.216] DEBUG DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:129) - Retrieved ApplicationContext from cache with key [[WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]]
+[2019-10-17 14:45:50.216] DEBUG DefaultContextCache.logStatistics(DefaultContextCache.java:290) - Spring test ApplicationContext cache statistics: [DefaultContextCache@a7f0ab6 size = 1, maxSize = 32, parentContextCount = 0, hitCount = 2, missCount = 1]
+[2019-10-17 14:45:50.217] DEBUG ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:201) - Setting up MockHttpServletRequest, MockHttpServletResponse, ServletWebRequest, and RequestContextHolder for test context [DefaultTestContext@13805618 testClass = CartWebTest, testInstance = kr.co.redbull.cart.CartWebTest@61799544, testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]].
+[2019-10-17 14:45:50.217] DEBUG DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:81) - Performing dependency injection for test context [[DefaultTestContext@13805618 testClass = CartWebTest, testInstance = kr.co.redbull.cart.CartWebTest@61799544, testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]]].
+[2019-10-17 14:45:50.217] DEBUG DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:129) - Retrieved ApplicationContext from cache with key [[WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]]
+[2019-10-17 14:45:50.217] DEBUG DefaultContextCache.logStatistics(DefaultContextCache.java:290) - Spring test ApplicationContext cache statistics: [DefaultContextCache@a7f0ab6 size = 1, maxSize = 32, parentContextCount = 0, hitCount = 3, missCount = 1]
+[2019-10-17 14:45:50.218] DEBUG AbstractDirtiesContextTestExecutionListener.beforeOrAfterTestMethod(AbstractDirtiesContextTestExecutionListener.java:106) - Before test method: context [DefaultTestContext@13805618 testClass = CartWebTest, testInstance = kr.co.redbull.cart.CartWebTest@61799544, testMethod = get_retrieve@CartWebTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]], class annotated with @DirtiesContext [false] with mode [null], method annotated with @DirtiesContext [false] with mode [null].
+[2019-10-17 14:45:50.218] DEBUG CartWebTest.setUp(CartWebTest.java:60) - ^^^^^^^^^^^^^^^^^^^^^^^
+[2019-10-17 14:45:50.218] DEBUG CartWebTest.setUp(CartWebTest.java:61) - setUp()
+[2019-10-17 14:45:50.218] DEBUG CartWebTest.setUp(CartWebTest.java:62) - ^^^^^^^^^^^^^^^^^^^^^^^
+[2019-10-17 14:45:50.218] DEBUG HttpServletBean.init(HttpServletBean.java:149) - Initializing servlet ''
+[2019-10-17 14:45:50.219] INFO  MockServletContext.log(MockServletContext.java:440) - Initializing Spring FrameworkServlet ''
+[2019-10-17 14:45:50.219] INFO  FrameworkServlet.initServletBean(FrameworkServlet.java:489) - FrameworkServlet '': initialization started
+[2019-10-17 14:45:50.219] DEBUG DispatcherServlet.initMultipartResolver(DispatcherServlet.java:508) - Using MultipartResolver [org.springframework.web.multipart.commons.CommonsMultipartResolver@26dcd8c0]
+[2019-10-17 14:45:50.219] DEBUG DispatcherServlet.initLocaleResolver(DispatcherServlet.java:530) - Using LocaleResolver [org.springframework.web.servlet.i18n.SessionLocaleResolver@444548a0]
+[2019-10-17 14:45:50.219] DEBUG DispatcherServlet.initThemeResolver(DispatcherServlet.java:559) - Unable to locate ThemeResolver with name 'themeResolver': using default [org.springframework.web.servlet.theme.FixedThemeResolver@51ec2df1]
+[2019-10-17 14:45:50.220] DEBUG DispatcherServlet.initRequestToViewNameTranslator(DispatcherServlet.java:696) - Unable to locate RequestToViewNameTranslator with name 'viewNameTranslator': using default [org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@15fa55a6]
+[2019-10-17 14:45:50.220] DEBUG DispatcherServlet.initFlashMapManager(DispatcherServlet.java:757) - Unable to locate FlashMapManager with name 'flashMapManager': using default [org.springframework.web.servlet.support.SessionFlashMapManager@7fab4be7]
+[2019-10-17 14:45:50.220] DEBUG FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:568) - Published WebApplicationContext of servlet '' as ServletContext attribute with name [org.springframework.web.servlet.FrameworkServlet.CONTEXT.]
+[2019-10-17 14:45:50.220] INFO  FrameworkServlet.initServletBean(FrameworkServlet.java:508) - FrameworkServlet '': initialization completed in 1 ms
+[2019-10-17 14:45:50.220] DEBUG HttpServletBean.init(HttpServletBean.java:174) - Servlet '' configured successfully
+[2019-10-17 14:45:50.221] DEBUG CartWebTest.setUp(CartWebTest.java:69) - ================================
+[2019-10-17 14:45:50.221] DEBUG CartWebTest.setUp(CartWebTest.java:70) - =context=org.springframework.web.context.support.GenericWebApplicationContext@731a74c: startup date [Thu Oct 17 14:45:48 KST 2019]; root of context hierarchy
+[2019-10-17 14:45:50.221] DEBUG CartWebTest.setUp(CartWebTest.java:71) - =mockMvc=org.springframework.test.web.servlet.MockMvc@736f3e9e
+[2019-10-17 14:45:50.221] DEBUG CartWebTest.setUp(CartWebTest.java:72) - =cartDaoImpl=kr.co.redbull.cart.service.impl.CartDaoImpl@2bfbffb2
+[2019-10-17 14:45:50.221] DEBUG CartWebTest.setUp(CartWebTest.java:73) - ================================
+[2019-10-17 14:45:50.237] DEBUG DispatcherServlet.doService(DispatcherServlet.java:869) - DispatcherServlet with name '' processing GET request for [/cart/get_retrieve.do]
+[2019-10-17 14:45:50.239] DEBUG DispatcherServlet.doDispatch(DispatcherServlet.java:955) - Last-Modified value for [/cart/get_retrieve.do] is: -1
+[2019-10-17 14:45:50.256] DEBUG CartController.get_retrieve(CartController.java:63) - 1==================================
+[2019-10-17 14:45:50.257] DEBUG CartController.get_retrieve(CartController.java:64) - =1=search=Search [pageSize=10, pageNum=1, searchDiv=10, searchWord=cart_150]
+[2019-10-17 14:45:50.257] DEBUG CartController.get_retrieve(CartController.java:65) - 1==================================
+[2019-10-17 14:45:50.258] DEBUG CartController.get_retrieve(CartController.java:79) - 2==================================
+[2019-10-17 14:45:50.258] DEBUG CartController.get_retrieve(CartController.java:80) - =2=search=Search [pageSize=10, pageNum=1, searchDiv=10, searchWord=cart_150]
+[2019-10-17 14:45:50.258] DEBUG CartController.get_retrieve(CartController.java:81) - 2==================================
+[2019-10-17 14:45:50.258] DEBUG CartDaoImpl.get_retrieve(CartDaoImpl.java:226) - ==================================
+[2019-10-17 14:45:50.259] DEBUG CartDaoImpl.get_retrieve(CartDaoImpl.java:227) - 1. param: Search [pageSize=10, pageNum=1, searchDiv=10, searchWord=cart_150]
+[2019-10-17 14:45:50.259] DEBUG CartDaoImpl.get_retrieve(CartDaoImpl.java:228) - 2. statement: kr.co.redbull.cart.get_cartList
+[2019-10-17 14:45:50.259] DEBUG CartDaoImpl.get_retrieve(CartDaoImpl.java:229) - ==================================
+[2019-10-17 14:45:50.261] DEBUG SqlSessionUtils.getSqlSession(SqlSessionUtils.java:97) - Creating a new SqlSession
+[2019-10-17 14:45:50.265] DEBUG SqlSessionUtils.registerSessionHolder(SqlSessionUtils.java:148) - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6136998b] was not registered for synchronization because synchronization is not active
+[2019-10-17 14:45:50.289] DEBUG DataSourceUtils.doGetConnection(DataSourceUtils.java:110) - Fetching JDBC Connection from DataSource
+[2019-10-17 14:45:50.468] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - ... log4jdbc initializing ...
+[2019-10-17 14:45:50.468] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) -   log4jdbc.properties not found on classpath
+[2019-10-17 14:45:50.469] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.debug.stack.prefix is not defined
+[2019-10-17 14:45:50.469] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.sqltiming.warn.threshold is not defined
+[2019-10-17 14:45:50.469] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.sqltiming.error.threshold is not defined
+[2019-10-17 14:45:50.470] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.dump.booleanastruefalse is not defined (using default value false)
+[2019-10-17 14:45:50.470] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.dump.sql.maxlinelength is not defined (using default of 90)
+[2019-10-17 14:45:50.470] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.dump.fulldebugstacktrace is not defined (using default value false)
+[2019-10-17 14:45:50.470] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.statement.warn is not defined (using default value false)
+[2019-10-17 14:45:50.471] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.dump.sql.select is not defined (using default value true)
+[2019-10-17 14:45:50.471] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.dump.sql.insert is not defined (using default value true)
+[2019-10-17 14:45:50.471] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.dump.sql.update is not defined (using default value true)
+[2019-10-17 14:45:50.471] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.dump.sql.delete is not defined (using default value true)
+[2019-10-17 14:45:50.472] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.dump.sql.create is not defined (using default value true)
+[2019-10-17 14:45:50.472] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.dump.sql.addsemicolon is not defined (using default value false)
+[2019-10-17 14:45:50.472] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.auto.load.popular.drivers is not defined (using default value true)
+[2019-10-17 14:45:50.473] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.trim.sql is not defined (using default value true)
+[2019-10-17 14:45:50.473] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.suppress.generated.keys.exception is not defined (using default value false)
+[2019-10-17 14:45:50.473] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - x log4jdbc.drivers is not defined
+[2019-10-17 14:45:50.474] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) -   FOUND DRIVER oracle.jdbc.OracleDriver
+[2019-10-17 14:45:50.475] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) -   FOUND DRIVER oracle.jdbc.driver.OracleDriver
+[2019-10-17 14:45:50.476] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - ... log4jdbc initialized! ...
+[2019-10-17 14:45:50.478] DEBUG Slf4jSpyLogDelegator.debug(Slf4jSpyLogDelegator.java:506) - driver name is Oracle JDBC driver
+[2019-10-17 14:45:50.479] INFO  Slf4jSpyLogDelegator.connectionOpened(Slf4jSpyLogDelegator.java:518) - 1. Connection opened  org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:111)
+[2019-10-17 14:45:50.479] DEBUG Slf4jSpyLogDelegator.connectionOpened(Slf4jSpyLogDelegator.java:520) - open connections:  1 (1)
+[2019-10-17 14:45:50.479] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. Connection.new Connection returned   org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:111)
+[2019-10-17 14:45:50.479] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. Connection.getAutoCommit() returned true  org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:83)
+[2019-10-17 14:45:50.479] DEBUG SpringManagedTransaction.openConnection(SpringManagedTransaction.java:87) - JDBC Connection [net.sf.log4jdbc.ConnectionSpy@1fcf9739] will not be managed by Spring
+[2019-10-17 14:45:50.482] DEBUG BaseJdbcLogger.debug(BaseJdbcLogger.java:159) - ==>  Preparing: SELECT T1.*, T2.* FROM ( SELECT B.rnum, B.saveFileNm, B.cartNum, B.bPrice, B.pname, B.discount, B.pNum, B.dprice, B.oPrice, B.afterPrice, B.cartcnt, B.regid FROM( SELECT ROWNUM AS rnum, A.* FROM( SELECT i.SAVE_FILE_NM as saveFileNm, c.CARTCNT as cartCnt, c.cartnum as cartNum, p.bprice as bPrice, p.pnum as pNum, o.OPRICE as oPrice, o.ONAME as oName, p.pname as pName, p.discount as discount, p.DPRICE as dPrice, p.bprice - (p.bprice * p.discount) as afterPrice, c.REGID as regId FROM CART c JOIN OPT o ON c.oNum = o.oNum JOIN IMAGE i ON o.pNum = i.refNum JOIN PRODUCT p ON o.pnum = p.pnum and c.regid LIKE '%' || ? || '%' )A WHERE rownum <= (? * ( ?-1)+ ? ) )B WHERE B.rnum >= (? * (?-1)+1) )T1 CROSS JOIN( SELECT COUNT(*) total_cnt FROM CART c JOIN OPT o ON c.oNum = o.oNum JOIN IMAGE i ON o.pNum = i.refNum JOIN PRODUCT p ON o.pnum = p.pnum and c.regid LIKE '%' || ? || '%' )T2 
+[2019-10-17 14:45:50.539] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.new PreparedStatement returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.540] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. Connection.prepareStatement(SELECT T1.*, T2.*
+		    FROM
+		    (
+		        SELECT
+		            B.rnum,
+		            B.saveFileNm,
+		            B.cartNum,
+		            B.bPrice,
+		            B.pname,
+		            B.discount,
+		            B.pNum,
+		            B.dprice,
+		            B.oPrice,
+		            B.afterPrice,
+		            B.cartcnt,
+		            B.regid
+		        FROM(
+		            SELECT ROWNUM AS rnum, A.*
+		            FROM(
+					 SELECT
+							i.SAVE_FILE_NM as saveFileNm,
+							c.CARTCNT as cartCnt,
+                            c.cartnum as cartNum,
+                            p.bprice as bPrice,
+                            p.pnum as pNum,
+							o.OPRICE as oPrice,
+							o.ONAME as oName,
+							p.pname as pName,
+							p.discount as discount,
+							p.DPRICE as dPrice,
+							p.bprice - (p.bprice * p.discount) as afterPrice,
+							c.REGID as regId
+					FROM
+							CART c JOIN OPT o
+							ON c.oNum = o.oNum
+							JOIN IMAGE i
+							ON o.pNum = i.refNum
+							JOIN PRODUCT p
+							ON o.pnum = p.pnum
+												
+							 
+ 	 		 
+ 	 				 and c.regid LIKE '%' || ? || '%'
+ 	 			 
+ 	  
+							
+		                    )A
+		   			 WHERE rownum   <=   (? * ( ?-1)+ ? ) 
+		            )B
+					WHERE B.rnum   >=   (? * (?-1)+1)
+					)T1
+		        CROSS JOIN(
+					SELECT COUNT(*) total_cnt
+					FROM CART c JOIN OPT o
+							ON c.oNum = o.oNum
+							JOIN IMAGE i
+							ON o.pNum = i.refNum
+							JOIN PRODUCT p
+							ON o.pnum = p.pnum
+				 
+ 	 		 
+ 	 				 and c.regid LIKE '%' || ? || '%'
+ 	 			 
+ 	  
+						)T2) returned net.sf.log4jdbc.PreparedStatementSpy@56078cea  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.548] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.setString(1, "cart_150") returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.549] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.setInt(2, 10) returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.549] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.setInt(3, 1) returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.549] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.setInt(4, 10) returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.549] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.setInt(5, 10) returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.550] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.setInt(6, 1) returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.550] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.setString(7, "cart_150") returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.550] DEBUG BaseJdbcLogger.debug(BaseJdbcLogger.java:159) - ==> Parameters: cart_150(String), 10(Integer), 1(Integer), 10(Integer), 10(Integer), 1(Integer), cart_150(String)
+[2019-10-17 14:45:50.551] INFO  Log4JdbcCustomFormatter.sqlOccured(Log4JdbcCustomFormatter.java:74) - REDBULL_SQL] : SELECT T1.*, T2.*
+		    FROM
+		    (
+		        SELECT
+		            B.rnum,
+		            B.saveFileNm,
+		            B.cartNum,
+		            B.bPrice,
+		            B.pname,
+		            B.discount,
+		            B.pNum,
+		            B.dprice,
+		            B.oPrice,
+		            B.afterPrice,
+		            B.cartcnt,
+		            B.regid
+		        FROM(
+		            SELECT ROWNUM AS rnum, A.*
+		            FROM(
+					 SELECT
+							i.SAVE_FILE_NM as saveFileNm,
+							c.CARTCNT as cartCnt,
+                            c.cartnum as cartNum,
+                            p.bprice as bPrice,
+                            p.pnum as pNum,
+							o.OPRICE as oPrice,
+							o.ONAME as oName,
+							p.pname as pName,
+							p.discount as discount,
+							p.DPRICE as dPrice,
+							p.bprice - (p.bprice * p.discount) as afterPrice,
+							c.REGID as regId
+					FROM
+							CART c JOIN OPT o
+							ON c.oNum = o.oNum
+							JOIN IMAGE i
+							ON o.pNum = i.refNum
+							JOIN PRODUCT p
+							ON o.pnum = p.pnum
+												
+							 
+ 	 		 
+ 	 				
+ and c.regid LIKE '%' || 'cart_150' || '%'
+ 	 			 
+ 	  
+							
+		                    )A
+		   			 WHERE rownum   <=   (10 * ( 1-1)+ 10 ) 
+		            )B
+					WHERE B.rnum   >=   (10 * (1-1)+1)
+					)T1
+		        CROSS JOIN(
+					SELECT COUNT(*) total_cnt
+					FROM CART c JOIN OPT o
+							ON c.oNum = o.oNum
+							JOIN IMAGE i
+							ON o.pNum = i.refNum
+							JOIN PRODUCT p
+							ON o.pnum = p.pnum
+				 
+ 	 		 
+ 	 				
+ and c.regid LIKE '%' || 'cart_150' || '%'
+ 	 			 
+ 	  
+						)T2
+[2019-10-17 14:45:50.564] DEBUG Slf4jSpyLogDelegator.sqlTimingOccured(Slf4jSpyLogDelegator.java:352) -  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+1. SELECT T1.*, T2.* FROM ( SELECT B.rnum, B.saveFileNm, B.cartNum, B.bPrice, B.pname, B.discount, 
+B.pNum, B.dprice, B.oPrice, B.afterPrice, B.cartcnt, B.regid FROM( SELECT ROWNUM AS rnum, A.* 
+FROM( SELECT i.SAVE_FILE_NM as saveFileNm, c.CARTCNT as cartCnt, c.cartnum as cartNum, p.bprice 
+as bPrice, p.pnum as pNum, o.OPRICE as oPrice, o.ONAME as oName, p.pname as pName, p.discount 
+as discount, p.DPRICE as dPrice, p.bprice - (p.bprice * p.discount) as afterPrice, c.REGID 
+as regId FROM CART c JOIN OPT o ON c.oNum = o.oNum JOIN IMAGE i ON o.pNum = i.refNum JOIN PRODUCT 
+p ON o.pnum = p.pnum and c.regid LIKE '%' || 'cart_150' || '%' )A WHERE rownum <= (10 * ( 1-1)+ 
+10 ) )B WHERE B.rnum >= (10 * (1-1)+1) )T1 CROSS JOIN( SELECT COUNT(*) total_cnt FROM CART 
+c JOIN OPT o ON c.oNum = o.oNum JOIN IMAGE i ON o.pNum = i.refNum JOIN PRODUCT p ON o.pnum 
+= p.pnum and c.regid LIKE '%' || 'cart_150' || '%' )T2  {executed in 13 msec}
+[2019-10-17 14:45:50.564] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.execute() returned true  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.572] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.new ResultSet returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.572] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.getResultSet() returned net.sf.log4jdbc.ResultSetSpy@2416498e  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.578] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getMetaData() returned oracle.jdbc.driver.OracleResultSetMetaData@5ec46cdd  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.579] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getType() returned 1003  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.579] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.next() returned true  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.580] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getString(SAVEFILENM) returned resources\img\product\2019\10\product_img12.PNG  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.581] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.581] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getInt(CARTNUM) returned 190  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.582] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.582] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getInt(BPRICE) returned 12900  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.582] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.583] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getString(PNAME) returned 액자테이블 3종 택1  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.583] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.584] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getDouble(DISCOUNT) returned 0.5  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.584] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.588] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getString(PNUM) returned 396  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.588] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.588] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getInt(DPRICE) returned 0  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.589] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.589] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getInt(OPRICE) returned 12900  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.590] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.590] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getInt(CARTCNT) returned 1  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.590] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.591] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getString(REGID) returned cart_150  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.591] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.592] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.next() returned true  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.592] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getString(SAVEFILENM) returned resources\img\product\2019\10\product_img22.PNG  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.592] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.593] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getInt(CARTNUM) returned 190  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.593] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.594] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getInt(BPRICE) returned 12900  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.594] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.594] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getString(PNAME) returned 액자테이블 3종 택1  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.595] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.595] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getDouble(DISCOUNT) returned 0.5  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.595] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.596] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getString(PNUM) returned 396  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.596] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.597] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getInt(DPRICE) returned 0  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.597] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor15.invoke(null:-1)
+[2019-10-17 14:45:50.597] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getInt(OPRICE) returned 12900  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.598] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor15.invoke(null:-1)
+[2019-10-17 14:45:50.598] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getInt(CARTCNT) returned 1  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.598] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor15.invoke(null:-1)
+[2019-10-17 14:45:50.599] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getString(REGID) returned cart_150  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.599] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor15.invoke(null:-1)
+[2019-10-17 14:45:50.599] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.next() returned true  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.600] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getString(SAVEFILENM) returned resources\img\product\2019\10\product_img32.PNG  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.600] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor15.invoke(null:-1)
+[2019-10-17 14:45:50.601] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getInt(CARTNUM) returned 190  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.601] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor15.invoke(null:-1)
+[2019-10-17 14:45:50.601] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getInt(BPRICE) returned 12900  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.602] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor15.invoke(null:-1)
+[2019-10-17 14:45:50.602] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getString(PNAME) returned 액자테이블 3종 택1  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.603] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor15.invoke(null:-1)
+[2019-10-17 14:45:50.603] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getDouble(DISCOUNT) returned 0.5  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.603] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor15.invoke(null:-1)
+[2019-10-17 14:45:50.604] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getString(PNUM) returned 396  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.604] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor15.invoke(null:-1)
+[2019-10-17 14:45:50.604] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getInt(DPRICE) returned 0  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.605] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor15.invoke(null:-1)
+[2019-10-17 14:45:50.605] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getInt(OPRICE) returned 12900  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.605] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor15.invoke(null:-1)
+[2019-10-17 14:45:50.606] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getInt(CARTCNT) returned 1  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.606] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor15.invoke(null:-1)
+[2019-10-17 14:45:50.606] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.getString(REGID) returned cart_150  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.607] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.wasNull() returned false  sun.reflect.GeneratedMethodAccessor15.invoke(null:-1)
+[2019-10-17 14:45:50.608] INFO  ResultSetCollectorPrinter.println(ResultSetCollectorPrinter.java:108) - |-----|------------------------------------------------|--------|-------|------------|---------|-----|-------|-------|-----------|--------|---------|----------|
+[2019-10-17 14:45:50.608] INFO  ResultSetCollectorPrinter.println(ResultSetCollectorPrinter.java:108) - |RNUM |SAVEFILENM                                      |CARTNUM |BPRICE |PNAME       |DISCOUNT |PNUM |DPRICE |OPRICE |AFTERPRICE |CARTCNT |REGID    |TOTAL_CNT |
+[2019-10-17 14:45:50.609] INFO  ResultSetCollectorPrinter.println(ResultSetCollectorPrinter.java:108) - |-----|------------------------------------------------|--------|-------|------------|---------|-----|-------|-------|-----------|--------|---------|----------|
+[2019-10-17 14:45:50.609] INFO  ResultSetCollectorPrinter.println(ResultSetCollectorPrinter.java:108) - |1    |resources\img\product\2019\10\product_img12.PNG |190     |12900  |액자테이블 3종 택1 |0.5      |396  |0      |12900  |6450       |1       |cart_150 |3         |
+[2019-10-17 14:45:50.610] INFO  ResultSetCollectorPrinter.println(ResultSetCollectorPrinter.java:108) - |2    |resources\img\product\2019\10\product_img22.PNG |190     |12900  |액자테이블 3종 택1 |0.5      |396  |0      |12900  |6450       |1       |cart_150 |3         |
+[2019-10-17 14:45:50.610] INFO  ResultSetCollectorPrinter.println(ResultSetCollectorPrinter.java:108) - |3    |resources\img\product\2019\10\product_img32.PNG |190     |12900  |액자테이블 3종 택1 |0.5      |396  |0      |12900  |6450       |1       |cart_150 |3         |
+[2019-10-17 14:45:50.611] INFO  ResultSetCollectorPrinter.println(ResultSetCollectorPrinter.java:108) - |-----|------------------------------------------------|--------|-------|------------|---------|-----|-------|-------|-----------|--------|---------|----------|
+[2019-10-17 14:45:50.611] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.next() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.611] DEBUG BaseJdbcLogger.debug(BaseJdbcLogger.java:159) - <==      Total: 3
+[2019-10-17 14:45:50.611] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. ResultSet.close() returned null  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.612] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.getConnection() returned net.sf.log4jdbc.ConnectionSpy@1fcf9739  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.612] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. Connection.getMetaData() returned org.apache.commons.dbcp.DelegatingDatabaseMetaData@747d1932  org.apache.ibatis.executor.resultset.DefaultResultSetHandler.getNextResultSet(DefaultResultSetHandler.java:258)
+[2019-10-17 14:45:50.612] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.isClosed() returned false  sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.612] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. PreparedStatement.close() returned   sun.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
+[2019-10-17 14:45:50.613] DEBUG SqlSessionUtils.closeSqlSession(SqlSessionUtils.java:191) - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6136998b]
+[2019-10-17 14:45:50.613] DEBUG DataSourceUtils.doReleaseConnection(DataSourceUtils.java:327) - Returning JDBC Connection to DataSource
+[2019-10-17 14:45:50.614] INFO  Slf4jSpyLogDelegator.connectionClosed(Slf4jSpyLogDelegator.java:537) - 1. Connection closed  org.springframework.jdbc.datasource.DataSourceUtils.doCloseConnection(DataSourceUtils.java:341)
+[2019-10-17 14:45:50.614] DEBUG Slf4jSpyLogDelegator.connectionClosed(Slf4jSpyLogDelegator.java:539) - open connections:  none
+[2019-10-17 14:45:50.614] DEBUG Slf4jSpyLogDelegator.methodReturned(Slf4jSpyLogDelegator.java:167) - 1. Connection.close() returned   org.springframework.jdbc.datasource.DataSourceUtils.doCloseConnection(DataSourceUtils.java:341)
+[2019-10-17 14:45:50.614] DEBUG CartDaoImpl.get_retrieve(CartDaoImpl.java:233) - ==================================
+[2019-10-17 14:45:50.614] DEBUG CartDaoImpl.get_retrieve(CartDaoImpl.java:234) - 3. list: [Cart [cartNum=190, oNum=null, cartCnt=1, regId=cart_150, toString()=Product [pNum=396, pName=액자테이블 3종 택1, bPrice=12900, detail=null, discount=0.5, dPrice=0, pCategory=null, regId=null, regDt=null, modId=null, modDt=null, toString()=Opt [oNum=null, oName=null, oPrice=12900, pNum=null, iNum=null, optList=null]]], Cart [cartNum=190, oNum=null, cartCnt=1, regId=cart_150, toString()=Product [pNum=396, pName=액자테이블 3종 택1, bPrice=12900, detail=null, discount=0.5, dPrice=0, pCategory=null, regId=null, regDt=null, modId=null, modDt=null, toString()=Opt [oNum=null, oName=null, oPrice=12900, pNum=null, iNum=null, optList=null]]], Cart [cartNum=190, oNum=null, cartCnt=1, regId=cart_150, toString()=Product [pNum=396, pName=액자테이블 3종 택1, bPrice=12900, detail=null, discount=0.5, dPrice=0, pCategory=null, regId=null, regDt=null, modId=null, modDt=null, toString()=Opt [oNum=null, oName=null, oPrice=12900, pNum=null, iNum=null, optList=null]]]]
+[2019-10-17 14:45:50.614] DEBUG CartDaoImpl.get_retrieve(CartDaoImpl.java:235) - ==================================
+[2019-10-17 14:45:50.615] DEBUG CartController.get_retrieve(CartController.java:85) - 1==================================
+[2019-10-17 14:45:50.615] DEBUG CartController.get_retrieve(CartController.java:86) - =1=list=[Cart [cartNum=190, oNum=null, cartCnt=1, regId=cart_150, toString()=Product [pNum=396, pName=액자테이블 3종 택1, bPrice=12900, detail=null, discount=0.5, dPrice=0, pCategory=null, regId=null, regDt=null, modId=null, modDt=null, toString()=Opt [oNum=null, oName=null, oPrice=12900, pNum=null, iNum=null, optList=null]]], Cart [cartNum=190, oNum=null, cartCnt=1, regId=cart_150, toString()=Product [pNum=396, pName=액자테이블 3종 택1, bPrice=12900, detail=null, discount=0.5, dPrice=0, pCategory=null, regId=null, regDt=null, modId=null, modDt=null, toString()=Opt [oNum=null, oName=null, oPrice=12900, pNum=null, iNum=null, optList=null]]], Cart [cartNum=190, oNum=null, cartCnt=1, regId=cart_150, toString()=Product [pNum=396, pName=액자테이블 3종 택1, bPrice=12900, detail=null, discount=0.5, dPrice=0, pCategory=null, regId=null, regDt=null, modId=null, modDt=null, toString()=Opt [oNum=null, oName=null, oPrice=12900, pNum=null, iNum=null, optList=null]]]]
+[2019-10-17 14:45:50.615] DEBUG CartController.get_retrieve(CartController.java:87) - 1==================================
+[2019-10-17 14:45:50.615] DEBUG CartController.get_retrieve(CartController.java:96) - 1==================================
+[2019-10-17 14:45:50.615] DEBUG CartController.get_retrieve(CartController.java:97) - =1=VIEW_LIST_NM=cart/cart
+[2019-10-17 14:45:50.615] DEBUG CartController.get_retrieve(CartController.java:98) - 1==================================
+[2019-10-17 14:45:50.618] DEBUG DispatcherServlet.render(DispatcherServlet.java:1280) - Rendering view [org.springframework.web.servlet.view.JstlView: name 'cart/cart'; URL [/cart/cart.jsp]] in DispatcherServlet with name ''
+[2019-10-17 14:45:50.621] DEBUG MockRequestDispatcher.forward(MockRequestDispatcher.java:67) - MockRequestDispatcher: forwarding to [/cart/cart.jsp]
+[2019-10-17 14:45:50.621] DEBUG FrameworkServlet.processRequest(FrameworkServlet.java:1000) - Successfully completed request
+[2019-10-17 14:45:50.627] DEBUG CartWebTest.get_retrieve(CartWebTest.java:222) - ===============================
+[2019-10-17 14:45:50.627] DEBUG CartWebTest.get_retrieve(CartWebTest.java:223) - =result=
+[2019-10-17 14:45:50.627] DEBUG CartWebTest.get_retrieve(CartWebTest.java:224) - ===============================
+[2019-10-17 14:45:50.627] DEBUG CartWebTest.tearDown(CartWebTest.java:300) - tearDown()
+[2019-10-17 14:45:50.628] DEBUG AbstractDirtiesContextTestExecutionListener.beforeOrAfterTestMethod(AbstractDirtiesContextTestExecutionListener.java:106) - After test method: context [DefaultTestContext@13805618 testClass = CartWebTest, testInstance = kr.co.redbull.cart.CartWebTest@61799544, testMethod = get_retrieve@CartWebTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]], class annotated with @DirtiesContext [false] with mode [null], method annotated with @DirtiesContext [false] with mode [null].
+[2019-10-17 14:45:50.628] DEBUG ServletTestExecutionListener.afterTestMethod(ServletTestExecutionListener.java:165) - Resetting RequestContextHolder for test context [DefaultTestContext@13805618 testClass = CartWebTest, testInstance = kr.co.redbull.cart.CartWebTest@61799544, testMethod = get_retrieve@CartWebTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]].
+[2019-10-17 14:45:50.628] DEBUG AbstractDirtiesContextTestExecutionListener.beforeOrAfterTestClass(AbstractDirtiesContextTestExecutionListener.java:141) - After test class: context [DefaultTestContext@13805618 testClass = CartWebTest, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@56ef9176 testClass = CartWebTest, locations = '{file:src/main/webapp/WEB-INF/spring/**/*.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.test.context.web.WebDelegatingSmartContextLoader', parent = [null]]], class annotated with @DirtiesContext [false] with mode [null].
+[2019-10-17 14:45:50.629] INFO  AbstractApplicationContext.doClose(AbstractApplicationContext.java:984) - Closing org.springframework.web.context.support.GenericWebApplicationContext@731a74c: startup date [Thu Oct 17 14:45:48 KST 2019]; root of context hierarchy
+[2019-10-17 14:45:50.630] DEBUG SqlSessionUtils.getSqlSession(SqlSessionUtils.java:97) - Creating a new SqlSession
+[2019-10-17 14:45:50.630] DEBUG SqlSessionUtils.registerSessionHolder(SqlSessionUtils.java:148) - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6294f89c] was not registered for synchronization because synchronization is not active
+[2019-10-17 14:45:50.631] DEBUG SqlSessionUtils.closeSqlSession(SqlSessionUtils.java:191) - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6294f89c]

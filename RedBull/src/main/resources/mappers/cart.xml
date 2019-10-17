@@ -93,6 +93,7 @@
 		            B.discount,
 		            B.pNum,
 		            B.dprice,
+		            B.oPrice,
 		            B.afterPrice,
 		            B.cartcnt,
 		            B.regid
