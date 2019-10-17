@@ -3,7 +3,12 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="context" value="${pageContext.request.contextPath }" />
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
+
+pageContext.setAttribute("cn", "\n"); //Enter
+pageContext.setAttribute("br", "<br/>"); //br 태그
+
 /* 	Search search = (Search)request.getAttribute("searchVO");
 	
 	String searchDiv = "20";
@@ -86,16 +91,21 @@ ${search }
 	     			</select>
 				</div>	
 			</div>		
-			
 			<div class="form-group">
+				<div style="width:800px; background-color: #FAFAFA" id="contents" CONTENTEDITABLE>
+					${fn:replace(board.contents, cn, br)}
+				</div>
+			</div>
+						<%-- <div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label">내용</label>
 				<div class="col-sm-8">
 					<textarea class="form-control" name="contents" id="contents"
 						rows="7" placeholder="내용"><c:out
 							value="${board.contents }" /></textarea>
 				</div>
-			</div>
-			<div class="form-group">
+			</div> --%>
+			
+			<div class="form-group" style="display: none;">
 				<label for="inputEmail3" class="col-sm-2 control-label">등록자
 					아이디</label>
 				<div class="col-sm-8">
@@ -230,7 +240,7 @@ ${search }
 				data : {
 					"bNum":$("#bNum").val(),
 					"title" : $("#title").val(),
-					"contents" : $("#contents").val(),
+					"contents" : $("#contents").text(),
 					"tNum":tNum,
 					"category" : category,
 					"regId" : $("#regId").val()
@@ -349,9 +359,6 @@ ${search }
 				}
 
 			});			
-			
-			
-			
 		});
 	</script>
 </body>
