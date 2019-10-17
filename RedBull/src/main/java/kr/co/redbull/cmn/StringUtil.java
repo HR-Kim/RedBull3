@@ -19,7 +19,7 @@ public class StringUtil {
 	private static Logger LOG = LoggerFactory.getLogger(StringUtil.class);
 	
 	// File Root 디렉토리
-	public static final String UPLOAD_ROOT = "D:\\HR_FILE";
+	public static final String UPLOAD_ROOT = "/src/main/webapp/img";
 	
 	/**
 	 * Product 리스트에서 startNum에서 LastNum까지 추출하는 메소드
@@ -144,6 +144,46 @@ public class StringUtil {
 		}
 
 		return f.getAbsolutePath();
+	}
+	
+	/**
+	 * 파일 Rename
+	 * 
+	 * @param f
+	 * @return 파일 rename명 cloude.jpg->cloude1~9999.jpg
+	 */
+	public static String fileRename_board(File f) {
+		String retFileNm = "";
+		// 01.파일 존재 Check
+		if (!f.exists()) {
+			retFileNm = f.toString();
+			return retFileNm;
+		}
+
+		// 02.파일 있으면: rename
+		// cloude + 확장자
+		String name = f.getName();// cloude.jpg
+		LOG.debug("1.name : "+name);
+		String body = null;// cloude
+		String ext = null;// jpg
+		int dot = name.lastIndexOf(".");
+		LOG.debug("2.dot : "+dot);
+		if (dot != -1) {
+			body = name.substring(0, dot);
+			LOG.debug("3.body : "+body);
+			ext = name.substring(dot);// .jpg
+			LOG.debug("4.ext : "+ext);
+		}
+
+		// 03.반복문 처리
+		int count = 0;
+		while (f.exists() && count < 99999) {
+			count++;
+			retFileNm = body + count + ext;
+			f = new File(f.getParent(), retFileNm);
+		}
+
+		return f.toString();
 	}
 
 	public static String getUUID() {

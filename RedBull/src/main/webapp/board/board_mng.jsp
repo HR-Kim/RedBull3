@@ -154,27 +154,33 @@ ${search }
 
 	<script type="text/javascript">
 	
-		//이미지 추가
-		function uploadImage(image) {
-        var data = new FormData();
-        data.append("image", image);
-        $.ajax({
-            type: "post",
-            cache: false,
-            contentType:false,
-            processData: false,
-            dataType :'jsonp',
-            url: '${context}board/do_save_img.do',
-            data: data,
-            success: function(data) {
-                var image = $('<img>').attr('src', 'C:\Users\sist\git\RedBull3\RedBull\src\main\webapp\board\noimage.jpg');
-                $('#summernote').summernote("insertNode", image[0]);
-            },
-            error: function(data) {
-                alert('error : ' +data);
-            }
-          });
-       }
+		//파일업로드 
+
+ 		function sendFile(file, el) {
+			
+			/* var refNum = ${board.bNum}; */
+			
+			var form_data = new FormData();
+	      	form_data.append('file', file);
+	      	$.ajax({
+	      		type:"POST",
+				   url:"${context }/board/do_save_img.do",
+				   contentType:false,
+				   async:false,
+				   cache:false,
+				   processData:false,
+				   enctype:"multipart/form-data",
+				   data: form_data,
+	        	success: function(data) {
+	        		var saveFileNm = data.msgMsg;
+	        		//console.log(saveFileNm);
+					if (null != data && data.msgId == "1") {
+						var image = $('<img>').attr('src', "${context }"+saveFileNm);
+						$('#summernote').summernote("insertNode", image[0]);
+					}
+	        	}
+	      	});
+	    } 
 		
 		//목록
 		$("#doRetrieve").on("click", function() {
@@ -394,9 +400,11 @@ ${search }
 			 $('#summernote').summernote({
 				 height: 300,   //set editable area's height
 	               callbacks: {
-	                       onImageUpload: function(image) {
-	                        uploadImage(image[0]);
-	                       }
+	            	   onImageUpload: function(files, editor, welEditable) {
+	   		            for (var i = files.length - 1; i >= 0; i--) {
+	   		            	sendFile(files[i], this);
+	   		            }
+	   		        }
 	               },
 	               lang : 'ko-KR',
 	               placeholder: '이제 본문에 #을 이용한 태그 입력도 가능해요! URL을 통해, 사진 및 youtube를 등록할 수도 있어요!',

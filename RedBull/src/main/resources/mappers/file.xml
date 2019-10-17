@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.redbull.file">
+   <sql id="fileColumns">
+   		INUM as iNum,
+	    REFNUM as refNum,
+	    ORG_FILE_NM as orgFileNm,
+	    SAVE_FILE_NM as saveFileNm,
+	    FILE_SIZE as fileSize,
+	    EXT_NM as extNm
+   </sql>
+   
+   <!-- get_file_count -->
+   <select id="get_file_count" parameterType="FileVO" resultType="int">
+	    SELECT COUNT(*) AS CNT 
+		FROM IMAGE A
+		WHERE A.file_id = #{fileId,jdbcType=VARCHAR}
+   </select>
+   
+	<!-- get_fileIdOrgFileNmList -->
+	<select id="get_fileIdOrgFileNmList" parameterType="Search" resultType="FileVO">
+		SELECT
+		    <include refid="fileColumns" />
+		FROM
+		    IMAGE
+		WHERE ORG_FILE_NM LIKE '%' || #{searchWord} || '%'
+		ORDER BY ORG_FILE_NM ASC	
+	</select>
+
+	<!-- FILE_ID기준 NUM증가 -->
+	<select id="num_max_plus_one" parameterType="FileVO" resultType="int">
+		SELECT NVL(MAX(NUM),0)+1 AS CNT 
+		FROM IMAGE A
+		WHERE A.file_id = #{fileId,jdbcType=VARCHAR}	
+	</select>
+	
+	
+	<!-- FILE_ID기준: 삭제 -->
+	<delete id="do_delete_file_id"
+		parameterType="FileVO">
+		<![CDATA[
+			DELETE FROM IMAGE	
+			WHERE  file_id = #{fileId,jdbcType=VARCHAR}	
+		]]>
+	</delete>
+	
+	
+	
+	<!-- FILE_ID기준 조회 -->
+	<select id="get_fileIdList" parameterType="FileVO"
+		resultType="FileVO">
+		SELECT	
+		    <include refid="fileColumns" />
+		FROM	
+		    IMAGE	
+		WHERE file_id = #{fileId,jdbcType=VARCHAR}
+		ORDER BY num
+	</select>
+	
+	
+	<!-- 등록 -->
+	<insert id="do_save" parameterType="FileVO">
+		INSERT INTO IMAGE (	
+		    file_id,	
+		    num,	
+		    org_file_nm,
+		    save_file_nm,	
+		    file_size,	
+		    ext_nm
+		) VALUES (	
+		    #{fileId,jdbcType=VARCHAR},	
+		    #{num,jdbcType=NUMERIC},	
+		    #{orgFileNm,jdbcType=VARCHAR},
+		    #{saveFileNm,jdbcType=VARCHAR},	
+		    #{fileSize,javaType=double},	
+		    #{extNm,jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<!-- 삭제 -->
+	<delete id="do_delete"
+		parameterType="FileVO">
+		<![CDATA[
+			DELETE FROM IMAGE	
+			WHERE  file_id = #{fileId,jdbcType=VARCHAR}	
+			AND    num = #{num,jdbcType=NUMERIC}
+		]]>
+	</delete>
+	
+	
+</mapper>

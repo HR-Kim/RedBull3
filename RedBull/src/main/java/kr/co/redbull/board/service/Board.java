@@ -15,11 +15,12 @@ public class Board extends DTO {
 	private String modId    ; //수정자
 	private String modDt    ; //수정일
 	private String commentCnt; //댓글갯수
+	private String fileId   ; //파일ID
 	
 	public Board() {}
 
 	public Board(int bNum, String title, String contents, int readCnt, int tNum, String category, String regId,
-			String regDt, String modId, String modDt, String commentCnt) {
+			String regDt, String modId, String modDt, String commentCnt, String fileId) {
 		super();
 		this.bNum = bNum;
 		this.title = title;
@@ -32,8 +33,9 @@ public class Board extends DTO {
 		this.modId = modId;
 		this.modDt = modDt;
 		this.commentCnt = commentCnt;
+		this.fileId = fileId;
 	}
-
+	
 	public int getbNum() {
 		return bNum;
 	}
@@ -121,12 +123,21 @@ public class Board extends DTO {
 	public void setCommentCnt(String commentCnt) {
 		this.commentCnt = commentCnt;
 	}
+	
+	public String getFileId() {
+		return fileId;
+	}
+
+	public void setFileId(String fileId) {
+		this.fileId = fileId;
+	}
 
 	@Override
 	public String toString() {
 		return "Board [bNum=" + bNum + ", title=" + title + ", contents=" + contents + ", readCnt=" + readCnt
 				+ ", tNum=" + tNum + ", category=" + category + ", regId=" + regId + ", regDt=" + regDt + ", modId="
-				+ modId + ", modDt=" + modDt + ", commentCnt=" + commentCnt + ", toString()=" + super.toString() + "]";
+				+ modId + ", modDt=" + modDt + ", commentCnt=" + commentCnt + ", fileId=" + fileId + ", toString()="
+				+ super.toString() + "]";
 	}
 
 }
