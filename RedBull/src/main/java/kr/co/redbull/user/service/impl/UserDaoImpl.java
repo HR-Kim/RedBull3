@@ -86,7 +86,7 @@ public class UserDaoImpl implements WorkDiv {
 		User user = (User) dto;
 		
 		// User의 레벨 값 바꾸기(문자 -> 숫자)
-//		user.setintlvl(user.getLvl().intValue());
+		user.setintlvl(user.getLvl().intValue());
 		
 		LOG.debug("=============================");
 		LOG.debug("01. statement="+statement);

@@ -125,7 +125,7 @@
                   </li>
                   
                   <li class="nav-item">
-                    <a class="nav-link" href="${context}/user/update.jsp" >임시 회원수정 버튼</a>
+                    <a class="nav-link" href="${context}/user/update.jsp" id="userUpdateBtn" >임시 회원수정 버튼</a>
                   </li>
                   
                 </ul>
@@ -210,6 +210,101 @@
 			location.href="${context}/main/main.do"; // 메인 화면으로 이동
 
 		});
+		
+		//-----Testing----------------------------------------------------------------------
+		
+<%-- 		// 회원정보수정 버튼 클릭
+		$("#userUpdateBtn").on("click", function() {
+
+			var rid = '<%=session.getAttribute("rid")%>'
+			alert(rid);
+			
+ 			//ajax
+			$.ajax({
+				type : "GET",
+				url : "${context}/user/get_updateForm.do",
+				dataType : "html",
+				data : {
+					"rid" : rid // session의 rid 값을 넘김
+				},
+				success : function(data) {
+					
+					var jData = JSON.parse(data); // String 데이터를 json으로 파싱
+					
+					if(null != jData) { // 데이터가 있으먼
+						
+						if (jData.msgId == "30") { // 아이디가 있으면
+
+							alert(jData.msgMsg);
+							location.href="${context}/user/update.jsp"; // 로그인 화면으로 이동
+						}	
+					
+						else if (jData.msgId == "10") { // 아이디가 없음
+							
+							alert(jData.msgMsg);
+											
+						}	
+					}
+
+				},
+				complete : function(data) { 
+
+				},
+				error : function(xhr, status, error) {
+					alert("error:" + error);
+				}
+			});
+			//--ajax  
+			
+/* 			user.action = "${context}/user/get_selectOneUpdate.do";
+			
+			user.submit(); */
+			
+/* 			user.submit();
+			
+			location.href="${context}/user/get_selectOne.do"; 
+			
+			
+ 			$.ajax({
+	            type:"POST",
+	            url:"${context}/user/get_selectOne.do",
+	            dataType:"html",// JSON
+	            data:{
+	            	"rid": user.rid
+	            },
+	            success: function(data){//통신이 성공적으로 이루어 졌을때 받을 함수
+	             	console.log(data); // 선택한 데이터 전체 출력
+	             	
+	            	var parseData = $.parseJSON(data);
+	            	
+	            	console.log(parseData.rid); // 선택한 데이터 아이디만 출력
+	            	
+	            	$("#rid").val(parseData.rid); // 선택한 데이터의 아이디값이 입력 폼에 들어옴
+	            	$("#passwd").val(parseData.passwd);
+	            	$("#uname").val(parseData.uname);
+	            	$("#birth").val(parseData.birth);
+	            	$("#phone").val(parseData.phone);
+	            	$("#postnum").val(parseData.postnum);
+	            	$("#address").val(parseData.address);
+	            	$("#detadd").val(parseData.detadd);
+	            	$("#lvl").val(parseData.lvl);
+	            	$("#upoint").val(parseData.upoint);
+	            	
+	            	$("#rid").prop("disabled", true);
+	            		
+	            },
+	            
+	            	complete: function(data){//무조건 수행
+	
+	             
+	            },
+	            	error: function(xhr,status,error){
+	             
+	            }
+            
+        	});  */
+
+		}); --%>
 		
   </script>
   
