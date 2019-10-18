@@ -1,3 +1,4 @@
+<%@page import="kr.co.redbull.user.service.User"%>
 <%@page import="kr.co.redbull.code.service.Code"%>
 <%@page import="kr.co.redbull.cmn.StringUtil"%>
 <%@page import="kr.co.redbull.cmn.Search"%>
@@ -8,6 +9,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="context" value="${pageContext.request.contextPath}" />
+<%
+	User user = (User)session.getAttribute("user");
+%>
 <%--
   /**
   * @Class Name : board_list.jsp
@@ -113,6 +117,7 @@
  
   <body>
   <jsp:include page="/main/header.jsp"></jsp:include>
+  
   	<!--================Home Banner Area =================-->
 	<section class="banner_area">
 		<div class="banner_inner d-flex align-items-center">
@@ -152,7 +157,6 @@
         </div> 
       </div>
       <!--// 검색영역 -->  
-      
       <!-- Grid영역 -->
  
          <c:choose>
@@ -189,8 +193,9 @@
 							<td class="text-left col-md-1 col-xs-1" >조회수 ${vo.readCnt}</td>	
 							<td class="text-left col-md-1 col-xs-1" >${vo.category}</td>						
 						</tr>
-						<tr style="border-bottom: none;"></tr>
-			    	</table><br/>
+			    	</table>
+			    	<hr/>
+			    	<br/>
 				</div>
 		        
 	          </c:forEach>
@@ -219,6 +224,7 @@
     	
     	//글쓰기 창으로 이동
     	$("#do_write").on("click", function(){
+    		
     		var frm = document.boardFrm;
     		frm.searchDiv.value="20";
     		frm.bNum.value = 0;
