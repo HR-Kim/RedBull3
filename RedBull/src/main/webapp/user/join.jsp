@@ -31,9 +31,10 @@
             <div class="signup-content">
             
                 <div class="signup-img">
-                    <div class="signup-img-content">
-                        <h2>Register now </h2>
-                        <p>while seats are available !</p>
+                    <div style="position: absolute; top: 30%; left: 30%;">
+			          <a class="navbar-brand logo_h" href="${context}/main/main.do">
+			            <img src="${context}/resources/img/logo3.png" style="max-width: 100%; height: auto;" />
+			          </a>
                     </div>
                 </div>
                 
@@ -46,6 +47,9 @@
                                 <div class="form-input">
                                     <label for="rid" class="required">아이디</label>
                                     <input type="text" name="rid" id="rid" placeholder="이메일주소 " maxlength="320"/>
+                                </div>
+                                <div class="form-input">
+                                    <div id="id_check"></div>
                                 </div>
                                 <div class="form-input">
                                     <label for="passwd" class="required">비밀번호</label>
@@ -248,6 +252,7 @@
 			$("#detadd").val("");
 		
 		});
+				
 
     </script>
     

@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService {
 			// 보내는 사람
 			String host = "smtp.naver.com";
 			final String userName = "sytemp1234";
-			final String password = "비밀번호넣기";
+			final String password = "tkddyd!234";
 			int port = 465;
 			
 			// 받는 사람

@@ -41,7 +41,7 @@
 			<value>sytemp1234</value>
 		</constructor-arg>
 		<constructor-arg>
-			<value>비밀번호넣기</value>
+			<value>tkddyd!234</value>
 		</constructor-arg>
 	</bean>
 
