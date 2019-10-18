@@ -93,6 +93,14 @@
   .title{
   	font-size: 12pt;
   }
+  
+  .listTable{
+ 	border-style: hidden;
+	border-bottom-style: hidden;
+	border-left-style: hidden;
+	border-right-style: hidden; 
+  }
+  
 /*   .listTable>td{
   	border: none;
   } */
@@ -194,7 +202,6 @@
 							<td class="text-left col-md-1 col-xs-1" >${vo.category}</td>						
 						</tr>
 			    	</table>
-			    	<hr/>
 			    	<br/>
 				</div>
 		        

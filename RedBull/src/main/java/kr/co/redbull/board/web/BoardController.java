@@ -60,6 +60,8 @@ public class BoardController {
 		
 		//root_path 전달
 		String UPLOAD_ROOT = "C:\\Users\\sist\\git/RedBull3/RedBull/src/main/webapp/img/board";
+		//String UPLOAD_ROOT = "C:\\Users\\sist\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\RedBull3/RedBull/src/main/webapp/img/board";
+		
 		String SAVE_ROOT = "img"+File.separator+"board";
 
 		//Upload파일 정보: 원본,저장,사이즈,확장자 List
@@ -134,7 +136,7 @@ public class BoardController {
 				saveFile = SAVE_ROOT+File.separator+StringUtil.fileRenameShort(orgFileCheck);
 			}
 			LOG.debug("=@Controller newFile="+newFile);
-			//http://localhost:8080/redbull/resources/img/board/2019/10/noimage.jpg
+			
 			//-----------------------------------------------
 			//-FileId 존재 유무로 Key생성 유무 판단.
 			//-----------------------------------------------
@@ -165,14 +167,12 @@ public class BoardController {
 			
 			LOG.debug("newFile:"+newFile);
 			LOG.debug("saveFile:"+saveFile);
-			//LOG.debug("UPLOAD_ROOT+newFile:"+UPLOAD_ROOT+newFile);
 			
 			flag = fileService.do_save(fileVO);
 			LOG.debug("flag:"+flag);
 			
 			saveFileNm = fileVO.getSaveFileNm();
 			LOG.debug("=@Controller saveFileNm="+saveFileNm);
-			//model.addAttribute("saveFileNm", saveFileNm);
 		}
 		
 		//등록성공
@@ -190,8 +190,6 @@ public class BoardController {
 		LOG.debug("gsonStr:"+gsonStr);
 		
 		return gsonStr;
-				
-		//return saveFileNm;
 	}
 	
 	@RequestMapping(value = "board/do_write.do")

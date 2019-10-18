@@ -49,6 +49,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+	td{
+		border-style: hidden;
+	border-bottom-style: hidden;
+	border-left-style: hidden;
+	border-right-style: hidden; 
+	}
+</style>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -189,28 +197,23 @@
 							</div>
 						</c:forEach>
 					</c:when>
+					<c:otherwise>등록된 댓글이 없습니다.</c:otherwise>
 				</c:choose>
 			</div>
 		</td>
 		</tr>
 		<!-- //댓글목록 -->
 		
-		<!-- pagenation -->
-		<tr>
-			<td colspan="6">
-				
-					
-				
-			</td>
-		</tr>
-		<!--// pagenation -->
-		
 		<!-- 댓글입력 폼 -->
 		<tr>
 			<td colspan="6">
-			<%=StringUtil.renderPaging(maxNum, currPageNo, rowPerPage, bottomCount, url, scriptName) %>
+			<c:choose>
+				<c:when test="${commentList.size()>0}">
+					<%=StringUtil.renderPaging(maxNum, currPageNo, rowPerPage, bottomCount, url, scriptName) %>
+				</c:when>
+			</c:choose>			
 				<div class="container-fluid">
-					<table class="table" id="listTable" style="border-top: none;">
+					<table class="table commentTable" id="commentTable" style="border-top: none;">
 						<tbody>
 							<tr class="hide orgComment" >
 								<td class="text-left col-md-1 col-xs-1 cNum">0</td>
