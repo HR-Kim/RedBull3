@@ -105,13 +105,13 @@
                         <a class="nav-link" href="${context}/product/get_retrieve.do">카테고리</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="${context}/product/get_retrieve.do">신상</a>
+                        <a class="nav-link" href="${context}/product/get_newList.do">신상</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="${context}/product/get_retrieve.do">랭킹</a>
+                        <a class="nav-link" href="${context}/product/get_rankList.do">랭킹</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="${context}/product/get_retrieve.do">핫세일</a>
+                        <a class="nav-link" href="${context}/product/get_hotSaleList.do">핫세일</a>
                       </li>
                     </ul>
                   </li>
