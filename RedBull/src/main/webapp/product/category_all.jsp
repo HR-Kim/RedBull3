@@ -166,13 +166,13 @@
 							<div class="widgets_inner">
 								<ul class="list">
 									<li>
-										<a href="${context}/product/get_categoryList.do">가구</a>
+										<a href="${context}/product/get_categoryList.do?c=10">가구</a>
 									</li>
 									<li>
-										<a href="${context}/product/get_categoryList.do">침구</a>
+										<a href="${context}/product/get_categoryList.do?c=20"">침구</a>
 									</li>
 									<li>
-										<a href="${context}/product/get_categoryList.do">생활용품</a>
+										<a href="${context}/product/get_categoryList.do?c=30"">생활용품</a>
 									</li>
 								</ul>
 							</div>
