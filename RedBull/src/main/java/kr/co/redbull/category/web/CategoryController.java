@@ -43,6 +43,67 @@ public class CategoryController {
 	
 	private final String VIEW_LIST_NM ="product/category_all";
 	
+	// 카테고리별 상품 조회
+	@RequestMapping(value = "product/get_categoryList.do", method = RequestMethod.GET)
+	public String get_categoryList(Search search, Model model) {
+
+		LOG.debug("================================");
+		LOG.debug("search:" + search);
+		LOG.debug("================================");
+
+		// NUll 처리
+		if (search.getPageSize() == 0)
+			search.setPageSize(9);
+		if (search.getSearchDiv() == null)
+			search.setSearchDiv("10");
+		if (search.getPageNum() == 0)
+			search.setPageNum(1);
+		if (search.getSearchWord() == null)
+			search.setSearchWord("");
+
+		model.addAttribute("vo", search);
+
+		List<Product> tmpList = (List<Product>) categoryService.get_categoryList(search);
+		List<Product> outList = new ArrayList<Product>();
+		// 썸네일 설정 : 안쓰는 detail에 이미지 경로를 넣자
+		for (int i = 0; i < tmpList.size(); i++) {
+			Product getOne = tmpList.get(i);
+			String getPnum = getOne.getpNum();
+
+			// Pnum으로 검색
+			Search tmpSearch = new Search();
+			tmpSearch.setSearchWord(getPnum);
+			String saveFileNm = "";
+			List<Image> tmpImageList = new ArrayList<Image>();
+			tmpImageList = (List<Image>) imageService.get_refnumList(tmpSearch);
+			// 검색 결과가 없다면? : 기본 이미지
+			if (tmpImageList.size() < 1) {
+				saveFileNm = "resources/img/product/noimage.jpg";
+			} else {
+				// 있으면 첫번째 이미지
+				saveFileNm = tmpImageList.get(0).getSaveFileNm();
+			}
+
+			getOne.setDetail(saveFileNm);
+			outList.add(getOne);
+		}
+
+		model.addAttribute("list", outList);
+
+		// 총건수
+		int totalCnt = 0;
+		if (null != outList && outList.size() > 0) {
+			totalCnt = outList.get(0).getTotalCnt();
+			model.addAttribute("totalCnt", totalCnt);
+		}
+
+		return VIEW_LIST_NM;
+	}
+
+	
+	
+	
+	
 	//베스트상품 조회
 	@RequestMapping(value = "product/get_rankList.do", method = RequestMethod.GET)
 	public String get_rankList(Search search, Model model, HttpServletRequest request) {

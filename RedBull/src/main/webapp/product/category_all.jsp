@@ -166,36 +166,18 @@
 							<div class="widgets_inner">
 								<ul class="list">
 									<li>
-										<a href="#">가구</a>
+										<a href="${context}/product/get_categoryList.do">가구</a>
 									</li>
 									<li>
-										<a href="#">침구</a>
+										<a href="${context}/product/get_categoryList.do">침구</a>
 									</li>
 									<li>
-										<a href="#">생활용품</a>
+										<a href="${context}/product/get_categoryList.do">생활용품</a>
 									</li>
 								</ul>
 							</div>
 						</aside>
 					</div>
-					<div class="left_sidebar_area">
-						<aside class="left_widgets p_filter_widgets">
-							<div class="l_w_title">
-								<h3>목록별 조회</h3>
-							</div>
-							<div class="widgets_inner">
-								<form name="productFrmq" id="productFrmq" method="get">
-									<input type="hidden" name="pageNum" id="pageNum" value="${vo.pageNum}" />
-									<input type="hidden" name="searchDiv" id="searchDiv" />
-									<input type="hidden" name="pNum" id="pNum" />
-									<br>
-									<button class="form-control btn btn-success" onclick="javascript:do_newList()" >신상검색</button>
-									<button class="form-control btn btn-success" onclick="javascript:do_hotSaleList()" >세일검색</button>
-									<button class="form-control btn btn-success" onclick="javascript:do_rankList()" >베스트검색</button>
-								</form>
-							</div>
-						</aside>
-					</div> 
 				</div>
 				<!--================Left Area =================-->
 			</div>
@@ -230,33 +212,7 @@
 			frm.action = "${context}/product/get_retrieve.do";
 			frm.submit();
 		}
-		//신상품 조회
-		function do_newList(){
-			var frm = document.productFrmq;
-			frm.pageNum.value= 1;
-			frm.searchDiv.value="10";
-			frm.action = "${context}/product/get_newList.do";
-			frm.submit();
-			
-		}
-		//세일상품 조회
-		function do_hotSaleList(){
-			var frm = document.productFrmq;
-			frm.pageNum.value= 1;
-			frm.searchDiv.value="10";
-			frm.action = "${context}/product/get_hotSaleList.do";
-			frm.submit();
-			
-		}
-		//베스트상품 조회
-		function do_rankList(){
-			var frm = document.productFrmq;
-			frm.pageNum.value= 1;
-			frm.searchDiv.value="10";
-			frm.action = "${context}/product/get_rankList.do";
-			frm.submit();
-			
-		}
+		
 		
 	</script>
 </body>
