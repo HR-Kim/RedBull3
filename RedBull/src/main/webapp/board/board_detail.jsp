@@ -80,7 +80,8 @@
 		</div>
 	</section>
 	<!--================End Home Banner Area =================-->
-${vo }
+<%-- ${vo } --%>
+<br/>
 	<form name="pagingForm" id="pagingForm">
 		<input type="hidden" id="pageNum" name="pageNum"/>
 		<input type="hidden" id="searchDiv" name="searchDiv"/>
@@ -442,6 +443,7 @@ ${vo }
 		//본문 삭제
 		$("#do_delete").on("click", function(){
 			
+			var tNum = ${vo.tNum};
 			var bNum = $("#num").text();
 			
 			//validation
