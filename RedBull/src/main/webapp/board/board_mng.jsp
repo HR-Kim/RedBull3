@@ -57,8 +57,8 @@
 	</div>
 </section>
 <!--================End Home Banner Area =================-->
-${board }
-${search }
+<%-- ${board }
+${search } --%>
 	<!-- div container -->
 	<div class="container">
 
@@ -154,7 +154,7 @@ ${search }
 				   data: form_data,
 	        	success: function(data) {
 	        		var saveFileNm = data.msgMsg;
-	        		console.log(saveFileNm);
+	        		console.log("${context}/"+saveFileNm);
 					if (null != data && data.msgId == "1") {
 						var image = $('<img>').attr('src', "${context}/"+saveFileNm);
 						$('#summernote').summernote("insertNode", image[0]);
@@ -252,7 +252,7 @@ ${search }
 				return;
 
 			$.ajax({
-				type : "GET",
+				type : "POST",
 				url : "${context}/board/do_update.do",
 				dataType : "html",
 				data : {
