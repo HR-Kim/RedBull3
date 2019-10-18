@@ -224,14 +224,14 @@ public class UserController {
 		if(flag > 0) {
 			
 			message.setMsgId(String.valueOf(flag));
-			message.setMsgMsg("삭제되었습니다");
+			message.setMsgMsg("탈퇴 완료");
 		}
 		else {
 			message.setMsgId(String.valueOf(flag));
-			message.setMsgMsg("삭제 실패");
+			message.setMsgMsg("탈퇴 실패");
 			
 		}
-		
+
 		// message를 json으로 변경
 		Gson gson = new Gson();
 		
@@ -240,6 +240,7 @@ public class UserController {
 		LOG.debug("=========================");
 		LOG.debug("=gsonStr=" + gsonStr);
 		LOG.debug("=========================");
+		
 		
 		return gsonStr;
 		
@@ -302,27 +303,46 @@ public class UserController {
 //		
 //	}//--get_selectOne
 	
-	/**업데이트 화면 던지기*/
-	@RequestMapping(value="user/get_updateForm.do", method = RequestMethod.GET)
-	public ModelAndView get_selectOneUpdate(HttpSession session) {
-		
-		String rid = (String) session.getAttribute("rid");
-		User outUser = (User) session.getAttribute("user");
-		
-		LOG.debug("============================");
-		LOG.debug("=@@@@@@@@@@@@@@@@@@@@@@Controller outUser=" + outUser);
-		LOG.debug("============================");
-		
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("user", outUser);
-		mav.setViewName(VIEW_UPDATE_NM);
-		
-		return mav;
-		
-	}//--get_selectOne
+//	/**업데이트 화면 던지기*/
+//	@RequestMapping(value="user/get_updateForm.do", method = RequestMethod.GET)
+//	public ModelAndView get_selectOneUpdate(HttpSession session) {
+//		
+//		String rid = (String) session.getAttribute("rid");
+//		User outUser = (User) session.getAttribute("user");
+//		
+//		LOG.debug("============================");
+//		LOG.debug("=@@@@@@@@@@@@@@@@@@@@@@Controller outUser=" + outUser);
+//		LOG.debug("============================");
+//		
+//		ModelAndView mav = new ModelAndView();
+//		mav.addObject("user", outUser);
+//		mav.setViewName(VIEW_UPDATE_NM);
+//		
+//		return mav;
+//		
+//	}//--get_selectOne
 	
+//	/**업데이트 화면 던지기*/
+//	@RequestMapping(value="user/get_updateForm.do", method = RequestMethod.GET)
+//	public String get_updateForm() {
+//
+//		LOG.debug("============================");
+//		LOG.debug("=@@@@@@@@@@@@@@@@get_updateForm outUser@@@@@@@@@@");
+//		LOG.debug("============================");
+//		
+//		return VIEW_UPDATE_NM;
+//		
+//	}//--get_updateForm
 	
 	//---testing---------------------------------------------------------------------------------
+	
+	/**가짜 마이페이지 화면 던지기*/
+	@RequestMapping(value="fakemypage/get_fakemypage.do", method = RequestMethod.GET)
+	public String get_fakemypage(HttpSession session) {
+		
+		return "fakemypage/fakemypage";
+		
+	}//--get_selectOne
 	
 	/**등록*/
 	@RequestMapping(value="user/do_save.do", method = RequestMethod.POST ,produces = "application/json; charset=UTF-8")
@@ -401,7 +421,7 @@ public class UserController {
 	/**수정*/
 	@RequestMapping(value="user/do_update.do", method = RequestMethod.GET ,produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public String do_update(HttpSession session, User user) {
+	public String do_update(User user) {
 		
 		LOG.debug("1============================");
 		LOG.debug("1=@Controller user=" + user);
@@ -458,8 +478,6 @@ public class UserController {
 			message.setMsgId(flag+"");
 			message.setMsgMsg(user.getRid() + "님 수정실패");
 		}
-		
-		session.invalidate();
 		
 		// JSON
 		Gson gson = new Gson();

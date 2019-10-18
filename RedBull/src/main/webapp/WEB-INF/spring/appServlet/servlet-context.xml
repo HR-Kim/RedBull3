@@ -39,7 +39,7 @@
 	<interceptors>
 		<!-- LoginInterceptor -->
 		<interceptor>
-			<mapping path="/mypage/**"/> <!-- 마이페이지 인터셉트 -->
+			<mapping path="/fakemypage/**"/> <!-- 마이페이지 인터셉트 -->
 			<beans:ref bean="loginInterceptor" />
 		</interceptor>
 	</interceptors>

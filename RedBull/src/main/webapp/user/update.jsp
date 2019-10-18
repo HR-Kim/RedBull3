@@ -114,8 +114,9 @@
                         </div>
 
                         <div class="form-submit">
-                            <input type="submit" value="udpate" class="submit" id="update" name="udpate" />
-                            <input type="submit" value="Reset" class="submit" id="reset" name="reset" />
+                            <input type="submit" value="수정" class="submit" id="userUpdate" name="update" />
+                            <input type="submit" value="초기화" class="submit" id="userReset" name="reset" />
+                            <input type="submit" value="회원탈퇴" class="submit" id="userDelete" name="delete" />
                         </div>
                     </form>
                     
@@ -140,7 +141,8 @@
     <script src="${context}/resources/vendors/nouislider/nouislider.min.js"></script>
     <script src="${context}/resources/vendors/wnumb/wNumb.js"></script>
     <script src="${context}/resources/vendors/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="${context}/resources/vendors/jquery-validation/dist/additional-methods.min.js"></script>
+    <script src="${context}/resources/vendors/jquery-validation/dist/additional-methods.min.js"></scr
+    ipt>
     <script src="${context}/resources/js/main.js"></script>
     
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -192,7 +194,7 @@
 	    }
     	
 		// 수정
-		$("#update").on("click", function() {
+		$("#userUpdate").on("click", function() {
 			
 			//alert("submit");
 			
@@ -218,8 +220,8 @@
 	            	
 	             	console.log(data); // {"msgId":"1","msgMsg":"1234님 수정성공"}
 	             
-	            	//var parseData = $.parseJSON(data);
-	            	var parseData = JSON.parse(data);
+	            	var parseData = $.parseJSON(data);
+	            	//var parseData = JSON.parse(data);
 	            	
 	            	if(null != parseData && parseData.msgId == "1") { // 성공하면
 	            		
@@ -246,7 +248,7 @@
 		});
 		
 		// 초기화
-		$("#reset").on("click", function() {
+		$("#userReset").on("click", function() {
 	
 			//alert("doInit");
 			
@@ -260,6 +262,50 @@
 			$("#address").val("");
 			$("#detadd").val("");
 		
+		});
+		
+		// 삭제
+		$("#userDelete").on("click", function() {
+
+			//alert("doDelete");
+			
+			// id 값을 콘솔에 출력해봄
+			console.log("rid: " + $("#rid").val());
+			
+			// validation
+			if(confirm("삭제 하시겠습니까?") == false) return;
+			
+			//ajax
+			$.ajax({
+				type : "POST",
+				url : "${context}/user/do_delete.do",
+				dataType : "html",
+				data : {
+					"rid" : $("#rid").val()
+				},
+				success : function(data) {
+					
+					var jData = $.parseJSON(data); // String 데이터를 json으로 파싱
+					
+					if (null != jData && jData.msgId == "1") { // 메소드 수행이 성공하면
+						alert(jData.msgMsg); // 성공 메시지 출력하고 
+						// 목록으로 이동
+						location.href="${context}/main/main.do"; // 목록조회 화면으로 이동
+										
+					} else { // 실패하면
+						
+						alert(jData.msgId + "|" + jData.msgMsg); // 실패메시지 출력하고
+					}
+				},
+				complete : function(data) { 
+
+				},
+				error : function(xhr, status, error) {
+					alert("error:" + error);
+				}
+			});
+			//--ajax  
+
 		});
 
     </script>
