@@ -222,20 +222,20 @@ public class UserWebTest {
 //	@Ignore
 	public void do_update() throws Exception {
 
-		LOG.debug("=========================");
-		LOG.debug("=01. 기존 데이터를 삭제=");
-		LOG.debug("=========================");
-		
-		for(User user : users) {
-			
-			do_delete(user);
-		}
-		
-		LOG.debug("=========================");
-		LOG.debug("=02. 데이터를 입력=");
-		LOG.debug("=========================");
-		
-		userDaoImpl.do_save(users.get(0));
+//		LOG.debug("=========================");
+//		LOG.debug("=01. 기존 데이터를 삭제=");
+//		LOG.debug("=========================");
+//		
+//		for(User user : users) {
+//			
+//			do_delete(user);
+//		}
+//		
+//		LOG.debug("=========================");
+//		LOG.debug("=02. 데이터를 입력=");
+//		LOG.debug("=========================");
+//		
+//		userDaoImpl.do_save(users.get(0));
 		
 		User user01 = users.get(0);
 		user01.setRid("j01_145");

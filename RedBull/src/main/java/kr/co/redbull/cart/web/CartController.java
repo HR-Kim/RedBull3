@@ -76,6 +76,7 @@ public class CartController {
 		search.setSearchWord(StringUtil.nvl(search.getSearchWord()));
 		model.addAttribute("vo",search);
 		
+		
 		LOG.debug("2==================================");
 		LOG.debug("=2=search="+search);
 		LOG.debug("2==================================");
