@@ -37,7 +37,7 @@
     
   </head>
   
-<body>
+<body> 
 
   <!--================Header Menu Area =================-->
   <header class="header_area">
