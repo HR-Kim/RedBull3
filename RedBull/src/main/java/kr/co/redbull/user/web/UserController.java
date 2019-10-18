@@ -271,58 +271,14 @@ public class UserController {
 		return json;
 		
 	}//--get_selectOne
-	
-	//------testing---------------------------------------------------------------------------
-	
-//	/**업데이트 화면 던지기*/
-//	@RequestMapping(value="user/get_updateForm.do", method = RequestMethod.GET)
-//	public String get_selectOneUpdate(HttpSession session, Model model) {
-//		
-//		String rid = (String) session.getAttribute("rid");
-//		
-//		
-//		LOG.debug("============================");
-//		LOG.debug("=@@@@@@@@@@@@@@@@@@@@@@Controller user=" + rid);
-//		LOG.debug("============================");
-//		
-////		if(null == user.getRid() || "".equals(user.getRid())) {
-////			
-////			throw new IllegalArgumentException("id를 입력하시오.");
-////		}
-//		
-//		// 조회결과를 변수에 담고 모델에 set함
-////		User outVO = (User) userService.get_selectOne(user);
-////		LOG.debug("============================");
-////		LOG.debug("%%%%%%%%%%%%%%%%%%Controller outVO=" + outVO);
-////		LOG.debug("============================");
-//		model.addAttribute("vo", rid);
-//				
-//		// 업데이트 화면을 던짐
-//		return VIEW_UPDATE_NM;
-//		
-//	}//--get_selectOne
-	
-	/**업데이트 화면 던지기*/
-	@RequestMapping(value="user/get_updateForm.do", method = RequestMethod.GET)
-	public ModelAndView get_selectOneUpdate(HttpSession session) {
 		
-		String rid = (String) session.getAttribute("rid");
-		User outUser = (User) session.getAttribute("user");
+	/**가짜 마이페이지 화면 던지기*/
+	@RequestMapping(value="fakemypage/get_fakemypage.do", method = RequestMethod.GET)
+	public String get_fakemypage(HttpSession session) {
 		
-		LOG.debug("============================");
-		LOG.debug("=@@@@@@@@@@@@@@@@@@@@@@Controller outUser=" + outUser);
-		LOG.debug("============================");
-		
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("user", outUser);
-		mav.setViewName(VIEW_UPDATE_NM);
-		
-		return mav;
+		return "fakemypage/fakemypage";
 		
 	}//--get_selectOne
-	
-	
-	//---testing---------------------------------------------------------------------------------
 	
 	/**등록*/
 	@RequestMapping(value="user/do_save.do", method = RequestMethod.POST ,produces = "application/json; charset=UTF-8")

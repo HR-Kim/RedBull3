@@ -218,8 +218,8 @@
 	            	
 	             	console.log(data); // {"msgId":"1","msgMsg":"1234님 수정성공"}
 	             
-	            	//var parseData = $.parseJSON(data);
-	            	var parseData = JSON.parse(data);
+	            	var parseData = $.parseJSON(data);
+	            	//var parseData = JSON.parse(data);
 	            	
 	            	if(null != parseData && parseData.msgId == "1") { // 성공하면
 	            		

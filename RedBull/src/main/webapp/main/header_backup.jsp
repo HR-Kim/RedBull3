@@ -41,40 +41,39 @@
 
   <!--================Header Menu Area =================-->
   <header class="header_area">
-    <div class="main_menu">
+    <div class="top_menu">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7">
+          </div>
+          <div class="col-lg-5">
+            <div class="float-right">
+              <ul class="right_side">
+				<c:choose>
+                  	<c:when test="${(user != null) && (user.lvl == 'MANAGER') }"> <!-- 세션 값이 있고, 관리자일 경우 -->
+		                <li>
+		                  <a href="${context}/product/do_product_mng.do">
+		                                   상품 등록
+		                  </a>
+		                </li>
+		                <li class="nav-item">
+	                    	<a>${user.uname}님 환영합니다.</a>
+	                  	</li>
+                	</c:when>
+                	<c:when test="${(user != null) && (user.lvl != 'MANAGER') }"> <!-- 세션 값이 있고, 일반 사용자일 경우 -->
+		                <li class="nav-item">
+	                    	${user.uname}님 환영합니다.
+	                  	</li>
+                	</c:when>
+                </c:choose>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     
-	  	<div class="top_menu" style="background: #ffffff;">
-	      <div class="container">
-	        <div class="row">
-	          <div class="col-lg-7">
-	          </div>
-	          <div class="col-lg-5">
-	            <div class="float-right">
-	              <ul class="right_side">
-					<c:choose>
-	                  	<c:when test="${(user != null) && (user.lvl == 'MANAGER') }"> <!-- 세션 값이 있고, 관리자일 경우 -->
-			                <li>
-			                  <a href="${context}/product/do_product_mng.do">
-			                                   상품 등록
-			                  </a>
-			                </li>
-			                <li class="nav-item">
-		                    	<a>${user.uname}님 환영합니다.</a>
-		                  	</li>
-	                	</c:when>
-	                	<c:when test="${(user != null) && (user.lvl != 'MANAGER') }"> <!-- 세션 값이 있고, 일반 사용자일 경우 -->
-			                <li class="nav-item">
-		                    	${user.uname}님 환영합니다.
-		                  	</li>
-	                	</c:when>
-	                </c:choose>
-	              </ul>
-	            </div>
-	          </div>
-	        </div>
-	      </div>
-	    </div>
-	    
+    <div class="main_menu">
       <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light w-100">
           <!-- Brand and toggle get grouped for better mobile display -->
@@ -125,7 +124,11 @@
                   </li>
                   
                   <li class="nav-item">
-                    <a class="nav-link" href="${context}/user/update.jsp" >임시 회원수정 버튼</a>
+                    <a class="nav-link" href="${context}/login/login.jsp">임시 로그인</a>
+                  </li>
+                  
+                  <li class="nav-item">
+                    <a class="nav-link" href="#" id="userUpdateBtn">임시 회원수정</a>
                   </li>
                   
                 </ul>
@@ -156,7 +159,7 @@
                   </c:choose>
 
                   <li class="nav-item">
-                    <a href="${context}/fakemypage/get_fakemypage.do" class="icons"> <!-- 마이페이지/로그인(인터셉터) -->
+                    <a href="${context}/mypage/get_retrieve.do" class="icons"> <!-- 마이페이지/로그인(인터셉터) -->
                       <i class="ti-user" aria-hidden="true"></i>
                     </a>
                   </li>
@@ -208,6 +211,96 @@
 			//alert("logoutBtn");
 			logout();
 			location.href="${context}/main/main.do"; // 메인 화면으로 이동
+
+		});
+		
+		//-----------------------------------------------------------------
+		
+		// 회원정보수정 버튼 클릭: 회원 단건조회
+		$("#userUpdateBtn").on("click", function() {
+
+			var rid = '<%=session.getAttribute("rid")%>'
+			alert(rid);
+			
+			//ajax
+			$.ajax({
+				type : "GET",
+				url : "${context}/user/get_selectOne.do",
+				dataType : "html",
+				data : {
+					"rid" : rid
+				},
+				success : function(data) {
+					
+					//var jData = JSON.parse(data); // String 데이터를 json으로 파싱
+					
+					if(null != data) { // 데이터가 있으먼
+
+						location.href="${context}/user/get_updateForm.do"; 
+	
+					}
+					else {
+						
+						location.href="${context}/main/main.do";
+					}
+				},
+				complete : function(data) { 
+
+				},
+				error : function(xhr, status, error) {
+					alert("error:" + error);
+				}
+			});
+			//--ajax 
+			
+			
+/* 			user.action = "${context}/user/get_selectOneUpdate.do";
+			
+			user.submit(); */
+			
+/* 			user.submit();
+			
+			location.href="${context}/user/get_selectOne.do"; 
+			
+			
+ 			$.ajax({
+	            type:"POST",
+	            url:"${context}/user/get_selectOne.do",
+	            dataType:"html",// JSON
+	            data:{
+	            	"rid": user.rid
+	            },
+	            success: function(data){//통신이 성공적으로 이루어 졌을때 받을 함수
+	             	console.log(data); // 선택한 데이터 전체 출력
+	             	
+	            	var parseData = $.parseJSON(data);
+	            	
+	            	console.log(parseData.rid); // 선택한 데이터 아이디만 출력
+	            	
+	            	$("#rid").val(parseData.rid); // 선택한 데이터의 아이디값이 입력 폼에 들어옴
+	            	$("#passwd").val(parseData.passwd);
+	            	$("#uname").val(parseData.uname);
+	            	$("#birth").val(parseData.birth);
+	            	$("#phone").val(parseData.phone);
+	            	$("#postnum").val(parseData.postnum);
+	            	$("#address").val(parseData.address);
+	            	$("#detadd").val(parseData.detadd);
+	            	$("#lvl").val(parseData.lvl);
+	            	$("#upoint").val(parseData.upoint);
+	            	
+	            	$("#rid").prop("disabled", true);
+	            		
+	            },
+	            
+	            	complete: function(data){//무조건 수행
+	
+	             
+	            },
+	            	error: function(xhr,status,error){
+	             
+	            }
+            
+        	});  */
 
 		});
 		

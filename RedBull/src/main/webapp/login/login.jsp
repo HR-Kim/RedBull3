@@ -54,12 +54,15 @@
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
 
 				<form class="login100-form validate-form" name="loginForm" id="loginForm" action="${context}/login/do_login.do" method="post">
-					<span class="login100-form-title p-b-33">
+<!-- 					<span class="login100-form-title p-b-33">
 						집순이 쇼핑몰
-					</span>
+					</span> -->
+					<a class="login100-form-title p-b-33" href="${context}/main/main.do">
+		            	<img src="${context}/resources/img/logo3.png" style="max-width: 100%; height: auto;" />
+		            </a>
 					
-					<div class="form-group">
-						<select name="lang" id="lang" class="wrap-input100 validate-input" style="width:100px;font-size:16px;">
+					<div class="login100-form-title p-b-33">
+						<select name="lang" id="lang" class="wrap-input100 validate-input" style="width:100px;font-size:16px;float:right">
 							<option value="ko">한국어</option>
 							<option value="en">영어</option>
 						</select>
