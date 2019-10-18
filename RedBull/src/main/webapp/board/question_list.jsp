@@ -164,7 +164,7 @@
 						<tr class="post">
 							<td style="display:none;">${vo.bNum}</td>
 							<td colspan="5" class="title"><b>${vo.title} </b></td>
-							<td class="text-left col-md-1 col-xs-1" rowspan="3"><img src="${context}/board/noimage.jpg" class="img-thumbnail">
+							<%-- <td class="text-left col-md-1 col-xs-1" rowspan="3"><img src="${context}/board/noimage.jpg" class="img-thumbnail"> --%>
 </td>
 						</tr>
 						<tr>

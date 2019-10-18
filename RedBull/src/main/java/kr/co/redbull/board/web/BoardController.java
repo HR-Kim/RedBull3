@@ -62,6 +62,11 @@ public class BoardController {
 		LOG.debug("===============================");
 		LOG.debug("=@Controller do_save=");
 		LOG.debug("===============================");
+		
+		//root_path 전달
+		String UPLOAD_ROOT = "C:\\Users\\sist\\git/RedBull3/RedBull/src/main/webapp/img/board";
+		String SAVE_ROOT = "resources"+File.separator+"img"+File.separator+"board";
+
 		//Upload파일 정보: 원본,저장,사이즈,확장자 List
 		List<FileVO> fileList = new ArrayList<FileVO>();
 		
@@ -84,6 +89,7 @@ public class BoardController {
 		LOG.debug("=@Controller mm="+mm);
 		String datePath = UPLOAD_ROOT+File.separator+yyyy+File.separator+mm;
 		LOG.debug("=@Controller datePath="+datePath);
+		SAVE_ROOT = SAVE_ROOT+File.separator+yyyy+File.separator+mm;
 		
 		File  fileYearMM = new File(datePath);  
 		
@@ -125,12 +131,15 @@ public class BoardController {
 			File orgFileCheck = new File(datePath,orgFileNm);
 			
 			String newFile = orgFileCheck.toString();
-			LOG.debug("=@Controller Before newFile="+newFile);
+			String saveFile = SAVE_ROOT+File.separator+orgFileNm;
+			
 			//04.파일 rename: README -> README1~9999
 			if(orgFileCheck.exists()==true) {
 				newFile = StringUtil.fileRename_board(orgFileCheck);
+				saveFile = SAVE_ROOT+File.separator+StringUtil.fileRenameShort(orgFileCheck);
 			}
-			LOG.debug("=@Controller after newFile="+newFile);
+			LOG.debug("=@Controller newFile="+newFile);
+			//http://localhost:8080/redbull/resources/img/board/2019/10/noimage.jpg
 			//-----------------------------------------------
 			//-FileId 존재 유무로 Key생성 유무 판단.
 			//-----------------------------------------------
@@ -145,7 +154,6 @@ public class BoardController {
 				fileId = fileIdKey;
 			//fileID가 있는 경우.	
 			}else {
-				
 				fileVO.setFileId(fileId);
 				//max num
 				int maxNum = this.fileService.num_max_plus_one(fileVO);
@@ -154,11 +162,15 @@ public class BoardController {
 			}
 			
 			fileVO.setOrgFileNm(orgFileNm);
-			fileVO.setSaveFileNm(newFile);
+			fileVO.setSaveFileNm(saveFile);
 			fileVO.setFileSize(fileSize);
 			fileVO.setExtNm(extNm);
 			fileList.add(fileVO);
 			mFile.transferTo(new File(newFile));
+			
+			LOG.debug("newFile:"+newFile);
+			LOG.debug("saveFile:"+saveFile);
+			//LOG.debug("UPLOAD_ROOT+newFile:"+UPLOAD_ROOT+newFile);
 			
 			flag = fileService.do_save(fileVO);
 			LOG.debug("flag:"+flag);

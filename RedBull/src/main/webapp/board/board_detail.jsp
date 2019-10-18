@@ -134,24 +134,24 @@ ${vo }
 								 	<c:choose>
 								 		<c:when test="${vo.cLevel==1 }">
 								 			<div class="container-fluid">
-												<table class="table table-striped table-sm" id="listTable">
+												<table class="table table-borderless table-striped table-sm" id="listTable">
 										 			
 										 </c:when>
 										 <c:when test="${vo.cLevel==2 }">
 											 <div class="container-fluid">
-													<table class="table table-striped table-sm" id="listTable" style="width: 95%; float: right;">
+													<table class="table table-borderless table-striped table-sm" id="listTable" style="width: 95%; float: right;">
 										 </c:when>
 										 <c:when test="${vo.cLevel==3 }">
 											 <div class="container-fluid">
-													<table class="table table-striped table-sm" id="listTable" style="width: 90%; float: right;">
+													<table class="table table-borderless table-striped table-sm" id="listTable" style="width: 90%; float: right;">
 										 </c:when>
 										 <c:when test="${vo.cLevel==4 }">
 											 <div class="container-fluid">
-													<table class="table table-striped table-sm" id="listTable" style="width: 85%; float: right;">
+													<table class="table table-borderless table-striped table-sm" id="listTable" style="width: 85%; float: right;">
 										 </c:when>
 										 <c:when test="${vo.cLevel>=5 }">
 											 <div class="container-fluid">
-													<table class="table table-striped table-sm" id="listTable" style="width: 80%; float: right;">
+													<table class="table table-borderless table-striped table-sm" id="listTable" style="width: 80%; float: right;">
 										 </c:when>
 									</c:choose>
 									<tbody>
@@ -197,9 +197,9 @@ ${vo }
 		<!-- pagenation -->
 		<tr>
 			<td colspan="6">
-				<div class="container-fluid text-center ">
-					<%=StringUtil.renderPaging(maxNum, currPageNo, rowPerPage, bottomCount, url, scriptName) %>
-				</div>
+				
+					
+				
 			</td>
 		</tr>
 		<!--// pagenation -->
@@ -207,6 +207,7 @@ ${vo }
 		<!-- 댓글입력 폼 -->
 		<tr>
 			<td colspan="6">
+			<%=StringUtil.renderPaging(maxNum, currPageNo, rowPerPage, bottomCount, url, scriptName) %>
 				<div class="container-fluid">
 					<table class="table" id="listTable" style="border-top: none;">
 						<tbody>
