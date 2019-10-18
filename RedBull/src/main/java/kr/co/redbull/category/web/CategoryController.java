@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 
@@ -45,12 +46,12 @@ public class CategoryController {
 	
 	// 카테고리별 상품 조회
 	@RequestMapping(value = "product/get_categoryList.do", method = RequestMethod.GET)
-	public String get_categoryList(Search search, Model model) {
+	public String get_categoryList(Search search, Model model,@RequestParam("c") int cateCode) {
 
 		LOG.debug("================================");
 		LOG.debug("search:" + search);
 		LOG.debug("================================");
-
+		LOG.debug("===========여기!!!!!!============="+cateCode);
 		// NUll 처리
 		if (search.getPageSize() == 0)
 			search.setPageSize(9);
@@ -59,7 +60,7 @@ public class CategoryController {
 		if (search.getPageNum() == 0)
 			search.setPageNum(1);
 		if (search.getSearchWord() == null)
-			search.setSearchWord("");
+			search.setSearchWord(Integer.toString(cateCode));
 
 		model.addAttribute("vo", search);
 
