@@ -115,6 +115,40 @@ public class UserController {
 //        return "login/naverSuccess";
 //    }
 
+	
+	/**아이디 중복 검사*/
+	@RequestMapping(value="user/check_id.do", method = RequestMethod.POST ,produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String check_id(User user) {
+		
+		LOG.debug("1============================");
+		LOG.debug("1=@Controller outVO=" + user);
+		LOG.debug("1============================");
+		
+		// 이메일 입력란에 입력을 했는지 체크
+		if(null == user.getRid() || "".equals(user.getRid())) {
+			
+			throw new IllegalArgumentException("이메일을 입력하시오.");
+		}
+		
+		// 아이디가 존재 유무 확인
+		Message msg = (Message) userService.idCheck(user);
+		
+		LOG.debug("2=========================");
+		LOG.debug("2= msg="+ msg); 
+		LOG.debug("2=========================");
+		
+		// JSON
+		Gson gson = new Gson();
+		String json = gson.toJson(msg);
+		
+		LOG.debug("2============================");
+		LOG.debug("2=@Controller json=" + json);
+		LOG.debug("2============================");
+		
+		return json;
+		
+	}//--check_id
 
 	/**비밀번호 찾기*/
 	@RequestMapping(value="user/find_passwd.do", method = RequestMethod.POST ,produces = "application/json; charset=UTF-8")
@@ -486,12 +520,12 @@ public class UserController {
 		if(flag > 0) {
 			
 			message.setMsgId(flag+"");
-			message.setMsgMsg(user.getRid() + "님 등록성공");
+			message.setMsgMsg(user.getRid() + "님 가입완료");
 		}
 		else {
 			
 			message.setMsgId(flag+"");
-			message.setMsgMsg(user.getRid() + "님 등록실패");
+			message.setMsgMsg(user.getRid() + "님 가입실패");
 		}
 		
 		// JSON

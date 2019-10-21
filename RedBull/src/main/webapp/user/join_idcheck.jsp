@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-
 <c:set var="context" value="${pageContext.request.contextPath }" />   
 
 <html lang="ko">
@@ -13,7 +12,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
 	
-	<title>회원정보 수정</title>
+	<title>회원가입</title>
 	
 	<!-- Font Icon -->
     <link rel="stylesheet" href="${context}/resources/fonts/material-design-iconic-font.min.css">
@@ -41,29 +40,36 @@
                 
                 <div class="signup-form">
                 
-                    <form method="GET" class="register-form" id="updateForm" name="updateForm">
+                	<form method="POST" class="register-form" id="idForm" name="idForm" style="margin-bottom: -150px;">
+	                    <div class="form-input">
+	                        <label for="rid" class="required">아이디</label>
+	                        <input class="form-control" style="width: 83%; height: 50px; display: inline;" type="text" name="rid" id="rid" placeholder="이메일주소 " maxlength="320"/>
+                   			<button type="button" id="idcheck" name="idcheck"
+							style="height:45px; width:130px; font-family: 'Poppins'; font-weight: bold; 
+							padding: 5px; border: none; border-radius: 5px"><i class="fa fa-search"></i>중복확인</button>
+	                    </div>
+                    </form>
+                
+                    <form method="POST" class="register-form" id="registerForm" name="registerForm" style="margin-top: -120px; margin-bottom: -50px;">
                         <div class="form-row">
                         
                             <div class="form-group">
-                                <div class="form-input">
-                                    <label for="rid" class="required">아이디</label>
-                                    <input type="text" name="rid" id="rid" placeholder="이메일주소 " maxlength="320" value="${user.rid}" disabled="disabled"/>
-                                </div>
+
                                 <div class="form-input">
                                     <label for="passwd" class="required">비밀번호</label>
-                                    <input type="password" name="passwd" id="passwd" placeholder="20자 이하 영문 대소문자/숫자" maxlength="20" value="${user.passwd}"/>
+                                    <input type="password" name="passwd" id="passwd" placeholder="20자 이하 영문 대소문자/숫자" maxlength="20"/>
                                 </div>
                                 <div class="form-input">
                                     <label for="passwdchk" class="required">비밀번호 확인</label>
-                                    <input type="password" name="passwdchk" id="passwdchk" placeholder="비밀번호 확인 " maxlength="20" value="${user.passwd}"/>
+                                    <input type="password" name="passwdchk" id="passwdchk" placeholder="비밀번호 확인 " maxlength="20"/>
                                 </div>
                                 <div class="form-input">
                                     <label for="uname" class="required">이름</label>
-                                    <input type="text" name="uname" id="uname" placeholder="이름 " maxlength="17" value="${user.uname}"/>
+                                    <input type="text" name="uname" id="uname" placeholder="이름 " maxlength="17"/>
                                 </div>
                                 <div class="form-input">
                                     <label for="birth" class="required">생년월일</label>
-                                    <input type="text" name="birth" id="birth" placeholder="YYYY-MM-DD" maxlength="10" value="${user.birth}"/>
+                                    <input type="text" name="birth" id="birth" placeholder="YYYY-MM-DD" maxlength="10"/>
                                 </div>
                                 
                             </div>
@@ -71,7 +77,7 @@
                             <div class="form-group">
                                 <div class="form-input">
                                     <label for="phone" class="required">휴대폰 번호</label>
-                                    <input type="text" name="phone" id="phone" placeholder="010-1111-1111" maxlength="13" value="${user.phone}"/>
+                                    <input type="text" name="phone" id="phone" placeholder="010-0000-0000" maxlength="13"/>
                                 </div>
 <!--                                 <div class="form-input">
                                     <label for="phone_number" class="required">우편 번호</label>
@@ -87,7 +93,7 @@
                                 </div> -->
                                 <div class="form-input">
                                     <label for="postnum" class="required" readonly="readonly" >우편번호</label>
-                                    <input class="form-control" style="width: 50%; height: 50px; display: inline;" type="text" name="postnum" id="postnum" placeholder="우편번호" maxlength="5" value="${user.postnum}"/>
+                                    <input class="form-control" style="width: 50%; height: 50px; display: inline;" type="text" name="postnum" id="postnum" placeholder="우편번호" maxlength="5"/>
                                     <button type="button" 
                                     style="height:45px; width:130px; font-family: 'Poppins'; font-weight: bold; 
                                     padding: 5px; border: none; border-radius: 5px" 
@@ -95,31 +101,25 @@
                                 </div>
                                 <div class="form-input">
                                     <label for="address" class="required" readonly="readonly" >주소</label>
-                                    <input type="text" name="address" id="address" placeholder="주소" value="${user.address}"/>
+                                    <input type="text" name="address" id="address" placeholder="주소"/>
                                 </div>
                                 <div class="form-input">
                                     <label for="detadd" >상세 주소</label>
-                                    <input type="text" name="detadd" id="detadd" placeholder="상세 주소" maxlength="100" value="${user.detadd}"/>
-                                </div>
-                                
-                                <!-- hidden values -->
-                                <div class="form-input">
-                                    <input type="hidden" name="lvl" id="lvl" placeholder="레벨" value="${user.lvl}"/>
-                                </div>
-                                <div class="form-input">
-                                    <input type="hidden" name="upoint" id="upoint" placeholder="포인트" value="${user.upoint}"/>
+                                    <input type="text" name="detadd" id="detadd" placeholder="상세 주소" maxlength="100"/>
                                 </div>
                                 
                             </div>
                             
                         </div>
-
+                        
                     </form>
-                    <div class="form-submit" style="margin: 10px 20px 30px 40px;">
-                        <input type="submit" value="수정" class="submit" id="userUpdate" name="update" />
-                        <input type="submit" value="초기화" class="submit" id="userReset" name="reset" />
-                        <input type="submit" value="회원탈퇴" class="submit" id="userDelete" name="delete" />
+                    <div class="form-submit" style="margin: 10px 50px 50px 40px;"> <!-- 위 오른쪽 아래 왼쪽 -->
+                        <div class="form-submit">
+	                        <input type="submit" value="회원가입" class="submit" id="submit" name="submit" />
+	                        <input type="submit" value="초기화" class="submit" id="init" name="init" />
+                        </div>
                     </div>
+                    
                 </div>
                 
             </div>
@@ -192,19 +192,68 @@
 	        }).open();
 	    }
     	
-		// 수정
-		$("#userUpdate").on("click", function() {
+		// 아이디 중복체크
+		$("#idcheck").on("click", function() {
 			
-			//alert("userUpdate");
-			
-			if(confirm("수정하시겠습니까?") == false) return;
+			//alert("idcheck");
 			
 			// validation
-			if($("#updateForm").valid() == false) return; // validation이 false이면 수행 안 함
+			if($("#idForm").valid() == false) return; // validation이 false이면 수행 안 함
+
+	        $.ajax({
+	            type:"POST",
+	            url:"${context}/user/check_id.do",
+	            dataType:"html",// JSON
+	            data:{
+	            	"rid": $("#rid").val()
+	            },
+	            success: function(data){//통신이 성공적으로 이루어 졌을때 받을 함수
+	            	
+	            	var jData = JSON.parse(data); // String 데이터를 json으로 파싱
+	             	
+					if(null != jData) { // 데이터가 있으먼
+						
+						if (jData.msgId == "30") { // 아이디가 있으면
+							
+							$("#rid").focus();
+							alert("이미 존재하는 이메일입니다.");
+						}	
+					
+						else if (jData.msgId == "10") { // 아이디가 없음
+							
+							alert("사용 가능한 이메일입니다.");
+											
+						}
+					
+					}
+
+	            },
+	            complete: function(data){//무조건 수행
+
+	             
+	            },
+	            error: function(xhr,status,error){
+	            	alert("error:" + error);
+	            }
+	        }); 
+			
+			
+		});
+    	
+    	
+		// 등록
+		$("#submit").on("click", function() {
+			
+			//alert("submit");
+			
+			if(confirm("가입하시겠습니까?") == false) return;
+			
+			// validation
+			if($("#registerForm").valid() == false) return; // validation이 false이면 수행 안 함
 			
 	        $.ajax({
-	            type:"GET",
-	            url:"${context}/user/do_update.do",
+	            type:"POST",
+	            url:"${context}/user/do_save.do",
 	            dataType:"html",// JSON
 	            data:{
 	            	"rid": $("#rid").val(),
@@ -214,22 +263,19 @@
 	            	"phone": $("#phone").val(),
 	            	"postnum": $("#postnum").val(),
 	            	"address": $("#address").val(),
-	            	"detadd": $("#detadd").val(),
-	            	"lvl": $("#lvl").val(),
-	            	"upoint": $("#upoint").val()
+	            	"detadd": $("#detadd").val()
 	            },
 	            success: function(data){//통신이 성공적으로 이루어 졌을때 받을 함수
 	            	
-	             	console.log(data); // {"msgId":"1","msgMsg":"1234님 수정성공"}
+	             	console.log(data); // {"msgId":"1","msgMsg":"1234님 등록성공"}
 	             
 	            	var parseData = $.parseJSON(data);
-	            	//var parseData = JSON.parse(data);
 	            	
-	            	if(null != parseData && parseData.msgId == "1") { // 성공하면
+	            	if(parseData.msgId == "1") { // 성공하면
 	            		
 	            		alert(parseData.msgMsg); // 메시지값 
 	            		location.href="${context}/main/main.do";
-
+	            		
 	            	}
 	            	else { // 실패하면
 	            		
@@ -242,15 +288,14 @@
 	             
 	            },
 	            error: function(xhr,status,error){
-	             
-	            	alert("error: " + error)
+	            	alert("error:" + error);
 	            }
 	        }); 
 			
 		});
 		
 		// 초기화
-		$("#userReset").on("click", function() {
+		$("#init").on("click", function() {
 	
 			//alert("doInit");
 			
@@ -267,52 +312,8 @@
 		
 		});
 		
-		// 삭제
-		$("#userDelete").on("click", function() {
-
-			//alert("doDelete");
-			
-			// id 값을 콘솔에 출력해봄
-			console.log("rid: " + $("#rid").val());
-			
-			// validation
-			if(confirm("탈퇴하시겠습니까?") == false) return;
-			
-			//ajax
-			$.ajax({
-				type : "POST",
-				url : "${context}/user/do_delete.do",
-				dataType : "html",
-				data : {
-					"rid" : $("#rid").val()
-				},
-				success : function(data) {
-					
-					var jData = $.parseJSON(data); // String 데이터를 json으로 파싱
-					
-					if (null != jData && jData.msgId == "1") { // 메소드 수행이 성공하면
-						alert(jData.msgMsg); // 성공 메시지 출력하고 
-						// 목록으로 이동
-						location.href="${context}/main/main.do"; // 목록조회 화면으로 이동
-										
-					} else { // 실패하면
-						
-						alert(jData.msgId + "|" + jData.msgMsg); // 실패메시지 출력하고
-					}
-				},
-				complete : function(data) { 
-
-				},
-				error : function(xhr, status, error) {
-					alert("error:" + error);
-				}
-			});
-			//--ajax  
-
-		});
-		
 		// form validate
-		$("#updateForm").validate({
+		$("#registerForm").validate({
 			rules: {
 				rid: {
 					required: true,
@@ -419,6 +420,41 @@
 			}
 
 		});
+		
+		// form validate: id
+		$("#idForm").validate({
+			rules: {
+				rid: {
+					required: true,
+					email : true,
+					minlength: 2,
+					maxlength: 320
+				}
+			},
+			messages: {
+				rid: {
+					required: "이메일을 입력하시오.",
+					email: "유효한 이메일 주소를 입력하시오.",
+					minlength: $.validator.format("이메일을 {0}자 이상 입력하시오"),
+					maxlength: $.validator.format("이메일을 {0}자 내로 입력하시오")
+				}
+			},
+			errorPlacement : function(error, element) {
+			     //do nothing
+			},
+		    invalidHandler : function(form, validator) {
+		    	
+			     var errors = validator.numberOfInvalids();
+			     
+				     if (errors) {
+				    	 
+					      alert(validator.errorList[0].message);
+					      validator.errorList[0].element.focus();
+			     	 }
+			}
+
+		});
+				
 
     </script>
     
