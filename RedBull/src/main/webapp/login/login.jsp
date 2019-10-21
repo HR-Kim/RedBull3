@@ -86,6 +86,11 @@
 							로그인
 						</button>
 					</div>
+					
+					<!-- 네이버 로그인 창으로 이동 -->
+					<div class="container-login100-form-btn m-t-20" id="naver_id_login" style="text-align:center"><a href="${url}">
+					<img width="50" src="${context}/resources/img/naver.png"/></a></div>
+					<br>
 
 					<div class="text-center p-t-45 p-b-4">
 						<a href="${context}/user/find.jsp" class="txt2 hov1">

@@ -40,7 +40,7 @@
                 
                 <div class="signup-form">
                 
-                    <form method="GET" class="register-form" id="register-form">
+                    <form method="GET" class="register-form" id="update-form" name="update-form">
                         <div class="form-row">
                         
                             <div class="form-group">
@@ -113,13 +113,13 @@
                             
                         </div>
 
-                        <div class="form-submit">
-                            <input type="submit" value="수정" class="submit" id="userUpdate" name="update" />
-                            <input type="submit" value="초기화" class="submit" id="userReset" name="reset" />
-                            <input type="submit" value="회원탈퇴" class="submit" id="userDelete" name="delete" />
-                        </div>
+
                     </form>
-                    
+                    <div class="form-submit" style="margin: 10px 20px 30px 40px;">
+                        <input type="submit" value="수정" class="submit" id="userUpdate" name="update" />
+                        <input type="submit" value="초기화" class="submit" id="userReset" name="reset" />
+                        <input type="submit" value="회원탈퇴" class="submit" id="userDelete" name="delete" />
+                    </div>
                 </div>
                 
             </div>
@@ -141,8 +141,7 @@
     <script src="${context}/resources/vendors/nouislider/nouislider.min.js"></script>
     <script src="${context}/resources/vendors/wnumb/wNumb.js"></script>
     <script src="${context}/resources/vendors/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="${context}/resources/vendors/jquery-validation/dist/additional-methods.min.js"></scr
-    ipt>
+    <script src="${context}/resources/vendors/jquery-validation/dist/additional-methods.min.js"></script>
     <script src="${context}/resources/js/main.js"></script>
     
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -196,7 +195,7 @@
 		// 수정
 		$("#userUpdate").on("click", function() {
 			
-			//alert("submit");
+			alert("userUpdate");
 			
 			if(confirm("수정하시겠습니까?") == false) return;
 			
@@ -213,8 +212,8 @@
 	            	"postnum": $("#postnum").val(),
 	            	"address": $("#address").val(),
 	            	"detadd": $("#detadd").val(),
-	            	"lvl": user.lvl,
-	            	"upoint": user.upoint
+	            	"lvl": $("#lvl").val(),
+	            	"upoint": $("#upoint").val()
 	            },
 	            success: function(data){//통신이 성공적으로 이루어 졌을때 받을 함수
 	            	
@@ -273,7 +272,7 @@
 			console.log("rid: " + $("#rid").val());
 			
 			// validation
-			if(confirm("삭제 하시겠습니까?") == false) return;
+			if(confirm("탈퇴하시겠습니까?") == false) return;
 			
 			//ajax
 			$.ajax({

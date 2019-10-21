@@ -9,6 +9,9 @@
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
+	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
+	<beans:bean id="naverLoginBO" class="kr.co.redbull.user.service.NaverLoginBO" />
+
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
