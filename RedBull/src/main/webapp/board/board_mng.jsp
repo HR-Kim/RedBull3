@@ -1,3 +1,4 @@
+<%@page import="java.io.File"%>
 <%@page import="kr.co.redbull.cmn.Search"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -5,20 +6,11 @@
 <c:set var="context" value="${pageContext.request.contextPath }" />
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
-
-pageContext.setAttribute("cn", "\n"); //Enter
-pageContext.setAttribute("br", "<br/>"); //br 태그
-
-/* 	Search search = (Search)request.getAttribute("searchVO");
-	
-	String searchDiv = "20";
-	
-	if(null!=search.getSearchDiv()) {
-		searchDiv = search.getSearchDiv();
-	}else{
-		searchDiv = "20";
-	}
- */
+/* 	//git에 저장
+	String uploadPath = "git/RedBull3/RedBull/src/main/webapp/resources/img/board";
+	String user =  System.getProperty("user.home");
+	uploadPath = user+File.separator+uploadPath;	
+	out.print(uploadPath); */
 %>
 <%--
   /**
@@ -48,17 +40,9 @@ pageContext.setAttribute("br", "<br/>"); //br 태그
 <!-- 부트스트랩 -->
 <link href="${context}/resources/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- IE8 에서 HTML5 요소와 미디어 쿼리를 위한 HTML5 shim 와 Respond.js -->
-<!-- WARNING: Respond.js 는 당신이 file:// 을 통해 페이지를 볼 때는 동작하지 않습니다. -->
-<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-
 </head>
 <body>
-  <%-- <jsp:include page="/main/header.jsp"></jsp:include> --%>
+	<jsp:include page="/main/header.jsp"></jsp:include>
     <!--================Home Banner Area =================-->
 <section class="banner_area">
 	<div class="banner_inner d-flex align-items-center">
@@ -73,8 +57,8 @@ pageContext.setAttribute("br", "<br/>"); //br 태그
 	</div>
 </section>
 <!--================End Home Banner Area =================-->
-${board }
-${search }
+<%-- ${board }
+${search } --%>
 	<!-- div container -->
 	<div class="container">
 
@@ -136,30 +120,27 @@ ${search }
 		</div>
 		<div class="col-lg-10"></div>
 	</div>
-	<%-- <jsp:include page="/main/footer.jsp"></jsp:include> --%>
+	<jsp:include page="/main/footer.jsp"></jsp:include>
 
 	
 	<!--// div container -->
 	<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
 	<script src="${context}/resources/js/jquery-1.12.4.js"></script>
-	
 	<!-- jQuery validate -->
 	<script src="${context}/resources/js/jquery.validate.js"></script>
 	<!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
 	<script src="${context}/resources/js/bootstrap.min.js"></script>
-	<!-- include summernote css/js-->
+
+	
+ 	<!-- include summernote css/js-->
 	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
-
-
+  
 	<script type="text/javascript">
 	
 		//파일업로드 
 
  		function sendFile(file, el) {
-			
-			/* var refNum = ${board.bNum}; */
-			
 			var form_data = new FormData();
 	      	form_data.append('file', file);
 	      	$.ajax({
@@ -173,9 +154,9 @@ ${search }
 				   data: form_data,
 	        	success: function(data) {
 	        		var saveFileNm = data.msgMsg;
-	        		//console.log(saveFileNm);
+	        		console.log("${context}/"+saveFileNm);
 					if (null != data && data.msgId == "1") {
-						var image = $('<img>').attr('src', "${context }"+saveFileNm);
+						var image = $('<img>').attr('src', "${context}/"+saveFileNm);
 						$('#summernote').summernote("insertNode", image[0]);
 					}
 	        	}
@@ -195,7 +176,7 @@ ${search }
 		$("#doInit").on("click", function() {
 			$("#boardId").val("")
 			$("#title").val("");
-			$("#contents").val("");
+			$("#summernote").val("");
 			$("#regId").val("");
 			$("#readCnt").val("");
 			$("#regDt").val("")
@@ -271,7 +252,7 @@ ${search }
 				return;
 
 			$.ajax({
-				type : "GET",
+				type : "POST",
 				url : "${context}/board/do_update.do",
 				dataType : "html",
 				data : {
@@ -407,7 +388,6 @@ ${search }
 	   		        }
 	               },
 	               lang : 'ko-KR',
-	               placeholder: '이제 본문에 #을 이용한 태그 입력도 가능해요! URL을 통해, 사진 및 youtube를 등록할 수도 있어요!',
 	               codemirror: { // codemirror options
 	               theme: 'monokai'
 	              }

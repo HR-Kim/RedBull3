@@ -290,7 +290,7 @@ public class FileController {
 			fileVO.setOrgFileNm(orgFileNm);
 			fileVO.setSaveFileNm(newFile);
 			fileVO.setFileSize(fileSize);
-			fileVO.setExt(ext);
+			fileVO.setExtNm(ext);
 			fileList.add(fileVO);
 			mFile.transferTo(new File(newFile));
 		}

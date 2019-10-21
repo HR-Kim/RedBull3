@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 
@@ -42,6 +43,67 @@ public class CategoryController {
 	OptService optService;
 	
 	private final String VIEW_LIST_NM ="product/category_all";
+	
+	// 카테고리별 상품 조회
+	@RequestMapping(value = "product/get_categoryList.do", method = RequestMethod.GET)
+	public String get_categoryList(Search search, Model model,@RequestParam("c") int cateCode) {
+
+		LOG.debug("================================");
+		LOG.debug("search:" + search);
+		LOG.debug("================================");
+		LOG.debug("===========여기!!!!!!============="+cateCode);
+		// NUll 처리
+		if (search.getPageSize() == 0)
+			search.setPageSize(9);
+		if (search.getSearchDiv() == null)
+			search.setSearchDiv("10");
+		if (search.getPageNum() == 0)
+			search.setPageNum(1);
+		if (search.getSearchWord() == null)
+			search.setSearchWord(Integer.toString(cateCode));
+
+		model.addAttribute("vo", search);
+
+		List<Product> tmpList = (List<Product>) categoryService.get_categoryList(search);
+		List<Product> outList = new ArrayList<Product>();
+		// 썸네일 설정 : 안쓰는 detail에 이미지 경로를 넣자
+		for (int i = 0; i < tmpList.size(); i++) {
+			Product getOne = tmpList.get(i);
+			String getPnum = getOne.getpNum();
+
+			// Pnum으로 검색
+			Search tmpSearch = new Search();
+			tmpSearch.setSearchWord(getPnum);
+			String saveFileNm = "";
+			List<Image> tmpImageList = new ArrayList<Image>();
+			tmpImageList = (List<Image>) imageService.get_refnumList(tmpSearch);
+			// 검색 결과가 없다면? : 기본 이미지
+			if (tmpImageList.size() < 1) {
+				saveFileNm = "resources/img/product/noimage.jpg";
+			} else {
+				// 있으면 첫번째 이미지
+				saveFileNm = tmpImageList.get(0).getSaveFileNm();
+			}
+
+			getOne.setDetail(saveFileNm);
+			outList.add(getOne);
+		}
+
+		model.addAttribute("list", outList);
+
+		// 총건수
+		int totalCnt = 0;
+		if (null != outList && outList.size() > 0) {
+			totalCnt = outList.get(0).getTotalCnt();
+			model.addAttribute("totalCnt", totalCnt);
+		}
+
+		return VIEW_LIST_NM;
+	}
+
+	
+	
+	
 	
 	//베스트상품 조회
 	@RequestMapping(value = "product/get_rankList.do", method = RequestMethod.GET)

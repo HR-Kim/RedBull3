@@ -1,7 +1,5 @@
 package kr.co.redbull.board.web;
 
-import static kr.co.redbull.cmn.StringUtil.UPLOAD_ROOT;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,9 +30,6 @@ import kr.co.redbull.comment.service.Comment;
 import kr.co.redbull.comment.service.CommentService;
 import kr.co.redbull.file.service.FileService;
 import kr.co.redbull.file.service.FileVO;
-import kr.co.redbull.image.service.Image;
-import kr.co.redbull.image.service.ImageService;
-import kr.co.redbull.product.service.ProductService;
 
 @Controller
 public class BoardController {
@@ -62,6 +57,13 @@ public class BoardController {
 		LOG.debug("===============================");
 		LOG.debug("=@Controller do_save=");
 		LOG.debug("===============================");
+		
+		//root_path 전달
+		String UPLOAD_ROOT = "C:\\Users\\sist\\git/RedBull3/RedBull/src/main/webapp/img/board";
+		//String UPLOAD_ROOT = "C:\\Users\\sist\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\RedBull3/RedBull/src/main/webapp/img/board";
+		
+		String SAVE_ROOT = "img"+File.separator+"board";
+
 		//Upload파일 정보: 원본,저장,사이즈,확장자 List
 		List<FileVO> fileList = new ArrayList<FileVO>();
 		
@@ -84,6 +86,7 @@ public class BoardController {
 		LOG.debug("=@Controller mm="+mm);
 		String datePath = UPLOAD_ROOT+File.separator+yyyy+File.separator+mm;
 		LOG.debug("=@Controller datePath="+datePath);
+		SAVE_ROOT = SAVE_ROOT+File.separator+yyyy+File.separator+mm;
 		
 		File  fileYearMM = new File(datePath);  
 		
@@ -125,12 +128,15 @@ public class BoardController {
 			File orgFileCheck = new File(datePath,orgFileNm);
 			
 			String newFile = orgFileCheck.toString();
-			LOG.debug("=@Controller Before newFile="+newFile);
+			String saveFile = SAVE_ROOT+File.separator+orgFileNm;
+			
 			//04.파일 rename: README -> README1~9999
 			if(orgFileCheck.exists()==true) {
 				newFile = StringUtil.fileRename_board(orgFileCheck);
+				saveFile = SAVE_ROOT+File.separator+StringUtil.fileRenameShort(orgFileCheck);
 			}
-			LOG.debug("=@Controller after newFile="+newFile);
+			LOG.debug("=@Controller newFile="+newFile);
+			
 			//-----------------------------------------------
 			//-FileId 존재 유무로 Key생성 유무 판단.
 			//-----------------------------------------------
@@ -145,7 +151,6 @@ public class BoardController {
 				fileId = fileIdKey;
 			//fileID가 있는 경우.	
 			}else {
-				
 				fileVO.setFileId(fileId);
 				//max num
 				int maxNum = this.fileService.num_max_plus_one(fileVO);
@@ -154,18 +159,20 @@ public class BoardController {
 			}
 			
 			fileVO.setOrgFileNm(orgFileNm);
-			fileVO.setSaveFileNm(newFile);
+			fileVO.setSaveFileNm(saveFile);
 			fileVO.setFileSize(fileSize);
 			fileVO.setExtNm(extNm);
 			fileList.add(fileVO);
 			mFile.transferTo(new File(newFile));
+			
+			LOG.debug("newFile:"+newFile);
+			LOG.debug("saveFile:"+saveFile);
 			
 			flag = fileService.do_save(fileVO);
 			LOG.debug("flag:"+flag);
 			
 			saveFileNm = fileVO.getSaveFileNm();
 			LOG.debug("=@Controller saveFileNm="+saveFileNm);
-			//model.addAttribute("saveFileNm", saveFileNm);
 		}
 		
 		//등록성공
@@ -183,8 +190,6 @@ public class BoardController {
 		LOG.debug("gsonStr:"+gsonStr);
 		
 		return gsonStr;
-				
-		//return saveFileNm;
 	}
 	
 	@RequestMapping(value = "board/do_write.do")

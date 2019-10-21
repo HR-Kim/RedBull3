@@ -42,8 +42,7 @@
 		SELECT
 		   <include refid="productColumns"/>
 		FROM PRODUCT
-		WHERE PNAME LIKE '%' || #{searchWord} || '%'
-		ORDER BY PCATEGORY DESC
+		WHERE pcategory =#{searchWord}
 	</select>
 	
 	<!-- 세일상품 목록조회 -->
@@ -59,7 +58,6 @@
 		SELECT
 		   <include refid="productColumns"/>
 		FROM PRODUCT
-		WHERE PNAME LIKE '%' || #{searchWord} || '%'
 		ORDER BY REGDT ASC
 	</select>
 	
@@ -84,7 +82,6 @@
 		SELECT
 		   <include refid="productColumns"/>
 		FROM PRODUCT
-		WHERE PNAME LIKE '%' || #{searchWord} || '%'
 		ORDER BY PNUM ASC
 	</select>
 	

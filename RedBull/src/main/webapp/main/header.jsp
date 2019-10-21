@@ -18,7 +18,7 @@
     <title>집순이 쇼핑몰</title>
     
       <!-- Bootstrap CSS -->
-	  <link rel="stylesheet" href="${context}/resources/css/bootstrap.css" />
+<%-- 	  <link rel="stylesheet" href="${context}/resources/css/bootstrap.css" /> --%>
 	  <link rel="stylesheet" href="${context}/resources/vendors/linericon/style.css" />
 	  <link rel="stylesheet" href="${context}/resources/css/font-awesome.min.css" />
 	  <link rel="stylesheet" href="${context}/resources/css/themify-icons.css" />
@@ -37,7 +37,7 @@
     
   </head>
   
-<body>
+<body> 
 
   <!--================Header Menu Area =================-->
   <header class="header_area">
@@ -105,13 +105,13 @@
                         <a class="nav-link" href="${context}/product/get_retrieve.do">카테고리</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="${context}/product/get_retrieve.do">신상</a>
+                        <a class="nav-link" href="${context}/product/get_newList.do">신상</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="${context}/product/get_retrieve.do">랭킹</a>
+                        <a class="nav-link" href="${context}/product/get_rankList.do">랭킹</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="${context}/product/get_retrieve.do">핫세일</a>
+                        <a class="nav-link" href="${context}/product/get_hotSaleList.do">핫세일</a>
                       </li>
                     </ul>
                   </li>
@@ -176,9 +176,10 @@
   
   <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  
   <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
   <script src="${context}/resources/js/bootstrap.min.js"></script>   
-    
+  
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="${context}/resources/js/jquery-3.2.1.min.js"></script>

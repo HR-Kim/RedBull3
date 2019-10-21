@@ -49,6 +49,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+	td{
+		border-style: hidden;
+	border-bottom-style: hidden;
+	border-left-style: hidden;
+	border-right-style: hidden; 
+	}
+</style>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -80,7 +88,8 @@
 		</div>
 	</section>
 	<!--================End Home Banner Area =================-->
-${vo }
+<%-- ${vo } --%>
+<br/>
 	<form name="pagingForm" id="pagingForm">
 		<input type="hidden" id="pageNum" name="pageNum"/>
 		<input type="hidden" id="searchDiv" name="searchDiv"/>
@@ -134,24 +143,24 @@ ${vo }
 								 	<c:choose>
 								 		<c:when test="${vo.cLevel==1 }">
 								 			<div class="container-fluid">
-												<table class="table table-striped table-sm" id="listTable">
+												<table class="table table-borderless table-striped table-sm" id="listTable">
 										 			
 										 </c:when>
 										 <c:when test="${vo.cLevel==2 }">
 											 <div class="container-fluid">
-													<table class="table table-striped table-sm" id="listTable" style="width: 95%; float: right;">
+													<table class="table table-borderless table-striped table-sm" id="listTable" style="width: 95%; float: right;">
 										 </c:when>
 										 <c:when test="${vo.cLevel==3 }">
 											 <div class="container-fluid">
-													<table class="table table-striped table-sm" id="listTable" style="width: 90%; float: right;">
+													<table class="table table-borderless table-striped table-sm" id="listTable" style="width: 90%; float: right;">
 										 </c:when>
 										 <c:when test="${vo.cLevel==4 }">
 											 <div class="container-fluid">
-													<table class="table table-striped table-sm" id="listTable" style="width: 85%; float: right;">
+													<table class="table table-borderless table-striped table-sm" id="listTable" style="width: 85%; float: right;">
 										 </c:when>
 										 <c:when test="${vo.cLevel>=5 }">
 											 <div class="container-fluid">
-													<table class="table table-striped table-sm" id="listTable" style="width: 80%; float: right;">
+													<table class="table table-borderless table-striped table-sm" id="listTable" style="width: 80%; float: right;">
 										 </c:when>
 									</c:choose>
 									<tbody>
@@ -188,27 +197,23 @@ ${vo }
 							</div>
 						</c:forEach>
 					</c:when>
+					<c:otherwise>등록된 댓글이 없습니다.</c:otherwise>
 				</c:choose>
 			</div>
 		</td>
 		</tr>
 		<!-- //댓글목록 -->
 		
-		<!-- pagenation -->
-		<tr>
-			<td colspan="6">
-				<div class="container-fluid text-center ">
-					<%=StringUtil.renderPaging(maxNum, currPageNo, rowPerPage, bottomCount, url, scriptName) %>
-				</div>
-			</td>
-		</tr>
-		<!--// pagenation -->
-		
 		<!-- 댓글입력 폼 -->
 		<tr>
 			<td colspan="6">
+			<c:choose>
+				<c:when test="${commentList.size()>0}">
+					<%=StringUtil.renderPaging(maxNum, currPageNo, rowPerPage, bottomCount, url, scriptName) %>
+				</c:when>
+			</c:choose>			
 				<div class="container-fluid">
-					<table class="table" id="listTable" style="border-top: none;">
+					<table class="table commentTable" id="commentTable" style="border-top: none;">
 						<tbody>
 							<tr class="hide orgComment" >
 								<td class="text-left col-md-1 col-xs-1 cNum">0</td>
@@ -441,6 +446,7 @@ ${vo }
 		//본문 삭제
 		$("#do_delete").on("click", function(){
 			
+			var tNum = ${vo.tNum};
 			var bNum = $("#num").text();
 			
 			//validation

@@ -19,7 +19,8 @@ public class StringUtil {
 	private static Logger LOG = LoggerFactory.getLogger(StringUtil.class);
 	
 	// File Root 디렉토리
-	public static final String UPLOAD_ROOT = "/src/main/webapp/img";
+	
+	public static final String UPLOAD_ROOT = "D://HR_FILE";
 	
 	/**
 	 * Product 리스트에서 startNum에서 LastNum까지 추출하는 메소드
