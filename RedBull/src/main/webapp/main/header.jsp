@@ -124,8 +124,12 @@
                     <a class="nav-link" href="${context}/board/get_retrieve.do?searchDiv=10">공지사항</a>
                   </li>
                   
-                  <li class="nav-item">
+<%--                   <li class="nav-item">
                     <a class="nav-link" href="${context}/user/update.jsp" id="userUpdateBtn" >임시 회원수정 버튼</a>
+                  </li> --%>
+                  
+                  <li class="nav-item">
+                    <a class="nav-link" href="${context}/user/get_updateForm.do" id="userUpdateBtn" >임시 회원수정 버튼</a>
                   </li>
                   
                 </ul>
@@ -207,6 +211,7 @@
 	
 			//alert("logoutBtn");
 			logout();
+			alert("로그아웃되었습니다.")
 			location.href="${context}/main/main.do"; // 메인 화면으로 이동
 
 		});
