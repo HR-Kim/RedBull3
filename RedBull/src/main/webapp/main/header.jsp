@@ -18,7 +18,7 @@
     <title>집순이 쇼핑몰</title>
     
       <!-- Bootstrap CSS -->
-<%-- 	  <link rel="stylesheet" href="${context}/resources/css/bootstrap.css" /> --%>
+	  <link rel="stylesheet" href="${context}/resources/css/bootstrap.css" />
 	  <link rel="stylesheet" href="${context}/resources/vendors/linericon/style.css" />
 	  <link rel="stylesheet" href="${context}/resources/css/font-awesome.min.css" />
 	  <link rel="stylesheet" href="${context}/resources/css/themify-icons.css" />
