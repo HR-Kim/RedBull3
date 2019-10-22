@@ -472,11 +472,11 @@
 	
 	            	if(result == 1){
 	            		alert("카트 담기 성공");
-	            		$("#oNum").val("1");
+	            		$("#sst").val("1");
 	            		location.href="${context}/cart/get_retrieve.do";
 	            	}else{
 	            		alert("회원만 사용할 수 있습니다");
-	            		$("#oNum").val("1");
+	            		$("#sst").val("1");
 	            	}
 /* 	              var jData = JSON.parse(data);
 	              if(null != jData && jData.msgId=="1"){
@@ -487,10 +487,10 @@
 	                alert(jData.msgId+"|"+jData.msgMsg);
 	              } */ 
 	            },
-	            complete:function(data){
+/* 	            complete:function(data){
 	             
-	            },
-	            error:function(xhr,status,error){
+	            }, */
+	            error:function(){
 	                alert("카트 담기 실패");
 	            }
 	           }); 

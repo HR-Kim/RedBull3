@@ -68,8 +68,8 @@ public class CartController {
 		LOG.debug("=1=search="+search);
 		LOG.debug("1==================================");
 		
-		User user = (User) session.getAttribute("user");
-		String regId = user.getRid();
+//		User user = (User) session.getAttribute("user");
+//		String regId = user.getRid();
 		
 		
 		//param
@@ -95,7 +95,7 @@ public class CartController {
 		LOG.debug("1==================================");
 		LOG.debug("=1=list="+list);
 		LOG.debug("1==================================");
-		model.addAttribute("list",regId);
+//		model.addAttribute("list",regId);
 		model.addAttribute("list",list);
 		
 		//총 건수
@@ -145,17 +145,14 @@ public class CartController {
 		LOG.debug("=cart: " + cart);
 		LOG.debug("===================================");
 		
+		int result = 0;
 		
 		User user = (User) session.getAttribute("user");
-		String regId = user.getRid();
-		
-			
-			int result = 0;
 		
 			//Message message = new Message();
 		
-			if(regId != null) {
-				cart.setRegId(regId);
+			if(user != null) {
+				cart.setRegId(user.getRid());
 				int count = this.cartService.countCart(cart);
 				if(count == 0) {
 					//없으면 save
@@ -163,7 +160,7 @@ public class CartController {
 					//message.setMsgId(String.valueOf(flag));
 					//message.setMsgMsg("담기 성공");
 					
-				}else {
+					}else {
 					//있으면 updateCart
 					int flag = cartService.updateCart(cart);
 					//message.setMsgId(String.valueOf(flag));
@@ -172,11 +169,8 @@ public class CartController {
 				result = 1;
 			}
 
-
-		
 		//Gson gson = new Gson();
 		//String gsonStr = gson.toJson(message);
-		
 		
 		return result;
 	}
@@ -197,33 +191,21 @@ public class CartController {
 		
 
 		String[] arrIdx = param.get("cartNum").toString().split(",");
-		List<Integer> testList = new ArrayList<Integer>();
-		for(String i: arrIdx) {
-			testList.add(Integer.parseInt(i));
-		}
 		//param.put("testList", testList);
 		//String[] arrIdx = req.getParameter("cartNum").toString().split(",");
 		LOG.debug("=arrIdx: " + req.getParameter("cartNum"));
 		for(int i=0; i<arrIdx.length; i++) {
 			
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("list", arrIdx);
+			int flag = this.cartService.do_delete(cart);
+			//int flag = this.cartService.do_delete(cart);
 			
-			LOG.debug("===================================");
-			LOG.debug("=map: " + map);
-			LOG.debug("===================================");
-		
-
-		int flag = this.cartService.do_delete(cart);
-		//int flag = this.cartService.do_delete(cart);
-		
-		if(flag>0) {
-			message.setMsgId(String.valueOf(flag));
-			message.setMsgMsg("삭제 성공");
-		}else {
-			message.setMsgId(String.valueOf(flag));
-			message.setMsgMsg("삭제 실패");
-		}
+			if(flag>0) {
+				message.setMsgId(String.valueOf(flag));
+				message.setMsgMsg("삭제 성공");
+			}else {
+				message.setMsgId(String.valueOf(flag));
+				message.setMsgMsg("삭제 실패");
+			}
 	}
 		Gson gson = new Gson();
 		String gsonStr = gson.toJson(message);

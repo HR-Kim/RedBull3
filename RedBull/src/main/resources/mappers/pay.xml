@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.redbull.pay">
+
+<!-- 	 <sql id="payColumns">
+               r.rid,
+               r.uname,
+               r.postnum,
+               r.address,
+               r.detadd,
+               r.phone
+ 	 </sql> -->
+ 	 
+  	  	 <sql id="baseCondition">
+ 	 		<choose>
+ 	 		 	<when test="'10' == searchDiv">
+ 	 				 ON p.payId LIKE '%' || #{searchWord} || '%'
+ 	 			</when>
+ 	 			<otherwise></otherwise>
+ 	 		</choose>
+ 	 </sql>
+ 	 
+<!--  	  <sql id="payListColumns">
+						p.orderNum as orderNum,
+						o.oName as oName,
+						p.total as total,
+						count(pa.cartCnt) as payCnt,
+						p.dName as dName,
+						p.dPostNum as dPostNum,
+						p.dAddr as dAddr,
+						p.dDetAddr as dDetAddr,
+						p.dPhone as dPhone,
+						p.dMemo as dMemo,
+						p.payMethod as payMethod
+ 	 </sql> -->
+ 	 
+ 	 
+ 	 <!-- 주문상세 입력 -->
+<!--  	 <insert id="do_paydetail" parameterType="Cart">
+			INSERT INTO PAYDETAIL (
+			    orderDeNum,
+			    oNum,
+			    cartCnt
+			) 
+			SELECT #{orderDeNum}, oNum, cartCnt
+			FROM  CART
+	
+	</insert> -->
+ 	 
+ 	    <!-- 결제창: 주문자 조회 -->
+ 	 <select id="get_retrieve" resultType="Pay">
+			 	 SELECT
+					    r.rid,
+					    r.uname,
+					    r.postnum,
+					    r.address,
+					    r.detadd,
+					    r.phone,
+					    r.upoint
+				FROM pay p JOIN ruser r
+				ON p.payId = ${payId, jdbcType=VARCHAR}
+				GROUP BY 
+					    r.rid,
+					    r.uname,
+					    r.postnum,
+					    r.address,
+					    r.detadd,
+					    r.phone,
+					    r.upoint
+ 	 
+ 	 </select>
+ 	 
+ 	 
+<!--  	 <select id="get_retrieve" parameterType="Pay" resultType="Pay">
+	 	 	 SELECT	
+	 	 	 	<include refid="payListColumns" />								
+				FROM
+					PAY p JOIN PAYDETAIL pa 
+					ON p.orderNum = o.orderDeNum
+					JOIN OPT o
+					ON pa.oNum = o.oNum
+			 WHERE p.payId = #{payId, jdbcType=VARCHAR}
+ 	 </select> -->
+ 	 
+ 	 
+ 	 <!-- 결제목록 조회 -->
+<!--  	 <select id="get_retrieve" parameterType="Search" resultType="Pay">
+		 	SELECT T1.*, T2.*
+		    FROM
+		    (
+		        SELECT
+		            B.rnum,
+		            B.saveFileNm,
+		            B.orderNum,
+		            B.oName,
+		            B.total,
+		            B.payCnt,
+		            B.dName,
+		            B.dPostNum,
+		            B.dAddr,
+		            B.dDetAddr,
+		            B.dPhone,
+		            B.dMemo,
+		            B.payMethod,
+		           
+		        FROM(
+		            SELECT ROWNUM AS rnum, A.*
+		            FROM(
+					 SELECT
+							p.orderNum as orderNum,
+							o.oName as oName,
+							p.total as total,
+							count(pa.cartCnt) as payCnt,
+							p.dName as dName,
+							p.dPostNum as dPostNum,
+							p.dAddr as dAddr,
+							p.dDetAddr as dDetAddr,
+							p.dPhone as dPhone,
+							p.dMemo as dMemo,
+							p.payMethod as payMethod
+					FROM
+							PAY p JOIN PAYDETAIL pa 
+							ON p.orderNum = o.orderDeNum
+							JOIN OPT o
+							ON pa.oNum = o.oNum
+							search condition
+							<include refid="baseCondition" />
+							
+		                    )A
+		   			 WHERE rownum <![CDATA[ <= ]]> (#{pageSize} * ( #{pageNum}-1)+ #{pageSize} ) 
+		            )B
+					WHERE B.rnum <![CDATA[ >= ]]> (#{pageSize} * (#{pageNum}-1)+1)
+					)T1
+		        CROSS JOIN(
+					SELECT COUNT(*) total_cnt
+					FROM 
+							PAY p JOIN PAYDETAIL pa 
+							ON p.orderNum = o.orderDeNum
+							JOIN OPT o
+							ON pa.oNum = o.oNum
+							search condition
+							<include refid="baseCondition" />
+						)T2
+ 	 </select> -->
+
+
+	<!-- 신규 &기존 배송지 작성  -->
+<!-- 	<insert id="do_save" parameterType="Pay">
+			INSERT INTO PAY (
+			    orderNum,
+			    total,
+			    payCnt,
+			    dName,
+			    dPostNum,
+			    dAddr,
+			    dDetAddr,
+			    dPhone,
+			    dMemo,
+			    payMethod,
+			    payId,
+			    payDt
+			) VALUES (
+				#{orderNum, jdbcType=VARCHAR}
+			    #{total, jdbcType=NUMERIC},
+			    #{payCnt, jdbcType=NUMERIC},
+			    #{dName, jdbcType=VARCHAR},
+			    #{dPostNum, jdbcType=NUMERIC},
+			    #{dAddr, jdbcType=VARCHAR},
+			    #{dDetAddr, jdbcType=VARCHAR},
+			    #{dPhone, jdbcType=VARCHAR},
+			    #{dMemo, jdbcType=VARCHAR},
+			    #{payMethod, jdbcType=VARCHAR},
+			    #{payId, jdbcType=VARCHAR},
+			    SYSDATE
+			)
+	</insert> -->
+
+	<!-- 결제시 장바구니 비우기 -->
+<!-- 	<delete id="do_delete" parameterType="Cart">
+		<![CDATA[
+			DELETE FROM CART
+			WHERE regid = #{regId, jdbcType=VARCHAR}
+		]]>
+	</delete> -->
+
+</mapper>

@@ -1,9 +1,14 @@
+<%@page import="kr.co.redbull.user.service.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="context" value="${pageContext.request.contextPath}" />
-<html lang="en">
+
+<%
+	User user = (User)session.getAttribute("user");
+%>
+<html lang="ko">
 
   <body>
   <jsp:include page="/main/header.jsp"></jsp:include>
@@ -17,7 +22,6 @@
         <div class="container">
             <div class="mb-1 mb-md-0">
               <h2>장바구니</h2>
-              
             </div>
         </div>
       </div>
@@ -28,11 +32,13 @@
       <div class="container">
         <div class="cart_inner">
           <div class="table-responsive">
+          <form name="cartFrm" id="cartFrm" method="get">
+          <input type="hidden" name="searchDiv" id="searchDiv" />
             <table class="table table-striped table-bordered table-hover">
               <thead>
                 <tr>
 			         <th class="text-center col-md-1 col-xs-1">
-					 전체선택<input type="checkbox" id="checkAll" name="checkAll" onclick="checkAll();"></th>
+					 전체선택<input type="checkbox" id="checkAll" name="checkAll"></th>
 			         <th class="text-center col-md-4 col-xs-4 ">상품</th>
 			         <th class="text-center col-md-1 col-xs-1">상품가격</th>
 			         <th class="text-center col-md-1 col-xs-1">옵션가격</th>
@@ -42,13 +48,14 @@
                 </tr>
               </thead>
               <tbody>
+              <%= user != null %>
                <c:choose>
 	        	<c:when test="${list.size()>0 }">
 	        		<c:set var="sum" value="0"></c:set>
 	                <c:forEach var="cart" items="${list}">
 	                <tr>
 	                <td class="text-center">
-	                <input type="checkbox"  name="check" id="check" value="${cart.cartNum }"/>
+	                <input type="checkbox"  name="check" id="check"  value="${cart.cartNum }"/>
 	                <input type="hidden" name="cartNum" id="cartNum" value="${cart.cartNum }"/>
 	                </td>
 	                  <td>
@@ -116,6 +123,7 @@
 	                   <fmt:formatNumber pattern="###,###,###" value="${(cart.bPrice * (1-cart.discount) + cart.oPrice) * cart.cartCnt + cart.dPrice}" />원
 	                  </td>
 	                </tr>
+	                <c:set var="sum" value="${sum+ (cart.bPrice * (1-cart.discount) + cart.oPrice) * cart.cartCnt + cart.dPrice }"></c:set>
 	            </c:forEach> 
 			    </c:when>
 		    <c:otherwise>
@@ -128,10 +136,11 @@
 
               </tbody>
             </table>
+            </form>
             
              <button type="button" id="do_delete">삭제하기</button>
              <hr/>
-            	 결제금액
+            	 결제금액 <fmt:formatNumber pattern="###,###,###" value="${sum }" />원
              <hr/>
            	<td>
                 <div class="container">
@@ -150,38 +159,10 @@
 		
 	
       	<script type="text/javascript">
-      	
-      	//결제
       	$("#payBtn").on("click",function(){
-      		alert("결제창으로!");
-      		
-    		$.ajax({
-				type : "POST",
-				url : "${context}/pay/get_retrieve.do",
-				dataType : "html",
-				data : {
-					//"pNum" : $("#pNum").val()
-				},
-				success : function(data) {
-					var jData = JSON.parse(data);
-					if (null != jData && jData.msgId == "1") {
-						//alert(jData.msgMsg);
-						location.href = "${context}/pay/pay_list.jsp";
-
-					} else {
-						alert("로딩 실패");
-					}
-				},
-				complete : function(data) {
-
-				},
-				error : function(xhr, status, error) {
-					alert("error:" + error);
-				}
-			});
+      		alert("결제하러!");
       		
       	});
-      	
       	
       	$("#plus").click(function(){
       		//alert("수량증가");
@@ -195,15 +176,15 @@
       	   
       	});
       	
-      	  //삭제
-      	  function checkAll(){
+      	  //체크박스
+      	 $("#checkAll").click(function(){
      			if($("#checkAll").is(':checked')==true){
        				$("input[name='check']").prop("checked",true); //check
        				
        			}else{
        				$("input[name='check']").prop("checked",false); //check해제
        			}
-      	  }
+      	  });
       	  
        	$("#do_delete").on("click",function(){
         	var check = "";

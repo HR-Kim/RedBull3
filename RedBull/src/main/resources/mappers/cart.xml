@@ -67,7 +67,7 @@
  	 </select>
  	 
  	 <!-- get_cartIdList -->
- 	 <select id="get_cartIdList" parameterType="Search" resultType="Cart">
+ 	 <select id="get_cartIdList" resultType="Cart">
 			SELECT
 			        <include refid="cartColumns" />
 			FROM
