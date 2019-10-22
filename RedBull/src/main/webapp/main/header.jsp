@@ -129,7 +129,11 @@
                   </li> --%>
                   
                   <li class="nav-item">
-                    <a class="nav-link" href="${context}/user/get_updateForm.do" id="userUpdateBtn" >임시 회원수정 버튼</a>
+                    <a class="nav-link" href="${context}/user/get_updateForm.do" >임시 회원수정</a>
+                  </li>
+                  
+                  <li class="nav-item">
+                    <a class="nav-link" href="${context}/mypage/mypage.jsp" >임시 MP</a>
                   </li>
                   
                 </ul>
