@@ -30,7 +30,7 @@ public class MyGoodController {
 	
 	private final String VIEW_LIST_NM  ="mypage/mygood";
 	
-	/**장바구니 조회*/
+	/**좋아요 조회*/
 	@RequestMapping(value="mypage/get_retrieve.do", method=RequestMethod.GET)
 	public String get_retrieve(HttpServletRequest req,Search search, Model model){
 		
