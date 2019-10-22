@@ -88,7 +88,7 @@
 					</div>
 					
 					<!-- 네이버 로그인 창으로 이동 -->
-					<div class="container-login100-form-btn m-t-20" id="naver_id_login" style="text-align:center"><a href="${url}">
+					<div class="container-login100-form-btn m-t-20" id="naverIdLogin" style="text-align:center"><a href="${url}">
 					<img width="50" src="${context}/resources/img/naver.png"/></a></div>
 					<br>
 
@@ -118,6 +118,38 @@
     <script src="${context}/resources/js/bootstrap.min.js"></script>   
     
     <script type="text/javascript">
+    
+	    $("#naverIdLogin").on("click", function(){
+	    	
+	    	alert("naverIdLogin");
+	    	
+			//ajax
+			$.ajax({
+				type : "POST",
+				url : "${context}/users/naverlogin",
+				dataType : "html",
+				data : {
+					"lang" : $("#lang").val(),
+					"rid" : $("#rid").val(),
+					"passwd" : $("#passwd").val()
+				},
+				success : function(data) {
+					
+					location.href="${url}"; // 메인 화면으로 이동
+
+				},
+				complete : function(data) { 
+	
+				},
+				error : function(xhr, status, error) {
+					alert("error:" + error);
+				}
+			});
+			//--ajax  
+			
+	    	//do_login();
+	    	
+	    });
         
         function do_login() {
         
@@ -151,18 +183,22 @@
 					
 					if(null != jData) { // 데이터가 있으면
 						
-						if (jData.msgId == "30") { // 로그인이 성공하면
+						if (jData.msgId == "30" && null != jData.msgMsg) { // 로그인이 성공하고 msgMsg의 값이 있으면(등업을 했으면)
 
+							alert(jData.msgMsg); // 등업 메시지를 출력하고
 							location.href="${context}/main/main.do"; // 메인 화면으로 이동
-						}	
-					
-						else if (jData.msgId == "10") { // 아이디 체크 실패
-							$("#rid").focus();
-							alert(jData.msgMsg);
-											
 						}
-					
+						else if (jData.msgId == "30" && null == jData.msgMsg) { // 로그인이 성공하고 msgMsg의 값이 없으면(등업을 안 함)
+							
+							location.href="${context}/main/main.do"; // 메인 화면으로 이동				
+						}
+						else if (jData.msgId == "10") { // 아이디 체크 실패
+							
+							$("#rid").focus();
+							alert(jData.msgMsg);		
+						}
 						else if (jData.msgId == "20") { // 비밀번호 체크 실패
+							
 							$("#passwd").focus();
 							alert(jData.msgMsg);
 						}	
