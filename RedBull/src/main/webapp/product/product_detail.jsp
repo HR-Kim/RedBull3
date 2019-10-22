@@ -27,7 +27,8 @@
 <jsp:include page="/main/header.jsp"></jsp:include>
 <!--================Form Group - Product==============-->
 <form name="frm_pNum" method="post" >
-	<input type="hidden" id="pNum" name="pNum" value="${productVO.pNum}"/>	
+	<input type="hidden" id="pNum" name="pNum" value="${productVO.pNum}"/>
+		
 </form>
 
 <!--================Home Banner Area =================-->
@@ -120,7 +121,7 @@
 						</button>
 					</div>
 					<div class="card_area">
-						<a class="main_btn" href="#">주문하기</a>
+						<button id="cart" type="button">장바구니</button>
 						<a class="main_btn" href="${context}/product/get_retrieve.do">뒤로</a>
 						<a class="icon_btn" href="#">
 							<i class="lnr lnr lnr-heart"></i>
@@ -260,7 +261,7 @@
 								</a></li>
 							</ul>
 							<p>Outstanding</p>
-							<form class="row contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+							<form class="row contact_form"  method="post" id="contactForm" novalidate="novalidate">
 								<div class="col-md-12">
 									<div class="form-group">
 										<input type="text" class="form-control" id="name" name="name" placeholder="Your Full name" />
@@ -446,6 +447,55 @@
 <jsp:include page="/main/footer.jsp"></jsp:include>
 
 	<script type="text/javascript">
+	
+		//장바구니
+		$("#cart").on("click",function(){
+			//alert("장바구니 담으러!");
+	
+			var optSelect = $("#optSelect").val();
+			var sst = $("#sst").val();
+			
+			if(confirm("장바구니 담으시겠습니까?") == false) return;
+			
+			console.log("optSelect: "+ optSelect);
+			console.log("cartCnt: "+ sst);
+			
+			$.ajax({
+	               type:"POST",
+	               url:"${context}/cart/do_save.do",
+	               dataType:"html",
+	               data:{
+	            	   "oNum" : optSelect,
+	            	   "cartCnt" : sst
+	              }, 
+	            success: function(result){
+	
+	            	if(result == 1){
+	            		alert("카트 담기 성공");
+	            		$("#oNum").val("1");
+	            		location.href="${context}/cart/get_retrieve.do";
+	            	}else{
+	            		alert("회원만 사용할 수 있습니다");
+	            		$("#oNum").val("1");
+	            	}
+/* 	              var jData = JSON.parse(data);
+	              if(null != jData && jData.msgId=="1"){
+	                alert(jData.msgMsg);
+	                location.href="${context}/cart/get_retrieve.do";
+
+	              }else{
+	                alert(jData.msgId+"|"+jData.msgMsg);
+	              } */ 
+	            },
+	            complete:function(data){
+	             
+	            },
+	            error:function(xhr,status,error){
+	                alert("카트 담기 실패");
+	            }
+	           }); 
+	           //--ajax  
+		});
 		//홈 탭
 		function goHome(){
 			//alert("goHome");

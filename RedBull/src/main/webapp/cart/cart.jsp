@@ -3,211 +3,12 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="context" value="${pageContext.request.contextPath}" />
-    
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link rel="icon" href="img/favicon.png" type="image/png" />
-    <title>Eiser ecommerce</title>
-    
-    <!-- 부트스트랩 -->
-	<link rel="stylesheet" href="${context}/resources/css/bootstrap.min.css" />
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="${context}/resources/vendors/linericon/style.css" />
-    <link rel="stylesheet" href="${context}/resources/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="${context}/resources/css/themify-icons.css" />
-    <link rel="stylesheet" href="${context}/resources/vendors/owl-carousel/owl.carousel.min.css" />
-    <link rel="stylesheet" href="${context}/resources/vendors/lightbox/simpleLightbox.css" />
-    <link rel="stylesheet" href="${context}/resources/vendors/nice-select/css/nice-select.css" />
-    <link rel="stylesheet" href="${context}/resources/vendors/animate-css/animate.css" />
-    <link rel="stylesheet" href="${context}/resources/vendors/jquery-ui/jquery-ui.css" />
-    <!-- main css -->
-    <link rel="stylesheet" href="${context}/resources/css/style.css" />
-    <link rel="stylesheet" href="${context}/resources/css/responsive.css" />
-  </head>
 
   <body>
+  <jsp:include page="/main/header.jsp"></jsp:include>
     <!--================Header Menu Area =================-->
-    <header class="header_area">
-      <div class="top_menu">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-7">
-              <div class="float-left">
-                <p>Phone: +01 256 25 235</p>
-                <p>email: info@eiser.com</p>
-              </div>
-            </div>
-            <div class="col-lg-5">
-              <div class="float-right">
-                <ul class="right_side">
-                  <li>
-                    <a href="cart.html">
-                      gift card
-                    </a>
-                  </li>
-                  <li>
-                    <a href="tracking.html">
-                      track order
-                    </a>
-                  </li>
-                  <li>
-                    <a href="contact.html">
-                      Contact Us
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="main_menu">
-        <div class="container">
-          <nav class="navbar navbar-expand-lg navbar-light w-100">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <a class="navbar-brand logo_h" href="index.html">
-              <img src="img/logo.png" alt="" />
-            </a>
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div
-              class="collapse navbar-collapse offset w-100"
-              id="navbarSupportedContent"
-            >
-              <div class="row w-100 mr-0">
-                <div class="col-lg-7 pr-0">
-                  <ul class="nav navbar-nav center_nav pull-right">
-                    <li class="nav-item">
-                      <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item active submenu dropdown">
-                      <a
-                        href="#"
-                        class="nav-link dropdown-toggle"
-                        data-toggle="dropdown"
-                        role="button"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                        >Shop</a
-                      >
-                      <ul class="dropdown-menu">
-                        <li class="nav-item">
-                          <a class="nav-link" href="category.html"
-                            >Shop Category</a
-                          >
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="single-product.html"
-                            >Product Details</a
-                          >
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="checkout.html"
-                            >Product Checkout</a
-                          >
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="cart.html">Shopping Cart</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="nav-item submenu dropdown">
-                      <a
-                        href="#"
-                        class="nav-link dropdown-toggle"
-                        data-toggle="dropdown"
-                        role="button"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                        >Blog</a
-                      >
-                      <ul class="dropdown-menu">
-                        <li class="nav-item">
-                          <a class="nav-link" href="blog.html">Blog</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="single-blog.html"
-                            >Blog Details</a
-                          >
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="nav-item submenu dropdown">
-                      <a
-                        href="#"
-                        class="nav-link dropdown-toggle"
-                        data-toggle="dropdown"
-                        role="button"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                        >Pages</a
-                      >
-                      <ul class="dropdown-menu">
-                        <li class="nav-item">
-                          <a class="nav-link" href="tracking.html">Tracking</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="elements.html">Elements</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="contact.html">Contact</a>
-                    </li>
-                  </ul>
-                </div>
-
-                <div class="col-lg-5 pr-0">
-                  <ul class="nav navbar-nav navbar-right right_nav pull-right">
-                    <li class="nav-item">
-                      <a href="#" class="icons">
-                        <i class="ti-search" aria-hidden="true"></i>
-                      </a>
-                    </li>
-
-                    <li class="nav-item">
-                      <a href="#" class="icons">
-                        <i class="ti-shopping-cart"></i>
-                      </a>
-                    </li>
-
-                    <li class="nav-item">
-                      <a href="#" class="icons">
-                        <i class="ti-user" aria-hidden="true"></i>
-                      </a>
-                    </li>
-
-                    <li class="nav-item">
-                      <a href="#" class="icons">
-                        <i class="ti-heart" aria-hidden="true"></i>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </nav>
-        </div>
-      </div>
-    </header>
+ 
     <!--================Header Menu Area =================-->
 
     <!--================Home Banner Area =================-->
@@ -216,6 +17,7 @@
         <div class="container">
             <div class="mb-1 mb-md-0">
               <h2>장바구니</h2>
+              
             </div>
         </div>
       </div>
@@ -230,7 +32,7 @@
               <thead>
                 <tr>
 			         <th class="text-center col-md-1 col-xs-1">
-					 전체선택<input type="checkbox" id="checkAll" name="checkAll"></th>
+					 전체선택<input type="checkbox" id="checkAll" name="checkAll" onclick="checkAll();"></th>
 			         <th class="text-center col-md-4 col-xs-4 ">상품</th>
 			         <th class="text-center col-md-1 col-xs-1">상품가격</th>
 			         <th class="text-center col-md-1 col-xs-1">옵션가격</th>
@@ -242,10 +44,11 @@
               <tbody>
                <c:choose>
 	        	<c:when test="${list.size()>0 }">
+	        		<c:set var="sum" value="0"></c:set>
 	                <c:forEach var="cart" items="${list}">
 	                <tr>
 	                <td class="text-center">
-	                <input type="checkbox" name="check" id="check">
+	                <input type="checkbox"  name="check" id="check" value="${cart.cartNum }"/>
 	                <input type="hidden" name="cartNum" id="cartNum" value="${cart.cartNum }"/>
 	                </td>
 	                  <td>
@@ -265,7 +68,7 @@
 	                    </div>
 	                  </td>
 	                  <td class="text-center">
-	                  <del><fmt:formatNumber pattern="###,###,###" value="${cart.bPrice }"/></del>
+	                  <del><fmt:formatNumber pattern="###,###,###" value="${cart.bPrice }"/></del><br/>
 	                  <fmt:formatNumber pattern="###,###,###" value="${cart.bPrice * (1-cart.discount)}"/>원
 	                  </td>
 	                  <td class="text-center">
@@ -274,8 +77,12 @@
 	                  <td>
 	                    <div class="product_count">
 	                    	<form name="form" method="get">
-	                    	<input type="text" name="amount" value="${cart.cartCnt}" size="3" onchange="change();">
-	                    	<input type="button" value="+" onclick="add();"><input type="button" value="-" onclick="del();">
+	                    	<input type="text" id="numBox"  name="amount" value="${cart.cartCnt}" readonly = "readonly">
+<%-- 	                    	<button type="button" id="plus">+</button>
+	                    	<input type="text" id="numBox"  name="amount" value="${cart.cartCnt}" readonly = "readonly">
+	                    	<button type="button" id="minus">-</button>
+	                    	<button type="button" id="update">변경</button> --%>
+	                    	<!-- <input type="button" value="+" onclick="add();"><input type="button" value="-" onclick="del();"> -->
 	                    	</form>
 <!-- 	                      <input
 	                        type="text"
@@ -329,7 +136,7 @@
            	<td>
                 <div class="container">
                 	<input type="button" class="btn btn-Success" value="쇼핑하기"/>
-                	<input type="submit" class="btn btn-Success" value="결제하기"/>
+                	<input type="submit" id="payBtn" class="btn btn-Success" value="결제하기"/>
 <!--                    <input type="button" class="gray_btn" id="gray_btn" value="Continue Shopping" href="#" />
                   <input type="button" class="main_btn" id="main_btn" value="결제하기" href="#" /> -->
                 </div>
@@ -340,39 +147,86 @@
     </section>
     <!--================End Cart Area =================-->
         <!-- Optional JavaScript -->
-    	<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
-	<script src="${context}/resources/js/jquery-1.12.4.js"></script>
-	<script src="${context}/resources/js/bootstrap.min.js"></script>
+		
+	
       	<script type="text/javascript">
       	
-       	$("#checkAll").click(function(){
-   			if($("#checkAll").is(':checked')==true){
-   				$("input[name='check']").prop("checked",true); //check
-   				
-   			}else{
-   				$("input[name='check']").prop("checked",false); //check해제
-   			}
-   			
-      	}); 
-       	
+      	//결제
+      	$("#payBtn").on("click",function(){
+      		alert("결제창으로!");
+      		
+    		$.ajax({
+				type : "POST",
+				url : "${context}/pay/get_retrieve.do",
+				dataType : "html",
+				data : {
+					//"pNum" : $("#pNum").val()
+				},
+				success : function(data) {
+					var jData = JSON.parse(data);
+					if (null != jData && jData.msgId == "1") {
+						//alert(jData.msgMsg);
+						location.href = "${context}/pay/pay_list.jsp";
+
+					} else {
+						alert("로딩 실패");
+					}
+				},
+				complete : function(data) {
+
+				},
+				error : function(xhr, status, error) {
+					alert("error:" + error);
+				}
+			});
+      		
+      	});
+      	
+      	
+      	$("#plus").click(function(){
+      		//alert("수량증가");
+      	   var num = $("#numBox").val(); //5
+      	   var plusNum = Number(num) + 1;//6
+      	  });
+      	  
+      	  $("#minus").click(function(){
+      	   var num = $("#numBox").val();
+      	   var minusNum = Number(num) - 1;
+      	   
+      	});
+      	
+      	  //삭제
+      	  function checkAll(){
+     			if($("#checkAll").is(':checked')==true){
+       				$("input[name='check']").prop("checked",true); //check
+       				
+       			}else{
+       				$("input[name='check']").prop("checked",false); //check해제
+       			}
+      	  }
+      	  
        	$("#do_delete").on("click",function(){
-       		//alert("do_delete");
-       		//console.log("cartNum:" + 4("#cartNum").val());
+        	var check = "";
+       		//var cartNum = document.getElementByName("check");
+       		$("input[name='check']:checked").each(function(){
+       			check = check + $(this).val()+",";
+       			});
+       		check = check.substring(0,check.lastIndexOf(","));
        		
-       		
-			if($("#cartNum").val()=="" || $("#cartNum").val()==false){
-				alert("삭제할 상품을 선택 하세요.");
-				return;
-			}
-			
-			if(confirm("삭제하시겠습니까?") == false) return;
-       		
+       		if(check == ''){
+       			alert("삭제할 대상을 선택하세요.");
+       			return false;
+       			}
+       		console.log("check => " + check);
+
+       		if(confirm("삭제하시겠습니까?") == false) return;
+		   
        		$.ajax({
 	               type:"POST",
 	               url:"${context}/cart/do_delete.do",
 	               dataType:"html",
 	               data:{
-	               "cartNum":$("#cartNum").val()
+	               cartNum :check
 	              }, 
 	            success: function(data){
 	              var jData = JSON.parse(data);
@@ -400,21 +254,6 @@
     	<jsp:include page="/main/footer.jsp"></jsp:include>
     <!--================ End footer Area  =================-->
     
-         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="${context}/resources/js/popper.js"></script>
-
-    <script src="${context}/resources/js/stellar.js"></script>
-    <script src="${context}/resources/vendors/lightbox/simpleLightbox.min.js"></script>
-    <script src="${context}/resources/vendors/nice-select/js/jquery.nice-select.min.js"></script>
-    <script src="${context}/resources/vendors/isotope/imagesloaded.pkgd.min.js"></script>
-    <script src="${context}/resources/vendors/isotope/isotope-min.js"></script>
-    <script src="${context}/resources/vendors/owl-carousel/owl.carousel.min.js"></script>
-    <script src="${context}/resources/js/jquery.ajaxchimp.min.js"></script>
-    <script src="${context}/resources/js/mail-script.js"></script>
-    <script src="${context}/resources/vendors/jquery-ui/jquery-ui.js"></script>
-    <script src="${context}/resources/vendors/counter-up/jquery.waypoints.min.js"></script>
-    <script src="${context}/resources/vendors/counter-up/jquery.counterup.js"></script>
-    <script src="${context}/resources/js/theme.js"></script>
   </body>
 </html>
     

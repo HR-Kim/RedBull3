@@ -153,13 +153,15 @@ public class CartDaoImpl implements WorkDiv {
 		LOG.debug("2. param: " + cart);
 		LOG.debug("================================");
 		
-		int flag = this.sqlSessionTemplate.delete(statement, cart);
+		int flag = sqlSessionTemplate.delete(statement, cart);
 		LOG.debug("================================");
 		LOG.debug("3. flag: " + flag);
 		LOG.debug("================================");
 		
 		return flag;
 	}
+	
+
 
 	//장바구니 추가
 	@Override
@@ -217,6 +219,23 @@ public class CartDaoImpl implements WorkDiv {
 		
 		return list;
 	}
+	
+//	public List<?> all_delete(DTO dto) {
+//		String statement = this.NAMESPACE +".all_delete";
+//		Search inVO = (Search) dto;
+//		LOG.debug("==================================");
+//		LOG.debug("1. param: " +inVO);
+//		LOG.debug("2. statement: " + statement);
+//		LOG.debug("==================================");
+//		
+//		List<Cart> list = this.sqlSessionTemplate.selectList(statement, inVO);
+//		
+//		LOG.debug("==================================");
+//		LOG.debug("3. list: " + list);
+//		LOG.debug("==================================");
+//		
+//		return list;
+//	}
 	
 	
 	@Override

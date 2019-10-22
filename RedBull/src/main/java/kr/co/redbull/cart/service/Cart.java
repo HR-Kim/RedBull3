@@ -1,5 +1,7 @@
 package kr.co.redbull.cart.service;
 
+import java.util.List;
+
 import kr.co.redbull.cmn.DTO;
 import kr.co.redbull.product.service.Product;
 
@@ -8,8 +10,11 @@ public class Cart extends Product {
 	private String oNum       ;//상품번호
 	private int cartCnt    ;//수량
 	private String regId   ;//등록자
+	private List<Cart> list;
 	
 	
+	
+
 	public Cart() {}
 
 
@@ -20,7 +25,8 @@ public class Cart extends Product {
 		this.cartCnt = cartCnt;
 		this.regId = regId;
 	}
-
+	
+	
 
 	public int getCartNum() {
 		return cartNum;
