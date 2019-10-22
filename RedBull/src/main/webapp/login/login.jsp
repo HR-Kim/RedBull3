@@ -88,7 +88,7 @@
 					</div>
 					
 					<!-- 네이버 로그인 창으로 이동 -->
-					<div class="container-login100-form-btn m-t-20" id="naverIdLogin" style="text-align:center"><a href="${url}">
+					<div class="container-login100-form-btn m-t-20" id="naver_id_login" style="text-align:center"><a href="${url}">
 					<img width="50" src="${context}/resources/img/naver.png"/></a></div>
 					<br>
 
@@ -118,38 +118,6 @@
     <script src="${context}/resources/js/bootstrap.min.js"></script>   
     
     <script type="text/javascript">
-    
-	    $("#naverIdLogin").on("click", function(){
-	    	
-	    	alert("naverIdLogin");
-	    	
-			//ajax
-			$.ajax({
-				type : "POST",
-				url : "${context}/users/naverlogin",
-				dataType : "html",
-				data : {
-					"lang" : $("#lang").val(),
-					"rid" : $("#rid").val(),
-					"passwd" : $("#passwd").val()
-				},
-				success : function(data) {
-					
-					location.href="${url}"; // 메인 화면으로 이동
-
-				},
-				complete : function(data) { 
-	
-				},
-				error : function(xhr, status, error) {
-					alert("error:" + error);
-				}
-			});
-			//--ajax  
-			
-	    	//do_login();
-	    	
-	    });
         
         function do_login() {
         
