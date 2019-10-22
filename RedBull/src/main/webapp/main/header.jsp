@@ -161,6 +161,7 @@
 
                   <li class="nav-item">
                     <a href="${context}/fakemypage/get_fakemypage.do" class="icons"> <!-- 마이페이지/로그인(인터셉터) -->
+                    <a href="${context}../mypage/mypage.jsp" class="icons">
                       <i class="ti-user" aria-hidden="true"></i>
                     </a>
                   </li>
