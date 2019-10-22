@@ -1,6 +1,11 @@
+<%@page import="kr.co.redbull.user.service.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	String user = (String)session.getAttribute("user");
+	out.print("user"+user);
+%>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -81,14 +86,17 @@
 	
 	<div id="update" class="tabcontent">
 	  <h3>회원정보수정</h3>
+	  <%@include file="../user/update.jsp"%>
 	</div>
 	
 	<div id="good" class="tabcontent">
 	  <h3>좋아요</h3>
+	  <%@include file="../mypage/mygood.jsp"%>
 	</div>
 	
 	<div id="question" class="tabcontent">
 	  <h3>질문</h3>
+	  <%@include file="../mypage/question.jsp"%>
 	</div>	
 	
 	<div id="answer" class="tabcontent">

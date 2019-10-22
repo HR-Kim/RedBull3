@@ -40,7 +40,7 @@
                 
                 <div class="signup-form">
                 
-                    <form method="POST" class="register-form" id="register-form">
+                    <form method="POST" class="register-form" id="registerForm" name="registerForm">
                         <div class="form-row">
                         
                             <div class="form-group">
@@ -48,9 +48,11 @@
                                     <label for="rid" class="required">아이디</label>
                                     <input type="text" name="rid" id="rid" placeholder="이메일주소 " maxlength="320"/>
                                 </div>
-                                <div class="form-input">
-                                    <div id="id_check"></div>
-                                </div>
+                                <div class="form-submit">
+                                    <button type="button" id="idcheck" name="idcheck"
+                                    style="height:45px; width:130px; font-family: 'Poppins'; font-weight: bold; 
+                                    padding: 5px; border: none; border-radius: 5px"><i class="fa fa-search"></i>중복확인</button>
+			                    </div>
                                 <div class="form-input">
                                     <label for="passwd" class="required">비밀번호</label>
                                     <input type="password" name="passwd" id="passwd" placeholder="20자 이하 영문 대소문자/숫자" maxlength="20"/>
@@ -73,7 +75,7 @@
                             <div class="form-group">
                                 <div class="form-input">
                                     <label for="phone" class="required">휴대폰 번호</label>
-                                    <input type="text" name="phone" id="phone" placeholder="010-1111-1111" maxlength="13"/>
+                                    <input type="text" name="phone" id="phone" placeholder="010-0000-0000" maxlength="13"/>
                                 </div>
 <!--                                 <div class="form-input">
                                     <label for="phone_number" class="required">우편 번호</label>
@@ -107,12 +109,14 @@
                             </div>
                             
                         </div>
-
-                        <div class="form-submit">
-                            <input type="submit" value="Submit" class="submit" id="submit" name="submit" />
-                            <input type="submit" value="Reset" class="submit" id="reset" name="reset" />
-                        </div>
+                        
                     </form>
+                    <div class="form-submit" style="margin: 10px 20px 30px 40px;">
+                        <div class="form-submit">
+	                        <input type="submit" value="회원가입" class="submit" id="submit" name="submit" />
+	                        <input type="submit" value="초기화" class="submit" id="init" name="init" />
+                        </div>
+                    </div>
                     
                 </div>
                 
@@ -186,12 +190,61 @@
 	        }).open();
 	    }
     	
+		// 아이디 중복체크
+		$("#idcheck").on("click", function() {
+			
+			//alert("idcheck");
+			
+	        $.ajax({
+	            type:"POST",
+	            url:"${context}/user/check_id.do",
+	            dataType:"html",// JSON
+	            data:{
+	            	"rid": $("#rid").val()
+	            },
+	            success: function(data){//통신이 성공적으로 이루어 졌을때 받을 함수
+	            	
+	            	var jData = JSON.parse(data); // String 데이터를 json으로 파싱
+	             	
+					if(null != jData) { // 데이터가 있으먼
+						
+						if (jData.msgId == "30") { // 아이디가 있으면
+							
+							$("#rid").focus();
+							alert("이미 존재하는 이메일입니다.");
+						}	
+					
+						else if (jData.msgId == "10") { // 아이디가 없음
+							
+							alert("사용 가능한 이메일입니다.");
+											
+						}
+					
+					}
+
+	            },
+	            complete: function(data){//무조건 수행
+
+	             
+	            },
+	            error: function(xhr,status,error){
+	            	alert("error:" + error);
+	            }
+	        }); 
+			
+			
+		});
+    	
+    	
 		// 등록
 		$("#submit").on("click", function() {
 			
 			//alert("submit");
 			
 			if(confirm("가입하시겠습니까?") == false) return;
+			
+			// validation
+			if($("#registerForm").valid() == false) return; // validation이 false이면 수행 안 함
 			
 	        $.ajax({
 	            type:"POST",
@@ -237,13 +290,14 @@
 		});
 		
 		// 초기화
-		$("#reset").on("click", function() {
+		$("#init").on("click", function() {
 	
 			//alert("doInit");
 			
 			// input 데이터 클리어
 			$("#rid").val("");
 			$("#passwd").val("");
+			$("#passwdchk").val("");
 			$("#uname").val("");
 			$("#birth").val("");
 			$("#phone").val("");
@@ -251,6 +305,115 @@
 			$("#address").val("");
 			$("#detadd").val("");
 		
+		});
+		
+		// form validate
+		$("#registerForm").validate({
+			rules: {
+				rid: {
+					required: true,
+					email : true,
+					minlength: 2,
+					maxlength: 320
+				},
+				passwd: {
+					required: true,
+					minlength: 2,
+					maxlength: 20
+				},
+				passwdchk: {
+					required: true,
+					equalTo : passwd,
+					minlength: 2,
+					maxlength: 20
+				},
+				uname: {
+					required: true,
+					minlength: 2,
+					maxlength: 17
+				},
+				birth: {
+					required: true,
+					minlength: 10,
+					maxlength: 10
+				},
+				phone: {
+					required: true,
+					minlength: 13,
+					maxlength: 13
+				},
+				postnum: {
+					required: true,
+					digits : true,
+					minlength: 5,
+					maxlength: 5
+				},
+				address: {
+					required: true,
+					minlength: 2,
+					maxlength: 100
+				},
+				
+			},
+			messages: {
+				rid: {
+					required: "이메일을 입력하시오.",
+					email: "유효한 이메일 주소를 입력하시오.",
+					minlength: $.validator.format("이메일을 {0}자 이상 입력하시오"),
+					maxlength: $.validator.format("이메일을 {0}자 내로 입력하시오")
+				},
+				passwd: {
+					required: "비밀번호를 입력하시오.",
+					minlength: $.validator.format("비밀번호를 {0}자 이상 입력하시오"),
+					maxlength: $.validator.format("비밀번호를 {0}자 내로 입력하시오")
+				},
+				passwdchk: {
+					required: "비밀번호확인을 입력하시오.",
+					equalTo: "비밀번호와 비밀번호확인이 일치하지 않습니다.",
+					minlength: $.validator.format("비밀번호확인을 {0}자 이상 입력하시오"),
+					maxlength: $.validator.format("비밀번호확인을 {0}자 내로 입력하시오")
+				},
+				uname: {
+					required: "이름을 입력하시오.",
+					minlength: $.validator.format("이름을 {0}자 이상 입력하시오"),
+					maxlength: $.validator.format("이름을 {0}자 내로 입력하시오")
+				},
+				birth: {
+					required: "생년월일을 입력하시오.",
+					minlength: $.validator.format("생년월일을 YYYY-MM-DD 형식으로 입력하시오"),
+					maxlength: $.validator.format("생년월일을 YYYY-MM-DD 형식으로 입력하시오")
+				},
+				phone: {
+					required: "휴대폰번호를 입력하시오.",
+					minlength: $.validator.format("휴대폰번호를 010-0000-0000 형식으로 입력하시오"),
+					maxlength: $.validator.format("휴대폰번호를 010-0000-0000 형식으로 입력하시오")
+				},
+				postnum: {
+					required: "우편번호를 입력하시오.",
+					digits: "숫자만 입력하시오.",
+					minlength: $.validator.format("{0}자리로 입력하시오"),
+					maxlength: $.validator.format("{0}자리로 입력하시오")
+				},
+				address: {
+					required: "주소를 입력하시오.",
+					minlength: $.validator.format("{0}자 이상 입력하시오"),
+					maxlength: $.validator.format("{0}자 내로 입력하시오")
+				}
+			},
+			errorPlacement : function(error, element) {
+			     //do nothing
+			},
+		    invalidHandler : function(form, validator) {
+		    	
+			     var errors = validator.numberOfInvalids();
+			     
+				     if (errors) {
+				    	 
+					      alert(validator.errorList[0].message);
+					      validator.errorList[0].element.focus();
+			     	 }
+			}
+
 		});
 				
 

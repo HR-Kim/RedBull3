@@ -46,9 +46,9 @@
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
 
 				<form class="login100-form validate-form" name="findForm" id="findForm" action="${context}/user/find_passwd.do" method="post">
-					<span class="login100-form-title p-b-33">
-						집순이 쇼핑몰
-					</span>
+					<a class="login100-form-title p-b-33" href="${context}/main/main.do">
+		            	<img src="${context}/resources/img/logo3.png" style="max-width: 100%; height: auto;" />
+		            </a>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid id is required: ex@abc.xyz">
 						<input class="input100" type="text" name="rid" id="rid" placeholder=이메일주소>

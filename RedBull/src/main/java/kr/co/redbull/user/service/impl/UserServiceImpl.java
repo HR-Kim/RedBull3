@@ -41,18 +41,28 @@ public class UserServiceImpl implements UserService {
 	// level upgrade: 레벨과 포인트에 따라 분기하여 업그레이드
 	// 1. 전체 사용자를 조회
 	// 2. 대상자를 선별
-		// 2.1 BASIC 사용자가 포인트 500점 이상이면 : BASIC -> SILVER
-		// 2.2 SILVER 사용자가 포인트 1000점 이상이면 : SILVER -> GOLD
+		// 2.1 BASIC 사용자가 포인트 500점 이상이면 : BASIC -> SILVER (등업 0->1회) 
+		// 2.2 SILVER 사용자가 포인트 1000점 이상이면 : SILVER -> GOLD (등업 1->2회) 
 		// 2.3 GOLD : 대상 아님
 	// 3. 대상자 업그레이드 레벌 선정 및 업그레이드
-	public void upgradeLevel(User user) throws SQLException {
+	public int upgradeLevel(User user) throws SQLException {
 		
-		user.upgradeLevel(); // VO 부분에 기능을 만듦
+		int flag = 0;
 		
-		userDaoImpl.do_update(user);
+		// inum: 등업 횟수로 사용(BASIC: 0번, SILVER: 1번, GOLD: 2번)
+		if((user.getUpoint() >= 500 && user.getInum() == 0) || (user.getUpoint() == 1000 && user.getInum() == 1)) {
+			
+			user.upgradeLevel(); // VO 부분에 기능을 만듦
+			
+			userDaoImpl.do_update(user);
+			
+			flag = 1;
+			
+//			sendUpgradeMail(user); // mail send
+			
+		}
 		
-//		sendUpgradeMail(user); // mail send
-	
+		return flag;
 		
 	}//--upgradeLevel
 	
@@ -226,6 +236,22 @@ public class UserServiceImpl implements UserService {
 		// 메시지 객체 생성
 		Message outMsg = new Message();
 		
+		// 등업한 결과를 받을 변수
+		int upgradeFlag = 0;
+		
+		// 단건조회
+		User upgradeUser = get_selectOne(dto);
+		
+		// 등업한 결과를 받음(등업: 1, 미등업: 0)
+		try {
+			
+			upgradeFlag = upgradeLevel(upgradeUser);
+			
+		} catch (SQLException e) {
+		
+			e.printStackTrace();
+		}
+		
 		//------1. 아이디 체크-------
 		int flag = userDaoImpl.id_check(dto);
 		
@@ -251,9 +277,17 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		//------3. 로그인 성공 체크------
-		if(flag == 1) { // 로그인 성공 
+		if((flag == 1) && (upgradeFlag == 1)) { // 로그인 성공이고 등업이 됐을 경우
 			
-			outMsg.setMsgId("30");			
+			outMsg.setMsgId("30");	
+			outMsg.setMsgMsg(upgradeUser.getLvl() + "로 등업이 됐습니다.");
+
+		}
+		
+		if((flag == 1) && (upgradeFlag == 0)) { // 로그인 성공이고 등업이 안 됐을 경우
+			
+			outMsg.setMsgId("30");
+
 		}
 		
 		LOG.debug("=========================");

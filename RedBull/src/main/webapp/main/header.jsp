@@ -18,7 +18,7 @@
     <title>집순이 쇼핑몰</title>
     
       <!-- Bootstrap CSS -->
-<%-- 	  <link rel="stylesheet" href="${context}/resources/css/bootstrap.css" /> --%>
+	  <link rel="stylesheet" href="${context}/resources/css/bootstrap.css" />
 	  <link rel="stylesheet" href="${context}/resources/vendors/linericon/style.css" />
 	  <link rel="stylesheet" href="${context}/resources/css/font-awesome.min.css" />
 	  <link rel="stylesheet" href="${context}/resources/css/themify-icons.css" />
@@ -124,8 +124,16 @@
                     <a class="nav-link" href="${context}/board/get_retrieve.do?searchDiv=10">공지사항</a>
                   </li>
                   
-                  <li class="nav-item">
+<%--                   <li class="nav-item">
                     <a class="nav-link" href="${context}/user/update.jsp" id="userUpdateBtn" >임시 회원수정 버튼</a>
+                  </li> --%>
+                  
+                  <li class="nav-item">
+                    <a class="nav-link" href="${context}/user/get_updateForm.do" >임시 회원수정</a>
+                  </li>
+                  
+                  <li class="nav-item">
+                    <a class="nav-link" href="${context}/mypage/mypage.jsp" >임시 MP</a>
                   </li>
                   
                 </ul>
@@ -208,6 +216,7 @@
 	
 			//alert("logoutBtn");
 			logout();
+			alert("로그아웃되었습니다.")
 			location.href="${context}/main/main.do"; // 메인 화면으로 이동
 
 		});

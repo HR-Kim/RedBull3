@@ -86,6 +86,11 @@
 							로그인
 						</button>
 					</div>
+					
+					<!-- 네이버 로그인 창으로 이동 -->
+					<div class="container-login100-form-btn m-t-20" id="naver_id_login" style="text-align:center"><a href="${url}">
+					<img width="50" src="${context}/resources/img/naver.png"/></a></div>
+					<br>
 
 					<div class="text-center p-t-45 p-b-4">
 						<a href="${context}/user/find.jsp" class="txt2 hov1">
@@ -146,18 +151,22 @@
 					
 					if(null != jData) { // 데이터가 있으면
 						
-						if (jData.msgId == "30") { // 로그인이 성공하면
+						if (jData.msgId == "30" && null != jData.msgMsg) { // 로그인이 성공하고 msgMsg의 값이 있으면(등업을 했으면)
 
+							alert(jData.msgMsg); // 등업 메시지를 출력하고
 							location.href="${context}/main/main.do"; // 메인 화면으로 이동
-						}	
-					
-						else if (jData.msgId == "10") { // 아이디 체크 실패
-							$("#rid").focus();
-							alert(jData.msgMsg);
-											
 						}
-					
+						else if (jData.msgId == "30" && null == jData.msgMsg) { // 로그인이 성공하고 msgMsg의 값이 없으면(등업을 안 함)
+							
+							location.href="${context}/main/main.do"; // 메인 화면으로 이동				
+						}
+						else if (jData.msgId == "10") { // 아이디 체크 실패
+							
+							$("#rid").focus();
+							alert(jData.msgMsg);		
+						}
 						else if (jData.msgId == "20") { // 비밀번호 체크 실패
+							
 							$("#passwd").focus();
 							alert(jData.msgMsg);
 						}	

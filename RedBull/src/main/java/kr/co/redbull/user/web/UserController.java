@@ -1,6 +1,7 @@
 package kr.co.redbull.user.web;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Collection;
 
 import javax.annotation.Resource;
@@ -15,15 +16,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 
+import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.google.gson.Gson;
 
 import kr.co.redbull.cmn.Message;
 import kr.co.redbull.cmn.StringUtil;
 import kr.co.redbull.code.service.CodeService;
+import kr.co.redbull.user.service.NaverLoginBO;
 import kr.co.redbull.user.service.User;
 import kr.co.redbull.user.service.UserService;
 import kr.co.redbull.user.service.impl.UserServiceImpl;
@@ -48,7 +52,104 @@ public class UserController {
 	private final String VIEW_JOIN_NM = "user/join";
 	private final String VIEW_UPDATE_NM = "user/update";
 	
+	/* NaverLoginBO */
+	private NaverLoginBO naverLoginBO;
+	private String apiResult = null;
 	
+	@Autowired
+	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
+		this.naverLoginBO = naverLoginBO;
+	}
+	
+//    /**로그인 첫 화면 요청 메소드*/
+//    @RequestMapping(value = "/login/login", method = { RequestMethod.GET, RequestMethod.POST })
+//    public String login(Model model, HttpSession session) {
+//        
+//        /* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
+//        String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+//        
+//        //https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
+//        //redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
+//        System.out.println("네이버:" + naverAuthUrl);
+//        
+//        //네이버 
+//        model.addAttribute("url", naverAuthUrl);
+//
+//        /* 생성한 인증 URL을 View로 전달 */
+//        return "login/login";
+//    }
+//	
+//    //네이버 로그인 성공시 callback호출 메소드
+//    @RequestMapping(value = "/main/main.do", method = { RequestMethod.GET, RequestMethod.POST })
+//    public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
+//            throws IOException {
+//        System.out.println("여기는 callback");
+//        OAuth2AccessToken oauthToken;
+//        oauthToken = naverLoginBO.getAccessToken(session, code, state);
+//        //로그인 사용자 정보를 읽어온다.
+//        apiResult = naverLoginBO.getUserProfile(oauthToken);
+//        System.out.println(naverLoginBO.getUserProfile(oauthToken).toString());
+//        model.addAttribute("result", apiResult);
+//        System.out.println("result"+apiResult);
+//        /* 네이버 로그인 성공 페이지 View 호출 */
+////      JSONObject jsonobj = jsonparse.stringToJson(apiResult, "response");
+////      String snsId = jsonparse.JsonToString(jsonobj, "id");
+////      String name = jsonparse.JsonToString(jsonobj, "name");
+////
+////      UserVO vo = new UserVO();
+////      vo.setUser_snsId(snsId);
+////      vo.setUser_name(name);
+////
+////      System.out.println(name);
+////      try {
+////          vo = service.naverLogin(vo);
+////      } catch (Exception e) {
+////          // TODO Auto-generated catch block
+////          e.printStackTrace();
+////      }
+//
+//
+////      session.setAttribute("login",vo);
+////      return new ModelAndView("user/loginPost", "result", vo);
+//        
+//        return "login/naverSuccess";
+//    }
+
+	
+	/**아이디 중복 검사*/
+	@RequestMapping(value="user/check_id.do", method = RequestMethod.POST ,produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String check_id(User user) {
+		
+		LOG.debug("1============================");
+		LOG.debug("1=@Controller outVO=" + user);
+		LOG.debug("1============================");
+		
+		// 이메일 입력란에 입력을 했는지 체크
+		if(null == user.getRid() || "".equals(user.getRid())) {
+			
+			throw new IllegalArgumentException("이메일을 입력하시오.");
+		}
+		
+		// 아이디가 존재 유무 확인
+		Message msg = (Message) userService.idCheck(user);
+		
+		LOG.debug("2=========================");
+		LOG.debug("2= msg="+ msg); 
+		LOG.debug("2=========================");
+		
+		// JSON
+		Gson gson = new Gson();
+		String json = gson.toJson(msg);
+		
+		LOG.debug("2============================");
+		LOG.debug("2=@Controller json=" + json);
+		LOG.debug("2============================");
+		
+		return json;
+		
+	}//--check_id
+
 	/**비밀번호 찾기*/
 	@RequestMapping(value="user/find_passwd.do", method = RequestMethod.POST ,produces = "application/json; charset=UTF-8")
 	@ResponseBody
@@ -209,7 +310,7 @@ public class UserController {
 	/**삭제*/
 	@RequestMapping(value="user/do_delete.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String do_delete(User user) {
+	public String do_delete(User user, HttpSession session) {
 		
 		LOG.debug("=========================");
 		LOG.debug("=user=" + user);
@@ -231,6 +332,8 @@ public class UserController {
 			message.setMsgMsg("탈퇴 실패");
 			
 		}
+		
+		session.removeAttribute("user");
 
 		// message를 json으로 변경
 		Gson gson = new Gson();
@@ -334,6 +437,25 @@ public class UserController {
 //		
 //	}//--get_updateForm
 	
+	/**업데이트 화면 던지기*/
+	@RequestMapping(value="user/get_updateForm.do", method = RequestMethod.GET )
+	public ModelAndView get_updateForm(HttpSession session) throws Exception {
+		
+		String rid = (String) session.getAttribute("rid");
+		User outUser = (User) session.getAttribute("user");
+		
+		LOG.debug("============================");
+		LOG.debug("=@@@@@@@@@@@@@get_updateForm@@@@@@@@@@");
+		LOG.debug("============================");
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("user", outUser);
+		mav.setViewName(VIEW_UPDATE_NM);
+		
+		return mav;
+		
+	}//--get_updateForm
+	
 	//---testing---------------------------------------------------------------------------------
 	
 	/**가짜 마이페이지 화면 던지기*/
@@ -398,12 +520,12 @@ public class UserController {
 		if(flag > 0) {
 			
 			message.setMsgId(flag+"");
-			message.setMsgMsg(user.getRid() + "님 등록성공");
+			message.setMsgMsg(user.getRid() + "님 가입완료");
 		}
 		else {
 			
 			message.setMsgId(flag+"");
-			message.setMsgMsg(user.getRid() + "님 등록실패");
+			message.setMsgMsg(user.getRid() + "님 가입실패");
 		}
 		
 		// JSON
@@ -421,7 +543,7 @@ public class UserController {
 	/**수정*/
 	@RequestMapping(value="user/do_update.do", method = RequestMethod.GET ,produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public String do_update(User user) {
+	public String do_update(User user, HttpSession session) {
 		
 		LOG.debug("1============================");
 		LOG.debug("1=@Controller user=" + user);
@@ -458,13 +580,11 @@ public class UserController {
 			throw new IllegalArgumentException("주소를 입력하시오");
 		}
 		
-		if(null == user.getDetadd() || "".equals(user.getDetadd().trim())) {
-			
-			throw new IllegalArgumentException("상세주소를 입력하시오");
-		}
 		
+		int flag = this.userService.do_update(user); // 수정 성공여부 반환
 		
-		int flag = userService.do_update(user); // 수정 성공여부 반환
+		session.setAttribute("user", user);
+		session.setAttribute("rid", user.getRid());
 		
 		Message message = new Message();
 		

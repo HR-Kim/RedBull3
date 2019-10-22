@@ -267,6 +267,7 @@ public class User extends DTO {
 		}
 		else {
 			
+			this.inum += 1;
 			this.lvl = nextLevel;
 		}
 		
