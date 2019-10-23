@@ -45,6 +45,11 @@
 			<mapping path="/fakemypage/**"/> <!-- 마이페이지 인터셉트 -->
 			<beans:ref bean="loginInterceptor" />
 		</interceptor>
+		
+		<interceptor>
+			<mapping path="/cart/**"/> <!-- 장바구니 인터셉트 -->
+			<beans:ref bean="loginInterceptor" />
+		</interceptor>
 	</interceptors>
 	
 </beans:beans>
