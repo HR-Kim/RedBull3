@@ -144,8 +144,8 @@
                   </li>
 
                   <li class="nav-item">
-                    <a href="#" class="icons">
-                      <i class="ti-shopping-cart"></i>
+                    <a href="${context}/cart/get_retrieve.do" class="icons">
+                      <i class="ti-shopping-cart"></i> <!-- 장바구니/로그인(인터셉터) -->
                     </a>
                   </li>
                   
