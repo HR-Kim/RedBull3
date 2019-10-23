@@ -34,36 +34,33 @@
 	            
 	            	var jData = JSON.parse(data); // String 데이터를 json으로 파싱
 	            	
-/*                     if(jData.msgId == "10"){ //DB에 아이디가 없을 경우 => 회원가입
+                     if(jData.msgId == "10"){ //DB에 아이디가 없을 경우 => 회원가입
                     	
-                          console.log("회원가입중...");
+                    	 alert("미가입 회원입니다. 회원가입중...");
                     
                           $.ajax({
-                              url : "${context}/user/do_save.do",
-                              method : "POST",
-                              headers : {
-                                "Accept" : "application/json",
-                                "Content-Type" : "application/json"
-                              },
-                              data : JSON.stringify({
-                                  rid : id,
-                                  passwd: "0000",
-                                  uname : name,
-                                  birth : "0000-00-00",
-                                  phone : "000-0000-0000",
-                                  postnum : 00000,
-                                  address : "0000"
-                              }),
+                        	  type : "POST",
+                              url : "http://localhost:8080/redbull/user/do_save.do",
+                              dataType : "html",
+	              			  data : {
+		          	            	"rid": id,
+		        	            	"passwd": "0000",
+		        	            	"uname": name,
+		        	            	"birth": "0000-00-00",
+		        	            	"phone": "000-0000-0000",
+		        	            	"postnum": 12345,
+		        	            	"address": "0000"
+	              			  },
                               success : function(JSONData){
-                                 alert("회원가입이 정상적으로 되었습니다.");
+                                 alert("회원가입 완료. 네이버계정으로 로그인이 가능합니다.");
                                  window.close();
-                                 top.opener.location="/login/login.jsp";
+                                 //top.opener.location="http://localhost:8080/redbull/login/login.jsp";
                               }
                           })
-                      } */
+                      }
                       if(jData.msgId == "30"){ //DB에 아이디가 존재할 경우 => 로그인
                     	  
-                    	  alert("로그인 중...");
+                    	  //alert("로그인 중...");
                           //window.close();
                           
 	              			//ajax-1
@@ -78,7 +75,7 @@
 	              					
 	              					var SelJData = JSON.parse(selData); // String 데이터를 json으로 파싱
 	              					
-	              					alert("네이버계정 " + SelJData.rid + "로 로그인 완료");
+	              					alert("네이버 " + SelJData.rid + "로 로그인 완료");
 	              					
 	              					if(null != SelJData) { // 데이터가 있으면(단건조회 해옴)
 	              					
