@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon -->
 	<link rel="shortcut icon" href="${context}/resources/img/favicon3.ico" type="image/x-icon">
-	<link rel="icon" href="${context}/resources/img/favicon3.ico" type="image/x-icon">
+	<%-- <link rel="icon" href="${context}/resources/img/favicon3.ico" type="image/x-icon"> --%>
 
     <title>집순이 쇼핑몰</title>
     

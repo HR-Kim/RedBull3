@@ -2,13 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="context" value="${pageContext.request.contextPath }" />
+
+<!--================Header Menu Area =================-->
+<jsp:include page="header.jsp"></jsp:include>
      
 <html lang="ko">
   <body>
 <%-- 	${user } --%>
-	<!--================Header Menu Area =================-->
-	<jsp:include page="header.jsp"></jsp:include>
-  
+
 	  <!--================Home Banner Area =================-->
 	  <section class="home_banner_area mb-40">
 	    <div class="banner_inner d-flex align-items-center">
