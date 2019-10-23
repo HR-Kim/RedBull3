@@ -16,76 +16,58 @@
 	      <div class="container">
 	        <div class="banner_content row">
 	          <div class="col-lg-12">
-	            <p class="sub text-uppercase">men Collection</p>
-	            <h3><span>Show</span> Your <br />Personal <span>Style</span></h3>
-	            <h4>Fowl saw dry which a above together place.</h4>
-	            <a class="main_btn mt-40" href="#">View Collection</a>
+	            <p class="sub text-uppercase">핫세일 상품</p>
+	            <h3><span>매일</span> 자정 <br />새로운 <span>특가상품</span></h3>
+	            <h4>망설이면 품절! 집순이쇼핑몰 특별가</h4>
+	            <a class="main_btn mt-40" href="${context}/product/get_hotSaleList.do">핫세일 상품 보기</a>
 	          </div>
 	        </div>
 	      </div>
 	    </div>
 	  </section>
-	  <!--================End Home Banner Area =================-->
-	
-	  <!-- Start feature Area -->
-	  <section class="feature-area section_gap_bottom_custom">
-	    <div class="container">
-	      <div class="row">
-	        <div class="col-lg-3 col-md-6">
-	          <div class="single-feature">
-	            <a href="#" class="title">
-	              <i class="flaticon-money"></i>
-	              <h3>Money back gurantee</h3>
-	            </a>
-	            <p>Shall open divide a one</p>
-	          </div>
-	        </div>
-	
-	        <div class="col-lg-3 col-md-6">
-	          <div class="single-feature">
-	            <a href="#" class="title">
-	              <i class="flaticon-truck"></i>
-	              <h3>Free Delivery</h3>
-	            </a>
-	            <p>Shall open divide a one</p>
-	          </div>
-	        </div>
-	
-	        <div class="col-lg-3 col-md-6">
-	          <div class="single-feature">
-	            <a href="#" class="title">
-	              <i class="flaticon-support"></i>
-	              <h3>Alway support</h3>
-	            </a>
-	            <p>Shall open divide a one</p>
-	          </div>
-	        </div>
-	
-	        <div class="col-lg-3 col-md-6">
-	          <div class="single-feature">
-	            <a href="#" class="title">
-	              <i class="flaticon-blockchain"></i>
-	              <h3>Secure payment</h3>
-	            </a>
-	            <p>Shall open divide a one</p>
-	          </div>
-	        </div>
-	      </div>
-	    </div>
-	  </section>
-	  <!-- End feature Area -->
-	
-	  <!--================ Feature Product Area =================-->
+	 
+	  <!--================ 신상 =================-->
 	  <section class="feature_product_area section_gap_bottom_custom">
 	    <div class="container">
 	      <div class="row justify-content-center">
 	        <div class="col-lg-12">
 	          <div class="main_title">
-	            <h2><span>Featured product</span></h2>
-	            <p>Bring called seed first of third give itself now ment</p>
+	            <h2><span>new</span></h2>
+	            <p>이번주 인기 신상품</p>
 	          </div>
 	        </div>
 	      </div>
+	      
+		<c:choose>
+		<c:when test="${list.size()>0}">
+			<div class="latest_product_inner">
+				<div id="listTable" class="row">
+					<c:forEach var="product" items="${list}">
+						<div class="col-lg-4 col-md-6">
+							<div class="single-product">
+								<input type="hidden" value="${product.pNum}" />
+								<div class="product-img embed-responsive embed-responsive-4by3">
+									<img class="card-img embed-responsive-item" src="${context}/${product.detail}" alt="" />
+								</div>
+								<div class="product-btm">
+									<a href="#" class="d-block"><h4>${product.pName}</h4></a>
+									<div class="mt-3">
+										<span class="mr-4">${Math.round(product.bPrice*(1-product.discount))}원</span>
+										<del>${product.bPrice}원</del>
+									</div>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+		</c:when>
+		<c:otherwise>
+			<div>
+				<h3>등록된 게시물이 없습니다.</h3>
+			</div>
+		</c:otherwise>
+	</c:choose>
 	
 	      <div class="row">
 	        <div class="col-lg-4 col-md-6">
