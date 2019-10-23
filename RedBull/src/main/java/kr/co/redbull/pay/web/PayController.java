@@ -63,6 +63,7 @@ public class PayController {
 		LOG.debug("2==================================");
 	
 		List<Pay> payList = (List<Pay>) this.payService.get_retrieve(pay);
+		
 		LOG.debug("1==================================");
 		LOG.debug("=1=payList="+payList);
 		LOG.debug("1==================================");

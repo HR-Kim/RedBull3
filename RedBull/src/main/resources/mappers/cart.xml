@@ -180,7 +180,7 @@
 										p.PNAME as pName,
 										p.DISCOUNT as discount,
 										p.DPRICE as dPrice,
-										p.BPRICE * (1 - p.discount) + o.oprice + p.dprice as afterPrice,
+										(p.BPRICE * (1 - p.discount) + o.oprice) * c.cartCnt + p.dprice as afterPrice,
 										c.REGID as regId
 								FROM
 										CART c JOIN OPT o
@@ -267,25 +267,26 @@
 			    REGID
 			) VALUES (
 			    #{oNum, jdbcType=NUMERIC},
-			    1,
+			    #{cartCnt, jdbcType=NUMERIC},
 			    #{regId, jdbcType=VARCHAR}
 			)
 	</insert>
 	
 	<!-- 상품 삭제 -->
-  	<delete id="do_delete" parameterType="hashMap">
+<!--   	<delete id="do_delete" parameterType="map">
   		DELETE FROM CART
-  		WHERE cartNum in
+  		WHERE 
 		<foreach collection="list" item="cartNum" index="index" open="(" separator="," close=")">
-				  #{cartNum}
+				cartNum =  #{cartNum}
 		</foreach>
-	</delete>
+	</delete> -->
 	
-<!--   	<delete id="do_delete" parameterType="Cart" >
+   	<delete id="do_delete" parameterType="Cart" >
 		<![CDATA[
 			DELETE FROM CART
-			WHERE cartNum in #{cartNum, jdbcType=VARCHAR}
+			WHERE cartNum = #{cartNum, jdbcType=NUMERIC}
+			AND regId = #{regId, jdbcType=VARCHAR}
 		]]>
-	</delete>  -->
+	</delete>  
 
 </mapper>

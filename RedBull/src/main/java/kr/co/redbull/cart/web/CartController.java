@@ -114,22 +114,28 @@ public class CartController {
 	/**수량 변경시 call*/
 	@RequestMapping(value="cart/do_update.do", method=RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String do_update(Cart cart) {
+	public String do_update(HttpSession session, Cart cart) {
 		LOG.debug("===================================");
 		LOG.debug("=cart: " + cart);
 		LOG.debug("===================================");
-		
-		int flag = this.cartService.do_update(cart);
 		Message message = new Message();
 		
-		if(flag>0) {
-			message.setMsgId(String.valueOf(flag));
-			message.setMsgMsg("삭제 성공");
-		}else {
-			message.setMsgId(String.valueOf(flag));
-			message.setMsgMsg("삭제 실패");
-		}
+		User user = (User) session.getAttribute("user");
 		
+		
+		if(user != null) {
+			cart.setRegId(user.getRid());
+			int flag = this.cartService.do_update(cart);
+			
+			
+			if(flag>0) {
+				message.setMsgId(String.valueOf(flag));
+				message.setMsgMsg("수정 성공");
+			}else {
+				message.setMsgId(String.valueOf(flag));
+				message.setMsgMsg("수정 실패");
+			}
+		}
 		Gson gson = new Gson();
 		String gsonStr = gson.toJson(message);
 		
@@ -179,38 +185,31 @@ public class CartController {
 	/**체크박스 선택시 삭제 call*/
 	@RequestMapping(value="cart/do_delete.do", method=RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String do_delete(Cart cart, HttpServletRequest req, @RequestParam Map<String,String> param  ) {
+	public int do_delete(Cart cart, HttpSession session, @RequestParam(value ="chbox[]") List<String> chArr ) {
 		LOG.debug("===================================");
-		LOG.debug("=cartNum: " + req.getParameter("cartNum"));
+		LOG.debug("=cart: " + cart);
 		LOG.debug("===================================");
 		
 		Message message = new Message();
 		
-//		 List<Cart> list = new ArrayList<Cart>();
-//		 list.add("cartNum");
+		User user = (User) session.getAttribute("user");
+		String regId = user.getRid();
 		
-
-		String[] arrIdx = param.get("cartNum").toString().split(",");
-		//param.put("testList", testList);
-		//String[] arrIdx = req.getParameter("cartNum").toString().split(",");
-		LOG.debug("=arrIdx: " + req.getParameter("cartNum"));
-		for(int i=0; i<arrIdx.length; i++) {
+		int result = 0;
+		int cartNum = 0;
+		
+		if(user != null) {
 			
-			int flag = this.cartService.do_delete(cart);
-			//int flag = this.cartService.do_delete(cart);
-			
-			if(flag>0) {
-				message.setMsgId(String.valueOf(flag));
-				message.setMsgMsg("삭제 성공");
-			}else {
-				message.setMsgId(String.valueOf(flag));
-				message.setMsgMsg("삭제 실패");
+			cart.setRegId(regId);
+			for(String i : chArr) {
+				cartNum = Integer.parseInt(i);
+				cart.setCartNum(cartNum);
+			this.cartService.do_delete(cart);
 			}
-	}
-		Gson gson = new Gson();
-		String gsonStr = gson.toJson(message);
+			result = 1;
+		}
 		
-		return gsonStr;
+		return result;
 	}
 	
 }

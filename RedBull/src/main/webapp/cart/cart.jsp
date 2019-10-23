@@ -9,6 +9,11 @@
 	User user = (User)session.getAttribute("user");
 %>
 <html lang="ko">
+<style>
+	#updatebtn{
+		color: black;
+	}
+</style>
 
   <body>
   <jsp:include page="/main/header.jsp"></jsp:include>
@@ -32,7 +37,7 @@
       <div class="container">
         <div class="cart_inner">
           <div class="table-responsive">
-          <form name="cartFrm" id="cartFrm" method="get">
+          <form name="cartFrm">
           <input type="hidden" name="searchDiv" id="searchDiv" />
             <table class="table table-striped table-bordered table-hover">
               <thead>
@@ -48,25 +53,21 @@
                 </tr>
               </thead>
               <tbody>
-              <%= user != null %>
+             
                <c:choose>
 	        	<c:when test="${list.size()>0 }">
 	        		<c:set var="sum" value="0"></c:set>
 	                <c:forEach var="cart" items="${list}">
 	                <tr>
 	                <td class="text-center">
-	                <input type="checkbox"  name="check" id="check"  value="${cart.cartNum }"/>
-	                <input type="hidden" name="cartNum" id="cartNum" value="${cart.cartNum }"/>
+	                <input type="checkbox"  name="chBox" id="chBox"  data-cartNum="${cart.cartNum }"/>
+	               <%--  <input type="hidden" name="cartNum" id="cartNum" value="${cart.cartNum }"/> --%>
+	               <input type="hidden" name="oNum" id="oNum" value="${cart.oNum }"/>
 	                </td>
 	                  <td>
 	                    <div class="media">
-	                      <div class="media-left">
-	                        <img
-	                          src="${context}/${cart.saveFileNm}"
-	                          class="media-object"
-	                          style="width: 80px"
-	                          alt=""
-	                        />
+	                      <div class="media-left"> 
+	                        <img src="${context}/${cart.saveFileNm}" class="media-object" style="width: 80px"  alt="이미지 없음" />
 	                      </div>
 	                      <div class="media-body">
 	                     	 <c:out value="${cart.pName}"/><br/>
@@ -81,41 +82,25 @@
 	                  <td class="text-center">
 	                  <fmt:formatNumber pattern="###,###,###"  value="${cart.oPrice}" />원
 	                  </td>
-	                  <td>
-	                    <div class="product_count">
-	                    	<form name="form" method="get">
-	                    	<input type="text" id="numBox"  name="amount" value="${cart.cartCnt}" readonly = "readonly">
-<%-- 	                    	<button type="button" id="plus">+</button>
-	                    	<input type="text" id="numBox"  name="amount" value="${cart.cartCnt}" readonly = "readonly">
-	                    	<button type="button" id="minus">-</button>
-	                    	<button type="button" id="update">변경</button> --%>
-	                    	<!-- <input type="button" value="+" onclick="add();"><input type="button" value="-" onclick="del();"> -->
-	                    	</form>
-<!-- 	                      <input
-	                        type="text"
-	                        name="qty"
-	                        id="sst"
-	                        maxlength="12"
-	                        value="1"
-	                        title="Quantity:"
-	                        class="input-text qty"
-	                      />
-	                      <button
-	                        onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-	                        class="increase items-count"
-	                        type="button"
-	                      >
-	                        <i class="lnr lnr-chevron-up"></i>
-	                      </button>
-	                       <button
-	                        onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-	                        class="reduced items-count"
-	                        type="button"
-	                      >
-	                        <i class="lnr lnr-chevron-down"></i>
-	                      </button> -->
-	                    </div>
-	                  </td>
+	                  
+				       <td class="text-left">
+				       <input type="text"  id="cartCnt" name="cartCnt" value="${cart.cartCnt}" size='2' readonly="readonly">
+				        <a href="#" onclick="javascript_:change(1);">▲</a><a href="#" onclick="javascript_:change(-1);">▼</a>
+				        <button type="button" class="btn btn-success btn-sm" id="updatebtn" >변경</button>
+				        <!--버튼을 이미지로 바꾸세요 <img src='이미지경로' onclick='javascript_:change(1);'>-->
+				       </td>
+				       
+<%-- 	                <div class="product_count">
+	                   		<input type="text" name="cartCnt" id="cartCnt" readonly="readonly"  value="${cart.cartCnt}" />
+							<button onclick="javascript:countUp()" class="increase items-count" type="button">
+								<i class="lnr lnr-chevron-up"></i>
+							</button>
+							<button onclick="javascript:countDown()"  class="reduced items-count" type="button">
+								<i class="lnr lnr-chevron-down"></i>
+							</button>
+							<button type="button" class="btn btn-success btn-sm" id="updatebtn" >변경</button>
+	                    </div> --%>
+	                  
 	                  <td class="text-center">
 	                    <fmt:formatNumber pattern="###,###,###" value="${cart.dPrice }"/>원
 	                  </td>
@@ -126,28 +111,27 @@
 	                <c:set var="sum" value="${sum+ (cart.bPrice * (1-cart.discount) + cart.oPrice) * cart.cartCnt + cart.dPrice }"></c:set>
 	            </c:forEach> 
 			    </c:when>
+			    
 		    <c:otherwise>
 		         	<tr>
 		         		<td class="text-center" colspan="99">장바구니가 비었습니다.</td>
 		         	</tr>
 		    </c:otherwise>
 		</c:choose>
-                </tr>
 
               </tbody>
             </table>
+            <button type="button" id="do_delete" data-cartNum="${cart.cartNum }">삭제하기</button>
             </form>
             
-             <button type="button" id="do_delete">삭제하기</button>
+            <!--  <button type="button" id="do_delete">삭제하기</button> -->
              <hr/>
             	 결제금액 <fmt:formatNumber pattern="###,###,###" value="${sum }" />원
              <hr/>
            	<td>
                 <div class="container">
-                	<input type="button" class="btn btn-Success" value="쇼핑하기"/>
-                	<input type="submit" id="payBtn" class="btn btn-Success" value="결제하기"/>
-<!--                    <input type="button" class="gray_btn" id="gray_btn" value="Continue Shopping" href="#" />
-                  <input type="button" class="main_btn" id="main_btn" value="결제하기" href="#" /> -->
+                	<a class="main_btn" href="${context}/product/get_retrieve.do">쇼핑하기</a>
+                	<input type="submit" id="payBtn" class="main_btn" value="결제하기"/>
                 </div>
              </td>
           </div>
@@ -157,78 +141,115 @@
     <!--================End Cart Area =================-->
         <!-- Optional JavaScript -->
 		
-	
       	<script type="text/javascript">
+        
       	$("#payBtn").on("click",function(){
       		alert("결제하러!");
       		
       	});
       	
-      	$("#plus").click(function(){
-      		//alert("수량증가");
-      	   var num = $("#numBox").val(); //5
-      	   var plusNum = Number(num) + 1;//6
-      	  });
-      	  
-      	  $("#minus").click(function(){
-      	   var num = $("#numBox").val();
-      	   var minusNum = Number(num) - 1;
-      	   
-      	});
+      	//수량 수정
+ 		$("#updatebtn").on("click",function(){
+			var oNum = $("#oNum").val();
+			var sst = $("#cartCnt").val();
+ 			
+	    	if(false==confirm("수정 하시겠습니까?"))return;
+	    	
+			$.ajax({
+	            type:"POST",
+	            url:"${context}/cart/do_update.do",
+	            dataType:"html",
+	            data:{
+	            	   "oNum" : oNum,
+	            	   "cartCnt" : sst
+	            },
+	            success: function(data){//통신이 성공적으로 이루어 졌을때 받을 함수
+	                //console.log(data);
+	            	//{"msgId":"1","msgMsg":"수정 되었습니다.","totalCnt":0,"num":0}
+	            	var parseData = $.parseJSON(data);
+	            	if(parseData.msgId=="1"){
+	            		alert(parseData.msgMsg);
+	            		location.href = "${context}/cart/get_retrieve.do";
+	            	}else{
+	            		alert(parseData.msgMsg);
+	            	}
+	            },
+	            complete: function(data){//무조건 수행
+	             
+	            },
+	            error: function(xhr,status,error){
+	             
+	            }
+	        });		    	
+	    });
+      	
+      	
+ 		 function change(num)
+ 		 {
+	 		 var x  = document.cartFrm;
+	 		 var y = Number(x.cartCnt.value) + num;
+	 		 if(y < 1) y = 1;
+	 		 x.cartCnt.value = y;
+ 		 }
+      	
+/* 		//수량 Up
+		function countUp(){
+			var result = document.getElementById('cartCnt');
+			var cartCnt = result.value;
+			if(!isNaN( cartCnt )){
+				result.value++;
+				return false;
+			}
+		}
+		//수량Down
+		function countDown(){
+			var result = document.getElementById('cartCnt');
+			var cartCnt = result.value;
+			if( !isNaN(cartCnt) && cartCnt > 0 ){
+				result.value--;
+				return false;
+			}
+		} */
       	
       	  //체크박스
       	 $("#checkAll").click(function(){
      			if($("#checkAll").is(':checked')==true){
-       				$("input[name='check']").prop("checked",true); //check
+       				$("input[name='chBox']").prop("checked",true); //check
        				
        			}else{
-       				$("input[name='check']").prop("checked",false); //check해제
+       				$("input[name='chBox']").prop("checked",false); //check해제
        			}
       	  });
+		
+		//삭제
+		$("#do_delete").on("click",function(){
+			
+			var confirm_val = confirm("정말 삭제하시겠습니까?");
+			
+			if(confirm_val){
+				var checkArr = new Array();
+				
+				$("input[name='chBox']:checked").each(function(){
+					checkArr.push($(this).attr("data-cartNum"));
+				});
+				
+				$.ajax({
+					 url : "${context}/cart/do_delete.do",
+					 type : "post",
+					 data : { chbox : checkArr },
+					 success : function(result){
+					  if(result == 1) {          
+						  alert("상품이 삭제되었습니다.");
+					   	  location.href = "${context}/cart/get_retrieve.do";
+					  } else {
+					   alert("삭제 실패");
+					  }
+					 }
+					});
+			}
+			
+		});
       	  
-       	$("#do_delete").on("click",function(){
-        	var check = "";
-       		//var cartNum = document.getElementByName("check");
-       		$("input[name='check']:checked").each(function(){
-       			check = check + $(this).val()+",";
-       			});
-       		check = check.substring(0,check.lastIndexOf(","));
-       		
-       		if(check == ''){
-       			alert("삭제할 대상을 선택하세요.");
-       			return false;
-       			}
-       		console.log("check => " + check);
-
-       		if(confirm("삭제하시겠습니까?") == false) return;
-		   
-       		$.ajax({
-	               type:"POST",
-	               url:"${context}/cart/do_delete.do",
-	               dataType:"html",
-	               data:{
-	               cartNum :check
-	              }, 
-	            success: function(data){
-	              var jData = JSON.parse(data);
-	              if(null != jData && jData.msgId=="1"){
-	                alert(jData.msgMsg);
-	                location.href="${context}/cart/get_retrieve.do";
-
-	              }else{
-	                alert(jData.msgId+"|"+jData.msgMsg);
-	              }
-	            },
-	            complete:function(data){
-	             
-	            },
-	            error:function(xhr,status,error){
-	                alert("error:"+error);
-	            }
-	           }); 
-	           //--ajax  
-       	});
-       	
       	</script>
       	
     <!--================ start footer Area  =================-->

@@ -121,7 +121,7 @@
 						</button>
 					</div>
 					<div class="card_area">
-						<button id="cart" type="button">장바구니</button>
+						<a class="main_btn" id="cart">장바구니</a>
 						<a class="main_btn" href="${context}/product/get_retrieve.do">뒤로</a>
 						<a class="icon_btn" href="#">
 							<i class="lnr lnr lnr-heart"></i>
@@ -472,11 +472,11 @@
 	
 	            	if(result == 1){
 	            		alert("카트 담기 성공");
-	            		$("#sst").val("1");
+	            		//$("#sst").val("1");
 	            		location.href="${context}/cart/get_retrieve.do";
 	            	}else{
 	            		alert("회원만 사용할 수 있습니다");
-	            		$("#sst").val("1");
+	            		//$("#sst").val("1");
 	            	}
 /* 	              var jData = JSON.parse(data);
 	              if(null != jData && jData.msgId=="1"){
@@ -541,7 +541,7 @@
 		function countDown(){
 			var result = document.getElementById('sst');
 			var sst = result.value;
-			if( !isNaN(sst) && sst > 0 ){
+			if( !isNaN(sst) && sst > 1 ){
 				result.value--;
 				return false;
 			}

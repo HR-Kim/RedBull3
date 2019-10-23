@@ -40,11 +40,11 @@
  	 <!-- 주문상세 입력 -->
 <!--  	 <insert id="do_paydetail" parameterType="Cart">
 			INSERT INTO PAYDETAIL (
-			    orderDeNum,
+			    orderNum,
 			    oNum,
 			    cartCnt
 			) 
-			SELECT #{orderDeNum}, oNum, cartCnt
+			SELECT #{orderNum}, oNum, cartCnt
 			FROM  CART
 	
 	</insert> -->
@@ -150,8 +150,7 @@
 <!-- 	<insert id="do_save" parameterType="Pay">
 			INSERT INTO PAY (
 			    orderNum,
-			    total,
-			    payCnt,
+			    amount,
 			    dName,
 			    dPostNum,
 			    dAddr,
@@ -164,7 +163,6 @@
 			) VALUES (
 				#{orderNum, jdbcType=VARCHAR}
 			    #{total, jdbcType=NUMERIC},
-			    #{payCnt, jdbcType=NUMERIC},
 			    #{dName, jdbcType=VARCHAR},
 			    #{dPostNum, jdbcType=NUMERIC},
 			    #{dAddr, jdbcType=VARCHAR},

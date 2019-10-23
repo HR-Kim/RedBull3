@@ -4,185 +4,10 @@
 
 <c:set var="context" value="${pageContext.request.contextPath }" />
 <html lang="ko">
-  
   <body>
-  <jsp:include page="/main/header.jsp"></jsp:include>
+ 
     <!--================Header Menu Area =================-->
-    <header class="header_area">
-      <div class="top_menu">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-7">
-              <div class="float-left">
-                <p>Phone: +01 256 25 235</p>
-                <p>email: info@eiser.com</p>
-              </div>
-            </div>
-            <div class="col-lg-5">
-              <div class="float-right">
-                <ul class="right_side">
-                  <li>
-                    <a href="cart.html">
-                      gift card
-                    </a>
-                  </li>
-                  <li>
-                    <a href="tracking.html">
-                      track order
-                    </a>
-                  </li>
-                  <li>
-                    <a href="contact.html">
-                      Contact Us
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="main_menu">
-        <div class="container">
-          <nav class="navbar navbar-expand-lg navbar-light w-100">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <a class="navbar-brand logo_h" href="index.html">
-              <img src="img/logo.png" alt="" />
-            </a>
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div
-              class="collapse navbar-collapse offset w-100"
-              id="navbarSupportedContent"
-            >
-              <div class="row w-100 mr-0">
-                <div class="col-lg-7 pr-0">
-                  <ul class="nav navbar-nav center_nav pull-right">
-                    <li class="nav-item">
-                      <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item active submenu dropdown">
-                      <a
-                        href="#"
-                        class="nav-link dropdown-toggle"
-                        data-toggle="dropdown"
-                        role="button"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                        >Shop</a
-                      >
-                      <ul class="dropdown-menu">
-                        <li class="nav-item">
-                          <a class="nav-link" href="category.html"
-                            >Shop Category</a
-                          >
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="single-product.html"
-                            >Product Details</a
-                          >
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="checkout.html"
-                            >Product Checkout</a
-                          >
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="cart.html">Shopping Cart</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="nav-item submenu dropdown">
-                      <a
-                        href="#"
-                        class="nav-link dropdown-toggle"
-                        data-toggle="dropdown"
-                        role="button"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                        >Blog</a
-                      >
-                      <ul class="dropdown-menu">
-                        <li class="nav-item">
-                          <a class="nav-link" href="blog.html">Blog</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="single-blog.html"
-                            >Blog Details</a
-                          >
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="nav-item submenu dropdown">
-                      <a
-                        href="#"
-                        class="nav-link dropdown-toggle"
-                        data-toggle="dropdown"
-                        role="button"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                        >Pages</a
-                      >
-                      <ul class="dropdown-menu">
-                        <li class="nav-item">
-                          <a class="nav-link" href="tracking.html">Tracking</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="elements.html">Elements</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="contact.html">Contact</a>
-                    </li>
-                  </ul>
-                </div>
-
-                <div class="col-lg-5 pr-0">
-                  <ul class="nav navbar-nav navbar-right right_nav pull-right">
-                    <li class="nav-item">
-                      <a href="#" class="icons">
-                        <i class="ti-search" aria-hidden="true"></i>
-                      </a>
-                    </li>
-
-                    <li class="nav-item">
-                      <a href="#" class="icons">
-                        <i class="ti-shopping-cart"></i>
-                      </a>
-                    </li>
-
-                    <li class="nav-item">
-                      <a href="#" class="icons">
-                        <i class="ti-user" aria-hidden="true"></i>
-                      </a>
-                    </li>
-
-                    <li class="nav-item">
-                      <a href="#" class="icons">
-                        <i class="ti-heart" aria-hidden="true"></i>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </nav>
-        </div>
-      </div>
-    </header>
+ 	<jsp:include page="/main/header.jsp"></jsp:include>
     <!--================Header Menu Area =================-->
 
     <!--================Home Banner Area =================-->
@@ -190,15 +15,9 @@
       <div class="banner_inner d-flex align-items-center">
         <div class="container">
           <div
-            class="banner_content d-md-flex justify-content-between align-items-center"
-          >
+            class="banner_content d-md-flex justify-content-between align-items-center">
             <div class="mb-3 mb-md-0">
-              <h2>결제</h2>
-              <p>Very us move be blessed multiply night</p>
-            </div>
-            <div class="page_link">
-              <a href="index.html">Home</a>
-              <a href="checkout.html">Product Checkout</a>
+              <h2>결제창</h2>
             </div>
           </div>
         </div>
@@ -209,323 +28,210 @@
     <!--================Checkout Area =================-->
     <section class="checkout_area section_gap">
       <div class="container">
-        <div class="returning_customer">
-          <div class="check_title">
-            <h2>
-              Returning Customer?
-              <a href="#">Click here to login</a>
-            </h2>
-          </div>
-          <p>
-            If you have shopped with us before, please enter your details in the
-            boxes below. If you are a new customer, please proceed to the
-            Billing & Shipping section.
-          </p>
-          <form
-            class="row contact_form"
-            action="#"
-            method="post"
-            novalidate="novalidate"
-          >
-            <div class="col-md-6 form-group p_star">
-            ${payList }
-              <input
-                type="text"
-                class="form-control"
-                id="name"
-                name="name"
-                value=" "
-              />
-              <span
-                class="placeholder"
-                data-placeholder="Username or Email"
-              ></span>
-            </div>
-            <div class="col-md-6 form-group p_star">
-              <input
-                type="password"
-                class="form-control"
-                id="password"
-                name="password"
-                value=""
-              />
-              <span class="placeholder" data-placeholder="Password"></span>
-            </div>
-            <div class="col-md-12 form-group">
-              <button type="submit" value="submit" class="btn submit_btn">
-                Send Message
-              </button>
-              <div class="creat_account">
-                <input type="checkbox" id="f-option" name="selector" />
-                <label for="f-option">Remember me</label>
-              </div>
-              <a class="lost_pass" href="#">Lost your password?</a>
-            </div>
-          </form>
-        </div>
-        <div class="cupon_area">
-          <div class="check_title">
-            <h2>
-              Have a coupon?
-              <a href="#">Click here to enter your code</a>
-            </h2>
-          </div>
-          <input type="text" placeholder="Enter coupon code" />
-          <a class="tp_btn" href="#">Apply Coupon</a>
-        </div>
         <div class="billing_details">
           <div class="row">
             <div class="col-lg-8">
-              <h3>Billing Details</h3>
-              <form
-                class="row contact_form"
-                action="#"
-                method="post"
-                novalidate="novalidate"
-              >
-                <div class="col-md-6 form-group p_star">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="first"
-                    name="name"
-                    value=""
-                  />
-<!--                   <span
-                    class="placeholder"
-                    data-placeholder="First name"
-                  ></span> -->
-                </div>
-                <div class="col-md-6 form-group p_star">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="last"
-                    name="name"
-                  />
-                  <span class="placeholder" data-placeholder="Last name"></span>
-                </div>
-                <div class="col-md-12 form-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="company"
-                    name="company"
-                    placeholder="Company name"
-                  />
-                </div>
-                <div class="col-md-6 form-group p_star">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="number"
-                    name="number"
-                  />
-                  <span
-                    class="placeholder"
-                    data-placeholder="Phone number"
-                  ></span>
-                </div>
-                <div class="col-md-6 form-group p_star">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="email"
-                    name="compemailany"
-                  />
-                  <span
-                    class="placeholder"
-                    data-placeholder="Email Address"
-                  ></span>
-                </div>
+            <!-- 주문자 조회 --> 
+              <h3>주문자</h3>
+              <form class="row contact_form" action="#" method="post" novalidate="novalidate">
                 <div class="col-md-12 form-group p_star">
-                  <select class="country_select">
-                    <option value="1">Country</option>
-                    <option value="2">Country</option>
-                    <option value="4">Country</option>
-                  </select>
+                  <input type="text"  class="form-control" id="dname" name="dname" />
                 </div>
+                
                 <div class="col-md-12 form-group p_star">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="add1"
-                    name="add1"
-                  />
-                  <span
-                    class="placeholder"
-                    data-placeholder="Address line 01"
-                  ></span>
+                  <input  type="text" class="form-control" id="dphone"  name="dphone" />
                 </div>
+                
+				<div class="col-md-12 form-group p_star">
+                  <input  type="text" class="form-control" id="email" name="compemailany"/>
+                </div>
+                
+				<div class="col-md-12 form-group p_star">
+                  <input type="text" class="form-control" id="dpostnum" name="compemailany" />
+                </div>
+				
                 <div class="col-md-12 form-group p_star">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="add2"
-                    name="add2"
-                  />
-                  <span
-                    class="placeholder"
-                    data-placeholder="Address line 02"
-                  ></span>
+                  <input type="text" class="form-control"  id="daddr" name="add1"/>
                 </div>
+                
                 <div class="col-md-12 form-group p_star">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="city"
-                    name="city"
-                  />
-                  <span class="placeholder" data-placeholder="Town/City"></span>
+                  <input type="text" class="form-control" id="ddetaddr"  name="add2" />
                 </div>
-                <div class="col-md-12 form-group p_star">
-                  <select class="country_select">
-                    <option value="1">District</option>
-                    <option value="2">District</option>
-                    <option value="4">District</option>
-                  </select>
                 </div>
-                <div class="col-md-12 form-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="zip"
-                    name="zip"
-                    placeholder="Postcode/ZIP"
-                  />
-                </div>
-                <div class="col-md-12 form-group">
-                  <div class="creat_account">
-                    <input type="checkbox" id="f-option2" name="selector" />
-                    <label for="f-option2">Create an account?</label>
-                  </div>
-                </div>
-                <div class="col-md-12 form-group">
-                  <div class="creat_account">
-                    <h3>Shipping Details</h3>
-                    <input type="checkbox" id="f-option3" name="selector" />
-                    <label for="f-option3">Ship to a different address?</label>
-                  </div>
-                  <textarea
-                    class="form-control"
-                    name="message"
-                    id="message"
-                    rows="1"
-                    placeholder="Order Notes"
-                  ></textarea>
-                </div>
+                <!-- 결제 수단 -->
+	             <div class="col-lg-4">
+	              <div class="order_box">
+	                <h2>최종 결제</h2>
+	                <ul class="list list_2">
+	                  <li>
+	                    <a href="#">상품 총 금액
+	                      <span>$2160.00</span>
+	                    </a>
+	                  </li>
+	   
+	                  <li>
+	                    <a href="#">포인트 사용
+	                      <span>$2210.00</span>
+	                    </a>
+	                  </li>
+	                  <li>
+	                    <a href="#">최종 결제 금액
+	                      <span>$2210.00</span>
+	                    </a>
+	                  </li>
+	                </ul>
+	                <div class="payment_item">
+	                    <h2>결제 수단</h2>
+	                </div>
+	                <div class="payment_item active">
+	                  <div class="radion_btn">
+	                    <input type="radio" id="f-option6" name="selector" />
+	                    <label for="f-option6">카드결제 </label>
+	                    <div class="check"></div>
+	                  </div>
+	                   <%-- <img src="${context}/resources/img/product/single-product/card.jpg" alt="" /> --%> 
+	                </div>
+	                <a class="main_btn" href="#">결제하기</a>
+	                </div>
+	              </div>
               </form>
-            </div>
-            <div class="col-lg-4">
+                
+               <!-- 배송지 입력 --> 
+               <div class="col-lg-8">
+               <h3>배송지</h3>
+              <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+                <div class="col-md-12 form-group p_star">
+                  <input type="text"  class="form-control" id="dname" name="name" placeholder="이름"/>
+                </div>
+                
+                <div class="col-md-12 form-group p_star">
+                  <input  type="text" class="form-control" id="dphone"  name="dphone"  placeholder="전화번호"/>
+                </div>
+                
+				<div class="col-md-12 form-group p_star">
+                  <input  type="text" class="form-control" id="email" name="compemailany" placeholder="이메일" />
+                </div>
+                
+				<div class="col-md-12 form-group p_star">
+                  <input type="text" class="form-control" name="dpostnum" id="dpostnum" name="compemailany" placeholder="우편번호"/><br/>
+                  <button type="button" style="height:45px; width:130px; font-family: 'Poppins'; font-weight: bold; 
+                   padding: 5px; border: none; border-radius: 5px" onclick="execPostCode();">
+                   <i class="fa fa-search"></i> 우편번호 찾기</button>
+                </div>
+				
+                <div class="col-md-12 form-group p_star">
+                  <input type="text" class="form-control"  id="daddr" name="daddr" placeholder="주소1"/>
+                  <!-- <span  class="placeholder" data-placeholder="주소1" ></span> -->
+                </div>
+                
+                <div class="col-md-12 form-group p_star">
+                  <input type="text" class="form-control" id="ddetaddr"  name="ddetaddr" placeholder="주소2" />
+                 <!--  <span class="placeholder" data-placeholder="주소2" ></span> -->
+                </div>
+
+                <div class="col-md-12 form-group">
+                  <textarea  class="form-control"  name="dmemo"  id="dmemo" rows="1" placeholder="배송메모" ></textarea>
+                </div>
+              </div>
+             </form>
+			  
+            <%-- <div class="col-lg-4">
               <div class="order_box">
-                <h2>Your Order</h2>
-                <ul class="list">
-                  <li>
-                    <a href="#"
-                      >Product
-                      <span>Total</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#"
-                      >Fresh Blackberry
-                      <span class="middle">x 02</span>
-                      <span class="last">$720.00</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#"
-                      >Fresh Tomatoes
-                      <span class="middle">x 02</span>
-                      <span class="last">$720.00</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#"
-                      >Fresh Brocoli
-                      <span class="middle">x 02</span>
-                      <span class="last">$720.00</span>
-                    </a>
-                  </li>
-                </ul>
+                <h2>최종 결제</h2>
                 <ul class="list list_2">
                   <li>
                     <a href="#"
-                      >Subtotal
+                      >상품 총 금액
                       <span>$2160.00</span>
                     </a>
                   </li>
+   
                   <li>
                     <a href="#"
-                      >Shipping
-                      <span>Flat rate: $50.00</span>
+                      >포인트 사용
+                      <span>$2210.00</span>
                     </a>
                   </li>
                   <li>
                     <a href="#"
-                      >Total
+                      >최종 결제 금액
                       <span>$2210.00</span>
                     </a>
                   </li>
                 </ul>
                 <div class="payment_item">
-                  <div class="radion_btn">
-                    <input type="radio" id="f-option5" name="selector" />
-                    <label for="f-option5">Check payments</label>
-                    <div class="check"></div>
-                  </div>
-                  <p>
-                    Please send a check to Store Name, Store Street, Store Town,
-                    Store State / County, Store Postcode.
-                  </p>
+                    <h2>결제 수단</h2>
                 </div>
                 <div class="payment_item active">
                   <div class="radion_btn">
                     <input type="radio" id="f-option6" name="selector" />
-                    <label for="f-option6">Paypal </label>
-                    <img src="img/product/single-product/card.jpg" alt="" />
+                    <label for="f-option6">카드결제 </label>
                     <div class="check"></div>
                   </div>
-                  <p>
-                    Please send a check to Store Name, Store Street, Store Town,
-                    Store State / County, Store Postcode.
-                  </p>
+                   <img src="${context}/resources/img/product/single-product/card.jpg" alt="" /> 
                 </div>
-                <div class="creat_account">
-                  <input type="checkbox" id="f-option4" name="selector" />
-                  <label for="f-option4">I’ve read and accept the </label>
-                  <a href="#">terms & conditions*</a>
                 </div>
-                <a class="main_btn" href="#">Proceed to Paypal</a>
-              </div>
-            </div>
+
+                <a class="main_btn" href="#">결제하기</a>
+              </div> --%>
           </div>
         </div>
       </div>
     </section>
     <!--================End Checkout Area =================-->
+       <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script type="text/javascript">
+    
+	 // 우편번호 조회
+	    function execPostCode() {
+		 alert("execPostCode");
+	        new daum.Postcode({
+	            oncomplete: function(data) {
+	               // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	
+	               // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+	               // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	               var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+	               var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+	
+	               // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+	               // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+	               if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                   extraRoadAddr += data.bname;
+	               }
+	               // 건물명이 있고, 공동주택일 경우 추가한다.
+	               if(data.buildingName !== '' && data.apartment === 'Y'){
+	                  extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	               }
+	               // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+	               if(extraRoadAddr !== ''){
+	                   extraRoadAddr = ' (' + extraRoadAddr + ')';
+	               }
+	               // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+	               if(fullRoadAddr !== ''){
+	                   fullRoadAddr += extraRoadAddr;
+	               }
+	
+	               // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	               console.log(data.zonecode);
+	               console.log(fullRoadAddr);
+	               
+	               
+	               $("[name=dpostnum]").val(data.zonecode);
+	               $("[name=daddr]").val(fullRoadAddr);
+	               
+	               /* document.getElementById('signUpUserPostNo').value = data.zonecode; //5자리 새우편번호 사용
+	               document.getElementById('signUpUserCompanyAddress').value = fullRoadAddr;
+	               document.getElementById('signUpUserCompanyAddressDetail').value = data.jibunAddress; */
+	           }
+	        }).open();
+	    }
+    
+    </script>
 
     <!--================ start footer Area  =================-->
-    <jsp:include page="/main/footer.jsp"></jsp:include>
-
+    	<jsp:include page="/main/footer.jsp"></jsp:include>
     <!--================ End footer Area  =================-->
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<!--     <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/popper.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/stellar.js"></script>
-    <script src="vendors/lightbox/simpleLightbox.min.js"></script>
-    <script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
-    <script src="vendors/isotope/imagesloaded.pkgd.min.js"></script>
-    <script src="vendors/isotope/isotope-min.js"></script>
-    <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
-    <script src="js/jquery.ajaxchimp.min.js"></script>
-    <script src="js/mail-script.js"></script> -->
-  <!--   <script src="vendors/jquery-ui/jquery-ui.js"></script> -->
-<!--     <script src="vendors/counter-up/jquery.waypoints.min.js"></script>
-    <script src="vendors/counter-up/jquery.counterup.js"></script>
-    <script src="js/theme.js"></script> -->
   </body>
 </html>
+
