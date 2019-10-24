@@ -102,7 +102,7 @@
 	      </div>
 			<c:choose>
 				<c:when test="${newlist.size()>0}">
-				    <div class="new_product_area" style="margin-bottom: 10px; margin-top: -60px;">
+				    <div class="new_product_area" style="margin-bottom: 10px;">
 		                 <a href="${context}/product/get_newList.do" class="d-block text-right">
 		                   <h4>더보기</h4>
 		                 </a>
@@ -147,7 +147,7 @@
 	      </div>
 			<c:choose>
 				<c:when test="${ranklist.size()>0}">
-				    <div class="new_product_area" style="margin-bottom: 10px; margin-top: -60px;">
+				    <div class="new_product_area" style="margin-bottom: 10px;">
 		                 <a href="${context}/product/get_rankList.do" class="d-block text-right">
 		                   <h4>더보기</h4>
 		                 </a>
@@ -192,7 +192,7 @@
 	      </div>
 			<c:choose>
 				<c:when test="${salelist.size()>0}">
-				    <div class="new_product_area" style="margin-bottom: 10px; margin-top: -60px;">
+				    <div class="new_product_area" style="margin-bottom: 10px;">
 		                 <a href="${context}/product/get_hotSaleList.do" class="d-block text-right">
 		                   <h4>더보기</h4>
 		                 </a>
@@ -229,10 +229,13 @@
 		</div>
 	  </section>
 	  <!--================ End 상품 리스트: 신상, 랭킹, 세일 =================-->
-		
+	  
+    <form name="productFrm" id="productFrm" method="get">
+		<input type="hidden" name="pageNum" id="pageNum" value="${vo.pageNum}" />
+		<input type="hidden" name="searchDiv" id="searchDiv" />
+		<input type="hidden" name="pNum" id="pNum" />
+	</form>
 
-
-	
 <%-- 	  <!--================ Start Blog Area =================-->
 	  <section class="blog-area section-gap">
 	    <div class="container">
@@ -327,6 +330,25 @@
 	  
 	  <!--================footer Area  =================-->
 	  <jsp:include page="footer.jsp"></jsp:include>
+	  
+	  <script type="text/javascript">
+		//단건조회
+		//listTable
+	    $("#listTable>div>div").on("click",function(e){
+	    	e.preventDefault();
+	    	var div  = $(this);
+	    	var input  =  div.children("input");
+	    	console.log("input:"+input.val());
+	    	
+    		//if(null==input || input.length==1) return;
+    		
+    		var frm = document.productFrm;
+    		frm.pNum.value = input.val();
+    		frm.action = "${context}/product/get_selectOne.do";
+    		frm.submit(); 
+	    });
+				
+	  </script>
        
 </body>
 </html>
