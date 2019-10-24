@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <c:set var="context" value="${pageContext.request.contextPath }" />
     
@@ -52,19 +53,34 @@
 	            <div class="float-right">
 	              <ul class="right_side">
 					<c:choose>
-	                  	<c:when test="${(user != null) && (user.lvl == 'MANAGER') }"> <!-- 세션 값이 있고, 관리자일 경우 -->
+	                  	<c:when test="${(user != null) && (user.lvl == 'MANAGER') && (locale == 'ko')}"> <!-- (다국어:한국어)세션 값이 있고, 관리자일 경우 -->
 			                <li>
 			                  <a href="${context}/product/do_product_mng.do">
-			                                   상품 등록
-			                  </a>
+                              	<spring:message code="message.header.register_prod" />
+			                  </a> <!-- 다국어: 상품 등록 -->
 			                </li>
 			                <li class="nav-item">
-		                    	<a>${user.uname}님 환영합니다.</a>
+		                    	<a>${user.uname}님 환영합니다!</a>
 		                  	</li>
 	                	</c:when>
-	                	<c:when test="${(user != null) && (user.lvl != 'MANAGER') }"> <!-- 세션 값이 있고, 일반 사용자일 경우 -->
+	                	<c:when test="${(user != null) && (user.lvl != 'MANAGER') && (locale == 'ko')}"> <!-- (다국어:한국어)세션 값이 있고, 일반 사용자일 경우 -->
 			                <li class="nav-item">
-		                    	${user.uname}님 환영합니다.
+		                    	${user.uname}님 환영합니다!
+		                  	</li>
+	                	</c:when>
+	                	<c:when test="${(user != null) && (user.lvl == 'MANAGER') && (locale == 'en')}"> <!-- (다국어:영어)세션 값이 있고, 관리자일 경우 -->
+			                <li>
+			                  <a href="${context}/product/do_product_mng.do">
+                              	<spring:message code="message.header.register_prod" />
+			                  </a> <!-- 다국어: 상품 등록 -->
+			                </li>
+			                <li class="nav-item">
+		                    	<a>Welcome ${user.uname}!</a>
+		                  	</li>
+	                	</c:when>
+	                	<c:when test="${(user != null) && (user.lvl != 'MANAGER') && (locale == 'en')}"> <!-- (다국어:영어)세션 값이 있고, 일반 사용자일 경우 -->
+			                <li class="nav-item">
+		                    	Welcome ${user.uname}!
 		                  	</li>
 	                	</c:when>
 	                </c:choose>
@@ -77,17 +93,26 @@
 	    
       <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light w-100">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <a class="navbar-brand logo_h" href="${context}/main/main.do">
-            <img src="${context}/resources/img/logo3.png" style="max-width: 100%; height: auto;" />
-          </a>
+		  <!-- Brand and toggle get grouped for better mobile display -->
+	      <c:choose>
+       	  	<c:when test="${locale == 'en' }"> <!-- 다국어(영어): 로고 -->
+       	  	  <a class="navbar-brand logo_h" href="${context}/main/main.do">
+	            <img src="${context}/resources/img/logo_en4.jpg" style="max-width: 100%; height: auto;" />
+	          </a>
+          	</c:when>
+          	<c:otherwise> <!-- 다국어(한국어): 로고 -->
+			  <a class="navbar-brand logo_h" href="${context}/main/main.do">
+	            <img src="${context}/resources/img/logo3.png" style="max-width: 100%; height: auto;" />
+	          </a>
+          	</c:otherwise>
+          </c:choose>
           
 <!--           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button> -->
+          </button>
           <span></span>
           
           <!-- Collect the nav links, forms, and other content for toggling -->
@@ -98,31 +123,31 @@
                           
                   <li class="nav-item active submenu dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                      aria-expanded="false">스토어
-                    </a>
+                      aria-expanded="false"><spring:message code="message.header.store" />
+                    </a> <!-- 다국어: 스토어 -->
                     <ul class="dropdown-menu">
                       <li class="nav-item">
-                        <a class="nav-link" href="${context}/product/get_retrieve.do">카테고리</a>
-                      </li>
+                        <a class="nav-link" href="${context}/product/get_retrieve.do"><spring:message code="message.header.store_category" /></a>
+                      </li> <!-- 다국어: 카테고리 -->
                       <li class="nav-item">
-                        <a class="nav-link" href="${context}/product/get_newList.do">신상</a>
-                      </li>
+                        <a class="nav-link" href="${context}/product/get_newList.do"><spring:message code="message.header.store_new" /></a>
+                      </li> <!-- 다국어: 신상 -->
                       <li class="nav-item">
-                        <a class="nav-link" href="${context}/product/get_rankList.do">랭킹</a>
-                      </li>
+                        <a class="nav-link" href="${context}/product/get_rankList.do"><spring:message code="message.header.store_ranking" /></a>
+                      </li> <!-- 다국어: 랭킹 -->
                       <li class="nav-item">
-                        <a class="nav-link" href="${context}/product/get_hotSaleList.do">핫세일</a>
-                      </li>
+                        <a class="nav-link" href="${context}/product/get_hotSaleList.do"><spring:message code="message.header.store_sale" /></a>
+                      </li> <!-- 다국어: 핫세일 -->
                     </ul>
                   </li>
                 
                   <li class="nav-item">
-                    <a class="nav-link" href="${context}/board/get_retrieve.do?searchDiv=20">질문과답변</a>
-                  </li>
+                    <a class="nav-link" href="${context}/board/get_retrieve.do?searchDiv=20"><spring:message code="message.header.qna" /></a>
+                  </li> <!-- 다국어: 질문과답변 -->
                   
                   <li class="nav-item">
-                    <a class="nav-link" href="${context}/board/get_retrieve.do?searchDiv=10">공지사항</a>
-                  </li>
+                    <a class="nav-link" href="${context}/board/get_retrieve.do?searchDiv=10"><spring:message code="message.header.notice" /></a>
+                  </li> <!-- 다국어: 공지사항 -->
                                     
                   <li class="nav-item">
                     <a class="nav-link" href="${context}/user/get_updateForm.do" >임시 회원수정</a>
@@ -199,22 +224,22 @@
   
   <script type="text/javascript">
     
-		function logout() {
-			
-			if(confirm("로그아웃 하시겠습니까?")) {
-				
-        		location.href="${context}/login/do_logout.do";
-			}
-		}
-		
-		// 초기화
+		// 로그아웃
 		$("#logoutBtn").on("click", function() {
 	
 			//alert("logoutBtn");
-			logout();
-			alert("로그아웃되었습니다.")
-			location.href="${context}/main/main.do"; // 메인 화면으로 이동
-
+			if(confirm("로그아웃 하시겠습니까?")) {
+				
+        		location.href="${context}/login/do_logout.do";
+        		alert("로그아웃되었습니다.")
+        		location.href="${context}/main/main.do"; // 메인 화면으로 이동
+        		
+			}
+			else {
+				
+				// do nothing
+			}
+	
 		});
 		
   </script>

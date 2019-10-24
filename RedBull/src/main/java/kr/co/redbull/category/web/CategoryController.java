@@ -43,6 +43,7 @@ public class CategoryController {
 	OptService optService;
 	
 	private final String VIEW_LIST_NM ="product/category_all";
+	private final String VIEW_LIST_NM2 ="product/category_category";
 	
 	// 카테고리별 상품 조회
 	@RequestMapping(value = "product/get_categoryList.do", method = RequestMethod.GET)
@@ -98,7 +99,7 @@ public class CategoryController {
 			model.addAttribute("totalCnt", totalCnt);
 		}
 
-		return VIEW_LIST_NM;
+		return VIEW_LIST_NM2;
 	}
 
 	
