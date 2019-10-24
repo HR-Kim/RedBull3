@@ -1,6 +1,9 @@
 package kr.co.redbull.cmn;
 
 public class DTO {
+	
+	/**locale*/
+	private String lang;
 	/** 총 글 수  */
 	private int totalCnt; 
 	/** 글 번호 */
