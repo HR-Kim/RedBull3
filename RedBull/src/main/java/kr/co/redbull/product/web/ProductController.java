@@ -41,6 +41,7 @@ public class ProductController {
 	OptService optService;
 	
 	private final String VIEW_LIST_NM ="product/category_all";
+	private final String VIEW_LIST_NM2 ="product/category_category";
 	private final String VIEW_DETAIL  ="product/product_detail";
 	private final String VIEW_MNG_NM  ="product/product_mng";
 	private final String VIEW_OPT_NM  ="product/product_option";
@@ -354,7 +355,7 @@ public class ProductController {
 		}
 		
 		
-		return VIEW_LIST_NM;
+		return VIEW_LIST_NM2;
 	}
 	
 	@RequestMapping(value = "product/get_selectOne.do", method = RequestMethod.GET)
