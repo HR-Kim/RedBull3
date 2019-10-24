@@ -97,7 +97,7 @@
 	      <c:choose>
        	  	<c:when test="${locale == 'en' }"> <!-- 다국어(영어): 로고 -->
        	  	  <a class="navbar-brand logo_h" href="${context}/main/main.do">
-	            <img src="${context}/resources/img/logo_en3.jpg" style="max-width: 100%; height: auto;" />
+	            <img src="${context}/resources/img/logo_en4.jpg" style="max-width: 100%; height: auto;" />
 	          </a>
           	</c:when>
           	<c:otherwise> <!-- 다국어(한국어): 로고 -->
