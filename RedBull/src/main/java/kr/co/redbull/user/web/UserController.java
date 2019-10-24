@@ -3,6 +3,7 @@ package kr.co.redbull.user.web;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Locale;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 
@@ -42,8 +44,8 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
-//	@Autowired
-//	CodeService codeService;
+	@Autowired
+	private LocaleResolver localeResolver;//SessionLocaleResolver
 	
 	@Resource(name="downloadView")
 	private View download;
@@ -190,7 +192,7 @@ public class UserController {
 		LOG.debug("1=========================");
 		
 		//String language = StringUtil.nvl(request.getParameter("lang"), "ko");
-		//LOG.debug("=language="+language); // 아이디와 비밀번호
+		//LOG.debug("=language="+language);
 		
 		Message msg = (Message) userService.idPassCheck(user);
 		
@@ -213,8 +215,9 @@ public class UserController {
 			LOG.debug("3= outVO="+ outVO); 
 			LOG.debug("3=========================");
 			
-//			Locale  locale=new Locale(user.getLang());
-//			localeResolver.setLocale(request, response, locale);
+			// locale 객체를 생성하면서 언어 값을 전달
+			Locale locale=new Locale(user.getLang());
+			localeResolver.setLocale(request, response, locale);
 			
 			session.setAttribute("user", outVO);
 			session.setAttribute("rid", outVO.getRid());
