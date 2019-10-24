@@ -5321,12 +5321,12 @@ input[type=submit].btn-block {
     animation: progress-bar-stripes 1s linear infinite
 }
 
-.media {
+/* .media {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-align: start;
     align-items: flex-start
-}
+} */
 
 .media-body {
     -ms-flex: 1;
