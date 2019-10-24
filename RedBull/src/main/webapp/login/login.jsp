@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<c:set var="context" value="${pageContext.request.contextPath }" />    
-     
+<c:set var="context" value="${pageContext.request.contextPath }" /> 
+ 
 <html lang="ko">
   <head>
     <meta charset="utf-8">
@@ -88,10 +88,19 @@
 					</div>
 					
 					<!-- 네이버 로그인 창으로 이동 -->
-					<div class="container-login100-form-btn m-t-20" id="naverIdLogin" style="text-align:center"><a href="${url}">
+<%-- 					<div class="container-login100-form-btn m-t-20" id="naver_id_login" style="text-align:center"><a href="${naver_url}">
 					<img width="50" src="${context}/resources/img/naver.png"/></a></div>
 					<br>
+ --%>
+ 					<br/>	
+ 					<!-- 네이버 로그인 추가 -->
+					<div id="naverIdLogin" align="center">
+					    <a id="naver-login-btn" href="#" role="button">
+					        <img src="https://static.nid.naver.com/oauth/big_g.PNG" width="80%" height="45"/> 
+					    </a>
+					</div>
 
+ 
 					<div class="text-center p-t-45 p-b-4">
 						<a href="${context}/user/find.jsp" class="txt2 hov1">
 							비밀번호 찾기
@@ -117,48 +126,33 @@
     <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
     <script src="${context}/resources/js/bootstrap.min.js"></script>   
     
+    <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"></script>
+    
     <script type="text/javascript">
     
-	    $("#naverIdLogin").on("click", function(){
-	    	
-	    	alert("naverIdLogin");
-	    	
-			//ajax
-			$.ajax({
-				type : "POST",
-				url : "${context}/users/naverlogin",
-				dataType : "html",
-				data : {
-					"lang" : $("#lang").val(),
-					"rid" : $("#rid").val(),
-					"passwd" : $("#passwd").val()
-				},
-				success : function(data) {
-					
-					location.href="${url}"; // 메인 화면으로 이동
-
-				},
-				complete : function(data) { 
-	
-				},
-				error : function(xhr, status, error) {
-					alert("error:" + error);
-				}
-			});
-			//--ajax  
+	  	//네이버 로그인
+		$(function(){
+		    var naverLogin = new naver.LoginWithNaverId({
+		    	
+		        clientId: "TyqyGR4or2iouEKEGY6D",
+		        callbackUrl: "http://localhost:8080/redbull/login/callback.jsp",
+		        isPopup: true,
+		        loginButton: {color: "green", type: 3, height: 45}
+		    
+		    });
+		    
+		    naverLogin.init();
+		    
+		})//e.o.naver
+		   
+		function do_login() {
+		
+			var frm = document.loginForm;
 			
-	    	//do_login();
-	    	
-	    });
-        
-        function do_login() {
-        
-        	var frm = document.loginForm;
-        	
-        	// validation
-        	frm.submit();
-        	
-        }
+			// validation
+			frm.submit();
+			
+		}
         
         $("#signIn").on("click", function(){
         	

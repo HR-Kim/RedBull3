@@ -203,6 +203,7 @@ public class CartWebTest {
 	//cart 조회 test
 	//code값 넣고 다시 run
 	@Test
+	@Ignore
 	public void get_retrieve() throws Exception{
 		MockHttpServletRequestBuilder createMessage = MockMvcRequestBuilders.get("/cart/get_retrieve.do")
 				.param("pageSize", "10")
@@ -251,9 +252,9 @@ public class CartWebTest {
 	@Ignore
 	public void do_save() throws Exception{
 		MockHttpServletRequestBuilder createMessage = MockMvcRequestBuilders.post("/cart/do_save.do")
-				.param("pNum", "366") //param연결
+				.param("oNum", "84") //param연결
 				.param("cartCnt", "1")
-				.param("regId", "cart_130");
+				.param("regId", "cart_200");
 		
 		ResultActions resultActions = mockMvc.perform(createMessage)
 				.andExpect(MockMvcResultMatchers.content().contentType("application/json;charset=UTF-8"))
@@ -273,7 +274,7 @@ public class CartWebTest {
 	@Ignore
 	public void do_delete() throws Exception{
 		MockHttpServletRequestBuilder createMessage = MockMvcRequestBuilders.post("/cart/do_delete.do")
-				.param("regId", "cart_130"); //param연결
+				.param("cartNum", "273"); //param연결
 		
 		ResultActions resultActions = mockMvc.perform(createMessage)
 				.andExpect(MockMvcResultMatchers.content().contentType("application/json;charset=UTF-8"))

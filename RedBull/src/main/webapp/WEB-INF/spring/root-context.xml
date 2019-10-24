@@ -65,6 +65,9 @@
 		
 	<!-- locale change -->
 	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
+ 	<bean class="kr.co.redbull.user.web.LocaleChangeController">
+		<property name="localeResolver" ref="localeResolver"></property>
+	</bean>
 		
 	<!-- 다국어 설정 -->
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">

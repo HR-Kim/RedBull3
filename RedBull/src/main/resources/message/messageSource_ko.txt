@@ -9,5 +9,14 @@ message.user.postnum=우편번호
 message.user.address=주소
 message.user.detadd=상세주소
 
-#main.jsp
+#header.jsp
+message.header.store=스토어
+message.header.store_category=카테고리
+message.header.store_new=신상
+message.header.store_ranking=랭킹
+message.header.store_sale=핫세일
+message.header.qna=질문과답변
+message.header.notice=공지사항
 
+message.header.register_prod=상품 등록
+message.header.welcome=님 환영합니다

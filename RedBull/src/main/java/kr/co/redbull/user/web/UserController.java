@@ -3,6 +3,7 @@ package kr.co.redbull.user.web;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Locale;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 
@@ -42,8 +44,8 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
-//	@Autowired
-//	CodeService codeService;
+	@Autowired
+	private LocaleResolver localeResolver;//SessionLocaleResolver
 	
 	@Resource(name="downloadView")
 	private View download;
@@ -61,62 +63,27 @@ public class UserController {
 		this.naverLoginBO = naverLoginBO;
 	}
 	
-    //로그인 첫 화면 요청 메소드
-    @RequestMapping(value = "/users/naverlogin", method = { RequestMethod.GET, RequestMethod.POST })
-    public String login(Model model, HttpSession session) {
-        
-        /* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
-        String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
-        
-        //https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
-        //redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
-        System.out.println("네이버:" + naverAuthUrl);
-        
-        //네이버 
-        model.addAttribute("url", naverAuthUrl);
+	  @RequestMapping(value = "login")
+	  public String initLogin(Model model, HttpSession session) throws Exception {
 
-        /* 생성한 인증 URL을 View로 전달 */
-        return "users/naverlogin";
-    }
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+		
+		/* 생성한 인증 URL을 View로 전달 */
+		model.addAttribute("naver_url", naverAuthUrl);
+		
+		/* 생성한 인증 URL을 Model에 담아서 전달 */
+		return "login/login";
+	  }
+	  
+	  // 네이버 Callback호출 메소드
+	  @RequestMapping(value = "callback")
+	  public String naverCallback() throws IOException {
 
-	
-    //네이버 로그인 성공시 callback호출 메소드
-    @RequestMapping(value = "/users/callback.do", method = { RequestMethod.GET, RequestMethod.POST })
-    public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
-            throws IOException {
-        System.out.println("여기는 callback");
-        OAuth2AccessToken oauthToken;
-        oauthToken = naverLoginBO.getAccessToken(session, code, state);
-        //로그인 사용자 정보를 읽어온다.
-        apiResult = naverLoginBO.getUserProfile(oauthToken);
-        System.out.println(naverLoginBO.getUserProfile(oauthToken).toString());
-        model.addAttribute("result", apiResult);
-        System.out.println("result"+apiResult);
-        /* 네이버 로그인 성공 페이지 View 호출 */
-//      JSONObject jsonobj = jsonparse.stringToJson(apiResult, "response");
-//      String snsId = jsonparse.JsonToString(jsonobj, "id");
-//      String name = jsonparse.JsonToString(jsonobj, "name");
-//
-//      UserVO vo = new UserVO();
-//      vo.setUser_snsId(snsId);
-//      vo.setUser_name(name);
-//
-//      System.out.println(name);
-//      try {
-//          vo = service.naverLogin(vo);
-//      } catch (Exception e) {
-//          // TODO Auto-generated catch block
-//          e.printStackTrace();
-//      }
+	    System.out.println("naver login success");
 
+	  return "main/main.do";
+	  }
 
-//      session.setAttribute("login",vo);
-//      return new ModelAndView("user/loginPost", "result", vo);
-        
-        return "users/naverSuccess";
-    }
-
-	
 	/**아이디 중복 검사*/
 	@RequestMapping(value="user/check_id.do", method = RequestMethod.POST ,produces = "application/json; charset=UTF-8")
 	@ResponseBody
@@ -216,7 +183,7 @@ public class UserController {
 	}//--do_logout
 	
 	/**로그인*/
-	@RequestMapping(value="login/do_login.do",method=RequestMethod.POST,produces = "application/json; charset=UTF-8")
+	@RequestMapping(value="login/do_login.do",method = {RequestMethod.POST,RequestMethod.GET},produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String do_login(User user, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		
@@ -225,7 +192,7 @@ public class UserController {
 		LOG.debug("1=========================");
 		
 		//String language = StringUtil.nvl(request.getParameter("lang"), "ko");
-		//LOG.debug("=language="+language); // 아이디와 비밀번호
+		//LOG.debug("=language="+language);
 		
 		Message msg = (Message) userService.idPassCheck(user);
 		
@@ -248,11 +215,13 @@ public class UserController {
 			LOG.debug("3= outVO="+ outVO); 
 			LOG.debug("3=========================");
 			
-//			Locale  locale=new Locale(user.getLang());
-//			localeResolver.setLocale(request, response, locale);
+			// locale 객체를 생성하면서 언어 값을 전달
+			Locale locale=new Locale(user.getLang());
+			localeResolver.setLocale(request, response, locale);
 			
 			session.setAttribute("user", outVO);
 			session.setAttribute("rid", outVO.getRid());
+			session.setAttribute("locale", locale);
 			
 //			return "main/main"; // 메인 화면 던지기 
 //			return "redirect:/main/main.jsp"; // sendredirect와 같은 개념
@@ -351,7 +320,7 @@ public class UserController {
 	}//--do_delete
 	
 	/**단건 조회*: 비밀번호 찾기용*/
-	@RequestMapping(value="user/get_selectOne.do", method = RequestMethod.GET ,produces = "application/json; charset=UTF-8")
+	@RequestMapping(value="user/get_selectOne.do", method = {RequestMethod.POST,RequestMethod.GET}, produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String get_selectOne(User user, Model model) {
 		

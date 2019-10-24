@@ -67,7 +67,7 @@
  	 </select>
  	 
  	 <!-- get_cartIdList -->
- 	 <select id="get_cartIdList" parameterType="Search" resultType="Cart">
+ 	 <select id="get_cartIdList" resultType="Cart">
 			SELECT
 			        <include refid="cartColumns" />
 			FROM
@@ -155,6 +155,7 @@
 		            B.cartNum,
 		            B.bPrice,
 		            B.pNum,
+		            B.oNum,
 		            B.oPrice,
 		            B.oName,
 		            B.pName,
@@ -170,15 +171,16 @@
 			                            i.refnum as refNum,
 										MIN(i.SAVE_FILE_NM) as saveFileNm,
 										c.CARTCNT as cartCnt,
-			                            c.cartnum as cartNum,
-			                            p.bprice as bPrice,
-			                            p.pnum as pNum,
+			                            c.CARTNUM as cartNum,
+			                            p.BPRICE as bPrice,
+			                            p.PNUM as pNum,
+			                            o.ONUM as oNum,
 										o.OPRICE as oPrice,
 										o.ONAME as oName,
-										p.pname as pName,
-										p.discount as discount,
+										p.PNAME as pName,
+										p.DISCOUNT as discount,
 										p.DPRICE as dPrice,
-										p.bprice * (1 - p.discount) + o.oprice + p.dprice as afterPrice,
+										(p.BPRICE * (1 - p.discount) + o.oprice) * c.cartCnt + p.dprice as afterPrice,
 										c.REGID as regId
 								FROM
 										CART c JOIN OPT o
@@ -194,6 +196,7 @@
 			                                    c.cartnum ,
 			                                    p.bprice,
 			                                    p.pnum,
+			                                    o.oNum,
 			                                    o.OPRICE,
 			                                    o.ONAME,
 			                                    p.pname ,
@@ -241,7 +244,7 @@
 			<![CDATA[
 				SELECT COUNT(*)
 				FROM CART c, OPT o
-				WHERE c.onum = o.onum
+				WHERE c.onum = #{oNum, jdbcType=NUMERIC}
 				AND c.regid = #{regId, jdbcType=VARCHAR}
 			]]>
 	</select>
@@ -264,17 +267,26 @@
 			    REGID
 			) VALUES (
 			    #{oNum, jdbcType=NUMERIC},
-			    1,
+			    #{cartCnt, jdbcType=NUMERIC},
 			    #{regId, jdbcType=VARCHAR}
 			)
 	</insert>
 	
 	<!-- 상품 삭제 -->
-	<delete id="do_delete" parameterType="Cart">
+<!--   	<delete id="do_delete" parameterType="map">
+  		DELETE FROM CART
+  		WHERE 
+		<foreach collection="list" item="cartNum" index="index" open="(" separator="," close=")">
+				cartNum =  #{cartNum}
+		</foreach>
+	</delete> -->
+	
+   	<delete id="do_delete" parameterType="Cart" >
 		<![CDATA[
 			DELETE FROM CART
 			WHERE cartNum = #{cartNum, jdbcType=NUMERIC}
+			AND regId = #{regId, jdbcType=VARCHAR}
 		]]>
-	</delete>
+	</delete>  
 
 </mapper>
