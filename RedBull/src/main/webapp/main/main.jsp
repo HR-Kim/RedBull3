@@ -15,12 +15,24 @@
 	    <div class="banner_inner d-flex align-items-center">
 	      <div class="container">
 	        <div class="banner_content row">
-	          <div class="col-lg-12">
-	            <p class="sub text-uppercase">핫세일 상품</p>
-	            <h3><span>매일</span> 자정 <br />새로운 <span>특가상품</span></h3>
-	            <h4>망설이면 품절! 집순이쇼핑몰 특별가</h4>
-	            <a class="main_btn mt-40" href="${context}/product/get_hotSaleList.do">핫세일 상품 보기</a>
-	          </div>
+      	      <c:choose>
+       	  		<c:when test="${locale == 'en' }"> <!-- 다국어(영어): 로고 -->
+       	  		  <div class="col-lg-12">
+		            <p class="sub text-uppercase">Promotional items</p>
+		            <h3><span>Daily</span> Hot<span> Sale </span></h3>
+		            <h4>Don't miss it!</h4>
+		            <a class="main_btn mt-40" href="${context}/product/get_hotSaleList.do">Check Out</a>
+		          </div>
+		        </c:when>
+		        <c:otherwise> <!-- 다국어(영어): 로고 -->
+				  <div class="col-lg-12">
+		            <p class="sub text-uppercase">핫세일 상품</p>
+		            <h3><span>매일</span> 자정 <br />새로운 <span>특가상품</span></h3>
+		            <h4>망설이면 품절! 집순이쇼핑몰 특별가</h4>
+		            <a class="main_btn mt-40" href="${context}/product/get_hotSaleList.do">핫세일 상품 보기</a>
+		          </div>
+		        </c:otherwise>
+		      </c:choose>
 	        </div>
 	      </div>
 	    </div>
