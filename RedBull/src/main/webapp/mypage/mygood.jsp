@@ -133,8 +133,8 @@
           	}
           
           	$("#doGood").on("click",function(){
-          		alert("doGood()");
-          		doCart();
+          		//alert("doGood()");
+          		doGood();
           	});
           
 	    	$(document).ready(function(){
