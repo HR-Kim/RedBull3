@@ -158,7 +158,26 @@
 							</div>
 						</aside>
 					</div>
-					
+					<div class="left_sidebar_area">
+						<aside class="left_widgets p_filter_widgets">
+							<div class="l_w_title">
+								<h3>Categories</h3>
+							</div>
+							<div class="widgets_inner">
+								<ul class="list">
+									<li>
+										<a href="${context}/product/get_categoryList.do?c=10">가구</a>
+									</li>
+									<li>
+										<a href="${context}/product/get_categoryList.do?c=20"">침구</a>
+									</li>
+									<li>
+										<a href="${context}/product/get_categoryList.do?c=30"">생활용품</a>
+									</li>
+								</ul>
+							</div>
+						</aside>
+					</div>
 				</div>
 				<!--================Left Area =================-->
 			</div>
