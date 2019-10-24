@@ -53,19 +53,34 @@
 	            <div class="float-right">
 	              <ul class="right_side">
 					<c:choose>
-	                  	<c:when test="${(user != null) && (user.lvl == 'MANAGER') }"> <!-- 세션 값이 있고, 관리자일 경우 -->
+	                  	<c:when test="${(user != null) && (user.lvl == 'MANAGER') && (locale == 'ko')}"> <!-- (다국어:한국어)세션 값이 있고, 관리자일 경우 -->
 			                <li>
 			                  <a href="${context}/product/do_product_mng.do">
-			                                   상품 등록
-			                  </a>
+                              	<spring:message code="message.header.register_prod" />
+			                  </a> <!-- 다국어: 상품 등록 -->
 			                </li>
 			                <li class="nav-item">
-		                    	<a>${user.uname}님 환영합니다.</a>
+		                    	<a>${user.uname}님 환영합니다!</a>
 		                  	</li>
 	                	</c:when>
-	                	<c:when test="${(user != null) && (user.lvl != 'MANAGER') }"> <!-- 세션 값이 있고, 일반 사용자일 경우 -->
+	                	<c:when test="${(user != null) && (user.lvl != 'MANAGER') && (locale == 'ko')}"> <!-- (다국어:한국어)세션 값이 있고, 일반 사용자일 경우 -->
 			                <li class="nav-item">
-		                    	${user.uname}님 환영합니다.
+		                    	${user.uname}님 환영합니다!
+		                  	</li>
+	                	</c:when>
+	                	<c:when test="${(user != null) && (user.lvl == 'MANAGER') && (locale == 'en')}"> <!-- (다국어:영어)세션 값이 있고, 관리자일 경우 -->
+			                <li>
+			                  <a href="${context}/product/do_product_mng.do">
+                              	<spring:message code="message.header.register_prod" />
+			                  </a> <!-- 다국어: 상품 등록 -->
+			                </li>
+			                <li class="nav-item">
+		                    	<a>Welcome ${user.uname}!</a>
+		                  	</li>
+	                	</c:when>
+	                	<c:when test="${(user != null) && (user.lvl != 'MANAGER') && (locale == 'en')}"> <!-- (다국어:영어)세션 값이 있고, 일반 사용자일 경우 -->
+			                <li class="nav-item">
+		                    	Welcome ${user.uname}!
 		                  	</li>
 	                	</c:when>
 	                </c:choose>
@@ -78,17 +93,26 @@
 	    
       <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light w-100">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <a class="navbar-brand logo_h" href="${context}/main/main.do">
-            <img src="${context}/resources/img/logo3.png" style="max-width: 100%; height: auto;" />
-          </a>
+		  <!-- Brand and toggle get grouped for better mobile display -->
+	      <c:choose>
+       	  	<c:when test="${locale == 'en' }"> <!-- 다국어(영어): 로고 -->
+       	  	  <a class="navbar-brand logo_h" href="${context}/main/main.do">
+	            <img src="${context}/resources/img/logo_en4.jpg" style="max-width: 100%; height: auto;" />
+	          </a>
+          	</c:when>
+          	<c:otherwise> <!-- 다국어(한국어): 로고 -->
+			  <a class="navbar-brand logo_h" href="${context}/main/main.do">
+	            <img src="${context}/resources/img/logo3.png" style="max-width: 100%; height: auto;" />
+	          </a>
+          	</c:otherwise>
+          </c:choose>
           
 <!--           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button> -->
+          </button>
           <span></span>
           
           <!-- Collect the nav links, forms, and other content for toggling -->

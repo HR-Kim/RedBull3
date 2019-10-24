@@ -221,6 +221,7 @@ public class UserController {
 			
 			session.setAttribute("user", outVO);
 			session.setAttribute("rid", outVO.getRid());
+			session.setAttribute("locale", locale);
 			
 //			return "main/main"; // 메인 화면 던지기 
 //			return "redirect:/main/main.jsp"; // sendredirect와 같은 개념
