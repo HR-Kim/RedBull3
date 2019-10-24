@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.redbull.cmn.DTO;
+import kr.co.redbull.pay.service.Pay;
 import kr.co.redbull.pay.service.PayService;
 
 @Service
@@ -31,24 +32,27 @@ public class PayServiceImpl implements PayService {
 		return payDaoImpl.do_save(dto);
 	}
 
-	@Override
-	public List<?> get_address(DTO dto) {
-		
-		return payDaoImpl.get_address(dto);
-	}
-
-	@Override
-	public List<?> get_retrieve(DTO dto) {
-		
-		return payDaoImpl.get_retrieve(dto);
-	}
 
 	@Override
 	public int do_paydetail(DTO dto) {
 		
 		return payDaoImpl.do_paydetail(dto);
 	}
+	
+	
+	@Override
+	public List<?> get_retrieve(DTO dto) {
+		
+		
+		return payDaoImpl.get_retrieve(dto);
+	}
 
+	
+	@Override
+	public List<?> get_address(DTO dto) {
+		
+		return payDaoImpl.get_address(dto);
+	}
 
 
 }

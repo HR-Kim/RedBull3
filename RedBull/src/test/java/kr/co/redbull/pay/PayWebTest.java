@@ -89,13 +89,14 @@ public class PayWebTest {
 	}
 	
 	
-	@Test
+	@Test //안됨
 	public void get_retrieve() throws Exception{
 		MockHttpServletRequestBuilder createMessage = MockMvcRequestBuilders.get("/pay/get_retrieve.do")
 				//.param("pageSize", "10")
 				//.param("pageNum", "1")
-				.param("searchDiv", "10")
-				.param("searchWord", "fnnjdd@naver.com");
+				//.param("searchDiv", "10")
+				//.param("searchWord", "fnnjdd@naver.com");
+				.param("rid", "fnnjdd@naver.com");
 
 	
 		//url 호출 , 결과 return

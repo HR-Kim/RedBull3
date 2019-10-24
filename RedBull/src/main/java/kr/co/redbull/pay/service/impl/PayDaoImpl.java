@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.sun.mail.imap.protocol.Namespaces.Namespace;
 
+import kr.co.redbull.cart.service.Cart;
 import kr.co.redbull.cmn.DTO;
 import kr.co.redbull.cmn.Search;
 import kr.co.redbull.cmn.WorkDiv;
@@ -76,49 +77,11 @@ public class PayDaoImpl implements WorkDiv {
 
 	@Override
 	public DTO get_selectOne(DTO dto) {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 	
-	//기존 배송지 조회
-	public List<?> get_address(DTO dto) {
-		String statement = this.NAMESPACE +".get_address";
-		Search inVO = (Search) dto;
-		LOG.debug("==================================");
-		LOG.debug("1. param: " +inVO);
-		LOG.debug("2. statement: " + statement);
-		LOG.debug("==================================");
-		
-		List<Pay> list = this.sqlSessionTemplate.selectList(statement, inVO);
-		
-		LOG.debug("==================================");
-		LOG.debug("3. list: " + list);
-		LOG.debug("==================================");
-		
-		return list;
-	}
-
-	
-	//주문목록
-	@Override
-	public List<?> get_retrieve(DTO dto) {
-		String statement = this.NAMESPACE +".get_retrieve";
-		Search inVO = (Search) dto;
-		LOG.debug("==================================");
-		LOG.debug("1. param: " +inVO);
-		LOG.debug("2. statement: " + statement);
-		LOG.debug("==================================");
-		
-		List<Pay> list = this.sqlSessionTemplate.selectList(statement, inVO);
-		
-		LOG.debug("==================================");
-		LOG.debug("3. list: " + list);
-		LOG.debug("==================================");
-		
-		return list;
-	}
-
-	
+	//주문 상세 정보 삽입
 	public int do_paydetail(DTO dto) {
 		String statement = this.NAMESPACE+".do_paydetail";
 		Pay pay = (Pay) dto;
@@ -136,6 +99,43 @@ public class PayDaoImpl implements WorkDiv {
 		LOG.debug("================================");
 		
 		return flag;
+	}
+	
+	//주문목록 List
+	@Override
+	public List<?> get_retrieve(DTO dto) {
+		String statement = this.NAMESPACE +".get_retrieve";
+		Search inVO = (Search) dto;
+		LOG.debug("==================================");
+		LOG.debug("1. param: " +inVO);
+		LOG.debug("2. statement: " + statement);
+		LOG.debug("==================================");
+		
+		List<Pay> list = this.sqlSessionTemplate.selectList(statement, inVO);
+		
+		LOG.debug("==================================");
+		LOG.debug("3. list: " + list);
+		LOG.debug("==================================");
+		
+		return list;
+	}
+	
+	//기존 배송지 조회 -추후 삭제
+	public List<?> get_address(DTO dto) {
+		String statement = this.NAMESPACE +".get_address";
+		Search inVO = (Search) dto;
+		LOG.debug("==================================");
+		LOG.debug("1. param: " +inVO);
+		LOG.debug("2. statement: " + statement);
+		LOG.debug("==================================");
+		
+		List<Pay> list = this.sqlSessionTemplate.selectList(statement, inVO);
+		
+		LOG.debug("==================================");
+		LOG.debug("3. list: " + list);
+		LOG.debug("==================================");
+		
+		return list;
 	}
 	
 	@Override

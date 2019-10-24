@@ -7,16 +7,17 @@
 
 <%
 	User user = (User)session.getAttribute("user");
+	out.println("user: " + user);
 %>
 <html lang="ko">
-<style>
+ <style>
 	#updatebtn{
 		color: black;
 	}
-</style>
-
+</style> 
+	<jsp:include page="/main/header.jsp"></jsp:include>
   <body>
-  <jsp:include page="/main/header.jsp"></jsp:include>
+  
     <!--================Header Menu Area =================-->
  
     <!--================Header Menu Area =================-->
@@ -145,6 +146,7 @@
         
       	$("#payBtn").on("click",function(){
       		alert("결제하러!");
+      		location.href = "${context}/pay/get_retrieve.do";
       		
       	});
       	

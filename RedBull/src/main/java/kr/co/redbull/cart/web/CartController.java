@@ -68,8 +68,8 @@ public class CartController {
 		LOG.debug("=1=search="+search);
 		LOG.debug("1==================================");
 		
-//		User user = (User) session.getAttribute("user");
-//		String regId = user.getRid();
+		//User user = (User) session.getAttribute("user");
+		//String regId = user.getRid();
 		
 		
 		//param
@@ -84,6 +84,7 @@ public class CartController {
 		search.setSearchDiv(StringUtil.nvl(search.getSearchDiv()));
 		search.setSearchWord(StringUtil.nvl(search.getSearchWord()));
 		model.addAttribute("vo",search);
+		//search.setSearchWord(regId);
 		
 		LOG.debug("2==================================");
 		LOG.debug("=2=search="+search);

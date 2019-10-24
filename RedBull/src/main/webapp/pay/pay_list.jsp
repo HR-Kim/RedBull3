@@ -1,11 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@page import="kr.co.redbull.user.service.User"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="context" value="${pageContext.request.contextPath }" />
+<%
+	User user = (User)session.getAttribute("user");
+	out.println("user: " + user);
+%>
 <html lang="ko">
   <body>
- 
     <!--================Header Menu Area =================-->
  	<jsp:include page="/main/header.jsp"></jsp:include>
     <!--================Header Menu Area =================-->
@@ -17,7 +22,7 @@
           <div
             class="banner_content d-md-flex justify-content-between align-items-center">
             <div class="mb-3 mb-md-0">
-              <h2>°áÁ¦Ã¢</h2>
+              <h2>ê²°ì œì°½</h2>
             </div>
           </div>
         </div>
@@ -26,201 +31,206 @@
     <!--================End Home Banner Area =================-->
 
     <!--================Checkout Area =================-->
-    <section class="checkout_area section_gap">
-      <div class="container">
+    
+   <%--  <form name="updateForm" id="updateForm" class="user">
+        <input type="hidden" name="work_div" id="work_div"/>
+        	<!--  <form class="user"> -->
+                    <div class="form-group">
+                      <input type="text" value="${rid }" readonly="readonly" name="mod_id" id="mod_id" maxlength="20" class="form-control form-control-user"  aria-describedby="emailHelp" >
+                    </div>
+                    <div class="form-group">
+                      <input type="password" value="${uname }"  name="mod_passwd" id="mod_passwd" size="20" maxlength="20" class="form-control form-control-user" placeholder="ë¹„ë°€ë²ˆí˜¸">
+                    </div>
+                     <div class="form-group">
+                      <input type="password"  name="mod_repasswd" id="mod_repasswd" class="form-control form-control-user" placeholder="ë¹„ë°€ë²ˆí˜¸ í™•ì¸" >
+                    </div>
+                     <div class="form-group">
+                      <input type="text" value="${uname }" name="mod_name" id="mod_name" size="30" maxlength="30" class="form-control form-control-user" aria-describedby="emailHelp" placeholder="ì´ë¦„">
+                    </div>
+                    <div class="form-group">
+                      <input type="email" value="${email }" readonly= "readonly" name="email"  id="email" size="100" maxlength="150" class="form-control form-control-user"  aria-describedby="emailHelp" >
+                    </div>
+                    <div class="form-group">
+                     	ë“±ë¡ì¼ <input type="text" readonly= "readonly" value="${reg_dt }" name="reg_dt" id="reg_dt" size="10" maxlength="10" class="form-control form-control-user"  aria-describedby="emailHelp">
+                    </div>
+                    <div class="form-group">
+                     	 ìˆ˜ì •ì¼<input type="text" readonly= "readonly" value="${mod_dt }" name="mod_dt" id="mod_dt" size="10" maxlength="10"  class="form-control form-control-user"  aria-describedby="emailHelp">
+                    </div>
+                    <hr>
+                    <input type="submit" value="ìˆ˜ì •ì™„ë£Œ"  class="btn btn-primary btn-user btn-block" />
+                    <input type="button" value="ê³„ì •ì‚­ì œ" id="del_btn" class="btn btn-primary btn-user btn-block" />
+       		  	</form> --%>
+     <section class="checkout_area section_gap">
+       <div class="container">
         <div class="billing_details">
           <div class="row">
             <div class="col-lg-8">
-            <!-- ÁÖ¹®ÀÚ Á¶È¸ --> 
-              <h3>ÁÖ¹®ÀÚ</h3>
+            <!-- ì£¼ë¬¸ì ì¡°íšŒ --> 
+              <h3>ì£¼ë¬¸ì</h3>
               <form class="row contact_form" action="#" method="post" novalidate="novalidate">
                 <div class="col-md-12 form-group p_star">
-                  <input type="text"  class="form-control" id="dname" name="dname" />
+             	    ì´ë¦„ <input  type="text" class="form-control" id="user_email" name="compemailany" readonly="readonly" value="${user.uname }" />
                 </div>
                 
                 <div class="col-md-12 form-group p_star">
-                  <input  type="text" class="form-control" id="dphone"  name="dphone" />
+             	        ì´ë©”ì¼ <input  type="text" class="form-control" id="user_email" name="compemailany" readonly="readonly" value="${user.rid }"/>
                 </div>
                 
-				<div class="col-md-12 form-group p_star">
-                  <input  type="text" class="form-control" id="email" name="compemailany"/>
+                <div class="col-md-12 form-group p_star">
+                  	 íœ´ëŒ€ì „í™”<input  type="text" class="form-control" id="user_dphone"  name="dphone" readonly="readonly" value="${user.phone}"/>
+                </div>
                 </div>
                 
+               <!-- ë°°ì†¡ì§€ ì…ë ¥ --> 
+               <div class="col-lg-8">
+               <h3>ë°°ì†¡ì§€</h3>
+              
+                <div class="col-md-12 form-group p_star">
+                  <input type="text"  class="form-control" id="dName" name="dName" placeholder="ì´ë¦„"/>
+                </div>
+                
+                <div class="col-md-12 form-group p_star">
+                  <input  type="text" class="form-control" id="dPhone"  name="dPhone"  placeholder="ì „í™”ë²ˆí˜¸"/>
+                </div>
+                
+<!-- 				<div class="col-md-12 form-group p_star">
+                  <input  type="text" class="form-control" id="email" name="compemailany" placeholder="ì´ë©”ì¼" />
+                </div> -->
+                
 				<div class="col-md-12 form-group p_star">
-                  <input type="text" class="form-control" id="dpostnum" name="compemailany" />
+                  <input type="text" class="form-control" name="dPostNum" id="dPostNum" name="compemailany" placeholder="ìš°í¸ë²ˆí˜¸"/><br/>
+                  <button type="button" style="height:45px; width:130px; font-family: 'Poppins'; font-weight: bold; 
+                   padding: 5px; border: none; border-radius: 5px" onclick="execPostCode();">
+                   <i class="fa fa-search"></i> ìš°í¸ë²ˆí˜¸ ì°¾ê¸°</button>
                 </div>
 				
                 <div class="col-md-12 form-group p_star">
-                  <input type="text" class="form-control"  id="daddr" name="add1"/>
+                  <input type="text" class="form-control"  id="dAddr" name="dAddr" placeholder="ì£¼ì†Œ"/>
+                  <!-- <span  class="placeholder" data-placeholder="ì£¼ì†Œ1" ></span> -->
                 </div>
                 
                 <div class="col-md-12 form-group p_star">
-                  <input type="text" class="form-control" id="ddetaddr"  name="add2" />
+                  <input type="text" class="form-control" id="dDetAddr"  name="dDetAddr" placeholder="ìƒì„¸ì£¼ì†Œ" />
+                 <!--  <span class="placeholder" data-placeholder="ì£¼ì†Œ2" ></span> -->
                 </div>
+
+                <div class="col-md-12 form-group">
+                  <textarea  class="form-control"  name="dMemo"  id="dMemo" rows="1" placeholder="ë°°ì†¡ë©”ëª¨" ></textarea>
                 </div>
-                <!-- °áÁ¦ ¼ö´Ü -->
+              </div>
+                 <!-- ê²°ì œ ìˆ˜ë‹¨ -->
 	             <div class="col-lg-4">
 	              <div class="order_box">
-	                <h2>ÃÖÁ¾ °áÁ¦</h2>
+	                <h2>ìµœì¢… ê²°ì œ</h2>
 	                <ul class="list list_2">
 	                  <li>
-	                    <a href="#">»óÇ° ÃÑ ±İ¾×
-	                      <span>$2160.00</span>
-	                    </a>
-	                  </li>
-	   
-	                  <li>
-	                    <a href="#">Æ÷ÀÎÆ® »ç¿ë
-	                      <span>$2210.00</span>
-	                    </a>
-	                  </li>
-	                  <li>
-	                    <a href="#">ÃÖÁ¾ °áÁ¦ ±İ¾×
-	                      <span>$2210.00</span>
+	                    <a href="#">ìµœì¢… ê²°ì œ ê¸ˆì•¡
+	                      <span><fmt:formatNumber pattern="###,###,###" value="${amount }"/> </span>
 	                    </a>
 	                  </li>
 	                </ul>
 	                <div class="payment_item">
-	                    <h2>°áÁ¦ ¼ö´Ü</h2>
+	                    <h2>ê²°ì œ ìˆ˜ë‹¨</h2>
 	                </div>
 	                <div class="payment_item active">
 	                  <div class="radion_btn">
-	                    <input type="radio" id="f-option6" name="selector" />
-	                    <label for="f-option6">Ä«µå°áÁ¦ </label>
+	                    <input type="radio" name="payMethod" id="payMethod"/>
+	                    <label for="payMethod">ì¹´ë“œê²°ì œ </label>
 	                    <div class="check"></div>
 	                  </div>
-	                   <%-- <img src="${context}/resources/img/product/single-product/card.jpg" alt="" /> --%> 
+	                   <img src="${context}/resources/img/product/single-product/card.jpg" alt="" /> 
 	                </div>
-	                <a class="main_btn" href="#">°áÁ¦ÇÏ±â</a>
+	                <a class="main_btn" type="button" id="payment" >ê²°ì œí•˜ê¸°</a>
 	                </div>
 	              </div>
-              </form>
-                
-               <!-- ¹è¼ÛÁö ÀÔ·Â --> 
-               <div class="col-lg-8">
-               <h3>¹è¼ÛÁö</h3>
-              <form class="row contact_form" action="#" method="post" novalidate="novalidate">
-                <div class="col-md-12 form-group p_star">
-                  <input type="text"  class="form-control" id="dname" name="name" placeholder="ÀÌ¸§"/>
-                </div>
-                
-                <div class="col-md-12 form-group p_star">
-                  <input  type="text" class="form-control" id="dphone"  name="dphone"  placeholder="ÀüÈ­¹øÈ£"/>
-                </div>
-                
-				<div class="col-md-12 form-group p_star">
-                  <input  type="text" class="form-control" id="email" name="compemailany" placeholder="ÀÌ¸ŞÀÏ" />
-                </div>
-                
-				<div class="col-md-12 form-group p_star">
-                  <input type="text" class="form-control" name="dpostnum" id="dpostnum" name="compemailany" placeholder="¿ìÆí¹øÈ£"/><br/>
-                  <button type="button" style="height:45px; width:130px; font-family: 'Poppins'; font-weight: bold; 
-                   padding: 5px; border: none; border-radius: 5px" onclick="execPostCode();">
-                   <i class="fa fa-search"></i> ¿ìÆí¹øÈ£ Ã£±â</button>
-                </div>
-				
-                <div class="col-md-12 form-group p_star">
-                  <input type="text" class="form-control"  id="daddr" name="daddr" placeholder="ÁÖ¼Ò1"/>
-                  <!-- <span  class="placeholder" data-placeholder="ÁÖ¼Ò1" ></span> -->
-                </div>
-                
-                <div class="col-md-12 form-group p_star">
-                  <input type="text" class="form-control" id="ddetaddr"  name="ddetaddr" placeholder="ÁÖ¼Ò2" />
-                 <!--  <span class="placeholder" data-placeholder="ÁÖ¼Ò2" ></span> -->
-                </div>
-
-                <div class="col-md-12 form-group">
-                  <textarea  class="form-control"  name="dmemo"  id="dmemo" rows="1" placeholder="¹è¼Û¸Ş¸ğ" ></textarea>
-                </div>
-              </div>
-             </form>
 			  
-            <%-- <div class="col-lg-4">
-              <div class="order_box">
-                <h2>ÃÖÁ¾ °áÁ¦</h2>
-                <ul class="list list_2">
-                  <li>
-                    <a href="#"
-                      >»óÇ° ÃÑ ±İ¾×
-                      <span>$2160.00</span>
-                    </a>
-                  </li>
-   
-                  <li>
-                    <a href="#"
-                      >Æ÷ÀÎÆ® »ç¿ë
-                      <span>$2210.00</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#"
-                      >ÃÖÁ¾ °áÁ¦ ±İ¾×
-                      <span>$2210.00</span>
-                    </a>
-                  </li>
-                </ul>
-                <div class="payment_item">
-                    <h2>°áÁ¦ ¼ö´Ü</h2>
-                </div>
-                <div class="payment_item active">
-                  <div class="radion_btn">
-                    <input type="radio" id="f-option6" name="selector" />
-                    <label for="f-option6">Ä«µå°áÁ¦ </label>
-                    <div class="check"></div>
-                  </div>
-                   <img src="${context}/resources/img/product/single-product/card.jpg" alt="" /> 
-                </div>
-                </div>
-
-                <a class="main_btn" href="#">°áÁ¦ÇÏ±â</a>
-              </div> --%>
+              </form>
           </div>
         </div>
       </div>
-    </section>
+   <!--  </section>
     <!--================End Checkout Area =================-->
        <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript">
     
-	 // ¿ìÆí¹øÈ£ Á¶È¸
+    $("#payment").on("click",function(){
+    	alert("payment");
+    	
+    	if(confirm("ê²°ì œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?") == false) return;
+    	
+    	$.ajax({
+            type:"POST",
+            url:"${context}/pay/do_save.do",
+            dataType:"html",
+            data:{
+            //"amount":$("#amount").val(),
+            "dName":$("#dName").val(),
+            "dPhone":$("#dPhone").val(),
+            "dPostNum":$("#dPostNum").val(),
+            "dAddr":$("#dAddr").val(),
+            "dDetAddr":$("#dDetAddr").val(),
+            "dMemo":$("#dMemo").val(),
+            "payMethod":$("#payMethod").val(),
+           }, 
+         success: function(data){
+           var jData = JSON.parse(data);
+           if(null != jData && jData.msgId=="1"){
+             alert(jData.msgMsg);
+             location.href="${context}/pay/pay_complete.jsp";
+
+           }else{
+             alert(jData.msgId+"|"+jData.msgMsg);
+           }
+         },
+         complete:function(data){
+          
+         },
+         error:function(xhr,status,error){
+             alert("error:"+error);
+         }
+        }); 
+        //--ajax  
+    	
+    });
+    
+	 // ìš°í¸ë²ˆí˜¸ ì¡°íšŒ
 	    function execPostCode() {
-		 alert("execPostCode");
 	        new daum.Postcode({
 	            oncomplete: function(data) {
-	               // ÆË¾÷¿¡¼­ °Ë»ö°á°ú Ç×¸ñÀ» Å¬¸¯ÇßÀ»¶§ ½ÇÇàÇÒ ÄÚµå¸¦ ÀÛ¼ºÇÏ´Â ºÎºĞ.
+	               // íŒì—…ì—ì„œ ê²€ìƒ‰ê²°ê³¼ í•­ëª©ì„ í´ë¦­í–ˆì„ë•Œ ì‹¤í–‰í•  ì½”ë“œë¥¼ ì‘ì„±í•˜ëŠ” ë¶€ë¶„.
 	
-	               // µµ·Î¸í ÁÖ¼ÒÀÇ ³ëÃâ ±ÔÄ¢¿¡ µû¶ó ÁÖ¼Ò¸¦ Á¶ÇÕÇÑ´Ù.
-	               // ³»·Á¿À´Â º¯¼ö°¡ °ªÀÌ ¾ø´Â °æ¿ì¿£ °ø¹é('')°ªÀ» °¡Áö¹Ç·Î, ÀÌ¸¦ Âü°íÇÏ¿© ºĞ±â ÇÑ´Ù.
-	               var fullRoadAddr = data.roadAddress; // µµ·Î¸í ÁÖ¼Ò º¯¼ö
-	               var extraRoadAddr = ''; // µµ·Î¸í Á¶ÇÕÇü ÁÖ¼Ò º¯¼ö
+	               // ë„ë¡œëª… ì£¼ì†Œì˜ ë…¸ì¶œ ê·œì¹™ì— ë”°ë¼ ì£¼ì†Œë¥¼ ì¡°í•©í•œë‹¤.
+	               // ë‚´ë ¤ì˜¤ëŠ” ë³€ìˆ˜ê°€ ê°’ì´ ì—†ëŠ” ê²½ìš°ì—” ê³µë°±('')ê°’ì„ ê°€ì§€ë¯€ë¡œ, ì´ë¥¼ ì°¸ê³ í•˜ì—¬ ë¶„ê¸° í•œë‹¤.
+	               var fullRoadAddr = data.roadAddress; // ë„ë¡œëª… ì£¼ì†Œ ë³€ìˆ˜
+	               var extraRoadAddr = ''; // ë„ë¡œëª… ì¡°í•©í˜• ì£¼ì†Œ ë³€ìˆ˜
 	
-	               // ¹ıÁ¤µ¿¸íÀÌ ÀÖÀ» °æ¿ì Ãß°¡ÇÑ´Ù. (¹ıÁ¤¸®´Â Á¦¿Ü)
-	               // ¹ıÁ¤µ¿ÀÇ °æ¿ì ¸¶Áö¸· ¹®ÀÚ°¡ "µ¿/·Î/°¡"·Î ³¡³­´Ù.
-	               if(data.bname !== '' && /[µ¿|·Î|°¡]$/g.test(data.bname)){
+	               // ë²•ì •ë™ëª…ì´ ìˆì„ ê²½ìš° ì¶”ê°€í•œë‹¤. (ë²•ì •ë¦¬ëŠ” ì œì™¸)
+	               // ë²•ì •ë™ì˜ ê²½ìš° ë§ˆì§€ë§‰ ë¬¸ìê°€ "ë™/ë¡œ/ê°€"ë¡œ ëë‚œë‹¤.
+	               if(data.bname !== '' && /[ë™|ë¡œ|ê°€]$/g.test(data.bname)){
 	                   extraRoadAddr += data.bname;
 	               }
-	               // °Ç¹°¸íÀÌ ÀÖ°í, °øµ¿ÁÖÅÃÀÏ °æ¿ì Ãß°¡ÇÑ´Ù.
+	               // ê±´ë¬¼ëª…ì´ ìˆê³ , ê³µë™ì£¼íƒì¼ ê²½ìš° ì¶”ê°€í•œë‹¤.
 	               if(data.buildingName !== '' && data.apartment === 'Y'){
 	                  extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
 	               }
-	               // µµ·Î¸í, Áö¹ø Á¶ÇÕÇü ÁÖ¼Ò°¡ ÀÖÀ» °æ¿ì, °ıÈ£±îÁö Ãß°¡ÇÑ ÃÖÁ¾ ¹®ÀÚ¿­À» ¸¸µç´Ù.
+	               // ë„ë¡œëª…, ì§€ë²ˆ ì¡°í•©í˜• ì£¼ì†Œê°€ ìˆì„ ê²½ìš°, ê´„í˜¸ê¹Œì§€ ì¶”ê°€í•œ ìµœì¢… ë¬¸ìì—´ì„ ë§Œë“ ë‹¤.
 	               if(extraRoadAddr !== ''){
 	                   extraRoadAddr = ' (' + extraRoadAddr + ')';
 	               }
-	               // µµ·Î¸í, Áö¹ø ÁÖ¼ÒÀÇ À¯¹«¿¡ µû¶ó ÇØ´ç Á¶ÇÕÇü ÁÖ¼Ò¸¦ Ãß°¡ÇÑ´Ù.
+	               // ë„ë¡œëª…, ì§€ë²ˆ ì£¼ì†Œì˜ ìœ ë¬´ì— ë”°ë¼ í•´ë‹¹ ì¡°í•©í˜• ì£¼ì†Œë¥¼ ì¶”ê°€í•œë‹¤.
 	               if(fullRoadAddr !== ''){
 	                   fullRoadAddr += extraRoadAddr;
 	               }
 	
-	               // ¿ìÆí¹øÈ£¿Í ÁÖ¼Ò Á¤º¸¸¦ ÇØ´ç ÇÊµå¿¡ ³Ö´Â´Ù.
+	               // ìš°í¸ë²ˆí˜¸ì™€ ì£¼ì†Œ ì •ë³´ë¥¼ í•´ë‹¹ í•„ë“œì— ë„£ëŠ”ë‹¤.
 	               console.log(data.zonecode);
 	               console.log(fullRoadAddr);
 	               
 	               
-	               $("[name=dpostnum]").val(data.zonecode);
-	               $("[name=daddr]").val(fullRoadAddr);
+	               $("[name=dPostNum]").val(data.zonecode);
+	               $("[name=dAddr]").val(fullRoadAddr);
 	               
-	               /* document.getElementById('signUpUserPostNo').value = data.zonecode; //5ÀÚ¸® »õ¿ìÆí¹øÈ£ »ç¿ë
+	               /* document.getElementById('signUpUserPostNo').value = data.zonecode; //5ìë¦¬ ìƒˆìš°í¸ë²ˆí˜¸ ì‚¬ìš©
 	               document.getElementById('signUpUserCompanyAddress').value = fullRoadAddr;
 	               document.getElementById('signUpUserCompanyAddressDetail').value = data.jibunAddress; */
 	           }

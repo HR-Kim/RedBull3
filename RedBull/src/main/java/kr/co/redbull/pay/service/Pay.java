@@ -1,13 +1,12 @@
 package kr.co.redbull.pay.service;
 
+import kr.co.redbull.cart.service.Cart;
 import kr.co.redbull.user.service.User;
 
 public class Pay extends User {
 	
-	private int payNum; 		//결제번호
 	private String orderNum; 	//주문번호 20191019random
-	private int total; 			//총 결제금액
-	private int payCnt; 		//결제수량
+	private int amount; 			//총 결제금액
 	private String dName; 		//수령인
 	private int dPostNum; 		//우편번호
 	private String dAddr; 		//주소1
@@ -28,13 +27,11 @@ public class Pay extends User {
 	
 	public Pay() {}
 
-	public Pay(int payNum, String orderNum, int total, int payCnt, String dName, int dPostNum, String dAddr,
-			String dDetAddr, String dPhone, String dMemo, String payMethod, String payId, String payDt) {
+	public Pay(String orderNum, int amount, String dName, int dPostNum, String dAddr, String dDetAddr, String dPhone,
+			String dMemo, String payMethod, String payId, String payDt) {
 		super();
-		this.payNum = payNum;
 		this.orderNum = orderNum;
-		this.total = total;
-		this.payCnt = payCnt;
+		this.amount = amount;
 		this.dName = dName;
 		this.dPostNum = dPostNum;
 		this.dAddr = dAddr;
@@ -46,14 +43,6 @@ public class Pay extends User {
 		this.payDt = payDt;
 	}
 	
-	public int getPayNum() {
-		return payNum;
-	}
-	
-	public void setPayNum(int payNum) {
-		this.payNum = payNum;
-	}
-	
 	public String getOrderNum() {
 		return orderNum;
 	}
@@ -62,20 +51,12 @@ public class Pay extends User {
 		this.orderNum = orderNum;
 	}
 	
-	public int getTotal() {
-		return total;
+	public int getAmount() {
+		return amount;
 	}
 	
-	public void setTotal(int total) {
-		this.total = total;
-	}
-	
-	public int getPayCnt() {
-		return payCnt;
-	}
-	
-	public void setPayCnt(int payCnt) {
-		this.payCnt = payCnt;
+	public void setAmount(int amount) {
+		this.amount = amount;
 	}
 	
 	public String getdName() {
@@ -152,12 +133,12 @@ public class Pay extends User {
 	
 	@Override
 	public String toString() {
-		return "Pay [payNum=" + payNum + ", orderNum=" + orderNum + ", total=" + total + ", payCnt=" + payCnt + ", dName="
-				+ dName + ", dPostNum=" + dPostNum + ", dAddr=" + dAddr + ", dDetAddr=" + dDetAddr + ", dPhone=" + dPhone
-				+ ", dMemo=" + dMemo + ", payMethod=" + payMethod + ", payId=" + payId + ", payDt=" + payDt
-				+ ", toString()=" + super.toString() + "]";
+		return "Pay [orderNum=" + orderNum + ", amount=" + amount + ", dName=" + dName + ", dPostNum=" + dPostNum
+				+ ", dAddr=" + dAddr + ", dDetAddr=" + dDetAddr + ", dPhone=" + dPhone + ", dMemo=" + dMemo + ", payMethod="
+				+ payMethod + ", payId=" + payId + ", payDt=" + payDt + ", toString()=" + super.toString() + "]";
 	}
-		
+
+	
 
 	
 
