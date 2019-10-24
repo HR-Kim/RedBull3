@@ -68,23 +68,28 @@ public class CartController {
 		LOG.debug("=1=search="+search);
 		LOG.debug("1==================================");
 		
-		//User user = (User) session.getAttribute("user");
-		//String regId = user.getRid();
+		User user = (User) session.getAttribute("user");
+		String regId = user.getRid();
 		
 		
 		//param
-		if(search.getPageSize() == 0) {
-			search.setPageSize(10);
-		}
+//		if(search.getPageSize() == 0) {
+//			search.setPageSize(10);
+//		}
+//		
+//		if(search.getPageNum() == 0) {
+//			search.setPageNum(1);
+//		}
 		
-		if(search.getPageNum() == 0) {
-			search.setPageNum(1);
+		if(null==search.getSearchDiv() || "".equals(search.getSearchDiv())) {
+			search.setSearchDiv("10");
 		}
+		search.setSearchWord(regId);
 		
 		search.setSearchDiv(StringUtil.nvl(search.getSearchDiv()));
 		search.setSearchWord(StringUtil.nvl(search.getSearchWord()));
 		model.addAttribute("vo",search);
-		//search.setSearchWord(regId);
+		
 		
 		LOG.debug("2==================================");
 		LOG.debug("=2=search="+search);

@@ -15,6 +15,7 @@ import kr.co.redbull.cmn.DTO;
 import kr.co.redbull.cmn.Search;
 import kr.co.redbull.cmn.WorkDiv;
 import kr.co.redbull.pay.service.Pay;
+import kr.co.redbull.pay.service.PayDetail;
 
 @Repository
 public class PayDaoImpl implements WorkDiv {
@@ -36,7 +37,7 @@ public class PayDaoImpl implements WorkDiv {
 	@Override
 	public int do_delete(DTO dto) {
 		String statement = this.NAMESPACE+".do_delete";
-		Pay pay = (Pay) dto;
+		PayDetail pay = (PayDetail) dto;
 		LOG.debug("================================");
 		LOG.debug("1. statement: " + statement);
 		LOG.debug("================================");
@@ -77,14 +78,13 @@ public class PayDaoImpl implements WorkDiv {
 
 	@Override
 	public DTO get_selectOne(DTO dto) {
-
 		return null;
 	}
 	
 	//주문 상세 정보 삽입
 	public int do_paydetail(DTO dto) {
 		String statement = this.NAMESPACE+".do_paydetail";
-		Pay pay = (Pay) dto;
+		PayDetail pay = (PayDetail) dto;
 		LOG.debug("================================");
 		LOG.debug("1. statement: " + statement);
 		LOG.debug("================================");
@@ -105,24 +105,6 @@ public class PayDaoImpl implements WorkDiv {
 	@Override
 	public List<?> get_retrieve(DTO dto) {
 		String statement = this.NAMESPACE +".get_retrieve";
-		Search inVO = (Search) dto;
-		LOG.debug("==================================");
-		LOG.debug("1. param: " +inVO);
-		LOG.debug("2. statement: " + statement);
-		LOG.debug("==================================");
-		
-		List<Pay> list = this.sqlSessionTemplate.selectList(statement, inVO);
-		
-		LOG.debug("==================================");
-		LOG.debug("3. list: " + list);
-		LOG.debug("==================================");
-		
-		return list;
-	}
-	
-	//기존 배송지 조회 -추후 삭제
-	public List<?> get_address(DTO dto) {
-		String statement = this.NAMESPACE +".get_address";
 		Search inVO = (Search) dto;
 		LOG.debug("==================================");
 		LOG.debug("1. param: " +inVO);

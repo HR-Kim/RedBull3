@@ -19,7 +19,4 @@ public interface PayService {
 	/** 주문자 목록 List*/
 	public List<?> get_retrieve(DTO dto);
 	
-	/** 기존 배송지 조회*/
-	public List<?> get_address(DTO dto);
-	
 }

@@ -4,15 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.redbull.pay">
 
-<!-- 	 <sql id="payColumns">
-               r.rid,
-               r.uname,
-               r.postnum,
-               r.address,
-               r.detadd,
-               r.phone
- 	 </sql> -->
- 	 
   	 <sql id="baseCondition">
  	 		<choose>
  	 		 	<when test="'10' == searchDiv">
@@ -38,7 +29,7 @@
  	 
  	 
  	 <!-- 주문상세 입력 -->
- 	 <insert id="do_paydetail">
+ 	 <insert id="do_paydetail" parameterType="PayDetail">
  	 	<![CDATA[
 		INSERT INTO PAYDETAIL(
 			orderNum,
@@ -51,7 +42,7 @@
 		]]>
 	</insert>
  	 
- 	    <!-- 결제창: 주문자 조회 -->
+ 	    <!-- 결제창: 총 금액 조회 -->
   	 <select id="get_retrieve" parameterType="Search" resultType="Pay">
 			    SELECT sum(afterPrice) as amount
                         from(
@@ -176,11 +167,11 @@
 	</insert> 
 
 	<!-- 결제시 장바구니 비우기 -->
-<!-- 	<delete id="do_delete" parameterType="Cart">
+ 	<delete id="do_delete" parameterType="PayDetail">
 		<![CDATA[
 			DELETE FROM CART
-			WHERE regid = #{regId, jdbcType=VARCHAR}
+			WHERE regId = #{regId, jdbcType=VARCHAR}
 		]]>
-	</delete> -->
+	</delete>
 
 </mapper>

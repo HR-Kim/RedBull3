@@ -3,7 +3,7 @@ package kr.co.redbull.pay.service;
 import kr.co.redbull.cart.service.Cart;
 import kr.co.redbull.user.service.User;
 
-public class Pay extends User {
+public class Pay extends Cart {
 	
 	private String orderNum; 	//주문번호 20191019random
 	private int amount; 			//총 결제금액

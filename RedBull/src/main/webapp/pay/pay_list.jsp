@@ -8,6 +8,7 @@
 <%
 	User user = (User)session.getAttribute("user");
 	out.println("user: " + user);
+	
 %>
 <html lang="ko">
   <body>
@@ -64,10 +65,10 @@
        <div class="container">
         <div class="billing_details">
           <div class="row">
+          <form class="row contact_form" action="#" method="post" novalidate="novalidate">
             <div class="col-lg-8">
             <!-- 주문자 조회 --> 
               <h3>주문자</h3>
-              <form class="row contact_form" action="#" method="post" novalidate="novalidate">
                 <div class="col-md-12 form-group p_star">
              	    이름 <input  type="text" class="form-control" id="user_email" name="compemailany" readonly="readonly" value="${user.uname }" />
                 </div>
@@ -92,10 +93,6 @@
                 <div class="col-md-12 form-group p_star">
                   <input  type="text" class="form-control" id="dPhone"  name="dPhone"  placeholder="전화번호"/>
                 </div>
-                
-<!-- 				<div class="col-md-12 form-group p_star">
-                  <input  type="text" class="form-control" id="email" name="compemailany" placeholder="이메일" />
-                </div> -->
                 
 				<div class="col-md-12 form-group p_star">
                   <input type="text" class="form-control" name="dPostNum" id="dPostNum" name="compemailany" placeholder="우편번호"/><br/>
@@ -124,9 +121,8 @@
 	                <h2>최종 결제</h2>
 	                <ul class="list list_2">
 	                  <li>
-	                    <a href="#">최종 결제 금액
-	                      <span><fmt:formatNumber pattern="###,###,###" value="${amount }"/> </span>
-	                    </a>
+	                    	최종 결제 금액
+	                      <span>1111 </span>
 	                  </li>
 	                </ul>
 	                <div class="payment_item">
@@ -134,7 +130,7 @@
 	                </div>
 	                <div class="payment_item active">
 	                  <div class="radion_btn">
-	                    <input type="radio" name="payMethod" id="payMethod"/>
+	                    <input type="radio" name="payMethod" id="payMethod" value="카드"/>
 	                    <label for="payMethod">카드결제 </label>
 	                    <div class="check"></div>
 	                  </div>
@@ -143,20 +139,23 @@
 	                <a class="main_btn" type="button" id="payment" >결제하기</a>
 	                </div>
 	              </div>
-			  
               </form>
           </div>
         </div>
       </div>
    <!--  </section>
     <!--================End Checkout Area =================-->
+    <!-- 우편번호 API -->
        <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+       
+    <!-- 결제시스템(아임포트) API -->
+       <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+	   <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.2.js"></script>
+	   
     <script type="text/javascript">
     
     $("#payment").on("click",function(){
-    	alert("payment");
-    	
-    	if(confirm("결제 하시겠습니까?") == false) return;
+		if(confirm("결제 하시겠습니까?") == false) return;
     	
     	$.ajax({
             type:"POST",
@@ -173,14 +172,8 @@
             "payMethod":$("#payMethod").val(),
            }, 
          success: function(data){
-           var jData = JSON.parse(data);
-           if(null != jData && jData.msgId=="1"){
-             alert(jData.msgMsg);
-             location.href="${context}/pay/pay_complete.jsp";
 
-           }else{
-             alert(jData.msgId+"|"+jData.msgMsg);
-           }
+        	 location.href="${context}/pay/pay_complete.jsp";
          },
          complete:function(data){
           
@@ -189,9 +182,131 @@
              alert("error:"+error);
          }
         }); 
-        //--ajax  
+        //--ajax 
     	
+    	
+    }
+    
+    $("#payment11111").on("click",function(){
+    	
+    	//alert("결제 시도!");
+		var IMP = window.IMP; // 생략가능
+		IMP.init('imp91347096');
+		// 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+		// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
+		IMP.request_pay({
+		pg: 'inicis', // version 1.1.0부터 지원.
+		/*
+		'kakao':카카오페이,
+		html5_inicis':이니시스(웹표준결제)
+		'nice':나이스페이
+		'jtnet':제이티넷
+		'uplus':LG유플러스
+		'danal':다날
+		'payco':페이코
+		'syrup':시럽페이
+		'paypal':페이팔
+		*/
+		pay_method: 'card',
+		/*
+		'samsung':삼성페이,
+		'card':신용카드,
+		'trans':실시간계좌이체,
+		'vbank':가상계좌,
+		'phone':휴대폰소액결제
+		*/
+		merchant_uid: 'merchant_' + new Date().getTime(),
+		/*
+		merchant_uid에 경우
+		https://docs.iamport.kr/implementation/payment
+		위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
+		참고하세요.
+		나중에 포스팅 해볼게요.
+		*/
+		name: '주문명:결제테스트',
+		//결제창에서 보여질 이름
+		amount: 1000,
+		//가격
+		buyer_email: 'iamport@siot.do',
+		buyer_name: '구매자이름',
+		buyer_tel: '010-1234-5678',
+		buyer_addr: '서울특별시 강남구 삼성동',
+		buyer_postcode: '123-456'
+		/*
+		모바일 결제시,
+		결제가 끝나고 랜딩되는 URL을 지정
+		(카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐)
+		*/
+		}, function (rsp) {
+		console.log(rsp);
+		if (rsp.success) {
+			jQuery.ajax({
+	    		url: "/payments/complete", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
+	    		type: 'POST',
+	    		dataType: 'json',
+	    		data: {
+		    		imp_uid : rsp.imp_uid
+		    		//기타 필요한 데이터가 있으면 추가 전달
+	    		}
+	    	}).done(function(data) {
+	    		if ( everythings_fine ) {
+					var msg = '결제가 완료되었습니다.';
+					msg += '고유ID : ' + rsp.imp_uid;
+					msg += '상점 거래ID : ' + rsp.merchant_uid;
+					msg += '결제 금액 : ' + rsp.paid_amount;
+					msg += '카드 승인번호 : ' + rsp.apply_num;
+					
+					alert(msg);
+					dosave();
+	    		} else {
+	    			//[3] 아직 제대로 결제가 되지 않았습니다.
+	    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+	    			}
+	    	});
+
+		} else {
+			var msg = '결제에 실패하였습니다.';
+			//msg += '에러내용 : ' + rsp.error_msg;
+			alert(msg);
+			}
+		
+		});
+		
     });
+    
+    function dosave(){
+    	//alert("payment");
+    	
+    	//if(confirm("결제 하시겠습니까?") == false) return;
+    	
+    	$.ajax({
+            type:"POST",
+            url:"${context}/pay/do_save.do",
+            dataType:"html",
+            data:{
+            //"amount":$("#amount").val(),
+            "dName":$("#dName").val(),
+            "dPhone":$("#dPhone").val(),
+            "dPostNum":$("#dPostNum").val(),
+            "dAddr":$("#dAddr").val(),
+            "dDetAddr":$("#dDetAddr").val(),
+            "dMemo":$("#dMemo").val(),
+            "payMethod":$("#payMethod").val(),
+           }, 
+         success: function(data){
+
+        	 location.href="${context}/pay/pay_complete.jsp";
+         },
+         complete:function(data){
+          
+         },
+         error:function(xhr,status,error){
+             alert("error:"+error);
+         }
+        }); 
+        //--ajax 
+    	
+    };
     
 	 // 우편번호 조회
 	    function execPostCode() {
