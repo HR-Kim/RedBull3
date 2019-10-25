@@ -7,16 +7,17 @@
 
 <%
 	User user = (User)session.getAttribute("user");
+	out.println("user: " + user);
 %>
 <html lang="ko">
-<style>
+ <style>
 	#updatebtn{
 		color: black;
 	}
-</style>
-
+</style> 
+	<jsp:include page="/main/header.jsp"></jsp:include>
   <body>
-  <jsp:include page="/main/header.jsp"></jsp:include>
+  
     <!--================Header Menu Area =================-->
  
     <!--================Header Menu Area =================-->
@@ -52,8 +53,8 @@
 			         <th class="text-center col-md-1 col-xs-1">최종 가격</th>
                 </tr>
               </thead>
+
               <tbody>
-             
                <c:choose>
 	        	<c:when test="${list.size()>0 }">
 	        		<c:set var="sum" value="0"></c:set>
@@ -85,7 +86,7 @@
 	                  
 				       <td class="text-left">
 				       <input type="text"  id="cartCnt" name="cartCnt" value="${cart.cartCnt}" size='2' readonly="readonly">
-				        <a href="#" onclick="javascript_:change(1);">▲</a><a href="#" onclick="javascript_:change(-1);">▼</a>
+				        <a href="#" onclick="change(1);">▲</a><a href="#" onclick="change(-1);">▼</a>
 				        <button type="button" class="btn btn-success btn-sm" id="updatebtn" >변경</button>
 				        <!--버튼을 이미지로 바꾸세요 <img src='이미지경로' onclick='javascript_:change(1);'>-->
 				       </td>
@@ -145,6 +146,7 @@
         
       	$("#payBtn").on("click",function(){
       		alert("결제하러!");
+      		location.href = "${context}/pay/get_retrieve.do";
       		
       	});
       	

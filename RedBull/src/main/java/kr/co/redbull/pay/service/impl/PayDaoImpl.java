@@ -10,10 +10,12 @@ import org.springframework.stereotype.Repository;
 
 import com.sun.mail.imap.protocol.Namespaces.Namespace;
 
+import kr.co.redbull.cart.service.Cart;
 import kr.co.redbull.cmn.DTO;
 import kr.co.redbull.cmn.Search;
 import kr.co.redbull.cmn.WorkDiv;
 import kr.co.redbull.pay.service.Pay;
+import kr.co.redbull.pay.service.PayDetail;
 
 @Repository
 public class PayDaoImpl implements WorkDiv {
@@ -35,7 +37,7 @@ public class PayDaoImpl implements WorkDiv {
 	@Override
 	public int do_delete(DTO dto) {
 		String statement = this.NAMESPACE+".do_delete";
-		Pay pay = (Pay) dto;
+		PayDetail pay = (PayDetail) dto;
 		LOG.debug("================================");
 		LOG.debug("1. statement: " + statement);
 		LOG.debug("================================");
@@ -76,30 +78,30 @@ public class PayDaoImpl implements WorkDiv {
 
 	@Override
 	public DTO get_selectOne(DTO dto) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
-	//기존 배송지 조회
-	public List<?> get_address(DTO dto) {
-		String statement = this.NAMESPACE +".get_address";
-		Search inVO = (Search) dto;
-		LOG.debug("==================================");
-		LOG.debug("1. param: " +inVO);
-		LOG.debug("2. statement: " + statement);
-		LOG.debug("==================================");
+	//주문 상세 정보 삽입
+	public int do_paydetail(DTO dto) {
+		String statement = this.NAMESPACE+".do_paydetail";
+		PayDetail pay = (PayDetail) dto;
+		LOG.debug("================================");
+		LOG.debug("1. statement: " + statement);
+		LOG.debug("================================");
 		
-		List<Pay> list = this.sqlSessionTemplate.selectList(statement, inVO);
+		LOG.debug("================================");
+		LOG.debug("2. param: " + pay);
+		LOG.debug("================================");
 		
-		LOG.debug("==================================");
-		LOG.debug("3. list: " + list);
-		LOG.debug("==================================");
+		int flag = this.sqlSessionTemplate.insert(statement, pay);
+		LOG.debug("================================");
+		LOG.debug("3. flag: " + flag);
+		LOG.debug("================================");
 		
-		return list;
+		return flag;
 	}
-
 	
-	//주문목록
+	//주문목록 List
 	@Override
 	public List<?> get_retrieve(DTO dto) {
 		String statement = this.NAMESPACE +".get_retrieve";
@@ -116,26 +118,6 @@ public class PayDaoImpl implements WorkDiv {
 		LOG.debug("==================================");
 		
 		return list;
-	}
-
-	
-	public int do_paydetail(DTO dto) {
-		String statement = this.NAMESPACE+".do_paydetail";
-		Pay pay = (Pay) dto;
-		LOG.debug("================================");
-		LOG.debug("1. statement: " + statement);
-		LOG.debug("================================");
-		
-		LOG.debug("================================");
-		LOG.debug("2. param: " + pay);
-		LOG.debug("================================");
-		
-		int flag = this.sqlSessionTemplate.insert(statement, pay);
-		LOG.debug("================================");
-		LOG.debug("3. flag: " + flag);
-		LOG.debug("================================");
-		
-		return flag;
 	}
 	
 	@Override

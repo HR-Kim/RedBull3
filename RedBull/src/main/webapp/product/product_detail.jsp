@@ -122,6 +122,7 @@
 					</div>
 					<div class="card_area">
 						<a class="main_btn" id="cart">장바구니</a>
+						<a class="main_btn" id="pay">결제하기</a>
 						<a class="main_btn" href="${context}/product/get_retrieve.do">뒤로</a>
 						<a class="icon_btn" href="#">
 							<i class="lnr lnr lnr-heart"></i>
@@ -448,6 +449,43 @@
 
 	<script type="text/javascript">
 	
+	//결제
+	$("#pay").on("click",function(){
+		//alert("결제 바로가기");
+
+		var optSelect = $("#optSelect").val();
+		var sst = $("#sst").val();
+		
+		if(confirm("결제창으로 이동합니다.") == false) return;
+		
+		console.log("optSelect: "+ optSelect);
+		console.log("cartCnt: "+ sst); 
+		
+ 		$.ajax({
+               type:"POST",
+               url:"${context}/cart/do_save.do",
+               dataType:"html",
+               data:{
+            	   "oNum" : optSelect,
+            	   "cartCnt" : sst
+              }, 
+            success: function(result){
+
+            	if(result == 1){
+            		alert("결제바로가기");
+            		location.href="${context}/pay/get_retrieve.do";
+            	}else{
+            		alert("회원만 사용할 수 있습니다");
+            	}
+
+            },
+            error:function(){
+                alert("결제창 이동 실패");
+            }
+           }); 
+           //--ajax  
+	});
+	
 		//장바구니
 		$("#cart").on("click",function(){
 			//alert("장바구니 담으러!");
@@ -472,30 +510,19 @@
 	
 	            	if(result == 1){
 	            		alert("카트 담기 성공");
-	            		//$("#sst").val("1");
 	            		location.href="${context}/cart/get_retrieve.do";
 	            	}else{
 	            		alert("회원만 사용할 수 있습니다");
-	            		//$("#sst").val("1");
 	            	}
-/* 	              var jData = JSON.parse(data);
-	              if(null != jData && jData.msgId=="1"){
-	                alert(jData.msgMsg);
-	                location.href="${context}/cart/get_retrieve.do";
 
-	              }else{
-	                alert(jData.msgId+"|"+jData.msgMsg);
-	              } */ 
 	            },
-/* 	            complete:function(data){
-	             
-	            }, */
 	            error:function(){
 	                alert("카트 담기 실패");
 	            }
 	           }); 
 	           //--ajax  
 		});
+		
 		//홈 탭
 		function goHome(){
 			//alert("goHome");

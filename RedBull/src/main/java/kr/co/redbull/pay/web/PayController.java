@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.google.gson.Gson;
 
+import kr.co.redbull.cart.service.Cart;
 import kr.co.redbull.cmn.Message;
 import kr.co.redbull.cmn.Search;
 import kr.co.redbull.cmn.StringUtil;
@@ -38,43 +39,53 @@ public class PayController {
 	private final String VIEW_LIST_NM = "pay/pay_list"; //결제 화면
 	private final String VIEW_COMPLETE = "pay/pay_complete";
 
-	/** 장바구니 -> 주문목록  / 바로 주문목록 */
+	/** 장바구니 -> 주문목록  / 바로 주문목록  /결제 총 금액 가져오기!!!! */
 	@RequestMapping(value="pay/get_retrieve.do", method=RequestMethod.GET)
-	public String get_retrieve(HttpSession session,Pay pay, HttpServletRequest req, Search search, Model model) {
+	public String get_retrieve(HttpSession session, Pay pay, Model model, Search search) {
 		
 		LOG.debug("=================================");
 		LOG.debug("=search=" + search);
 		LOG.debug("=================================");
 		
-		User user = (User) session.getAttribute("user");
-		String regId = user.getRid();
+		User ruser = (User) session.getAttribute("user");
+		String rid = ruser.getRid();
 		
-//		search.setSearchDiv(StringUtil.nvl(search.getSearchDiv()));
-//		search.setSearchWord(StringUtil.nvl(search.getSearchWord()));
-//		model.addAttribute("vo",search);
-//		
-//		LOG.debug("2==================================");
-//		LOG.debug("=2=search="+search);
-//		LOG.debug("2==================================");
-		
-		pay.setPayId(regId);
-		LOG.debug("2==================================");
-		LOG.debug("=2=pay="+pay);
-		LOG.debug("2==================================");
-	
-		List<Pay> payList = (List<Pay>) this.payService.get_retrieve(pay);
-		
-		LOG.debug("1==================================");
-		LOG.debug("=1=payList="+payList);
-		LOG.debug("1==================================");
-		//model.addAttribute("payList",regId);
-		model.addAttribute("payList",payList);
-		
-		int totalCnt = 0;
-		if(null != payList && payList.size()>0) {
-			totalCnt = payList.get(0).getTotalCnt();
+		if(null==search.getSearchDiv() || "".equals(search.getSearchDiv())) {
+			search.setSearchDiv("10");
 		}
-		model.addAttribute("totalCnt", totalCnt);
+		
+		search.setSearchWord(rid);
+		search.setSearchDiv(StringUtil.nvl(search.getSearchDiv()));
+		search.setSearchWord(StringUtil.nvl(search.getSearchWord()));
+		model.addAttribute("vo",search);
+		
+		LOG.debug("2==================================");
+		LOG.debug("=2=search="+search);
+		LOG.debug("2==================================");
+		
+		//user.setRid(rid);
+		//pay.setPayId(rid);
+		
+		
+		//List<Pay> list = (List<Pay>) this.payService.get_retrieve(pay);
+		//Pay outVO = (Pay) this.payService.get_selectOne(pay);
+		//User outVO = (User) this.payService.get_selectOne(user);
+		//model.addAttribute("vo", outVO);
+		
+//		LOG.debug("2==================================");
+//		LOG.debug("=2=list="+list);
+//		LOG.debug("2==================================");
+//		model.addAttribute("list",list);
+	
+		List<Pay> payList = (List<Pay>) this.payService.get_retrieve(search);
+		model.addAttribute("payList", payList);
+		
+//		int totalCnt = 0;
+//		if(null != list && list.size()>0) {
+//			totalCnt = list.get(0).getTotalCnt();
+//		}
+//		model.addAttribute("totalCnt", totalCnt);
+		
 		LOG.debug("1==================================");
 		LOG.debug("=1=VIEW_LIST_NM="+VIEW_LIST_NM);
 		LOG.debug("1==================================");
@@ -82,11 +93,11 @@ public class PayController {
 		return VIEW_LIST_NM; //결제 화면
 		
 	}
-	
-	
+
+
 	/**최종 결제  저장*/
 	@RequestMapping(value="pay/do_save.do", method=RequestMethod.POST)
-	public String do_save(HttpSession session,Pay pay, PayDetail payDetail, Model model){
+	public String do_save(HttpSession session,Pay pay, PayDetail payDetail){
 		
 		LOG.debug("1==================================");
 		LOG.debug("=1=pay="+pay);
@@ -113,40 +124,21 @@ public class PayController {
 		
 		payService.do_save(pay);
 		
+		//cart.setRegId(payId);
+		
 		//주문상세 테이블 저장
 		payDetail.setOrderNum(orderNum);
+		payDetail.setRegId(payId);
+		LOG.debug("1==================================");
+		LOG.debug("=1=payDetail="+payDetail);
+		LOG.debug("1==================================");
 		
-		payService.do_paydetail(pay);
+		payService.do_paydetail(payDetail);
 		
 		//장바구니 비우기
-		payService.do_delete(pay);
+		payService.do_delete(payDetail);
 		
-		
-//		//목록조회
-//		List<Pay> list = (List<Pay>) this.payService.get_retrieve(pay);
-//		LOG.debug("1==================================");
-//		LOG.debug("=1=list="+list);
-//		LOG.debug("1==================================");
-//		model.addAttribute("list",list);
-//		
-//		//총 건수
-//		int totalCnt = 0;
-//		if(null != list && list.size()>0) {
-//			totalCnt = list.get(0).getTotalCnt();
-//		}
-//		model.addAttribute("totalCnt", totalCnt);
-		
-//		LOG.debug("1==================================");
-//		LOG.debug("=1=VIEW_COMPLETE="+VIEW_COMPLETE);
-//		LOG.debug("1==================================");
-		
-//		return VIEW_COMPLETE;
-		Message message = new Message();
-		Gson gson = new Gson();
-		String gsonStr = gson.toJson(message);
-		
-		
-		return gsonStr;
+		return VIEW_COMPLETE;
 	}
 	
 }

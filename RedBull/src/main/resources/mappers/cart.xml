@@ -143,84 +143,45 @@
  	 
  	  <!-- Cart 조회 -->
  	 <select id="get_cartList" parameterType="Search" resultType="Cart">
- 	 
- 	    SELECT T1.*, T2.*
-		    FROM
-		    (
-		        SELECT
-		        	B.refNum,
-		            B.rnum,
-		            B.saveFileNm,
-		            B.cartcnt,
-		            B.cartNum,
-		            B.bPrice,
-		            B.pNum,
-		            B.oNum,
-		            B.oPrice,
-		            B.oName,
-		            B.pName,
-		            B.discount,
-		            B.dPrice,
-		            B.afterPrice,
-		            B.regId
-			        FROM(
-				            SELECT ROWNUM AS rnum, A.*
-				            FROM(
-		                    
-			                     SELECT
-			                            i.refnum as refNum,
-										MIN(i.SAVE_FILE_NM) as saveFileNm,
-										c.CARTCNT as cartCnt,
-			                            c.CARTNUM as cartNum,
-			                            p.BPRICE as bPrice,
-			                            p.PNUM as pNum,
-			                            o.ONUM as oNum,
-										o.OPRICE as oPrice,
-										o.ONAME as oName,
-										p.PNAME as pName,
-										p.DISCOUNT as discount,
-										p.DPRICE as dPrice,
-										(p.BPRICE * (1 - p.discount) + o.oprice) * c.cartCnt + p.dprice as afterPrice,
-										c.REGID as regId
-								FROM
-										CART c JOIN OPT o
-										ON c.oNum = o.oNum
-										JOIN IMAGE i
-										ON o.pNum = i.refNum
-										JOIN PRODUCT p
-										ON o.pnum = p.pnum
-			                            <!-- search condition -->
-										<include refid="baseCondition" />
-			                            GROUP BY i.refnum,
-			                                    c.CARTCNT,
-			                                    c.cartnum ,
-			                                    p.bprice,
-			                                    p.pnum,
-			                                    o.oNum,
-			                                    o.OPRICE,
-			                                    o.ONAME,
-			                                    p.pname ,
-			                                    p.discount,
-			                                    p.DPRICE ,
-			                                    p.bprice * (1 - p.discount) + o.oprice + p.dprice,
-			                                    c.REGID
-			                            ORDER BY refnum
-				                    )A
-	                    WHERE rownum <![CDATA[ <= ]]> (#{pageSize} * ( #{pageNum}-1)+ #{pageSize} ) 
-			            )B 
-			            WHERE B.rnum <![CDATA[ >= ]]> (#{pageSize} * (#{pageNum}-1)+1)) T1
-		        CROSS JOIN(
-					SELECT COUNT(*) product_count
-					FROM 
-					CART c JOIN OPT o
-							ON c.oNum = o.oNum
-							JOIN IMAGE i
-							ON o.pNum = i.refNum
-							JOIN PRODUCT p
-							ON o.pnum = p.pnum
-                           <!-- search condition -->
-							<include refid="baseCondition" />
-						)T2
+				
+				 SELECT
+	                            i.refnum as refNum,
+								MIN(i.SAVE_FILE_NM) as saveFileNm,
+								c.CARTCNT as cartCnt,
+	                            c.CARTNUM as cartNum,
+	                            p.BPRICE as bPrice,
+	                            p.PNUM as pNum,
+	                            o.ONUM as oNum,
+								o.OPRICE as oPrice,
+								o.ONAME as oName,
+								p.PNAME as pName,
+								p.DISCOUNT as discount,
+								p.DPRICE as dPrice,
+								(p.BPRICE * (1 - p.discount) + o.oprice) * c.cartCnt + p.dprice as afterPrice,
+								c.REGID as regId
+						FROM
+								CART c JOIN OPT o
+								ON c.oNum = o.oNum
+								JOIN IMAGE i
+								ON o.pNum = i.refNum
+								JOIN PRODUCT p
+								ON o.pnum = p.pnum
+	                            <include refid="baseCondition" />
+	                            GROUP BY i.refnum,
+	                                    c.CARTCNT,
+	                                    c.cartnum ,
+	                                    p.bprice,
+	                                    p.pnum,
+	                                    o.oNum,
+	                                    o.OPRICE,
+	                                    o.ONAME,
+	                                    p.pname ,
+	                                    p.discount,
+	                                    p.DPRICE ,
+	                                    p.bprice * (1 - p.discount) + o.oprice + p.dprice,
+	                                    c.REGID
+	                            ORDER BY refnum
+				
 						
 	</select>
  	 

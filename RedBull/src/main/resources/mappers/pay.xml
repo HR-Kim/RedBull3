@@ -4,19 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.redbull.pay">
 
-<!-- 	 <sql id="payColumns">
-               r.rid,
-               r.uname,
-               r.postnum,
-               r.address,
-               r.detadd,
-               r.phone
- 	 </sql> -->
- 	 
-  	  	 <sql id="baseCondition">
+  	 <sql id="baseCondition">
  	 		<choose>
  	 		 	<when test="'10' == searchDiv">
- 	 				 ON p.payId LIKE '%' || #{searchWord} || '%'
+ 	 				 and c.regid LIKE  '%' || #{searchWord} || '%'
  	 			</when>
  	 			<otherwise></otherwise>
  	 		</choose>
@@ -38,38 +29,38 @@
  	 
  	 
  	 <!-- 주문상세 입력 -->
-<!--  	 <insert id="do_paydetail" parameterType="Cart">
-			INSERT INTO PAYDETAIL (
-			    orderNum,
-			    oNum,
-			    cartCnt
-			) 
-			SELECT #{orderNum}, oNum, cartCnt
-			FROM  CART
-	
-	</insert> -->
+ 	 <insert id="do_paydetail" parameterType="PayDetail">
+ 	 	<![CDATA[
+		INSERT INTO PAYDETAIL(
+			orderNum,
+			oNum,
+			cartCnt)
+		SELECT  
+			#{orderNum, jdbcType=VARCHAR}, onum, cartcnt
+		from cart
+		where regId = #{regId, jdbcType=VARCHAR}
+		]]>
+	</insert>
  	 
- 	    <!-- 결제창: 주문자 조회 -->
- 	 <select id="get_retrieve" resultType="Pay">
-			 	 SELECT
-					    r.rid,
-					    r.uname,
-					    r.postnum,
-					    r.address,
-					    r.detadd,
-					    r.phone,
-					    r.upoint
-				FROM pay p JOIN ruser r
-				ON p.payId = ${payId, jdbcType=VARCHAR}
-				GROUP BY 
-					    r.rid,
-					    r.uname,
-					    r.postnum,
-					    r.address,
-					    r.detadd,
-					    r.phone,
-					    r.upoint
- 	 
+ 	    <!-- 결제창: 총 금액 조회 -->
+  	 <select id="get_retrieve" parameterType="Search" resultType="Pay">
+			    SELECT sum(afterPrice) as amount
+                        from(
+                                SELECT
+                                        
+										(p.BPRICE * (1 - p.discount) + o.oprice) * c.cartcnt + p.dprice as afterPrice,
+										c.REGID as regId
+								FROM
+										CART c JOIN OPT o
+										ON c.oNum = o.oNum
+										JOIN IMAGE i
+										ON o.pNum = i.refNum
+										JOIN PRODUCT p
+										ON o.pnum = p.pnum    
+			                          	<include refid="baseCondition" />
+			                            GROUP BY
+			                                    (p.BPRICE * (1 - p.discount) + o.oprice) * c.cartcnt + p.dprice,
+			                                    c.REGID)
  	 </select>
  	 
  	 
@@ -147,7 +138,7 @@
 
 
 	<!-- 신규 &기존 배송지 작성  -->
-<!-- 	<insert id="do_save" parameterType="Pay">
+ 	<insert id="do_save" parameterType="Pay">
 			INSERT INTO PAY (
 			    orderNum,
 			    amount,
@@ -161,8 +152,8 @@
 			    payId,
 			    payDt
 			) VALUES (
-				#{orderNum, jdbcType=VARCHAR}
-			    #{total, jdbcType=NUMERIC},
+				#{orderNum, jdbcType=VARCHAR},
+			    #{amount, jdbcType=NUMERIC},
 			    #{dName, jdbcType=VARCHAR},
 			    #{dPostNum, jdbcType=NUMERIC},
 			    #{dAddr, jdbcType=VARCHAR},
@@ -173,14 +164,14 @@
 			    #{payId, jdbcType=VARCHAR},
 			    SYSDATE
 			)
-	</insert> -->
+	</insert> 
 
 	<!-- 결제시 장바구니 비우기 -->
-<!-- 	<delete id="do_delete" parameterType="Cart">
+ 	<delete id="do_delete" parameterType="PayDetail">
 		<![CDATA[
 			DELETE FROM CART
-			WHERE regid = #{regId, jdbcType=VARCHAR}
+			WHERE regId = #{regId, jdbcType=VARCHAR}
 		]]>
-	</delete> -->
+	</delete>
 
 </mapper>
