@@ -4,6 +4,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,6 +27,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import kr.co.redbull.cmn.Search;
@@ -44,7 +46,7 @@ public class DaoMyGoodTest {
 	private WebApplicationContext context;
 	
 	@Autowired
-	private MyGoodDaoImpl myGoodDaoImpl;
+	MyGoodDaoImpl myGoodDaoImpl;
 	
 	List<MyGood> list;
 	
@@ -52,62 +54,55 @@ public class DaoMyGoodTest {
 	
 	@Before
 	public void setUp() {
+		LOG.debug("^^^^^^^^^^^^^^^^^^^^^^^");
+		LOG.debug("setUp()");
+		LOG.debug("^^^^^^^^^^^^^^^^^^^^^^^");
 		list = Arrays.asList(
-				new MyGood(0,"140","J06링크_135","J06등록자_135","noDate"),
-				new MyGood(0,"141","J07링크_135","J07등록자_135","noDate"),
-				new MyGood(0,"142","J08링크_135","J08등록자_135","noDate"),
-				new MyGood(0,"143","J09링크_135","J09등록자_135","noDate"),
-				new MyGood(0,"144","J10링크_135","J10등록자_135","noDate")
+				//new Cart(1,396,1,"cart_130"),
+				//new Cart(2,396,1,"cart_131")
 				);
-	}
-	
-	@After
-	public void tearDown() {
-		LOG.debug("^^^^^^^^^^^^^^^^^^");
-		LOG.debug("99 tearDown()");
-		LOG.debug("^^^^^^^^^^^^^^^^^^");
+		
+		mockMvc = MockMvcBuilders.webAppContextSetup(context).build(); //mockMvc생성자
+		LOG.debug("================================");
+		LOG.debug("=context=" + context);
+		LOG.debug("=mockMvc=" + mockMvc);
+		LOG.debug("=myGoodDaoImpl=" + myGoodDaoImpl);
+		LOG.debug("================================");
 	}
 	
 	@Test
 	//@Ignore
-	public void get_retrieve() {
-		LOG.debug("======================================");
-		LOG.debug("=01. 기존 데이터 삭제=");
-		LOG.debug("======================================");	
-		Search search=new Search();
-		search.setSearchWord("등록자");
-		List<MyGood> idList = (List<MyGood>) myGoodDaoImpl.get_pnameList(search);
-		assertThat(5, is(idList.size()));
-		for(MyGood vo:idList) {
-			int flag = myGoodDaoImpl.do_delete(vo);
-			assertThat(1, is(flag));
-		}	
+	public void get_retrieve() throws Exception{
+		MockHttpServletRequestBuilder createMessage = MockMvcRequestBuilders.get("/good/get_retrieve.do")
+				.param("pageSize", "10")
+				.param("pageNum", "1")
+				.param("searchDiv", "10")
+				.param("searchWord", "test01");
+
+	
+		//url 호출 , 결과 return
+		ResultActions resultActions = mockMvc.perform(createMessage)
+				.andExpect(status().isOk());
 		
-		LOG.debug("======================================");
-		LOG.debug("=02. 데이터 추가=");
-		LOG.debug("======================================");	
-		for(MyGood vo:list) { 
-			int flag = myGoodDaoImpl.do_save(vo);
-			assertThat(1, is(flag));
-		}		
-		
-		//=====================================
-		//2.01 등록Data조회
-		//=====================================
-		search.setSearchDiv("10");
-		search.setPageSize(10);
-		search.setPageNum(1);
-		List<MyGood> goodList = (List<MyGood>) myGoodDaoImpl.get_retrieve(search);
+		String result = resultActions.andDo(print())
+									.andReturn()
+									.getResponse().getContentAsString();
+	
+		LOG.debug("===============================");
+		LOG.debug("=result="+result);
+		LOG.debug("===============================");
 	}
 	
-	@Test
+	@Test 
 	public void getBean() {
-		LOG.debug("====================================================");
-		LOG.debug("=context="+context);
-		LOG.debug("=myGoodDaoImpl="+myGoodDaoImpl);
-		LOG.debug("====================================================");
-		assertThat(context, is(notNullValue()));
-		assertThat(myGoodDaoImpl, is(notNullValue()));
+		LOG.debug("^^^^^^^^^^^^^^^^^^");
+		LOG.debug("=getBean()=");
+		LOG.debug("^^^^^^^^^^^^^^^^^^");
+	}
+	
+	@After
+	public void tearDown() {
+		LOG.debug("tearDown()");
 	}
 	
 	@Test

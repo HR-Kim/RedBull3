@@ -3,8 +3,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-	String user = (String)session.getAttribute("user");
-	out.print("user"+user);
+	User user = (User)session.getAttribute("user");
 %>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -63,25 +62,21 @@
 <link rel="stylesheet" href="${context}/resources/css/style.css" />
 <link rel="stylesheet" href="${context}/resources/css/responsive.css" />
 </head>
+	<!--================Header Menu Area =================-->
+ 	<jsp:include page="/main/header.jsp"></jsp:include>
+    <!--================Header Menu Area =================-->
 <body>
 	 <!-- Tab links -->
 	<div class="tab">
-	  <button class="tablinks" onclick="openCity(event, 'shopping')">나의 쇼핑</button>
-	  <button class="tablinks" onclick="openCity(event, 'active')">나의 활동</button>
 	  <button class="tablinks" onclick="openCity(event, 'update')">회원정보수정</button>
+	  <button class="tablinks" onclick="openCity(event, 'shopping')">나의 쇼핑</button>
+	  <button class="tablinks" onclick="openCity(event, 'good')">나의 좋아요</button>
+	  <button class="tablinks" onclick="openCity(event, 'qa')">나의 질문과 답변</button>
 	</div>
 	
 	<!-- Tab content -->
 	<div id="shopping" class="tabcontent">
 	  <h3>쇼핑</h3>
-	</div>
-	
-	<div id="active" class="tabcontent">
-	  <div class="tab">
-		  <button class="tablinks" onclick="openCity(event, 'good')">좋아요</button>
-		  <button class="tablinks" onclick="openCity(event, 'question')">질문</button>
-		  <button class="tablinks" onclick="openCity(event, 'answer')">답변</button>
-		</div>
 	</div>
 	
 	<div id="update" class="tabcontent">
@@ -94,15 +89,11 @@
 	  <%@include file="../mypage/mygood.jsp"%>
 	</div>
 	
-	<div id="question" class="tabcontent">
+	<div id="qa" class="tabcontent">
 	  <h3>질문</h3>
 	  <%@include file="../mypage/question.jsp"%>
-	</div>	
-	
-	<div id="answer" class="tabcontent">
-	  <h3>답변</h3>
 	</div>
-    
+	
     <script>
     function openCity(evt, cityName) {
     	  // Declare all variables
@@ -125,5 +116,8 @@
     	  evt.currentTarget.className += " active";
     }
     </script>
+    <!--================ start footer Area  =================-->
+    	<jsp:include page="/main/footer.jsp"></jsp:include>
+    <!--================ End footer Area  =================-->
 </body>
 </html>

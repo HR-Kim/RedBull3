@@ -5,10 +5,12 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import kr.co.redbull.cmn.DTO;
 import kr.co.redbull.mypage.service.MyGoodService;
 
+@Service
 public class MyGoodServiceImpl implements MyGoodService{
 	
 	Logger LOG = LoggerFactory.getLogger(this.getClass());
@@ -42,8 +44,8 @@ public class MyGoodServiceImpl implements MyGoodService{
 	}
 
 	@Override
-	public int countCart(DTO dto) {
-		return myGoodDaoImpl.countCart(dto);
+	public int countGood(DTO dto) {
+		return myGoodDaoImpl.countGood(dto);
 	}
 	
 }

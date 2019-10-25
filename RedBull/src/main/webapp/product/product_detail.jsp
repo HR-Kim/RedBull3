@@ -124,7 +124,7 @@
 						<a class="main_btn" id="cart">장바구니</a>
 						<a class="main_btn" id="pay">결제하기</a>
 						<a class="main_btn" href="${context}/product/get_retrieve.do">뒤로</a>
-						<a class="icon_btn" href="#">
+						<a class="icon_btn" id="good">
 							<i class="lnr lnr lnr-heart"></i>
 						</a>
 						<hr>
@@ -518,6 +518,40 @@
 	            },
 	            error:function(){
 	                alert("카트 담기 실패");
+	            }
+	           }); 
+	           //--ajax  
+		});
+		
+		//좋아요
+		$("#good").on("click",function(){
+			//alert("장바구니 담으러!");
+	
+			var pNum = $("#pNum").val();
+			
+			if(confirm("좋아요 하시겠습니까?") == false) return;
+			
+			console.log("pNum: "+ pNum);
+			
+			$.ajax({
+	               type:"POST",
+	               url:"${context}/good/do_save.do",
+	               dataType:"html",
+	               data:{
+	            	   "pNum" : pNum,
+	              }, 
+	            success: function(result){
+	
+	            	if(result == 1){
+	            		alert("좋아요 성공");
+	            		location.href="${context}/good/get_retrieve.do";
+	            	}else{
+	            		alert("회원만 사용할 수 있습니다");
+	            	}
+
+	            },
+	            error:function(){
+	                alert("좋아요 실패");
 	            }
 	           }); 
 	           //--ajax  

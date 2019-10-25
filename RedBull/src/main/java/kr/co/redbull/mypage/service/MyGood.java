@@ -4,53 +4,75 @@ import kr.co.redbull.cmn.DTO;
 
 public class MyGood extends DTO {
 	/** 좋아요 번호 */
-	private int gNo;
+	private int gNum;
 	
-	/** 상품 번호 */
-	private String pNum;
+	/** 이미지경로 */
+	private String saveFileNm;
+	
+	/** 상품 이름 */
+	private String pName;
 	
 	/** 좋아요 링크 */
-	private String gLink;
+	private int bPrice;
+	
+	/** 할인율 */
+	private double discount;
+	
+	/** 배달 비 */
+	private int dPrice;
 	
 	/** 등록자(사용자) */
 	private String regId;
 	
 	/** 등록일 */
 	private String regDt;
-
-	public MyGood() {}
-
-	public MyGood(int gNo, String pNum, String gLink, String regId, String regDt) {
-		super();
-		this.gNo = gNo;
-		this.pNum = pNum;
-		this.gLink = gLink;
-		this.regId = regId;
-		this.regDt = regDt;
+	
+	public int getgNum() {
+		return gNum;
 	}
 
-	public int getgNo() {
-		return gNo;
+	public void setgNum(int gNum) {
+		this.gNum = gNum;
 	}
 
-	public void setgNo(int gNo) {
-		this.gNo = gNo;
+	public String getSaveFileNm() {
+		return saveFileNm;
 	}
 
-	public String getpNum() {
-		return pNum;
+	public void setSaveFileNm(String saveFileNm) {
+		this.saveFileNm = saveFileNm;
 	}
 
-	public void setpNum(String pNum) {
-		this.pNum = pNum;
+	public String getpName() {
+		return pName;
 	}
 
-	public String getgLink() {
-		return gLink;
+	public void setpName(String pName) {
+		this.pName = pName;
 	}
 
-	public void setgLink(String gLink) {
-		this.gLink = gLink;
+	public int getbPrice() {
+		return bPrice;
+	}
+
+	public void setbPrice(int bPrice) {
+		this.bPrice = bPrice;
+	}
+
+	public double getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(double discount) {
+		this.discount = discount;
+	}
+
+	public int getdPrice() {
+		return dPrice;
+	}
+
+	public void setdPrice(int dPrice) {
+		this.dPrice = dPrice;
 	}
 
 	public String getRegId() {
@@ -69,60 +91,22 @@ public class MyGood extends DTO {
 		this.regDt = regDt;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((gLink == null) ? 0 : gLink.hashCode());
-		result = prime * result + gNo;
-		result = prime * result + ((pNum == null) ? 0 : pNum.hashCode());
-		result = prime * result + ((regDt == null) ? 0 : regDt.hashCode());
-		result = prime * result + ((regId == null) ? 0 : regId.hashCode());
-		return result;
+
+
+	public MyGood() {}
+
+	public MyGood(int gNum, String saveFileNm, String pName, int bPrice, long discount, int dPrice, String regId,
+			String regDt) {
+		super();
+		this.gNum = gNum;
+		this.saveFileNm = saveFileNm;
+		this.pName = pName;
+		this.bPrice = bPrice;
+		this.discount = discount;
+		this.dPrice = dPrice;
+		this.regId = regId;
+		this.regDt = regDt;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		MyGood other = (MyGood) obj;
-		if (gLink == null) {
-			if (other.gLink != null)
-				return false;
-		} else if (!gLink.equals(other.gLink))
-			return false;
-		if (gNo != other.gNo)
-			return false;
-		if (pNum == null) {
-			if (other.pNum != null)
-				return false;
-		} else if (!pNum.equals(other.pNum))
-			return false;
-		if (regDt == null) {
-			if (other.regDt != null)
-				return false;
-		} else if (!regDt.equals(other.regDt))
-			return false;
-		if (regId == null) {
-			if (other.regId != null)
-				return false;
-		} else if (!regId.equals(other.regId))
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "MyGood [gNo=" + gNo + ", pNum=" + pNum + ", gLink=" + gLink + ", regId=" + regId + ", regDt=" + regDt
-				+ "]";
-	}
-	
-	
-	
-	
 	
 }

@@ -4,43 +4,25 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
    <mapper namespace="kr.co.redbull.mypage">
 	<sql id="goodColumns">
-		gnum as gNo,
+		gnum as gNum,
 		pnum as pNum,
-		link as gLink,
 		regid     as regId,
 		TO_CHAR(reg_dt, 'yyyy/mm/dd HH24:MI:SS') as regDt
 	</sql>
-	<sql id="searchCondition">
-		<where>
-			<choose>
-				<when test="'10' == searchDiv">
-					<choose>
-						<when test="searchWord!=null"> AND REGID LIKE '%' || #{searchWord} || '%'</when>
-					</choose>					
-				</when>
-				<when test="'20' == searchDiv">
-					<choose>
-						<when test="searchWord!=null"> AND REGID LIKE '%' || #{searchWord} || '%'</when>
-					</choose>
-				</when>
-				<when test="'30' == searchDiv">
-					<choose>
-						<when test="searchWord!=null"> AND CATEGORY = #{searchWord} </when>
-					</choose>					
-				</when>
-				<otherwise></otherwise>
-			</choose>
-		</where>
-	</sql>
+	<sql id="baseCondition">
+ 	 		<choose>
+ 	 		 	<when test="'10' == searchDiv">
+ 	 				 and g.regid LIKE '%' || #{searchWord} || '%'
+ 	 			</when>
+ 	 			<otherwise></otherwise>
+ 	 		</choose>
+ 	 </sql>
 	
 	<!--게시판번호 가져오기  -->
-	<select id="get_pnameList" parameterType="Search" resultType="MyGood">
-		SELECT * FROM GOOD WHERE REGID LIKE '%' || #{searchWord} || '%'
-	</select>
 	
 	<!--삭제  --> 
 	<delete id="do_delete" parameterType="MyGood">
-		DELETE FROM GOOD WHERE PNUM = #{pNum, jdbcType=NUMERIC}
+		DELETE FROM GOOD WHERE GNUM = #{gNum, jdbcType=NUMERIC}
 							AND REGID = #{regId, jdbcType=VARCHAR}
 	</delete>
 	
@@ -48,12 +30,10 @@
 	<insert id="do_save" parameterType="MyGood">
 		INSERT INTO GOOD (
 			PNUM,
-			LINK,
 			REGID,
 			REGDT		
 		) VALUES (
 			#{pNum, jdbcType=NUMERIC},
-			#{gLink, jdbcType=VARCHAR},
 			#{regId, jdbcType=VARCHAR},
 			SYSDATE
 		)
@@ -67,24 +47,27 @@
 	</select>
 	
 	<!--목록조회  --> 
-	<select id="get_retrieve" parameterType="Search" resultType="MyGood">
-	SELECT T1.*, T2.*
-	FROM (SELECT B.GNUM AS gNum,
-	             B.PNUM AS pNum,
-	             B.REGID AS regId,
-	             TO_CHAR(REGDT, 'yyyy/mm/dd HH24:MI:SS') as regDt,
-	             B.LINK AS gLink
-      	  FROM (SELECT ROWNUM AS rnum, A.*
-            	FROM(SELECT * FROM GOOD
-                 	 <include refid="searchCondition" />
-                 	 ORDER BY REGDT DESC) A
-            	WHERE ROWNUM <![CDATA[<]]>= (#{pageSize, jdbcType=NUMERIC} * (#{pageNum, jdbcType=NUMERIC} -1) + #{pageSize, jdbcType=NUMERIC}))B
-      	  WHERE B.rnum <![CDATA[>]]>= (#{pageSize, jdbcType=NUMERIC} * (#{pageNum, jdbcType=NUMERIC} -1)+1)) T1
-	CROSS JOIN
-	(SELECT COUNT(*)
-	 FROM (SELECT * FROM GOOD
-	       <include refid="searchCondition" />
-	      ))T2 
+	<select id="get_retrieve" parameterType="Search" resultType="kr.co.redbull.mypage.service.MyGood">
+		SELECT  g.gnum as gNum,
+				MIN(i.SAVE_FILE_NM) as saveFileNm,
+	        	p.PNAME as pName,
+		      	p.BPRICE as bPrice,
+				p.DISCOUNT as discount,
+				p.DPRICE as dPrice,
+				g.REGID as regId
+		FROM GOOD g JOIN IMAGE i
+     		 ON g.pNum = i.refNum
+			 JOIN PRODUCT p
+			 ON g.pnum = p.pnum
+		   	 where 1=1
+		   	 and g.regid ='test01'
+		GROUP BY g.gnum, 
+         		 p.PNAME, 
+         		 p.BPRICE, 
+         		 p.DISCOUNT, 
+         		 p.DPRICE,
+         		 g.REGID
+		ORDER BY gNum
 	</select>
 
 </mapper>

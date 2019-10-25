@@ -7,49 +7,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	/**페이지 사이즈*/
-	String pageSize = "10";	
-	/**페이지 번호*/	
-	String pageNum = "1";
-	/**검색조건*/
-	String searchDiv = "20";
-	/**검색어*/
-	String searchWord = "";	
-
-	Search vo = (Search)request.getAttribute("vo");
-	
-	if(null!=vo){
-		pageSize   = StringUtil.nvl(vo.getPageSize()+"", "10");
-		pageNum    = StringUtil.nvl(vo.getPageNum()+"", "1");
-		searchDiv  = StringUtil.nvl(vo.getSearchDiv(), "");
-		searchWord = StringUtil.nvl(vo.getSearchWord(), "");
-	}else{
-		pageSize   = "10";
-		pageNum    = "1";
-		searchDiv  = "20";
-		searchWord = "";
-	}
-	
-	//paging
-	//maxNum, currPageNo, rowPerPage, bottomCount, url, scriptName
-	
-	int maxNum      = 0;  //totalCnt
-	int bottomCount = 10;
-	int currPageNo  = 1;  //pageNum
-	int rowPerPage  = 10; //pageSize
-	
-	String url 	  	  = request.getContextPath()+"/good/get_myGoodList.do";
-	String scriptName = "search_page"; 
-	
-	//totalCnt
-	String totalCnt = (request.getAttribute("totalCnt")==null)? "0":request.getAttribute("totalCnt").toString();
-	
-	maxNum     = Integer.parseInt(totalCnt);
-	currPageNo = Integer.parseInt(pageNum);
-	rowPerPage = Integer.parseInt(pageSize);
-	
-%> 
 <c:set var="context" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html lang="ko">
@@ -62,85 +19,128 @@
     <link href="${context}/resources/css/bootstrap.min.css" rel="stylesheet">	
 </head>
 <body>
-	<div class="container">
-		<div class="page-header">
-       		<h1>좋아요한 상품</h1>
-     	</div>
-    <input type="button" class="btn btn-default btn-sm" id="doGood"
-		value="좋아요 들어가기" />
-		<hr/>
-      <!--// 검색영역 -->  
-      <!-- Grid영역 -->
-      <div class="table-responsive">
-       <table class="table  table-striped table-bordered table-hover">
-        <thead class="bg-primary">
-         <th class="text-center col-md-3 col-xs-4">상품 사진</th>
-         <th class="text-center col-md-3 col-xs-4 ">상품 이름</th>
-         <th class="text-center col-md-1 col-xs-4">링크</th>
-        </thead>
-        
-		<tbody>
-		<c:set var="regId" value="등록자"/>
- 		<c:choose>
-        	<c:when test="${list.size()>0 }">
-        	
-				<c:forEach var="good" items="${list}">
-	        	<tr>
-						<td class="text-center"></td>
-						<td class="text-center"><c:out value="${B.pName}"/></td>
-						<td class="text-center"><c:out value="${B.gLink}"/></td>
-						<td class="text-center"></td>
-					</tr>
-				</c:forEach> 
-		    </c:when>
+	<section class="good_area">
+      <div class="container">
+        <div class="good_inner">
+          <div class="table-responsive">
+          <form name="goodFrm">
+          <input type="hidden" name="searchDiv" id="searchDiv" />
+            <table class="table table-striped table-bordered table-hover">
+              <thead>
+                <tr>
+			         <th class="text-center col-md-1 col-xs-1">
+					 전체선택<input type="checkbox" id="checkAll" name="checkAll"></th>
+			         <th class="text-center col-md-4 col-xs-4 ">상품</th>
+			         <th class="text-center col-md-1 col-xs-1">상품가격</th>
+			         <th class="text-center col-md-1 col-xs-1">할인율</th>
+			         <th class="text-center col-md-1 col-xs-1">배송비</th>
+                </tr>
+              </thead>
+
+              <tbody>
+               <c:choose>
+	        	<c:when test="${list.size()>0 }">
+	        		<c:set var="sum" value="0"></c:set>
+	                <c:forEach var="good" items="${list}">
+	                <tr>
+	                <td class="text-center">
+	                <input type="checkbox"  name="chBox" id="chBox"  data-cartNum="${good.gNum }"/>
+	               <%--  <input type="hidden" name="cartNum" id="cartNum" value="${cart.cartNum }"/> --%>
+	                </td>
+	                  <td>
+	                    <div class="media">
+	                      <div class="media-left"> 
+	                        <img src="${context}/${good.saveFileNm}" class="media-object" style="width: 80px"  alt="이미지 없음" />
+	                      </div>
+	                      <div class="media-body">
+	                     	 <c:out value="${good.pName}"/>
+	                      </div>
+	                    </div>
+	                  </td>
+	                  <td class="text-center">
+	                  <del><fmt:formatNumber pattern="###,###,###" value="${good.bPrice}"/></del><br/>
+	                  <fmt:formatNumber pattern="###,###,###" value="${good.bPrice * (1-good.discount)}"/>원
+	                  </td>
+	                  <td class="text-center">
+	                    <fmt:formatNumber pattern="###,###,###" value="${good.discount*100}"/>%
+	                  </td>
+	                  <td class="text-center">
+	                    <fmt:formatNumber pattern="###,###,###" value="${good.dPrice}"/>원
+	                  </td>
+	                </tr>
+	            </c:forEach> 
+			    </c:when>
+			    
 		    <c:otherwise>
 		         	<tr>
 		         		<td class="text-center" colspan="99">좋아요한 상품이 없습니다.</td>
 		         	</tr>
 		    </c:otherwise>
 		</c:choose>
-	</tbody>
-   </table>
- </div>
-      <!--// Grid영역 -->
-      
-      <!-- pagenation -->
-      <div class="text-center">
-       <ul class="pagination">
-        <li><a href="#">&lt;</a></li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">&gt;</a></li>
-       </ul>
+
+              </tbody>
+            </table>
+            <button type="button" id="do_delete" data-cartNum="${good.gNum}">삭제하기</button>
+            </form>
+            
+            <!--  <button type="button" id="do_delete">삭제하기</button> -->
+           
+           	<td>
+                <div class="container">
+                	<a class="main_btn" href="${context}/product/get_retrieve.do">쇼핑하기</a>
+                </div>
+                <div class="container">
+                	<a class="main_btn" href="${context}/good/get_retrieve.do">조회하기</a>
+                </div>
+             </td>
+          </div>
+        </div>
       </div>
-      <!--// pagenation -->
-      
-   </div>
+    </section>
     <!--// div container -->
         <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
      <script src="${context}/resources/js/jquery-1.12.4.js"></script>
     <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
       <script src="${context}/resources/js/bootstrap.min.js"></script>
           <script type="text/javascript">
-          	
-          	function doGood(){
-          		var frm = document.frm;
-          		frm.action = "${context}/mypage/get_retrieve.do";
-          		frm.submit();
-          	}
+          //체크박스
+       	 $("#checkAll").click(function(){
+      			if($("#checkAll").is(':checked')==true){
+        				$("input[name='chBox']").prop("checked",true); //check
+        				
+        			}else{
+        				$("input[name='chBox']").prop("checked",false); //check해제
+        			}
+       	  });	
           
-          	$("#doGood").on("click",function(){
-          		//alert("doGood()");
-          		doGood();
-          	});
-          
-	    	$(document).ready(function(){
-	    		//alert("ready");
-	    		
-	    	})
+       //삭제
+ 		$("#do_delete").on("click",function(){
+ 			
+ 			var confirm_val = confirm("정말 삭제하시겠습니까?");
+ 			
+ 			if(confirm_val){
+ 				var checkArr = new Array();
+ 				
+ 				$("input[name='chBox']:checked").each(function(){
+ 					checkArr.push($(this).attr("data-cartNum"));
+ 				});
+ 				
+ 				$.ajax({
+ 					 url : "${context}/good/do_delete.do",
+ 					 type : "post",
+ 					 data : { chbox : checkArr },
+ 					 success : function(result){
+ 					  if(result == 1) {          
+ 						  alert("상품이 삭제되었습니다.");
+ 					   	  location.href = "${context}/good/get_retrieve.do";
+ 					  } else {
+ 					   alert("삭제 실패");
+ 					  }
+ 					 }
+ 					});
+ 			}
+ 			
+ 		});
     </script>
 </body>
 </html>
