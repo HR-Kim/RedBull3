@@ -7,16 +7,28 @@
 
 <%
 	User user = (User)session.getAttribute("user");
-	out.println("user: " + user);
+	/* out.println("user: " + user); */
 %>
 <html lang="ko">
+ 
+
  <style>
+ 	#cartCnt{
+ 		width: 3em;
+ 	}
+ 
+ 	.right-box{
+ 		float : right;
+ 	}
+ 
 	#updatebtn{
 		color: black;
 	}
 </style> 
 	<jsp:include page="/main/header.jsp"></jsp:include>
+ 
   <body>
+ 
   
     <!--================Header Menu Area =================-->
  
@@ -38,7 +50,7 @@
       <div class="container">
         <div class="cart_inner">
           <div class="table-responsive">
-          <form name="cartFrm">
+         <form name="cartFrm" method="get" action="${context}/cart/do_update.do">
           <input type="hidden" name="searchDiv" id="searchDiv" />
             <table class="table table-striped table-bordered table-hover">
               <thead>
@@ -58,39 +70,51 @@
                <c:choose>
 	        	<c:when test="${list.size()>0 }">
 	        		<c:set var="sum" value="0"></c:set>
+	        		<c:set var="count" value="0"></c:set>
 	                <c:forEach var="cart" items="${list}">
 	                <tr>
 	                <td class="text-center">
-	                <input type="checkbox"  name="chBox" id="chBox"  data-cartNum="${cart.cartNum }"/>
-	               <%--  <input type="hidden" name="cartNum" id="cartNum" value="${cart.cartNum }"/> --%>
-	               <input type="hidden" name="oNum" id="oNum" value="${cart.oNum }"/>
+		                <input type="checkbox"  name="chBox" id="chBox"  data-cartNum="${cart.cartNum }"/>
+		                <input type="hidden" name="cartNum" id="cartNum" value="${cart.cartNum }"/>
+		                 <input type="text" name="oNum" id="oNum" value="${cart.oNum }"/>
 	                </td>
-	                  <td>
+	                 <td>
 	                    <div class="media">
 	                      <div class="media-left"> 
 	                        <img src="${context}/${cart.saveFileNm}" class="media-object" style="width: 80px"  alt="이미지 없음" />
 	                      </div>
+	                      
 	                      <div class="media-body">
 	                     	 <c:out value="${cart.pName}"/><br/>
-	                     	 <c:out value="${cart.oName}"/>
+	                     	 옵션:<c:out value="${cart.oName}"/>
 	                      </div>
 	                    </div>
 	                  </td>
+	                  
 	                  <td class="text-center">
-	                  <del><fmt:formatNumber pattern="###,###,###" value="${cart.bPrice }"/></del><br/>
-	                  <fmt:formatNumber pattern="###,###,###" value="${cart.bPrice * (1-cart.discount)}"/>원
+		                  <del><fmt:formatNumber pattern="###,###,###" value="${cart.bPrice }"/></del><br/>
+		                  <fmt:formatNumber pattern="###,###,###" value="${cart.bPrice * (1-cart.discount)}"/>원
 	                  </td>
+	                  
 	                  <td class="text-center">
 	                  <fmt:formatNumber pattern="###,###,###"  value="${cart.oPrice}" />원
 	                  </td>
 	                  
-				       <td class="text-left">
-				       <input type="text"  id="cartCnt" name="cartCnt" value="${cart.cartCnt}" size='2' readonly="readonly">
-				        <a href="#" onclick="change(1);">▲</a><a href="#" onclick="change(-1);">▼</a>
-				        <button type="button" class="btn btn-success btn-sm" id="updatebtn" >변경</button>
-				        <!--버튼을 이미지로 바꾸세요 <img src='이미지경로' onclick='javascript_:change(1);'>-->
-				       </td>
+<%-- 				       <td class="text-left">
+				        <button type="button" id="plus">+</button>
+						<input type="number" id="numBox" value="${cart.cartCnt}" readonly="readonly"/>
+						<button type="button" id="minus">-</button>
 				       
+				        </td> --%>
+<%-- 				       <button onclick="form_btn(1)">+</button>
+				        <input type="text" id="cartCnt" value="${cart.cartCnt}" size="2" >
+				         <button onclick="form_btn(-1)">-</button> --%>
+				         
+				        <td>
+	       					<input type="number" id="cartCnt" name="cartCnt" value="${cart.cartCnt}" min="1" size="3"  />
+	       					<input type="button" class="delete_btn"  onclick="javascript:updatebtn()" value="변경" />
+				      	</td>
+				      <!--         <a href="#"  onclick="javascript_:change(1);">▲</a><a href="#" onclick="javascript_:change(-1);">▼</a> -->
 <%-- 	                <div class="product_count">
 	                   		<input type="text" name="cartCnt" id="cartCnt" readonly="readonly"  value="${cart.cartCnt}" />
 							<button onclick="javascript:countUp()" class="increase items-count" type="button">
@@ -99,7 +123,6 @@
 							<button onclick="javascript:countDown()"  class="reduced items-count" type="button">
 								<i class="lnr lnr-chevron-down"></i>
 							</button>
-							<button type="button" class="btn btn-success btn-sm" id="updatebtn" >변경</button>
 	                    </div> --%>
 	                  
 	                  <td class="text-center">
@@ -110,52 +133,58 @@
 	                  </td>
 	                </tr>
 	                <c:set var="sum" value="${sum+ (cart.bPrice * (1-cart.discount) + cart.oPrice) * cart.cartCnt + cart.dPrice }"></c:set>
+	                <c:set var="count" value="${count+ cart.cartCnt }"></c:set>
 	            </c:forEach> 
 			    </c:when>
 			    
-		    <c:otherwise>
-		         	<tr>
-		         		<td class="text-center" colspan="99">장바구니가 비었습니다.</td>
-		         	</tr>
-		    </c:otherwise>
-		</c:choose>
+			    <c:otherwise>
+			         	<tr>
+			         		<td class="text-center" colspan="99">장바구니가 비었습니다.</td>
+			         	</tr>
+			    </c:otherwise>
+			</c:choose>
 
-              </tbody>
+             </tbody>
             </table>
             <button type="button" id="do_delete" data-cartNum="${cart.cartNum }">삭제하기</button>
-            </form>
             
-            <!--  <button type="button" id="do_delete">삭제하기</button> -->
              <hr/>
-            	 결제금액 <fmt:formatNumber pattern="###,###,###" value="${sum }" />원
+             	<h5 align="right">총 수량: <input type="text" id="count" size="7" style="text-align: center;"  value="${count }" />개</h5>
+            	<h3 align="right">결제금액:<input type="text" id="sum" size="7" style="text-align: center;"  value="<fmt:formatNumber pattern="###,###,###" value="${sum }" />"/>원</h3> 
              <hr/>
-           	<td>
-                <div class="container">
+             </form>
+                <div class="right-box" >
                 	<a class="main_btn" href="${context}/product/get_retrieve.do">쇼핑하기</a>
-                	<input type="submit" id="payBtn" class="main_btn" value="결제하기"/>
+                	<button type="submit" class="main_btn" id="payBtn" value="결제하기">결제하기</button>
                 </div>
-             </td>
           </div>
         </div>
       </div>
     </section>
     <!--================End Cart Area =================-->
         <!-- Optional JavaScript -->
-		
       	<script type="text/javascript">
         
-      	$("#payBtn").on("click",function(){
-      		alert("결제하러!");
-      		location.href = "${context}/pay/get_retrieve.do";
+       	$("#payBtn").on("click",function(){
+      		alert("결제하시겠습니까?");
       		
-      	});
+      		var amount = $("#sum").val();
+      		
+      		console.log("amount: " + amount);
+      		
+      		location.href = "${context}/pay/get_retrieve.do";
+      	}); 
       	
       	//수량 수정
- 		$("#updatebtn").on("click",function(){
-			var oNum = $("#oNum").val();
-			var sst = $("#cartCnt").val();
+      	function updatebtn(){
+      		var oNum = $("#oNum").val();
+			var cartCnt = $("#cartCnt").val();
  			
 	    	if(false==confirm("수정 하시겠습니까?"))return;
+	    	
+	    	console.log("oNum: "+ oNum);
+	    	console.log("cartCnt: "+ cartCnt);
+	    	
 	    	
 			$.ajax({
 	            type:"POST",
@@ -163,7 +192,7 @@
 	            dataType:"html",
 	            data:{
 	            	   "oNum" : oNum,
-	            	   "cartCnt" : sst
+	            	   cartCnt : cartCnt
 	            },
 	            success: function(data){//통신이 성공적으로 이루어 졌을때 받을 함수
 	                //console.log(data);
@@ -182,17 +211,35 @@
 	            error: function(xhr,status,error){
 	             
 	            }
-	        });		    	
-	    });
+	        });	
+      		
+      	}
+/*  		$("#updatebtn").on("click",function(){
+				    	
+	    }); */
       	
+/*       	$(function(){
+          	$("#up").click(function(){
+          		var n = $("#up").index(this);
+          		var num = $(".num:eq("+n+")").val();
+          		num = $(".num:eq("+n+")").val(num*1+1);
+          	});
+          	
+          	$("#down").click(function(){
+          		var n = $("#down").index(this);
+          		var num = $(".num:eq("+n+")").val();
+          		num = $(".num:eq("+n+")").val(num*1-1);
+          	}); 
+          	
+      	}); */
       	
- 		 function change(num)
+/*      		 function change(num)
  		 {
-	 		 var x  = document.cartFrm;
-	 		 var y = Number(x.cartCnt.value) + num;
+	 		 var x  = document.form;
+	 		 var y = Number(x.cartCnt.value)+num;
 	 		 if(y < 1) y = 1;
 	 		 x.cartCnt.value = y;
- 		 }
+ 		 }   */
       	
 /* 		//수량 Up
 		function countUp(){
@@ -212,9 +259,9 @@
 				return false;
 			}
 		} */
-      	
-      	  //체크박스
-      	 $("#checkAll").click(function(){
+		
+      	 //체크박스
+      	$("#checkAll").on("click",function(){
      			if($("#checkAll").is(':checked')==true){
        				$("input[name='chBox']").prop("checked",true); //check
        				
@@ -237,8 +284,10 @@
 				
 				$.ajax({
 					 url : "${context}/cart/do_delete.do",
-					 type : "post",
-					 data : { chbox : checkArr },
+					 type : "POST",
+					 data : { 
+						 		chbox : checkArr 
+						 	},
 					 success : function(result){
 					  if(result == 1) {          
 						  alert("상품이 삭제되었습니다.");
@@ -247,13 +296,10 @@
 					   alert("삭제 실패");
 					  }
 					 }
-					});
+				}); //--ajax
 			}
-			
 		});
-      	  
-      	</script>
-      	
+	</script>
     <!--================ start footer Area  =================-->
     	<jsp:include page="/main/footer.jsp"></jsp:include>
     <!--================ End footer Area  =================-->

@@ -1,7 +1,8 @@
 package kr.co.redbull.pay.service;
 
+import java.util.List;
+
 import kr.co.redbull.cart.service.Cart;
-import kr.co.redbull.user.service.User;
 
 public class Pay extends Cart {
 	
@@ -16,6 +17,7 @@ public class Pay extends Cart {
 	private String payMethod; 	//결제수단
 	private String payId; 		//결제자 
 	private String payDt; 		//결제일
+	private List<Pay> list;
 	
 //	private int payDetailNum; //결제상세번호
 //	private String orderDeNum; //주문번호 20191019random

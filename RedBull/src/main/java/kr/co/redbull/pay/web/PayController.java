@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.google.gson.Gson;
 
 import kr.co.redbull.cart.service.Cart;
+import kr.co.redbull.cart.service.CartService;
 import kr.co.redbull.cmn.Message;
 import kr.co.redbull.cmn.Search;
 import kr.co.redbull.cmn.StringUtil;
@@ -34,6 +35,9 @@ public class PayController {
 	private final Logger LOG = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
+	private CartService cartService; 
+	
+	@Autowired
 	private PayService payService;
 	
 	private final String VIEW_LIST_NM = "pay/pay_list"; //결제 화면
@@ -41,7 +45,7 @@ public class PayController {
 
 	/** 장바구니 -> 주문목록  / 바로 주문목록  /결제 총 금액 가져오기!!!! */
 	@RequestMapping(value="pay/get_retrieve.do", method=RequestMethod.GET)
-	public String get_retrieve(HttpSession session, Pay pay, Model model, Search search) {
+	public String get_retrieve(HttpSession session, Pay pay,Model model, Search search) {
 		
 		LOG.debug("=================================");
 		LOG.debug("=search=" + search);
@@ -76,13 +80,24 @@ public class PayController {
 //		LOG.debug("=2=list="+list);
 //		LOG.debug("2==================================");
 //		model.addAttribute("list",list);
-	
-		List<Pay> payList = (List<Pay>) this.payService.get_retrieve(search);
-		model.addAttribute("payList", payList);
 		
+		List<Cart> list = (List<Cart>) this.cartService.get_retrieve(search);
+		LOG.debug("1==================================");
+		LOG.debug("=1=list="+list);
+		LOG.debug("1==================================");
+//		model.addAttribute("list",regId);
+		model.addAttribute("list",list);
+	
+		
+//		List<Pay> payList = (List<Pay>) this.payService.get_retrieve(search);
+//		model.addAttribute("payList", payList);
+//		LOG.debug("2==================================");
+//		LOG.debug("=2=payList="+payList);
+//		LOG.debug("2==================================");
+			
 //		int totalCnt = 0;
-//		if(null != list && list.size()>0) {
-//			totalCnt = list.get(0).getTotalCnt();
+//		if(null != payList && payList.size()>0) {
+//			totalCnt = payList.get(0).getTotalCnt();
 //		}
 //		model.addAttribute("totalCnt", totalCnt);
 		
