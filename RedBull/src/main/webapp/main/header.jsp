@@ -153,20 +153,20 @@
                   	<c:when test="${user != null }"> <!-- 세션 값이 있을 때만 보여줌 -->
 	                  <li class="nav-item active submenu dropdown">
 	                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-	                      aria-expanded="false">마이페이지
+	                      aria-expanded="false"><spring:message code="message.header.mypage" />
 	                    </a> 
 	                    <ul class="dropdown-menu">
 	                      <li class="nav-item">
-	                        <a class="nav-link" href="${context}/user/get_updateForm.do">회원정보수정</a>
+	                        <a class="nav-link" href="${context}/user/get_updateForm.do"><spring:message code="message.header.mypage_update" /></a>
 	                      </li> 
 	                      <li class="nav-item">
-	                        <a class="nav-link" href="${context}/pay/get_payRetrieve.do">나의 쇼핑</a>
+	                        <a class="nav-link" href="${context}/pay/get_payRetrieve.do"><spring:message code="message.header.mypage_shopping" /></a>
 	                      </li> 
 	                      <li class="nav-item">
-	                        <a class="nav-link" href="${context}/good/get_retrieve.do">나의 좋아요</a>
+	                        <a class="nav-link" href="${context}/good/get_retrieve.do"><spring:message code="message.header.mypage_good" /></a>
 	                      </li> 
 	                      <li class="nav-item">
-	                        <a class="nav-link" href="${context}/myboard/get_aRetrieve.do">나의 질문</a>
+	                        <a class="nav-link" href="${context}/myboard/get_aRetrieve.do"><spring:message code="message.header.mypage_question" /></a>
 	                      </li> 
 	                    </ul>
 	                  </li>

@@ -21,6 +21,20 @@
 </head>
 <body>
 	<jsp:include page="/main/header.jsp"></jsp:include>
+	<!--================Home Banner Area =================-->
+	<section class="banner_area">
+		<div class="banner_inner d-flex align-items-center">
+			<div class="container">
+				<div
+					class="banner_content d-md-flex justify-content-between align-items-center">
+					<div class="mb-3 mb-md-0">
+						<h2>나의 좋아요</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
 	<section class="good_area">
       <div class="container">
         <div class="good_inner">
@@ -84,19 +98,17 @@
 
               </tbody>
             </table>
-            <button type="button" id="do_delete" data-cartNum="${good.gNum}">삭제하기</button>
-            </form>
             
-            <!--  <button type="button" id="do_delete">삭제하기</button> -->
-           
-           	<td>
+            
+            <td>
                 <div class="container">
+                	<button type="button" class="main_btn" id="do_delete" data-cartNum="${good.gNum}">삭제하기</button>
                 	<a class="main_btn" href="${context}/product/get_retrieve.do">쇼핑하기</a>
                 </div>
-                <div class="container">
-                	<a class="main_btn" href="${context}/good/get_retrieve.do">조회하기</a>
-                </div>
              </td>
+            </form>
+           
+           	
           </div>
         </div>
       </div>
