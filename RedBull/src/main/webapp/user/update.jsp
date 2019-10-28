@@ -255,7 +255,6 @@
 			//alert("doInit");
 			
 			// input 데이터 클리어
-			$("#rid").val("");
 			$("#passwd").val("");
 			$("#passwdchk").val("");
 			$("#uname").val("");

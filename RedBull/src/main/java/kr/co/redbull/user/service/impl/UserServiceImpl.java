@@ -243,13 +243,17 @@ public class UserServiceImpl implements UserService {
 		User upgradeUser = get_selectOne(dto);
 		
 		// 등업한 결과를 받음(등업: 1, 미등업: 0)
-		try {
+		if(upgradeUser != null) {
 			
-			upgradeFlag = upgradeLevel(upgradeUser);
+			try {
+				
+				upgradeFlag = upgradeLevel(upgradeUser);
+				
+			} catch (SQLException e) {
 			
-		} catch (SQLException e) {
-		
-			e.printStackTrace();
+				e.printStackTrace();
+			}
+			
 		}
 		
 		//------1. 아이디 체크-------
@@ -258,7 +262,7 @@ public class UserServiceImpl implements UserService {
 		if(flag < 1) { // 아이디 확인 실패
 			
 			outMsg.setMsgId("10");
-			outMsg.setMsgMsg("아이디를 확인하시오");
+			outMsg.setMsgMsg("아이디를 확인하세요.");
 			
 			return outMsg;
 
@@ -270,7 +274,7 @@ public class UserServiceImpl implements UserService {
 		if(flag < 1) { // 비밀번호 확인 실패
 			
 			outMsg.setMsgId("20");
-			outMsg.setMsgMsg("비밀번호를 확인하시오");
+			outMsg.setMsgMsg("비밀번호를 확인하세요");
 			
 			return outMsg;
 
