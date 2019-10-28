@@ -92,7 +92,7 @@
 	
 	<div id="qa" class="tabcontent">
 	  <h3>질문</h3>
-	  <%@include file="../mypage/question.jsp"%>
+	  <%@include file="../mypage/myquestion.jsp"%>
 	</div>
 	
     <script>
