@@ -179,7 +179,10 @@ public class UserDaoImpl implements WorkDiv {
 		User outUser = this.sqlSessionTemplate.selectOne(statement, user);
 		
 		// User의 레벨 값 바꾸기(문자 -> 숫자)
-		outUser.setintlvl(outUser.getLvl().intValue());
+		if (outUser != null) {
+			
+			outUser.setintlvl(outUser.getLvl().intValue());
+		}
 		
 		LOG.debug("=============================");
 		LOG.debug("03. outUser="+outUser);

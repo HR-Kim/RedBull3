@@ -51,7 +51,7 @@
                                 <div class="form-submit">
                                     <button type="button" id="idcheck" name="idcheck"
                                     style="height:45px; width:130px; font-family: 'Poppins'; font-weight: bold; 
-                                    padding: 5px; border: none; border-radius: 5px"><i class="fa fa-search"></i>중복확인</button>
+                                    padding: 5px; border: none; border-radius: 5px; cursor: pointer;"><i class="fa fa-search"></i>중복확인</button>
 			                    </div>
                                 <div class="form-input">
                                     <label for="passwd" class="required">비밀번호</label>
@@ -94,7 +94,7 @@
                                     <input class="form-control" style="width: 50%; height: 50px; display: inline;" type="text" name="postnum" id="postnum" placeholder="우편번호" maxlength="5"/>
                                     <button type="button" 
                                     style="height:45px; width:130px; font-family: 'Poppins'; font-weight: bold; 
-                                    padding: 5px; border: none; border-radius: 5px" 
+                                    padding: 5px; border: none; border-radius: 5px; cursor: pointer;" 
                                     onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>
                                 </div>
                                 <div class="form-input">
@@ -219,7 +219,7 @@
 							alert("사용 가능한 이메일입니다.");
 											
 						}
-					
+
 					}
 
 	            },
@@ -391,13 +391,13 @@
 				postnum: {
 					required: "우편번호를 입력하시오.",
 					digits: "숫자만 입력하시오.",
-					minlength: $.validator.format("{0}자리로 입력하시오"),
-					maxlength: $.validator.format("{0}자리로 입력하시오")
+					minlength: $.validator.format("우편번호를 {0}자리로 입력하시오"),
+					maxlength: $.validator.format("우편번호를 {0}자리로 입력하시오")
 				},
 				address: {
 					required: "주소를 입력하시오.",
-					minlength: $.validator.format("{0}자 이상 입력하시오"),
-					maxlength: $.validator.format("{0}자 내로 입력하시오")
+					minlength: $.validator.format("주소를 {0}자 이상 입력하시오"),
+					maxlength: $.validator.format("주소를 {0}자 내로 입력하시오")
 				}
 			},
 			errorPlacement : function(error, element) {
