@@ -71,7 +71,7 @@
 	  <button class="tablinks" onclick="openCity(event, 'update')">회원정보수정</button>
 	  <button class="tablinks" onclick="openCity(event, 'shopping')">나의 쇼핑</button>
 	  <button class="tablinks" onclick="openCity(event, 'good')">나의 좋아요</button>
-	  <button class="tablinks" onclick="openCity(event, 'qa')">나의 질문과 답변</button>
+	  <button class="tablinks" onclick="openCity(event, 'qa')">나의 질문</button>
 	</div>
 	
 	<!-- Tab content -->
