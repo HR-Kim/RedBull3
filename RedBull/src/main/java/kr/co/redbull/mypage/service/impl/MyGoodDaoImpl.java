@@ -146,6 +146,7 @@ public class MyGoodDaoImpl implements WorkDiv {
 		return 0;
 	}
 	
+
 	public int countGood(DTO dto) {
 		String statement = this.NAMESPACE+".countGood";
 		MyGood good = (MyGood) dto;

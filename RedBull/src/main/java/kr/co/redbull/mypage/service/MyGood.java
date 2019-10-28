@@ -9,6 +9,9 @@ public class MyGood extends DTO {
 	/** 이미지경로 */
 	private String saveFileNm;
 	
+	/** 상품 번호 */
+	private int pNum;
+	
 	/** 상품 이름 */
 	private String pName;
 	
@@ -26,7 +29,23 @@ public class MyGood extends DTO {
 	
 	/** 등록일 */
 	private String regDt;
-	
+
+	public MyGood() {}
+
+	public MyGood(int gNum, String saveFileNm, int pNum, String pName, int bPrice, double discount, int dPrice,
+			String regId, String regDt) {
+		super();
+		this.gNum = gNum;
+		this.saveFileNm = saveFileNm;
+		this.pNum = pNum;
+		this.pName = pName;
+		this.bPrice = bPrice;
+		this.discount = discount;
+		this.dPrice = dPrice;
+		this.regId = regId;
+		this.regDt = regDt;
+	}
+
 	public int getgNum() {
 		return gNum;
 	}
@@ -41,6 +60,14 @@ public class MyGood extends DTO {
 
 	public void setSaveFileNm(String saveFileNm) {
 		this.saveFileNm = saveFileNm;
+	}
+
+	public int getpNum() {
+		return pNum;
+	}
+
+	public void setpNum(int pNum) {
+		this.pNum = pNum;
 	}
 
 	public String getpName() {
@@ -91,22 +118,7 @@ public class MyGood extends DTO {
 		this.regDt = regDt;
 	}
 
-
-
-	public MyGood() {}
-
-	public MyGood(int gNum, String saveFileNm, String pName, int bPrice, long discount, int dPrice, String regId,
-			String regDt) {
-		super();
-		this.gNum = gNum;
-		this.saveFileNm = saveFileNm;
-		this.pName = pName;
-		this.bPrice = bPrice;
-		this.discount = discount;
-		this.dPrice = dPrice;
-		this.regId = regId;
-		this.regDt = regDt;
-	}
+	
 
 	
 }

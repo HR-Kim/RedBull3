@@ -42,7 +42,7 @@
 	<!--단건조회  -->
 	<select id="get_selectOne" parameterType="MyGood" resultType="MyGood">
 		SELECT * FROM GOOD
-		WHERE PNUM = #{pNum, jdbcType=VARCHAR}
+		WHERE PNUM = #{pNum, jdbcType=NUMERIC}
 		AND REGID = #{regId, jdbcType=VARCHAR}
 	</select>
 	
@@ -59,8 +59,7 @@
      		 ON g.pNum = i.refNum
 			 JOIN PRODUCT p
 			 ON g.pnum = p.pnum
-		   	 where 1=1
-		   	 and g.regid ='test01'
+			 <include refid="baseCondition" />
 		GROUP BY g.gnum, 
          		 p.PNAME, 
          		 p.BPRICE, 
@@ -68,6 +67,16 @@
          		 p.DPRICE,
          		 g.REGID
 		ORDER BY gNum
+	</select>
+	
+	<!-- 현재 cart 수량확인 -->
+	<select id="countGood" resultType="int">
+			<![CDATA[
+				SELECT COUNT(*)
+				FROM GOOD
+				WHERE pNum = #{pNum, jdbcType=NUMERIC}
+				AND regId = #{regId, jdbcType=VARCHAR}
+			]]>
 	</select>
 
 </mapper>

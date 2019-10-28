@@ -6,6 +6,7 @@
     pageEncoding="EUC-KR"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="context" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
@@ -44,7 +45,8 @@
 	                <c:forEach var="good" items="${list}">
 	                <tr>
 	                <td class="text-center">
-	                <input type="checkbox"  name="chBox" id="chBox"  data-cartNum="${good.gNum }"/>
+	                <input type="checkbox"  name="chBox" id="chBox"  data-cartNum="${good.gNum}"/>
+	                <c:out value="${good.gNum}"/>
 	               <%--  <input type="hidden" name="cartNum" id="cartNum" value="${cart.cartNum }"/> --%>
 	                </td>
 	                  <td>
@@ -59,13 +61,14 @@
 	                  </td>
 	                  <td class="text-center">
 	                  <del><fmt:formatNumber pattern="###,###,###" value="${good.bPrice}"/></del><br/>
-	                  <fmt:formatNumber pattern="###,###,###" value="${good.bPrice * (1-good.discount)}"/>원
+	                  <fmt:formatNumber pattern="###,###,###" value="${good.bPrice*(1-good.discount)}"/>원
+	                  
 	                  </td>
 	                  <td class="text-center">
-	                    <fmt:formatNumber pattern="###,###,###" value="${good.discount*100}"/>%
+	                  	<c:out value="${good.discount*100}"/>%
 	                  </td>
 	                  <td class="text-center">
-	                    <fmt:formatNumber pattern="###,###,###" value="${good.dPrice}"/>원
+	                    <fmt:formatNumber groupingUsed="true" value = "${good.dPrice}"/>원
 	                  </td>
 	                </tr>
 	            </c:forEach> 
