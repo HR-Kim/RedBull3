@@ -68,9 +68,11 @@ public class CartController {
 		LOG.debug("=1=search="+search);
 		LOG.debug("1==================================");
 		
+		String regId = "";
 		User user = (User) session.getAttribute("user");
-		String regId = user.getRid();
-		
+		if(user != null) {
+		 regId = user.getRid();
+		}
 		
 		//param
 		if(search.getPageSize() == 0) {
