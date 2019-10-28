@@ -209,7 +209,7 @@ public class CartWebTest {
 				.param("pageSize", "10")
 				.param("pageNum", "1")
 				.param("searchDiv", "10")
-				.param("searchWord", "cart_150");
+				.param("searchWord", "fnnjdd@naver.com");
 
 	
 		//url 호출 , 결과 return

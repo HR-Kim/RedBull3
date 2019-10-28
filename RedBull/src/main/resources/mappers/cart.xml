@@ -191,10 +191,8 @@
 	<update id="do_update" parameterType="Cart">
 			<![CDATA[
 				UPDATE CART
-				
 				SET cartcnt = #{cartCnt, jdbcType=NUMERIC} 
-				
-				WHERE onum = #{oNum, jdbcType=NUMERIC}
+				WHERE onum = #{oNum, jdbcType=VARCHAR}
 			    AND	  regid = #{regId, jdbcType=VARCHAR}
 		    ]]>
 		      	  
