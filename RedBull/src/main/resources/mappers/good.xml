@@ -47,7 +47,7 @@
 	</select>
 	
 	<!--목록조회  --> 
-	<select id="get_retrieve" parameterType="Search" resultType="kr.co.redbull.mypage.service.MyGood">
+	<select id="get_retrieve" parameterType="Search" resultType="MyGood">
 		SELECT  g.gnum as gNum,
 				MIN(i.SAVE_FILE_NM) as saveFileNm,
 	        	p.PNAME as pName,

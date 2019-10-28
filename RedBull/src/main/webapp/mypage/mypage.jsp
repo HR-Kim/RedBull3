@@ -77,6 +77,7 @@
 	<!-- Tab content -->
 	<div id="shopping" class="tabcontent">
 	  <h3>쇼핑</h3>
+	  <%@include file="../mypage/mypay.jsp"%>
 	</div>
 	
 	<div id="update" class="tabcontent">

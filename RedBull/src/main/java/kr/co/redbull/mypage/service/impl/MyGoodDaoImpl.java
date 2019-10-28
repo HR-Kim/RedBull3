@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.redbull.mypage.service.MyGood;
-import kr.co.redbull.product.service.Product;
-import kr.co.redbull.cart.service.Cart;
 import kr.co.redbull.cmn.DTO;
 import kr.co.redbull.cmn.Search;
 import kr.co.redbull.cmn.WorkDiv;

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   <mapper namespace="kr.co.redbull.mypage">
+	
+	<sql id="payCondition">
+ 	 		<choose>
+ 	 		 	<when test="'10' == searchDiv">
+ 	 				 and pay.payid LIKE '%' || #{searchWord} || '%'
+ 	 			</when>
+ 	 			<otherwise></otherwise>
+ 	 		</choose>
+ 	 </sql>
+	
+	<!--구매 목록조회  --> 
+	<select id="get_payRetrieve" parameterType="Search" resultType="MyPay">
+		SELECT
+	             PAY.ORDERNUM as orderNum,
+				 MIN(i.SAVE_FILE_NM) as saveFileNm,
+	             p.BPRICE as bPrice,
+				 o.OPRICE as oPrice,
+				 o.ONAME as oName,
+				 p.PNAME as pName,
+				p.DISCOUNT as discount,
+				p.DPRICE as dPrice,
+				PAY.AMOUNT as afterPrice
+		FROM PAY JOIN PAYDETAIL pd 
+                ON PAY.ORDERNUM = pd.ORDERNUM
+                JOIN OPT o
+				ON pd.oNum = o.oNum
+				JOIN IMAGE i
+				ON o.pNum = i.refNum
+				JOIN PRODUCT p
+				ON o.pnum = p.pnum
+	            <include refid="payCondition" />
+	          GROUP BY i.refnum,
+	          		   PAY.ORDERNUM,
+	                   p.bprice,
+	                   o.OPRICE,
+	                   o.ONAME,
+	                   p.pname ,
+	                   p.discount,
+	                   p.DPRICE ,
+	                   PAY.AMOUNT
+	          ORDER BY refnum
+	</select>
+	
+
+</mapper>
