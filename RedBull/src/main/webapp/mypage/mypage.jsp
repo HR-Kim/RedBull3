@@ -67,24 +67,26 @@
     <!--================Header Menu Area =================-->
 <body>
 	 <!-- Tab links -->
-	<div class="tab">
-	  <button class="tablinks" onclick="openCity(event, 'update')">
-	  	<a href="${context}/user/get_updateForm.do"/>
-	  	회원정보수정
-	  </button>
-	  <button class="tablinks" onclick="openCity(event, 'shopping')">
-	  	<a href="${context}/pay/get_payRetrieve.do"/>
-	  	나의 쇼핑
-	  </button>
-	  <button class="tablinks" onclick="openCity(event, 'good')">
-	  	<a href="${context}/good/get_retrieve.do"/>
-	  	나의 좋아요
-	  </button>
-	  <button class="tablinks" onclick="openCity(event, 'qa')">
-	  	<a href="${context}/myboard/get_aRetrieve.do"/>
-	  	나의 질문
-	  </button>
-	</div>
+	 <div class="container">
+		<div class="tab">
+		  <button class="tablinks" onclick="openCity(event, 'update')">
+		  	<a href="${context}/user/get_updateForm.do"/>
+		  	회원정보수정
+		  </button>
+		  <button class="tablinks" onclick="openCity(event, 'shopping')">
+		  	<a href="${context}/pay/get_payRetrieve.do"/>
+		  	나의 쇼핑
+		  </button>
+		  <button class="tablinks" onclick="openCity(event, 'good')">
+		  	<a href="${context}/good/get_retrieve.do"/>
+		  	나의 좋아요
+		  </button>
+		  <button class="tablinks" onclick="openCity(event, 'qa')">
+		  	<a href="${context}/myboard/get_aRetrieve.do"/>
+		  	나의 질문
+		  </button>
+		</div>
+	 </div>
 	
     <!--================ start footer Area  =================-->
     	<jsp:include page="/main/footer.jsp"></jsp:include>

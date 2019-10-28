@@ -100,10 +100,10 @@ public class MyGoodController {
 				int flag = myGoodService.do_save(good);
 				// message.setMsgId(String.valueOf(flag));
 				message.setMsgMsg("좋아요 성공");
+				result = 1;
 			} else {
 				message.setMsgMsg("이미 좋아요한 상품입니다.");
 			}
-			result = 1;
 		}
 
 		return result;
