@@ -68,55 +68,24 @@
 <body>
 	 <!-- Tab links -->
 	<div class="tab">
-	  <button class="tablinks" onclick="openCity(event, 'update')">회원정보수정</button>
-	  <button class="tablinks" onclick="openCity(event, 'shopping')">나의 쇼핑</button>
-	  <button class="tablinks" onclick="openCity(event, 'good')">나의 좋아요</button>
-	  <button class="tablinks" onclick="openCity(event, 'qa')">나의 질문</button>
+	  <button class="tablinks" onclick="openCity(event, 'update')">
+	  	<a href="${context}/user/get_updateForm.do"/>
+	  	회원정보수정
+	  </button>
+	  <button class="tablinks" onclick="openCity(event, 'shopping')">
+	  	<a href="${context}/pay/get_payRetrieve.do"/>
+	  	나의 쇼핑
+	  </button>
+	  <button class="tablinks" onclick="openCity(event, 'good')">
+	  	<a href="${context}/good/get_retrieve.do"/>
+	  	나의 좋아요
+	  </button>
+	  <button class="tablinks" onclick="openCity(event, 'qa')">
+	  	<a href="${context}/myboard/get_aRetrieve.do"/>
+	  	나의 질문
+	  </button>
 	</div>
 	
-	<!-- Tab content -->
-	<div id="shopping" class="tabcontent">
-	  <h3>쇼핑</h3>
-	  <%@include file="../mypage/mypay.jsp"%>
-	</div>
-	
-	<div id="update" class="tabcontent">
-	  <h3>회원정보수정</h3>
-	  <%@include file="../user/update.jsp"%>
-	</div>
-	
-	<div id="good" class="tabcontent">
-	  <h3>좋아요</h3>
-	  <%@include file="../mypage/mygood.jsp"%>
-	</div>
-	
-	<div id="qa" class="tabcontent">
-	  <h3>질문</h3>
-	  <%@include file="../mypage/myquestion.jsp"%>
-	</div>
-	
-    <script>
-    function openCity(evt, cityName) {
-    	  // Declare all variables
-    	  var i, tabcontent, tablinks;
-
-    	  // Get all elements with class="tabcontent" and hide them
-    	  tabcontent = document.getElementsByClassName("tabcontent");
-    	  for (i = 0; i < tabcontent.length; i++) {
-    	    tabcontent[i].style.display = "none";
-    	  }
-
-    	  // Get all elements with class="tablinks" and remove the class "active"
-    	  tablinks = document.getElementsByClassName("tablinks");
-    	  for (i = 0; i < tablinks.length; i++) {
-    	    tablinks[i].className = tablinks[i].className.replace(" active", "");
-    	  }
-
-    	  // Show the current tab, and add an "active" class to the button that opened the tab
-    	  document.getElementById(cityName).style.display = "block";
-    	  evt.currentTarget.className += " active";
-    }
-    </script>
     <!--================ start footer Area  =================-->
     	<jsp:include page="/main/footer.jsp"></jsp:include>
     <!--================ End footer Area  =================-->

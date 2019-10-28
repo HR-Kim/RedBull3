@@ -20,6 +20,7 @@
     <link href="${context}/resources/css/bootstrap.min.css" rel="stylesheet">	
 </head>
 <body>
+	<jsp:include page="/main/header.jsp"></jsp:include>
 	<section class="good_area">
       <div class="container">
         <div class="good_inner">
@@ -100,6 +101,7 @@
         </div>
       </div>
     </section>
+    <jsp:include page="/main/footer.jsp"></jsp:include>
     <!--// div container -->
         <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
      <script src="${context}/resources/js/jquery-1.12.4.js"></script>
