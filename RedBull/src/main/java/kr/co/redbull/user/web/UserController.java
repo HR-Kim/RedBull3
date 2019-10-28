@@ -93,14 +93,24 @@ public class UserController {
 		LOG.debug("1=@Controller outVO=" + user);
 		LOG.debug("1============================");
 		
-		// 이메일 입력란에 입력을 했는지 체크
+		Message msg = new Message();; // 전달할 메시지
+		
+		// 이메일 입력란에 입력을 안 했으면
 		if(null == user.getRid() || "".equals(user.getRid())) {
 			
-			throw new IllegalArgumentException("이메일을 입력하시오.");
+			msg.setMsgId("20");
 		}
 		
-		// 아이디가 존재 유무 확인
-		Message msg = (Message) userService.idCheck(user);
+		else if(user.getRid().length() < 2) { // 2자 미만으로 입력한 경우
+			
+			msg.setMsgId("40");
+		}
+		
+		else { // 이메일 입력란에 입력을 한 경우
+			
+			// 아이디 존재 유무 확인
+			msg = (Message) userService.idCheck(user);
+		}
 		
 		LOG.debug("2=========================");
 		LOG.debug("2= msg="+ msg); 

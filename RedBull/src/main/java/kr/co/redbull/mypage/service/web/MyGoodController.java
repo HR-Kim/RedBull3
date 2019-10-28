@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.gson.Gson;
-
-import kr.co.redbull.cart.service.Cart;
 import kr.co.redbull.cmn.Message;
 import kr.co.redbull.cmn.Search;
 import kr.co.redbull.cmn.StringUtil;
@@ -140,13 +137,6 @@ public class MyGoodController {
 		}
 
 		return result;
-	}
-	
-	@RequestMapping(value="mypage/get_mypage.do", method = RequestMethod.GET)
-	public String get_fakemypage(HttpSession session) {
-		
-		return "mypage/mypage.jsp";
-		
 	}
 	
 }

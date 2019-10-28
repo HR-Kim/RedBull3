@@ -85,6 +85,7 @@
 	        	              				url : "http://localhost:8080/redbull/login/do_login.do", // ·Î±×ÀÎ
 	        	              				dataType : "html",
 	        	              				data : {
+	        	              					"lang": 'ko',
 	        	              					"rid": id,
 	        	              					"passwd": SelJData.passwd
 	        	              				},
