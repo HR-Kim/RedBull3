@@ -73,13 +73,13 @@ public class CartController {
 		
 		
 		//param
-//		if(search.getPageSize() == 0) {
-//			search.setPageSize(10);
-//		}
-//		
-//		if(search.getPageNum() == 0) {
-//			search.setPageNum(1);
-//		}
+		if(search.getPageSize() == 0) {
+			search.setPageSize(10);
+		}
+		
+		if(search.getPageNum() == 0) {
+			search.setPageNum(1);
+		}
 		
 		if(null==search.getSearchDiv() || "".equals(search.getSearchDiv())) {
 			search.setSearchDiv("10");
@@ -195,8 +195,6 @@ public class CartController {
 		LOG.debug("===================================");
 		LOG.debug("=cart: " + cart);
 		LOG.debug("===================================");
-		
-		Message message = new Message();
 		
 		User user = (User) session.getAttribute("user");
 		String regId = user.getRid();
