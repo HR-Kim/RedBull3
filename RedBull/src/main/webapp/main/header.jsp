@@ -149,25 +149,29 @@
                     <a class="nav-link" href="${context}/board/get_retrieve.do?searchDiv=10"><spring:message code="message.header.notice" /></a>
                   </li> <!-- 다국어: 공지사항 -->
                   
-                  <li class="nav-item active submenu dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                      aria-expanded="false">마이페이지
-                    </a> 
-                    <ul class="dropdown-menu">
-                      <li class="nav-item">
-                        <a class="nav-link" href="${context}/user/get_updateForm.do">회원정보수정</a>
-                      </li> 
-                      <li class="nav-item">
-                        <a class="nav-link" href="${context}/pay/get_payRetrieve.do">나의 쇼핑</a>
-                      </li> 
-                      <li class="nav-item">
-                        <a class="nav-link" href="${context}/good/get_retrieve.do">나의 좋아요</a>
-                      </li> 
-                      <li class="nav-item">
-                        <a class="nav-link" href="${context}/myboard/get_aRetrieve.do">나의 질문</a>
-                      </li> 
-                    </ul>
-                  </li>
+                  <c:choose>
+                  	<c:when test="${user != null }"> <!-- 세션 값이 있을 때만 보여줌 -->
+	                  <li class="nav-item active submenu dropdown">
+	                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+	                      aria-expanded="false">마이페이지
+	                    </a> 
+	                    <ul class="dropdown-menu">
+	                      <li class="nav-item">
+	                        <a class="nav-link" href="${context}/user/get_updateForm.do">회원정보수정</a>
+	                      </li> 
+	                      <li class="nav-item">
+	                        <a class="nav-link" href="${context}/pay/get_payRetrieve.do">나의 쇼핑</a>
+	                      </li> 
+	                      <li class="nav-item">
+	                        <a class="nav-link" href="${context}/good/get_retrieve.do">나의 좋아요</a>
+	                      </li> 
+	                      <li class="nav-item">
+	                        <a class="nav-link" href="${context}/myboard/get_aRetrieve.do">나의 질문</a>
+	                      </li> 
+	                    </ul>
+	                  </li>
+                  	</c:when>
+                  </c:choose>
                   
                 </ul>
               </div>
@@ -198,13 +202,13 @@
                   </c:choose>
 					
 				  <c:choose>
-                  <c:when test="${user == null }"> <!-- 세션 값이 없을 때만 보여줌 -->	
+                  	<c:when test="${user == null }"> <!-- 세션 값이 없을 때만 보여줌 -->	
 	                  <li class="nav-item">
 	                    <a href="${context}/login/login.jsp" class="icons"> <!-- 로그인 -->
 	                      <i class="ti-user" aria-hidden="true"></i>
 	                    </a>
 	                  </li>
-                  </c:when>
+                  	</c:when>
                   </c:choose>
                   
                 </ul>
