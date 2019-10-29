@@ -13,8 +13,6 @@
 	User user = (User)session.getAttribute("user");
 	//out.println("user: " + user);
 	
-	Pay pay = (Pay)request.getAttribute("pay");
-	out.println("pay: " + pay);
 %>
 <html lang="ko">
   <body>
@@ -46,9 +44,11 @@
             <div class="col-lg-8">
             <!-- 주문자 조회 --> 
               <h3>주문자</h3>
+             ${pay }
                 <div class="col-md-12 form-group p_star">
              	    이름 <input  type="text" class="form-control" id="user_name" name="user_name" readonly="readonly" value="${user.uname }" />
                 </div>
+                
                 <div class="col-md-12 form-group p_star">
              	        이메일 <input  type="text" class="form-control" id="user_email" name="user_email" readonly="readonly" value="${user.rid }"/>
                 </div>
@@ -57,26 +57,28 @@
                   	 휴대전화<input  type="text" class="form-control" id="user_dphone"  name="user_dphone" readonly="readonly" value="${user.phone}"/>
                 </div>
                 </div>
+                
                <!-- 배송지 입력 --> 
-               
-               ${pay }
               <form class="row contact_form" id="payForm" method="post" >
 	              	<c:choose>
 		              <c:when test="${list.size()>0 }">
 		              <c:set var="sum" value="0"/>
 		              	 <c:forEach var="cart" items="${list}">
-		               		<input type="hidden"  name="uName" value="${user.uname }" />
-		               		<input type="text"  name="pName"  value="${cart.pName }" />
-		               		<c:set var="sum" value="${(cart.bPrice * (1-cart.discount) + cart.oPrice) * cart.cartCnt + cart.dPrice }"></c:set>
+		               		<c:set var="sum" value="${sum+ (cart.bPrice * (1-cart.discount) + cart.oPrice) * cart.cartCnt + cart.dPrice }"></c:set>
 		               	 </c:forEach>
 					  </c:when>
 					   <c:otherwise></c:otherwise>
 				    </c:choose>
-				     <input type="hidden" id="amount" name="amount"  value="${sum }" />
+				    
+				     <input type="hidden" id="amount" name="amount"  value="${pay.bPrice*(1-pay.discount)*pay.cartCnt+pay.dPrice }" />
+              		 <input type="hidden"  name="pName"  value="${pay.pName }" />
+              		 <input type="hidden"  name="uName" value="${user.uname }" />
+              		  <input type="hidden"  name="oNum" id="oNum" value="${pay.oNum }" />
+              		  <input type="hidden"  name="cartCnt" id="cartCnt" value="${pay.cartCnt }" /> 
                <div class="col-lg-8">
                <h3>배송지</h3>
 	                <div class="col-md-12 form-group p_star">
-	                  <input type="text"  class="form-control" id="dName" name="dName" placeholder="이름"}"/>
+	                  <input type="text"  class="form-control" id="dName" name="dName" placeholder="이름"/>
 	                </div>
 	                
 	                <div class="col-md-12 form-group p_star">
@@ -107,7 +109,7 @@
 	             <div class="col-lg-4">
 	              <div class="order_box">
 	                <h2>최종 결제</h2>
-	                <input type="text" style="text-align:center; border:0px;" readonly="readonly" value="${pay.getProductPrice() }" />
+	                <input type="text" style="text-align:center; border:0px;" readonly="readonly" value="<fmt:formatNumber pattern="###,###,###" value="${pay.bPrice*(1-pay.discount)*pay.cartCnt+pay.dPrice }" />" />
 	                <div class="payment_item">
 	                    <h2>결제 수단</h2>
 	                </div>
@@ -296,7 +298,7 @@
 	    	});
 			$.ajax({
 	            type:"POST",
-	            url:"${context}/pay/do_save.do",
+	            url:"${context}/pay/direct_save.do",
 	            dataType:"html",
 	            data:{
 	            amount:amount,
@@ -307,6 +309,10 @@
 	            "dDetAddr":$("#dDetAddr").val(),
 	            "dMemo":$("#dMemo").val(),
 	            "payMethod":$("#payMethod").val(),
+	            
+	            "oNum": $("#oNum").val(),
+	            cartCnt: $("#cartCnt").val()
+	            
 	           }, 
 	         success: function(data){
 
