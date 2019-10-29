@@ -85,7 +85,7 @@
 				<div
 					class="banner_content d-md-flex justify-content-between align-items-center">
 					<div class="mb-3 mb-md-0">
-						<h2>나의 질문</h2>
+						<h2>질문과 답변</h2>
 					</div>
 				</div>
 			</div>
@@ -108,7 +108,7 @@
         <div class="col-sm-12">
      <input type="text"  class="form-control input-sm " id="searchWord" name="searchWord" 
        placeholder="검색어" />
-       <a class="btn btn-success btn-sm" href="${context}/myboard/get_aRetrieve.do">조회하기</a> 
+       <a class="main_btn" href="${context}/myboard/get_aRetrieve.do">조회하기</a> 
      <button type="button" class="btn btn-success btn-sm" id="do_write">질문하기</button>  
        </div>
      
@@ -129,7 +129,7 @@
 							<td style="display:none;">${vo.bNum}</td>
 							<td colspan="5" class="title"><b>${vo.title} </b></td>
 							<%-- <td class="text-left col-md-1 col-xs-1" rowspan="3"><img src="${context}/board/noimage.jpg" class="img-thumbnail"> --%>
-						</td>
+</td>
 						</tr>
 						<tr>
 							<td class="text-left col-md-4 col-xs-4" colspan="5"> 

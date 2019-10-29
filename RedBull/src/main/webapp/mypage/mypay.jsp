@@ -21,20 +21,6 @@
 </head>
 <body>
 	<jsp:include page="/main/header.jsp"></jsp:include>
-	<!--================Home Banner Area =================-->
-	<section class="banner_area">
-		<div class="banner_inner d-flex align-items-center">
-			<div class="container">
-				<div
-					class="banner_content d-md-flex justify-content-between align-items-center">
-					<div class="mb-3 mb-md-0">
-						<h2>나의 구매목록</h2>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	
 	<section class="pay_area">
       <div class="container">
         <div class="pay_inner">
@@ -105,7 +91,9 @@
            	<td>
                 <div class="container">
                 	<a class="main_btn" href="${context}/product/get_retrieve.do">쇼핑하기</a>
-                	<a class="main_btn" href="${context}/cart/get_retrieve.do">장바구니 가기</a>
+                </div>
+                <div class="container">
+                	<a class="main_btn" href="${context}/pay/get_payRetrieve.do">조회하기</a>
                 </div>
              </td>
           </div>
