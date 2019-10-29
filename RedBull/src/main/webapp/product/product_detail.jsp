@@ -484,7 +484,6 @@
 		  console.log("cartCnt: "+ cartCnt);
 		  console.log("oNum: "+ oNum);
 		  console.log(oPrice);
-
 		  if(confirm("바로 결제 하시겠습니까?") == false) return;
 		  
 		  var frm = document.payFrm;
@@ -496,31 +495,6 @@
 	   	  frm.submit();
 	});
 		
-<<<<<<< HEAD
-=======
-		
-/*  		 $.ajax({
-               type:"GET",
-               url:"${context}/pay/direct_pay.do",
-               dataType:"html",
-               data:{
-            	   productCnt : sst,
-            	   productPrice : bPrice,
-            	   discount : discount,
-            	   delivery : dPrice,
-            	   //option : oPrice
-              }, 
-            success: function(result){
-            	location.href="${context}/pay/direct_pay.jsp";
-            },
-            error:function(){
-                alert("결제창 이동 실패");
-            }
-           }); 
-           //--ajax  */
-	});
-	
->>>>>>> branch 'master' of https://github.com/HR-Kim/RedBull3.git
 		//장바구니
 		$("#cart").on("click",function(){
 			//alert("장바구니 담으러!");
