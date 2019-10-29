@@ -545,8 +545,10 @@
 	            	if(result == 1){
 	            		alert("좋아요 성공");
 	            		location.href="${context}/good/get_retrieve.do";
-	            	}else{
-	            		alert("회원만 사용할 수 있습니다");
+	            	}else if(result == 2){
+	            		alert("회원전용 페이지입니다.");
+	            	}else if(result == 3){
+	            		alert("이미 좋아요한 상품입니다.");
 	            	}
 
 	            },
