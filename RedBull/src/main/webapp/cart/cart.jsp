@@ -172,7 +172,6 @@
    	 		
    	 		//alert("oNum:" +oNum);
    	 		//alert("sst:" +sst);
-
    	 		$(".upCnt").val('111');
 	    	//if(false==confirm("수정 하시겠습니까?"))return;
 	    	
@@ -221,7 +220,6 @@
    	 		
    	 		//alert("oNum:" +oNum);
    	 		//alert("sst:" +sst);
-
 	    	//if(false==confirm("수정 하시겠습니까?"))return;
 	    	
 	    	console.log("oNum: "+ oNum);
@@ -304,4 +302,3 @@
     
   </body>
 </html>
-    

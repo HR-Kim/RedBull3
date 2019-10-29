@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.redbull.mypage">
+	
+	<!-- 목록조회  -->
+	<select id="get_aRetrieve" parameterType="Search" resultType="MyBoard">
+	SELECT T1.*, T2.*
+	FROM (SELECT B.BNUM AS bNum,
+	             B.TITLE,
+	             B.CONTENTS,
+	             B.READCNT AS readCnt,
+	             B.TNUM AS tNum,
+	             B.CATEGORY,
+	             B.REGID AS regId,
+	             CASE TO_CHAR(B.REGDT, 'yyyy.mm.dd') WHEN TO_CHAR(SYSDATE, 'yyyy.mm.dd') THEN TO_CHAR(B.REGDT, 'HH24:MI')
+			     ELSE TO_CHAR(B.REGDT, 'yyyy.mm.dd') END as regDt,
+	             B.MODID AS modId,
+	             B.MODDT AS modDt,
+	             B.rnum AS num,
+	             B.commentCnt
+      	  FROM (SELECT ROWNUM AS rnum, A.*
+            	FROM(SELECT D.*, C.commentCnt 
+            		 FROM BOARD D 
+            		 LEFT OUTER JOIN 
+            		 (SELECT REFNUM, COUNT(*) AS commentCnt 
+                 FROM COMMENTS 
+                 GROUP BY REFNUM)C 
+            		 ON D.BNUM = C.REFNUM
+                WHERE TNUM = 20
+                AND D.regid LIKE '%' || #{searchWord} || '%'
+             		ORDER BY REGDT DESC) A
+            	WHERE ROWNUM  <![CDATA[<]]>= (#{pageSize, jdbcType=NUMERIC} * (#{pageNum, jdbcType=NUMERIC} -1) + #{pageSize, jdbcType=NUMERIC}))B
+      	  WHERE B.rnum <![CDATA[>]]>= (#{pageSize, jdbcType=NUMERIC} * (#{pageNum, jdbcType=NUMERIC} -1)+1)) T1
+	CROSS JOIN
+	(SELECT COUNT(*) AS totalCnt
+	 FROM (SELECT * FROM BOARD
+	 ))T2
+	</select>
+
+</mapper>

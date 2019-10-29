@@ -20,6 +20,7 @@
     <link href="${context}/resources/css/bootstrap.min.css" rel="stylesheet">	
 </head>
 <body>
+	<jsp:include page="/main/header.jsp"></jsp:include>
 	<section class="pay_area">
       <div class="container">
         <div class="pay_inner">
@@ -99,5 +100,6 @@
         </div>
       </div>
     </section>
+    <jsp:include page="/main/footer.jsp"></jsp:include>
 </body>
 </html>
