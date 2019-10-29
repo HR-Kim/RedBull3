@@ -31,7 +31,7 @@
 
 		<div class="my-box">
 		결제가 완료되었습니다:)<br/>
-		<a class="main_btn" href="${context}/mypage/get_payRetrieve.do">주문확인하기</a>
+		<a class="main_btn" href="${context}/pay/get_payRetrieve.do">주문확인하기</a>
 		</div>
 
    	<jsp:include page="/main/footer.jsp"></jsp:include>

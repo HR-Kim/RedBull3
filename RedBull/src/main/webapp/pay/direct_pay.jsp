@@ -69,7 +69,7 @@
 					   <c:otherwise></c:otherwise>
 				    </c:choose>
 				    
-				     <input type="hidden" id="amount" name="amount"  value="${pay.bPrice*(1-pay.discount)*pay.cartCnt+pay.dPrice }" />
+				     <input type="hidden" id="amount" name="amount"  value="${(pay.bPrice*(1-pay.discount)+pay.oPrice)*pay.cartCnt+pay.dPrice }" />
               		 <input type="hidden"  name="pName"  value="${pay.pName }" />
               		 <input type="hidden"  name="uName" value="${user.uname }" />
               		  <input type="hidden"  name="oNum" id="oNum" value="${pay.oNum }" />

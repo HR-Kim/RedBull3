@@ -44,7 +44,6 @@
             <div class="col-lg-8">
             <!-- 주문자 조회 --> 
               <h3>주문자</h3>
-             ${list }
                 <div class="col-md-12 form-group p_star">
              	    이름 <input  type="text" class="form-control" id="user_name" name="user_name" readonly="readonly" value="${user.uname }" />
                 </div>
