@@ -93,9 +93,6 @@
                 <div class="container">
                 	<a class="main_btn" href="${context}/product/get_retrieve.do">쇼핑하기</a>
                 </div>
-                <div class="container">
-                	<a class="main_btn" href="${context}/good/get_retrieve.do">조회하기</a>
-                </div>
              </td>
           </div>
         </div>

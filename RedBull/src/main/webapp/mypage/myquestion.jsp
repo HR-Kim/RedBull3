@@ -108,7 +108,7 @@
         <div class="col-sm-12">
      <input type="text"  class="form-control input-sm " id="searchWord" name="searchWord" 
        placeholder="검색어" />
-       <a class="main_btn" href="${context}/myboard/get_aRetrieve.do">조회하기</a> 
+       <a class="btn btn-success btn-sm" href="${context}/myboard/get_aRetrieve.do">조회하기</a> 
      <button type="button" class="btn btn-success btn-sm" id="do_write">질문하기</button>  
        </div>
      
