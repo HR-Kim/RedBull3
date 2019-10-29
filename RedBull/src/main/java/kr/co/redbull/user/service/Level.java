@@ -2,7 +2,7 @@ package kr.co.redbull.user.service;
 
 public enum Level {
 	
-	MANAGER(90, null) ,GOLD(30, MANAGER), SILVER(20, GOLD), BASIC(10, SILVER);
+	MANAGER(90, null) ,GOLD(30, null), SILVER(20, GOLD), BASIC(10, SILVER);
 	
 	// 멤버변수
 	private final int value;
