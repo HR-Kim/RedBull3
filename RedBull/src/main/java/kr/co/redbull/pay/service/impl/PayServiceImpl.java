@@ -46,5 +46,11 @@ public class PayServiceImpl implements PayService {
 		return payDaoImpl.get_retrieve(dto);
 	}
 
+	@Override
+	public int direct_save(DTO dto) {
+		
+		return payDaoImpl.direct_save(dto);
+	}
+
 	
 }

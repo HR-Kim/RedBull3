@@ -31,6 +31,18 @@
 		
 </form>
 
+
+<form name="payFrm" method="get" id="payFrm" >
+	<input type="hidden" id="pName" name="pName" value="${productVO.pName}"/>	
+	<input type="hidden" id="bPrice" name="bPrice" value="${productVO.bPrice}"/>
+	<input type="hidden" id="discount" name="discount" value="${productVO.discount}"/>
+	<input type="hidden" id="dPrice" name="dPrice" value="${productVO.dPrice}"/>
+	<input type="hidden" id="optSelect" name="optSelect" />
+	<input type="hidden" id="cartCnt" name="cartCnt"/>
+	<input type="hidden" id=oNum name="oNum" />
+<%-- 	<input type="hidden" id=codeId name="codeId" value="${vo.getCodeId()}" /> --%>
+</form>
+
 <!--================Home Banner Area =================-->
 <section class="banner_area">
 	<div class="banner_inner d-flex align-items-center">
@@ -452,38 +464,54 @@
 	//결제
 	$("#pay").on("click",function(){
 		//alert("결제 바로가기");
-
-		var optSelect = $("#optSelect").val();
-		var sst = $("#sst").val();
+		//var optSelect = $("#optSelect").val();
+		//var oPrice = $("#oPrice").val();
 		
-		if(confirm("결제창으로 이동합니다.") == false) return;
+		  var cartCnt = $("#sst").val();
+		  var oNum = $("#optSelect").val();
+		  //var oPrice = $("#optSelect option:checked").text();//oPrice[행사] 01.삼나무 미니싱글(XS) 600 원목 깔판 | 14400원
+		  
+/* 		  var idx = oPrice.split("|");
+		  for(var i in idx){
+			  var result = document.write(idx[i]);
+		  } */
+		  
+		  if(confirm("바로 결제 하시겠습니까?") == false) return;
+		  
+		  console.log("cartCnt: "+ cartCnt);
+		  console.log("oNum: "+ oNum);
+		  //console.log("oPrice: "+ oPrice);
+		  //alert("oPrice"+oPrice);
+		  //alert("result"+result);
+		  
+		  var frm = document.payFrm;
+		  frm.cartCnt.value=cartCnt;
+		  frm.oNum.value=oNum;
+		  
+		  frm.action = "${context}/pay/direct_pay.do";
+	   	  frm.submit();
+	});
 		
-		console.log("optSelect: "+ optSelect);
-		console.log("cartCnt: "+ sst); 
 		
- 		$.ajax({
-               type:"POST",
-               url:"${context}/cart/do_save.do",
+/*  		 $.ajax({
+               type:"GET",
+               url:"${context}/pay/direct_pay.do",
                dataType:"html",
                data:{
-            	   "oNum" : optSelect,
-            	   "cartCnt" : sst
+            	   productCnt : sst,
+            	   productPrice : bPrice,
+            	   discount : discount,
+            	   delivery : dPrice,
+            	   //option : oPrice
               }, 
             success: function(result){
-
-            	if(result == 1){
-            		alert("결제바로가기");
-            		location.href="${context}/pay/get_retrieve.do";
-            	}else{
-            		alert("회원만 사용할 수 있습니다");
-            	}
-
+            	location.href="${context}/pay/direct_pay.jsp";
             },
             error:function(){
                 alert("결제창 이동 실패");
             }
            }); 
-           //--ajax  
+           //--ajax  */
 	});
 	
 		//장바구니
@@ -514,7 +542,6 @@
 	            	}else{
 	            		alert("회원만 사용할 수 있습니다");
 	            	}
-
 	            },
 	            error:function(){
 	                alert("카트 담기 실패");
@@ -550,7 +577,6 @@
 	            	}else if(result == 3){
 	            		alert("이미 좋아요한 상품입니다.");
 	            	}
-
 	            },
 	            error:function(){
 	                alert("좋아요 실패");
@@ -624,13 +650,11 @@
 					if (null != jData && jData.msgId == "1") {
 						//alert(jData.msgMsg);
 						location.href = "${context}/product/product_mng.jsp";
-
 					} else {
 						alert("로딩 실패");
 					}
 				},
 				complete : function(data) {
-
 				},
 				error : function(xhr, status, error) {
 					alert("error:" + error);
@@ -657,7 +681,6 @@
 					}
 				},
 				complete : function(data) {
-
 				},
 				error : function(xhr, status, error) {
 					alert("error:" + error);
