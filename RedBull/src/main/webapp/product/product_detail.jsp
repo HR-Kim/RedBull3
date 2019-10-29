@@ -26,17 +26,11 @@
 <!--================Header Menu Area =================-->
 <jsp:include page="/main/header.jsp"></jsp:include>
 <!--================Form Group - Product==============-->
-<form name="frm_pNum" method="POST" >
+<form name="frm_pNum" method="post" >
 	<input type="hidden" id="pNum" name="pNum" value="${productVO.pNum}"/>
+		
 </form>
 
-
-<form name="pay_frm" method="POST" >
-	<input type="hidden" id="bPrice" name="bPrice" value="${productVO.bPrice}"/>
-	<input type="hidden" id="discount" name="discount" value="${productVO.discount}"/>
-	<input type="hidden" id="dPrice" name="dPrice" value="${productVO.dPrice}"/>
-
-</form>
 <!--================Home Banner Area =================-->
 <section class="banner_area">
 	<div class="banner_inner d-flex align-items-center">
@@ -459,49 +453,37 @@
 	$("#pay").on("click",function(){
 		//alert("결제 바로가기");
 
-		//var optSelect = $("#optSelect").val();
-
-		//var oPrice = $("#oPrice").val();
-		
+		var optSelect = $("#optSelect").val();
+		var sst = $("#sst").val();
 		
 		if(confirm("결제창으로 이동합니다.") == false) return;
 		
-		//console.log("optSelect: "+ optSelect);
-		console.log("sst: "+ sst); 
-		console.log("bPrice: "+ bPrice); 
-		console.log("discount: "+ discount); 
-		console.log("dPrice: "+ dPrice); 
+		console.log("optSelect: "+ optSelect);
+		console.log("cartCnt: "+ sst); 
 		
-		var frm =document.pay_frm;
-		var sst = $("#sst").val();
-		var bPrice = $("#bPrice").val();
-		var discount = $("#discount").val();
-		var dPrice = $("#dPrice").val();
-		frm.action="/pay/direct_pay.do";
-		frm.submit();
-		
-		//console.log("oPrice: "+ oPrice); 
-		
-/*  		 $.ajax({
-               type:"GET",
-               url:"${context}/pay/direct_pay.do",
+ 		$.ajax({
+               type:"POST",
+               url:"${context}/cart/do_save.do",
                dataType:"html",
                data:{
-            	   productCnt : sst,
-            	   productPrice : bPrice,
-            	   discount : discount,
-            	   delivery : dPrice,
-            	   //option : oPrice
+            	   "oNum" : optSelect,
+            	   "cartCnt" : sst
               }, 
             success: function(result){
 
-            	location.href="${context}/pay/direct_pay.jsp";
+            	if(result == 1){
+            		alert("결제바로가기");
+            		location.href="${context}/pay/get_retrieve.do";
+            	}else{
+            		alert("회원만 사용할 수 있습니다");
+            	}
+
             },
             error:function(){
                 alert("결제창 이동 실패");
             }
            }); 
-           //--ajax  */
+           //--ajax  
 	});
 	
 		//장바구니
@@ -563,8 +545,10 @@
 	            	if(result == 1){
 	            		alert("좋아요 성공");
 	            		location.href="${context}/good/get_retrieve.do";
-	            	}else{
-	            		alert("회원만 사용할 수 있습니다");
+	            	}else if(result == 2){
+	            		alert("회원전용 페이지입니다.");
+	            	}else if(result == 3){
+	            		alert("이미 좋아요한 상품입니다.");
 	            	}
 
 	            },
