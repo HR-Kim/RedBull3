@@ -140,8 +140,12 @@
 							<i class="lnr lnr lnr-heart"></i>
 						</a>
 						<hr>
-						<a class="main_btn" href="javascript:update_product();">수정하기</a>
-						<a class="main_btn" href="javascript:delete_product();">삭제하기</a>
+						<c:choose>
+                  			<c:when test="${(user != null) && (user.lvl == 'MANAGER')}"> <!-- 세션 값이 있고, 관리자일 경우 -->
+								<a class="main_btn" href="javascript:update_product();">수정하기</a>
+								<a class="main_btn" href="javascript:delete_product();">삭제하기</a>
+							</c:when>
+						</c:choose>
 					</div>
 				</div>
 			</div>
