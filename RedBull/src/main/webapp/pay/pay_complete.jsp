@@ -13,9 +13,9 @@
 			padding:10px; 
 			border:2px solid blue; 
 			padding:100px;
-			margin:10 10 10 10;
+			margin:100 100 100 100;
 			width: 600px;
-			height: 100%;
+			height: 80%;
 			top: 20px;
 			left: 35%;
 			bottom: 20%;
