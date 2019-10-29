@@ -26,17 +26,23 @@
 <!--================Header Menu Area =================-->
 <jsp:include page="/main/header.jsp"></jsp:include>
 <!--================Form Group - Product==============-->
-<form name="frm_pNum" method="POST" >
+<form name="frm_pNum" method="post" >
 	<input type="hidden" id="pNum" name="pNum" value="${productVO.pNum}"/>
+		
 </form>
 
 
-<form name="pay_frm" method="POST" >
+<form name="payFrm" method="get" id="payFrm" >
+	<input type="hidden" id="pName" name="pName" value="${productVO.pName}"/>	
 	<input type="hidden" id="bPrice" name="bPrice" value="${productVO.bPrice}"/>
 	<input type="hidden" id="discount" name="discount" value="${productVO.discount}"/>
 	<input type="hidden" id="dPrice" name="dPrice" value="${productVO.dPrice}"/>
-
+	<input type="hidden" id="optSelect" name="optSelect" />
+	<input type="hidden" id="cartCnt" name="cartCnt"/>
+	<input type="hidden" id=oNum name="oNum" />
+<%-- 	<input type="hidden" id=codeId name="codeId" value="${vo.getCodeId()}" /> --%>
 </form>
+
 <!--================Home Banner Area =================-->
 <section class="banner_area">
 	<div class="banner_inner d-flex align-items-center">
@@ -461,24 +467,31 @@
 		//var optSelect = $("#optSelect").val();
 		//var oPrice = $("#oPrice").val();
 		
+		  var cartCnt = $("#sst").val();
+		  var oNum = $("#optSelect").val();
+		  //var oPrice = $("#optSelect option:checked").text();//oPrice[행사] 01.삼나무 미니싱글(XS) 600 원목 깔판 | 14400원
+		  
+/* 		  var idx = oPrice.split("|");
+		  for(var i in idx){
+			  var result = document.write(idx[i]);
+		  } */
+		  
+		  if(confirm("바로 결제 하시겠습니까?") == false) return;
+		  
+		  console.log("cartCnt: "+ cartCnt);
+		  console.log("oNum: "+ oNum);
+		  //console.log("oPrice: "+ oPrice);
+		  //alert("oPrice"+oPrice);
+		  //alert("result"+result);
+		  
+		  var frm = document.payFrm;
+		  frm.cartCnt.value=cartCnt;
+		  frm.oNum.value=oNum;
+		  
+		  frm.action = "${context}/pay/direct_pay.do";
+	   	  frm.submit();
+	});
 		
-		if(confirm("결제창으로 이동합니다.") == false) return;
-		
-		//console.log("optSelect: "+ optSelect);
-		console.log("sst: "+ sst); 
-		console.log("bPrice: "+ bPrice); 
-		console.log("discount: "+ discount); 
-		console.log("dPrice: "+ dPrice); 
-		
-		var frm =document.pay_frm;
-		var sst = $("#sst").val();
-		var bPrice = $("#bPrice").val();
-		var discount = $("#discount").val();
-		var dPrice = $("#dPrice").val();
-		frm.action="/pay/direct_pay.do";
-		frm.submit();
-		
-		//console.log("oPrice: "+ oPrice); 
 		
 /*  		 $.ajax({
                type:"GET",

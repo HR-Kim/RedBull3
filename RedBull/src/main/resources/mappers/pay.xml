@@ -13,6 +13,21 @@
  	 		</choose>
  	 </sql>
  	 
+ 	 
+ 	 <!-- 바로 결제 주문상세 입력 -->
+ 	 <insert id="direct_save" parameterType="PayDetail">
+			INSERT INTO PAYDETAIL (
+			    orderNum,
+			    oNum,
+			    cartCnt
+			) VALUES (
+				#{orderNum, jdbcType=VARCHAR},
+				#{oNum, jdbcType=VARCHAR},
+				#{cartCnt, jdbcType=NUMERIC}
+			)
+	</insert> 
+ 	 
+ 	 
  	 <!-- 주문상세 입력 -->
  	 <insert id="do_paydetail" parameterType="PayDetail">
  	 	<![CDATA[

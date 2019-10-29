@@ -40,37 +40,45 @@ public class PayController {
 	@Autowired
 	private PayService payService;
 	
-	private final String DIRECT_PAY = "pay/direct_pay";//바로 결제하기
-	private final String VIEW_LIST_NM = "pay/pay_list"; //장바구니 -> 결제 화면
+	
+	private final String DIRECT_PAY = "pay/direct_pay";
+	private final String VIEW_LIST_NM = "pay/pay_list"; //결제 화면
 	private final String VIEW_COMPLETE = "pay/pay_complete";
 	
 	
 	
 	/** 장바구니 -> 주문목록  / 바로 주문목록  /결제 총 금액 가져오기!!!! */
 	@RequestMapping(value="pay/direct_pay.do", method=RequestMethod.GET)
-	public String get_direct(HttpServletRequest req, HttpSession session, Pay pay, Model model, Search search) {
-			
+	public String direct_pay(HttpServletRequest req, Pay pay,Model model) {
+		
+		model.addAttribute("pay", pay);
 				
-				LOG.debug("1==================================");
-				LOG.debug("=1=DIRECT_PAY="+DIRECT_PAY);
-				LOG.debug("1==================================");
-				
+		LOG.debug("2==================================");
+		LOG.debug("=2=pay="+pay);
+		LOG.debug("2==================================");
+		
+		LOG.debug("3^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+		LOG.debug("=3=getbPrice="+pay.getbPrice());
+		LOG.debug("=3=getDiscount="+pay.getDiscount());
+		LOG.debug("=3=getdPrice="+pay.getdPrice());
+		LOG.debug("=3=getCartCnt="+pay.getCartCnt());
+		LOG.debug("=3=getoNum="+pay.getoNum());
+		LOG.debug("=3=getoPrice="+pay.getoPrice());
+		
+		LOG.debug("3^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+		
+		
+		LOG.debug("1==================================");
+		LOG.debug("=1=DIRECT_PAY="+DIRECT_PAY);
+		LOG.debug("1==================================");
+		
+		return DIRECT_PAY; //결제 화면
+		
+	}
 
-				model.addAttribute("pay",pay);
-				
-				LOG.debug("1==================================");
-				LOG.debug("=1=pay="+pay);
-				LOG.debug("1==================================");
-				
-				LOG.debug("^^^^^^^^^^^^^^^^^^^"+pay.getProductCnt());   //4      
-				LOG.debug("^^^^^^^^^^^^^^^^^^^"+pay.getProductPrice()); //24900  
-				LOG.debug("^^^^^^^^^^^^^^^^^^^"+pay.getDiscount());     //0.2    
-				LOG.debug("^^^^^^^^^^^^^^^^^^^"+pay.getDelivery());     //0      
-				LOG.debug("^^^^^^^^^^^^^^^^^^^"+pay.getOption());     //  ?  
-				
-				return DIRECT_PAY; //결제 화면
-			}
-			
+	
+	
+	
 	/** 장바구니 -> 주문목록  / 바로 주문목록  /결제 총 금액 가져오기!!!! */
 	@RequestMapping(value="pay/get_retrieve.do", method=RequestMethod.GET)
 	public String get_retrieve(HttpSession session, Pay pay,Model model, Search search) {
@@ -135,6 +143,55 @@ public class PayController {
 		
 		return VIEW_LIST_NM; //결제 화면
 		
+	}
+	
+	
+	/**최종 결제  저장*/
+	@RequestMapping(value="pay/direct_save.do", method=RequestMethod.POST)
+	public String direct_save(HttpSession session,Pay pay, PayDetail payDetail){
+		
+		LOG.debug("1==================================");
+		LOG.debug("=1=pay="+pay);
+		LOG.debug("1==================================");
+	
+		User user = (User) session.getAttribute("user");
+		String payId = user.getRid();
+		
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH)+1);
+		String ymd = ym + new DecimalFormat("00").format(cal.get(Calendar.DATE));
+		String subNum = "";
+		
+		for(int i=0; i<=6; i++) {
+			subNum  += (int)(Math.random() * 10);
+		}
+		
+		String orderNum = ymd + "_" + subNum;
+		
+		//주문테이블 저장
+		pay.setOrderNum(orderNum);
+		pay.setPayId(payId);
+		
+		payService.do_save(pay);
+		
+		
+		
+		//주문상세 테이블 저장 //가져올 것: oNum , cartCnt 필요
+		int a = pay.getCartCnt();
+		String b = pay.getoNum();
+		
+		payDetail.setOrderNum(orderNum);
+		payDetail.setCartCnt(a);
+		payDetail.setoNum(b);
+		LOG.debug("1==================================");
+		LOG.debug("=1=payDetail="+payDetail);
+		LOG.debug("1==================================");
+		
+		payService.direct_save(payDetail);
+		
+		
+		return VIEW_COMPLETE;
 	}
 
 

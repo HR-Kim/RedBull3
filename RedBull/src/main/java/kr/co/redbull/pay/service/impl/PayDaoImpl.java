@@ -32,6 +32,27 @@ public class PayDaoImpl implements WorkDiv {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	
+	//배송지 삽입
+	public int direct_save(DTO dto) {
+		String statement = this.NAMESPACE+".direct_save";
+		PayDetail pay = (PayDetail) dto;
+		LOG.debug("================================");
+		LOG.debug("1. statement: " + statement);
+		LOG.debug("================================");
+		
+		LOG.debug("================================");
+		LOG.debug("2. param: " + pay);
+		LOG.debug("================================");
+		
+		int flag = this.sqlSessionTemplate.insert(statement, pay);
+		LOG.debug("================================");
+		LOG.debug("3. flag: " + flag);
+		LOG.debug("================================");
+		
+		return flag;
+	}
 
 	//결제 시 장바구니 삭제
 	@Override
