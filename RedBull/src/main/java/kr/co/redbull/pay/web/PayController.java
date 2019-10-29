@@ -40,9 +40,37 @@ public class PayController {
 	@Autowired
 	private PayService payService;
 	
-	private final String VIEW_LIST_NM = "pay/pay_list"; //결제 화면
+	private final String DIRECT_PAY = "pay/direct_pay";//바로 결제하기
+	private final String VIEW_LIST_NM = "pay/pay_list"; //장바구니 -> 결제 화면
 	private final String VIEW_COMPLETE = "pay/pay_complete";
+	
+	
+	
+	/** 장바구니 -> 주문목록  / 바로 주문목록  /결제 총 금액 가져오기!!!! */
+	@RequestMapping(value="pay/direct_pay.do", method=RequestMethod.GET)
+	public String get_direct(HttpServletRequest req, HttpSession session, Pay pay, Model model, Search search) {
+			
+				
+				LOG.debug("1==================================");
+				LOG.debug("=1=DIRECT_PAY="+DIRECT_PAY);
+				LOG.debug("1==================================");
+				
 
+				model.addAttribute("pay",pay);
+				
+				LOG.debug("1==================================");
+				LOG.debug("=1=pay="+pay);
+				LOG.debug("1==================================");
+				
+				LOG.debug("^^^^^^^^^^^^^^^^^^^"+pay.getProductCnt());   //4      
+				LOG.debug("^^^^^^^^^^^^^^^^^^^"+pay.getProductPrice()); //24900  
+				LOG.debug("^^^^^^^^^^^^^^^^^^^"+pay.getDiscount());     //0.2    
+				LOG.debug("^^^^^^^^^^^^^^^^^^^"+pay.getDelivery());     //0      
+				LOG.debug("^^^^^^^^^^^^^^^^^^^"+pay.getOption());     //  ?  
+				
+				return DIRECT_PAY; //결제 화면
+			}
+			
 	/** 장바구니 -> 주문목록  / 바로 주문목록  /결제 총 금액 가져오기!!!! */
 	@RequestMapping(value="pay/get_retrieve.do", method=RequestMethod.GET)
 	public String get_retrieve(HttpSession session, Pay pay,Model model, Search search) {

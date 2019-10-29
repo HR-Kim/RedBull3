@@ -51,10 +51,14 @@
         <div class="cart_inner">
           <div class="table-responsive">
          <form name="cartFrm" method="get" action="${context}/cart/do_update.do">
+         <input type="hidden" name="cartNum" id="cartNum"/>
+		 <input type="hidden" name="oNum" id="oNum"/>
           <input type="hidden" name="searchDiv" id="searchDiv" />
             <table class="table table-striped table-bordered table-hover">
               <thead>
                 <tr>
+                	 <th class="text-center hidden-xs hidden-sm hidden-md hidden-lg ">카트수량</th>
+                	 <th class="text-center hidden-xs hidden-sm hidden-md hidden-lg ">옵션번호</th>
 			         <th class="text-center col-md-1 col-xs-1">
 					 전체선택<input type="checkbox" id="checkAll" name="checkAll"></th>
 			         <th class="text-center col-md-4 col-xs-4 ">상품</th>
@@ -73,10 +77,10 @@
 	        		<c:set var="count" value="0"></c:set>
 	                <c:forEach var="cart" items="${list}">
 	                <tr>
+	                <td class='text-center hidden-xs hidden-sm hidden-md hidden-lg'><c:out value="${cart.cartCnt }"/></td>
+	                <td class='text-center hidden-xs hidden-sm hidden-md hidden-lg'><c:out value="${cart.oNum }"/></td>
 	                <td class="text-center">
-		                <input type="checkbox"  name="chBox" id="chBox"  data-cartNum="${cart.cartNum }"/>
-		                <input type="hidden" name="cartNum" id="cartNum" value="${cart.cartNum }"/>
-		                 <input type="text" name="oNum" id="oNum" value="${cart.oNum }"/>
+		                 <input type="checkbox"  name="chBox" id="chBox"  data-cartNum="${cart.cartNum }"/>
 	                </td>
 	                 <td>
 	                    <div class="media">
@@ -85,7 +89,7 @@
 	                      </div>
 	                      
 	                      <div class="media-body">
-	                     	 <c:out value="${cart.pName}"/><br/>
+	                     	 	<c:out value="${cart.pName}"/><br/>
 	                     	 옵션:<c:out value="${cart.oName}"/>
 	                      </div>
 	                    </div>
@@ -100,31 +104,11 @@
 	                  <fmt:formatNumber pattern="###,###,###"  value="${cart.oPrice}" />원
 	                  </td>
 	                  
-<%-- 				       <td class="text-left">
-				        <button type="button" id="plus">+</button>
-						<input type="number" id="numBox" value="${cart.cartCnt}" readonly="readonly"/>
-						<button type="button" id="minus">-</button>
+				       <td class="text-center">
+				        	 <fmt:formatNumber pattern="###,###,###"  value="${cart.cartCnt}" />
+	       					<a href="#" class="upCnt"  >▲</a><a href="#" class="downCnt" >▼</a>
+				       </td>
 				       
-				        </td> --%>
-<%-- 				       <button onclick="form_btn(1)">+</button>
-				        <input type="text" id="cartCnt" value="${cart.cartCnt}" size="2" >
-				         <button onclick="form_btn(-1)">-</button> --%>
-				         
-				        <td>
-	       					<input type="number" id="cartCnt" name="cartCnt" value="${cart.cartCnt}" min="1" size="3"  />
-	       					<input type="button" class="delete_btn"  onclick="javascript:updatebtn()" value="변경" />
-				      	</td>
-				      <!--         <a href="#"  onclick="javascript_:change(1);">▲</a><a href="#" onclick="javascript_:change(-1);">▼</a> -->
-<%-- 	                <div class="product_count">
-	                   		<input type="text" name="cartCnt" id="cartCnt" readonly="readonly"  value="${cart.cartCnt}" />
-							<button onclick="javascript:countUp()" class="increase items-count" type="button">
-								<i class="lnr lnr-chevron-up"></i>
-							</button>
-							<button onclick="javascript:countDown()"  class="reduced items-count" type="button">
-								<i class="lnr lnr-chevron-down"></i>
-							</button>
-	                    </div> --%>
-	                  
 	                  <td class="text-center">
 	                    <fmt:formatNumber pattern="###,###,###" value="${cart.dPrice }"/>원
 	                  </td>
@@ -175,15 +159,24 @@
       		location.href = "${context}/pay/get_retrieve.do";
       	}); 
       	
-      	//수량 수정
-      	function updatebtn(){
-      		var oNum = $("#oNum").val();
-			var cartCnt = $("#cartCnt").val();
- 			
-	    	if(false==confirm("수정 하시겠습니까?"))return;
+       	
+      	//수량 증가
+   	 	   $(".upCnt").on("click", function(){
+   		 
+   	 		var upCnt = $(this).val();
+   	 		var tr = $(this).parent().parent();
+   	 		var td = tr.children();
+   	 		
+   	 		var sst = parseInt(td.eq(0).text())+1;
+   	 		var oNum = td.eq(1).text();
+   	 		
+   	 		//alert("oNum:" +oNum);
+   	 		//alert("sst:" +sst);
+   	 		$(".upCnt").val('111');
+	    	//if(false==confirm("수정 하시겠습니까?"))return;
 	    	
 	    	console.log("oNum: "+ oNum);
-	    	console.log("cartCnt: "+ cartCnt);
+	    	console.log("sst: "+ sst);
 	    	
 	    	
 			$.ajax({
@@ -191,15 +184,14 @@
 	            url:"${context}/cart/do_update.do",
 	            dataType:"html",
 	            data:{
-	            	   "oNum" : oNum,
-	            	   cartCnt : cartCnt
+	            	
+	            	 "oNum" : oNum,
+	            	  cartCnt : sst
 	            },
 	            success: function(data){//통신이 성공적으로 이루어 졌을때 받을 함수
-	                //console.log(data);
-	            	//{"msgId":"1","msgMsg":"수정 되었습니다.","totalCnt":0,"num":0}
 	            	var parseData = $.parseJSON(data);
 	            	if(parseData.msgId=="1"){
-	            		alert(parseData.msgMsg);
+	            		//alert(parseData.msgMsg);
 	            		location.href = "${context}/cart/get_retrieve.do";
 	            	}else{
 	            		alert(parseData.msgMsg);
@@ -213,53 +205,57 @@
 	            }
 	        });	
       		
-      	}
-/*  		$("#updatebtn").on("click",function(){
-				    	
-	    }); */
+      	}); 
       	
-/*       	$(function(){
-          	$("#up").click(function(){
-          		var n = $("#up").index(this);
-          		var num = $(".num:eq("+n+")").val();
-          		num = $(".num:eq("+n+")").val(num*1+1);
-          	});
-          	
-          	$("#down").click(function(){
-          		var n = $("#down").index(this);
-          		var num = $(".num:eq("+n+")").val();
-          		num = $(".num:eq("+n+")").val(num*1-1);
-          	}); 
-          	
-      	}); */
       	
-/*      		 function change(num)
- 		 {
-	 		 var x  = document.form;
-	 		 var y = Number(x.cartCnt.value)+num;
-	 		 if(y < 1) y = 1;
-	 		 x.cartCnt.value = y;
- 		 }   */
+      	//수량 감소
+   	 	$(".downCnt").on("click", function(){
+      		 
+   	 		var upCnt = $(this).val();
+   	 		var tr = $(this).parent().parent();
+   	 		var td = tr.children();
+   	 		
+   	 		var sst = parseInt(td.eq(0).text())-1;
+   	 		var oNum = td.eq(1).text();
+   	 		
+   	 		//alert("oNum:" +oNum);
+   	 		//alert("sst:" +sst);
+	    	//if(false==confirm("수정 하시겠습니까?"))return;
+	    	
+	    	console.log("oNum: "+ oNum);
+	    	console.log("sst: "+ sst);
+	    	
+	    	
+			$.ajax({
+	            type:"POST",
+	            url:"${context}/cart/do_update.do",
+	            dataType:"html",
+	            data:{
+	            	
+	            	 "oNum" : oNum,
+	            	  cartCnt : sst
+	            },
+	            success: function(data){//통신이 성공적으로 이루어 졌을때 받을 함수
+	                //console.log(data);
+	            	//{"msgId":"1","msgMsg":"수정 되었습니다.","totalCnt":0,"num":0}
+	            	var parseData = $.parseJSON(data);
+	            	if(parseData.msgId=="1"){
+	            		//alert(parseData.msgMsg);
+	            		location.href = "${context}/cart/get_retrieve.do";
+	            	}else{
+	            		alert(parseData.msgMsg);
+	            	}
+	            },
+	            complete: function(data){//무조건 수행
+	             
+	            },
+	            error: function(xhr,status,error){
+	             
+	            }
+	        });	
+      		
+      	}); 
       	
-/* 		//수량 Up
-		function countUp(){
-			var result = document.getElementById('cartCnt');
-			var cartCnt = result.value;
-			if(!isNaN( cartCnt )){
-				result.value++;
-				return false;
-			}
-		}
-		//수량Down
-		function countDown(){
-			var result = document.getElementById('cartCnt');
-			var cartCnt = result.value;
-			if( !isNaN(cartCnt) && cartCnt > 0 ){
-				result.value--;
-				return false;
-			}
-		} */
-		
       	 //체크박스
       	$("#checkAll").on("click",function(){
      			if($("#checkAll").is(':checked')==true){
@@ -306,4 +302,3 @@
     
   </body>
 </html>
-    
