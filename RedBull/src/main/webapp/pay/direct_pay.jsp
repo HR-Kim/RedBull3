@@ -44,7 +44,6 @@
             <div class="col-lg-8">
             <!-- 주문자 조회 --> 
               <h3>주문자</h3>
-             ${pay }
                 <div class="col-md-12 form-group p_star">
              	    이름 <input  type="text" class="form-control" id="user_name" name="user_name" readonly="readonly" value="${user.uname }" />
                 </div>
@@ -109,7 +108,7 @@
 	             <div class="col-lg-4">
 	              <div class="order_box">
 	                <h2>최종 결제</h2>
-	                <input type="text" style="text-align:center; border:0px;" readonly="readonly" value="<fmt:formatNumber pattern="###,###,###" value="${pay.bPrice*(1-pay.discount)*pay.cartCnt+pay.dPrice }" />" />
+	                <input type="text" style="text-align:center; border:0px;" readonly="readonly" value="<fmt:formatNumber pattern="###,###,###" value="${(pay.bPrice*(1-pay.discount)+pay.oPrice)*pay.cartCnt+pay.dPrice }" />" />
 	                <div class="payment_item">
 	                    <h2>결제 수단</h2>
 	                </div>
@@ -315,7 +314,6 @@
 	            
 	           }, 
 	         success: function(data){
-
 	        	 location.href="${context}/pay/pay_complete.jsp";
 	         },
 	         complete:function(data){
@@ -325,7 +323,6 @@
 	             alert("error:"+error);
 	         }
 	        }); //--ajax 
-
 		} else {
 			var msg = '결제에 실패하였습니다.';
 			//msg += '에러내용 : ' + rsp.error_msg;
@@ -380,10 +377,8 @@
 	    }
 	 
     </script>
-
     <!--================ start footer Area  =================-->
     	<jsp:include page="/main/footer.jsp"></jsp:include>
     <!--================ End footer Area  =================-->
   </body>
 </html>
-

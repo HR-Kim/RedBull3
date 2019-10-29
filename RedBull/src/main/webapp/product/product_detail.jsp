@@ -37,10 +37,9 @@
 	<input type="hidden" id="bPrice" name="bPrice" value="${productVO.bPrice}"/>
 	<input type="hidden" id="discount" name="discount" value="${productVO.discount}"/>
 	<input type="hidden" id="dPrice" name="dPrice" value="${productVO.dPrice}"/>
-	<input type="hidden" id="optSelect" name="optSelect" />
+	<input type="hidden" id="oPrice" name="oPrice" />
 	<input type="hidden" id="cartCnt" name="cartCnt"/>
 	<input type="hidden" id=oNum name="oNum" />
-<%-- 	<input type="hidden" id=codeId name="codeId" value="${vo.getCodeId()}" /> --%>
 </form>
 
 <!--================Home Banner Area =================-->
@@ -140,8 +139,12 @@
 							<i class="lnr lnr lnr-heart"></i>
 						</a>
 						<hr>
-						<a class="main_btn" href="javascript:update_product();">수정하기</a>
-						<a class="main_btn" href="javascript:delete_product();">삭제하기</a>
+						<c:choose>
+                  			<c:when test="${(user != null) && (user.lvl == 'MANAGER')}"> <!-- 세션 값이 있고, 관리자일 경우 -->
+								<a class="main_btn" href="javascript:update_product();">수정하기</a>
+								<a class="main_btn" href="javascript:delete_product();">삭제하기</a>
+							</c:when>
+						</c:choose>
 					</div>
 				</div>
 			</div>
@@ -463,32 +466,35 @@
 	
 	//결제
 	$("#pay").on("click",function(){
+		//alert("결제 바로가기");
+		//var optSelect = $("#optSelect").val();
+		//var oPrice = $("#oPrice").val();
 		
 		  var cartCnt = $("#sst").val();
 		  var oNum = $("#optSelect").val();
-		  //var oPrice = $("#optSelect option:checked").text();//oPrice[행사] 01.삼나무 미니싱글(XS) 600 원목 깔판 | 14400원
+ 		  var oPrice = $("#optSelect option:checked").text().split("|")[1].trim().slice(0,-1);//oPrice[행사] 01.삼나무 미니싱글(XS) 600 원목 깔판 | 14400원
+/* 		  var idx = oPrice.split("|"); 
+		  //console.log(idx);
+		  var trim = idx[1].trim(); //14400원
+		  //console.log(trim);
+		  var result = trim.slice(0,-1); //14400
+		  console.log(result); */
 		  
-/* 		  var idx = oPrice.split("|");
-		  for(var i in idx){
-			  var result = document.write(idx[i]);
-		  } */
-		  
-		  if(confirm("바로 결제 하시겠습니까?") == false) return;
 		  
 		  console.log("cartCnt: "+ cartCnt);
 		  console.log("oNum: "+ oNum);
-		  //console.log("oPrice: "+ oPrice);
-		  //alert("oPrice"+oPrice);
-		  //alert("result"+result);
+		  console.log(oPrice);
+
+		  if(confirm("바로 결제 하시겠습니까?") == false) return;
 		  
 		  var frm = document.payFrm;
 		  frm.cartCnt.value=cartCnt;
 		  frm.oNum.value=oNum;
+		  frm.oPrice.value=oPrice;
 		  
 		  frm.action = "${context}/pay/direct_pay.do";
 	   	  frm.submit();
 	});
-		
 		
 		//장바구니
 		$("#cart").on("click",function(){
@@ -518,7 +524,6 @@
 	            	}else{
 	            		alert("회원만 사용할 수 있습니다");
 	            	}
-
 	            },
 	            error:function(){
 	                alert("카트 담기 실패");
@@ -549,10 +554,11 @@
 	            	if(result == 1){
 	            		alert("좋아요 성공");
 	            		location.href="${context}/good/get_retrieve.do";
-	            	}else{
-	            		alert("회원만 사용할 수 있습니다");
+	            	}else if(result == 2){
+	            		alert("회원전용 페이지입니다.");
+	            	}else if(result == 3){
+	            		alert("이미 좋아요한 상품입니다.");
 	            	}
-
 	            },
 	            error:function(){
 	                alert("좋아요 실패");
@@ -626,13 +632,11 @@
 					if (null != jData && jData.msgId == "1") {
 						//alert(jData.msgMsg);
 						location.href = "${context}/product/product_mng.jsp";
-
 					} else {
 						alert("로딩 실패");
 					}
 				},
 				complete : function(data) {
-
 				},
 				error : function(xhr, status, error) {
 					alert("error:" + error);
@@ -659,7 +663,6 @@
 					}
 				},
 				complete : function(data) {
-
 				},
 				error : function(xhr, status, error) {
 					alert("error:" + error);
