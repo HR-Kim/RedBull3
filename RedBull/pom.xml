@@ -27,7 +27,7 @@
       <org.aspectj.version>1.8.9</org.aspectj.version>
       <org.slf4j-version>1.6.6</org.slf4j-version>
       <oracle.jdbc.version>11.2.0.3</oracle.jdbc.version>
-      <org.springframework-version>4.3.10.RELEASE</org.springframework-version>
+      <org.springframework-version>5.2.20.RELEASE</org.springframework-version>
       <java-version>1.8</java-version>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
       <maven.compiler.source>1.8</maven.compiler.source>
